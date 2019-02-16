@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SportsMeet.Data;
 using SportsMeet.Models;
 
 namespace SportsMeet
@@ -19,6 +20,7 @@ namespace SportsMeet
         {
             InitializeComponent();
             DataInit();
+            LoadPlayerList();
         }
 
         private void tbPlayers_Click(object sender, EventArgs e)
@@ -43,8 +45,9 @@ namespace SportsMeet
             } 
             else
             {
-                Player newPlayer = new Player(tbFirstName.Text, tbLastName.Text, age, tbPlayerNumber.Text);
-                _players.Add(newPlayer);
+                Player newPlayer = new Player(tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age);
+               
+                DataBase.SavePlayer(newPlayer);
 
                 LoadPlayerList();
             }
@@ -54,7 +57,7 @@ namespace SportsMeet
 
         #region DataRegion
 
-        private readonly List<Player> _players = new List<Player>();
+        private List<Player> _players = new List<Player>();
 
         #endregion
 
@@ -62,10 +65,7 @@ namespace SportsMeet
 
         private void DataInit()
         {
-            _players.Add(new Player("Rukshan", "Perera", 27));
-            _players.Add(new Player("Isuru", "Rathnayake", 26));
-            _players.Add(new Player("Player1", "GameOver", 15));
-            LoadPlayerList();
+            _players = DataBase.LoadPlayers();
         }
 
         private void LoadPlayerList()
