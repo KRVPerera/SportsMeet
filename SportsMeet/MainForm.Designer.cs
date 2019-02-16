@@ -31,6 +31,8 @@
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.tbPlayers = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.datetpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.lstBoxPlayer = new System.Windows.Forms.ListBox();
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.lblGender = new System.Windows.Forms.Label();
@@ -43,8 +45,6 @@
             this.lblPlayerNumber = new System.Windows.Forms.Label();
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
-            this.datetpDateOfBirth = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +58,7 @@
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(6);
             this.tcMainForm.Name = "tcMainForm";
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(1565, 818);
+            this.tcMainForm.Size = new System.Drawing.Size(1541, 746);
             this.tcMainForm.TabIndex = 0;
             // 
             // tpEvents
@@ -67,7 +67,7 @@
             this.tpEvents.Location = new System.Drawing.Point(8, 39);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(1851, 896);
+            this.tpEvents.Size = new System.Drawing.Size(1549, 771);
             this.tpEvents.TabIndex = 0;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
@@ -92,11 +92,28 @@
             this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(1549, 771);
+            this.tbPlayers.Size = new System.Drawing.Size(1525, 699);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 459);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 25);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Date of Birth";
+            // 
+            // datetpDateOfBirth
+            // 
+            this.datetpDateOfBirth.Enabled = false;
+            this.datetpDateOfBirth.Location = new System.Drawing.Point(265, 456);
+            this.datetpDateOfBirth.Name = "datetpDateOfBirth";
+            this.datetpDateOfBirth.Size = new System.Drawing.Size(357, 31);
+            this.datetpDateOfBirth.TabIndex = 13;
             // 
             // lstBoxPlayer
             // 
@@ -204,29 +221,12 @@
             this.btnAddPlayer.UseVisualStyleBackColor = true;
             this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
-            // datetpDateOfBirth
-            // 
-            this.datetpDateOfBirth.Enabled = false;
-            this.datetpDateOfBirth.Location = new System.Drawing.Point(265, 456);
-            this.datetpDateOfBirth.Name = "datetpDateOfBirth";
-            this.datetpDateOfBirth.Size = new System.Drawing.Size(357, 31);
-            this.datetpDateOfBirth.TabIndex = 13;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 459);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 25);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Date of Birth";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1565, 818);
+            this.ClientSize = new System.Drawing.Size(1541, 746);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
