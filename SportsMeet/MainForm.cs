@@ -19,7 +19,6 @@ namespace SportsMeet
         public MainForm()
         {
             InitializeComponent();
-            meetDDL.UpdateDBSchema();
             LoadPlayerList();
         }
 
@@ -79,7 +78,7 @@ namespace SportsMeet
             _players.Sort();
             lstBoxPlayer.DataSource = null;
             lstBoxPlayer.DataSource = _players;
-            lstBoxPlayer.DisplayMember = "FullName";
+            //lstBoxPlayer.DisplayMember = "FullName";
         }
 
         #endregion
