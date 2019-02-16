@@ -45,6 +45,7 @@ Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"; 
 Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"; Flags: ignoreversion
 Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}"
 Source: "..\MeetDataBaseGen\bin\Debug\meet.db"; DestDir: "{app}"
+Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; AfterInstall: InstallFramework; Check: FrameworkIsNotInstalled
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -57,3 +58,22 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 
 [ThirdParty]
 UseRelativePaths=True
+
+;https://stackoverflow.com/questions/20752882/how-can-i-install-net-framework-as-a-prerequisite-using-innosetup
+[Code]
+procedure InstallFramework;
+var
+  ResultCode: Integer;
+begin
+  if not Exec(ExpandConstant('{tmp}\dotNetFx40_Full_x86_x64.exe'), '/q /norestart', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+  begin
+    { you can interact with the user that the installation failed }
+    MsgBox('.NET installation failed with code: ' + IntToStr(ResultCode) + '.',
+      mbError, MB_OK);
+  end;
+end;
+
+function FrameworkIsNotInstalled: Boolean;
+begin
+  Result := not RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Microsoft\.NETFramework\policy\v4.0');
+end;

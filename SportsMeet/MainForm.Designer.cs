@@ -31,8 +31,6 @@
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.tbPlayers = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.datetpDateOfBirth = new System.Windows.Forms.DateTimePicker();
             this.lstBoxPlayer = new System.Windows.Forms.ListBox();
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.lblGender = new System.Windows.Forms.Label();
@@ -58,7 +56,7 @@
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(6);
             this.tcMainForm.Name = "tcMainForm";
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(1541, 746);
+            this.tcMainForm.Size = new System.Drawing.Size(1441, 657);
             this.tcMainForm.TabIndex = 0;
             // 
             // tpEvents
@@ -67,15 +65,13 @@
             this.tpEvents.Location = new System.Drawing.Point(8, 39);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(1549, 771);
+            this.tpEvents.Size = new System.Drawing.Size(1461, 651);
             this.tpEvents.TabIndex = 0;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
             // 
             // tbPlayers
             // 
-            this.tbPlayers.Controls.Add(this.label1);
-            this.tbPlayers.Controls.Add(this.datetpDateOfBirth);
             this.tbPlayers.Controls.Add(this.lstBoxPlayer);
             this.tbPlayers.Controls.Add(this.cbxGender);
             this.tbPlayers.Controls.Add(this.lblGender);
@@ -92,36 +88,22 @@
             this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(1525, 699);
+            this.tbPlayers.Size = new System.Drawing.Size(1425, 610);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 459);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 25);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Date of Birth";
-            // 
-            // datetpDateOfBirth
-            // 
-            this.datetpDateOfBirth.Enabled = false;
-            this.datetpDateOfBirth.Location = new System.Drawing.Point(265, 456);
-            this.datetpDateOfBirth.Name = "datetpDateOfBirth";
-            this.datetpDateOfBirth.Size = new System.Drawing.Size(357, 31);
-            this.datetpDateOfBirth.TabIndex = 13;
-            // 
             // lstBoxPlayer
             // 
+            this.lstBoxPlayer.Dock = System.Windows.Forms.DockStyle.Right;
             this.lstBoxPlayer.FormattingEnabled = true;
             this.lstBoxPlayer.ItemHeight = 25;
-            this.lstBoxPlayer.Location = new System.Drawing.Point(788, 70);
+            this.lstBoxPlayer.Items.AddRange(new object[] {
+            " "});
+            this.lstBoxPlayer.Location = new System.Drawing.Point(703, 6);
             this.lstBoxPlayer.Name = "lstBoxPlayer";
-            this.lstBoxPlayer.Size = new System.Drawing.Size(692, 579);
+            this.lstBoxPlayer.Size = new System.Drawing.Size(716, 598);
             this.lstBoxPlayer.TabIndex = 12;
             // 
             // cbxGender
@@ -130,7 +112,7 @@
             this.cbxGender.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cbxGender.Location = new System.Drawing.Point(265, 392);
+            this.cbxGender.Location = new System.Drawing.Point(197, 273);
             this.cbxGender.Name = "cbxGender";
             this.cbxGender.Size = new System.Drawing.Size(121, 33);
             this.cbxGender.TabIndex = 11;
@@ -139,7 +121,7 @@
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(43, 396);
+            this.lblGender.Location = new System.Drawing.Point(91, 273);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(83, 25);
             this.lblGender.TabIndex = 10;
@@ -148,7 +130,7 @@
             // lblAge
             // 
             this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(43, 317);
+            this.lblAge.Location = new System.Drawing.Point(124, 216);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(50, 25);
             this.lblAge.TabIndex = 9;
@@ -157,7 +139,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(43, 246);
+            this.lblLastName.Location = new System.Drawing.Point(59, 159);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(115, 25);
             this.lblLastName.TabIndex = 8;
@@ -166,7 +148,7 @@
             // lbFirstName
             // 
             this.lbFirstName.AutoSize = true;
-            this.lbFirstName.Location = new System.Drawing.Point(43, 154);
+            this.lbFirstName.Location = new System.Drawing.Point(58, 102);
             this.lbFirstName.Name = "lbFirstName";
             this.lbFirstName.Size = new System.Drawing.Size(116, 25);
             this.lbFirstName.TabIndex = 7;
@@ -174,7 +156,7 @@
             // 
             // mtbAge
             // 
-            this.mtbAge.Location = new System.Drawing.Point(265, 314);
+            this.mtbAge.Location = new System.Drawing.Point(197, 216);
             this.mtbAge.Mask = "00";
             this.mtbAge.Name = "mtbAge";
             this.mtbAge.Size = new System.Drawing.Size(100, 31);
@@ -183,14 +165,14 @@
             // 
             // tbLastName
             // 
-            this.tbLastName.Location = new System.Drawing.Point(265, 243);
+            this.tbLastName.Location = new System.Drawing.Point(197, 159);
             this.tbLastName.Name = "tbLastName";
             this.tbLastName.Size = new System.Drawing.Size(244, 31);
             this.tbLastName.TabIndex = 4;
             // 
             // tbFirstName
             // 
-            this.tbFirstName.Location = new System.Drawing.Point(265, 151);
+            this.tbFirstName.Location = new System.Drawing.Point(197, 102);
             this.tbFirstName.Name = "tbFirstName";
             this.tbFirstName.Size = new System.Drawing.Size(244, 31);
             this.tbFirstName.TabIndex = 3;
@@ -198,7 +180,7 @@
             // lblPlayerNumber
             // 
             this.lblPlayerNumber.AutoSize = true;
-            this.lblPlayerNumber.Location = new System.Drawing.Point(43, 73);
+            this.lblPlayerNumber.Location = new System.Drawing.Point(20, 45);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
             this.lblPlayerNumber.Size = new System.Drawing.Size(154, 25);
             this.lblPlayerNumber.TabIndex = 2;
@@ -206,16 +188,16 @@
             // 
             // tbPlayerNumber
             // 
-            this.tbPlayerNumber.Location = new System.Drawing.Point(265, 70);
+            this.tbPlayerNumber.Location = new System.Drawing.Point(197, 45);
             this.tbPlayerNumber.Name = "tbPlayerNumber";
             this.tbPlayerNumber.Size = new System.Drawing.Size(244, 31);
             this.tbPlayerNumber.TabIndex = 1;
             // 
             // btnAddPlayer
             // 
-            this.btnAddPlayer.Location = new System.Drawing.Point(265, 554);
+            this.btnAddPlayer.Location = new System.Drawing.Point(500, 45);
             this.btnAddPlayer.Name = "btnAddPlayer";
-            this.btnAddPlayer.Size = new System.Drawing.Size(243, 55);
+            this.btnAddPlayer.Size = new System.Drawing.Size(149, 59);
             this.btnAddPlayer.TabIndex = 0;
             this.btnAddPlayer.Text = "Add Player";
             this.btnAddPlayer.UseVisualStyleBackColor = true;
@@ -226,7 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1541, 746);
+            this.ClientSize = new System.Drawing.Size(1441, 657);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
@@ -255,8 +237,6 @@
         private System.Windows.Forms.TextBox tbPlayerNumber;
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.ListBox lstBoxPlayer;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker datetpDateOfBirth;
     }
 }
 
