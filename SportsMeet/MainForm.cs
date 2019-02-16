@@ -19,7 +19,7 @@ namespace SportsMeet
         public MainForm()
         {
             InitializeComponent();
-            DataInit();
+            meetDDL.UpdateDBSchema();
             LoadPlayerList();
         }
 
@@ -70,6 +70,7 @@ namespace SportsMeet
 
         private void LoadPlayerList()
         {
+            _players = DataBase.LoadPlayers();
             RefreshGui();
         }
 
