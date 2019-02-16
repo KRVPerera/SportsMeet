@@ -52,6 +52,12 @@ namespace SportsMeet
             }
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DBConnection.Connection.Close();
+        }
+
+
         #endregion
 
         #region DataRegion

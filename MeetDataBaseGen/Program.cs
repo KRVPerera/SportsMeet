@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -12,11 +13,21 @@ namespace MeetDataBaseGen
     {
         static int Main(string[] args)
         {
-    
-                var connectionString = ConfigurationManager.ConnectionStrings["default"].ConnectionString;
-                //EnsureDatabase.For.SQLiteDatabase(connectionString);
+            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MeetTracker";
+            try
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Could not create path : {0}", e.ToString());
+                folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            }
 
-                var upgrader =
+            var connectionString = "Data Source=" + folderPath + "\\meet.db; Version=3";
+            //EnsureDatabase.For.SQLiteDatabase(connectionString);
+
+            var upgrader =
                     DeployChanges.To
                         .SQLiteDatabase(connectionString)
                         .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
@@ -37,6 +48,7 @@ namespace MeetDataBaseGen
                 }
 
                 Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(connectionString);
                 Console.WriteLine("Success!");
                 Console.ResetColor();
                 return 0;

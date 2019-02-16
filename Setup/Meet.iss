@@ -37,15 +37,22 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\KrvProjects\MeetTracker\SportsMeet\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "..\SportsMeet\bin\Debug\System.Data.SQLite.dll"; DestDir: "{app}"
-Source: "..\SportsMeet\bin\Debug\Dapper.dll"; DestDir: "{app}"
+Source: "..\SportsMeet\bin\Debug\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\Dapper.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"; Flags: ignoreversion
 Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"; Flags: ignoreversion
+Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; Check: FrameworkIsNotInstalled; AfterInstall: InstallFramework
 Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}"
-Source: "..\MeetDataBaseGen\bin\Debug\meet.db"; DestDir: "{app}"
-Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; AfterInstall: InstallFramework; Check: FrameworkIsNotInstalled
+Source: "..\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}"
+
+Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x86"; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x64"; Flags: ignoreversion
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker"
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe"; DestDir: "{tmp}\MeetTracker" ; Flags: deleteafterinstall; AfterInstall: CreateMeetDatabase
+
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -57,9 +64,9 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [ThirdParty]
+;https://stackoverflow.com/questions/20752882/how-can-i-install-net-framework-as-a-prerequisite-using-innosetup
 UseRelativePaths=True
 
-;https://stackoverflow.com/questions/20752882/how-can-i-install-net-framework-as-a-prerequisite-using-innosetup
 [Code]
 procedure InstallFramework;
 var
@@ -73,7 +80,35 @@ begin
   end;
 end;
 
+procedure CreateMeetDatabase;
+var
+  ResultCode: Integer;
+begin
+  if not Exec(ExpandConstant('{tmp}\MeetTracker\MeetDataBaseGen.exe'), '', '', SW_SHOW, ewWaitUntilTerminated, ResultCode) then
+  begin
+    { you can interact with the user that the installation failed }
+    MsgBox('Database schema generation failed with code: ' + IntToStr(ResultCode) + '.',
+      mbError, MB_OK);
+  end;
+  DelTree(ExpandConstant('{tmp}\MeetTracker'), True, True, True);
+end;
+
+
 function FrameworkIsNotInstalled: Boolean;
 begin
   Result := not RegKeyExists(HKEY_LOCAL_MACHINE, 'Software\Microsoft\.NETFramework\policy\v4.0');
+end;
+
+procedure CurUninstallStepChanged (CurUninstallStep: TUninstallStep);
+var
+  mres : integer;
+begin
+  case CurUninstallStep of
+    usPostUninstall:
+      begin
+        mres := MsgBox('Do you want to delete saved files?', mbConfirmation, MB_YESNO or MB_DEFBUTTON2)
+        if mres = IDYES then
+          DelTree(ExpandConstant('{userdocs}\MyApp'), True, True, True);
+      end;  
+  end;
 end;

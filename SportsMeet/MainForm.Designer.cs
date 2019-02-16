@@ -65,7 +65,7 @@
             this.tpEvents.Location = new System.Drawing.Point(8, 39);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(1461, 651);
+            this.tpEvents.Size = new System.Drawing.Size(1425, 610);
             this.tpEvents.TabIndex = 0;
             this.tpEvents.Text = "Events";
             this.tpEvents.UseVisualStyleBackColor = true;
@@ -207,12 +207,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1441, 657);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
             this.Text = "Sports Meet";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.tcMainForm.ResumeLayout(false);
             this.tbPlayers.ResumeLayout(false);
             this.tbPlayers.PerformLayout();

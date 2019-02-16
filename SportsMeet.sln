@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsMeet", "SportsMeet\SportsMeet.csproj", "{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{E15D43E9-F99B-4006-8FBC-885FB5999DF7} = {E15D43E9-F99B-4006-8FBC-885FB5999DF7}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetDataBaseGen", "MeetDataBaseGen\MeetDataBaseGen.csproj", "{E15D43E9-F99B-4006-8FBC-885FB5999DF7}"
 EndProject

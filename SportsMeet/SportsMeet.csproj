@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataBase.cs" />
+    <Compile Include="Data\DBConnection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,7 +102,7 @@
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net40\System.Data.SQLite.Core.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>call $(SolutionDir)\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe
-copy $(SolutionDir)\MeetDataBaseGen\bin\Debug\meet.db $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>
