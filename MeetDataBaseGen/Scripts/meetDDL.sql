@@ -4,7 +4,7 @@
 );
 
 CREATE TABLE Events (
-    id       INT     PRIMARY KEY,
+    id       INT     PRIMARY KEY AUTOINCREMENT,
     name     TEXT    UNIQUE
                      NOT NULL,
     gender   BOOLEAN,
