@@ -22,12 +22,18 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
-LicenseFile=C:\KrvProjects\MeetTracker\SportsMeet\Setup\LICENSE
-InfoBeforeFile=C:\KrvProjects\MeetTracker\SportsMeet\Setup\InformationPre.txt
-InfoAfterFile=C:\KrvProjects\MeetTracker\SportsMeet\Setup\InformationPost.txt
+LicenseFile=..\LICENSE
+InfoBeforeFile=InformationPre.txt
+InfoAfterFile=InformationPost.txt
 OutputBaseFilename=MeetSetup
 Compression=lzma
 SolidCompression=yes
+MinVersion=0,6.0
+VersionInfoVersion=0.9
+VersionInfoCompany=ISURU RATHNAYAKA and RUKSHAN PERERA
+VersionInfoCopyright=2019
+VersionInfoProductName=MeetTracker
+VersionInfoProductVersion=0.9
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -38,20 +44,21 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "..\SportsMeet\bin\Debug\System.Data.SQLite.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\SportsMeet\bin\Debug\Dapper.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"; Flags: ignoreversion
-Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\System.Data.SQLite.dll"; DestDir: "{app}"
+Source: "..\SportsMeet\bin\Debug\Dapper.dll"; DestDir: "{app}"
+Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"
+Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"
+Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x86"
+Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x64"
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker" 
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker" 
 Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; Check: FrameworkIsNotInstalled; AfterInstall: InstallFramework
-Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}"
-Source: "..\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}"
 
-Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x86"; Flags: ignoreversion
-Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x64"; Flags: ignoreversion
-Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
-Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
-Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker"
-Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe"; DestDir: "{tmp}\MeetTracker" ; Flags: deleteafterinstall; AfterInstall: CreateMeetDatabase
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion deleteafterinstall; AfterInstall: CreateMeetDatabase
+Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}" ; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}" ; Flags: ignoreversion
+
 
 
 [Icons]
