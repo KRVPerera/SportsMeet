@@ -12,18 +12,34 @@ namespace SportsMeet.Data
     {
         static IDbConnection connection = null;
 
-        public DBConnection()
+        private static DBConnection instance = null;
+        private static readonly object padlock = new object();
+
+        private DBConnection()
         {
+            connection = new SQLiteConnection(LoadConnectionString());
+            connection.Open();
         }
 
-        public static IDbConnection Connection
+        public static DBConnection Instance
         {
             get
             {
-                if (connection == null)
+                lock (padlock)
                 {
-                    connection = new SQLiteConnection(LoadConnectionString());
+                    if (instance == null)
+                    {
+                        instance = new DBConnection();
+                    }
+                    return instance;
                 }
+            }
+        }
+
+        public IDbConnection Connection
+        {
+            get
+            {
                 return connection;
             }
         }

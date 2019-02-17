@@ -50,7 +50,7 @@ namespace SportsMeet
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DBConnection.Connection.Close();
+            DBConnection.Instance.Connection.Close();
         }
 
         #endregion MainForm uicontrols

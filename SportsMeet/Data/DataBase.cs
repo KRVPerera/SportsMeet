@@ -22,13 +22,13 @@ namespace SportsMeet.Data
 
         public static List<Player> LoadPlayers()
         {
-            var output = DBConnection.Connection.Query<Player>("select * from Players", new DynamicParameters());
+            var output = DBConnection.Instance.Connection.Query<Player>("select * from Players", new DynamicParameters());
             return output.ToList();
         }
 
         public static void SavePlayer(Player player)
         {
-            DBConnection.Connection.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
+            DBConnection.Instance.Connection.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
         }
 
     }
