@@ -31,7 +31,6 @@
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tpEvents = new System.Windows.Forms.TabPage();
             this.tbPlayers = new System.Windows.Forms.TabPage();
-            this.lstBoxPlayer = new System.Windows.Forms.ListBox();
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.lblGender = new System.Windows.Forms.Label();
             this.lblAge = new System.Windows.Forms.Label();
@@ -43,8 +42,12 @@
             this.lblPlayerNumber = new System.Windows.Forms.Label();
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.BtnSearch = new System.Windows.Forms.Button();
+            this.gridViewPlayers = new System.Windows.Forms.DataGridView();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPlayers)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -56,7 +59,7 @@
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(6);
             this.tcMainForm.Name = "tcMainForm";
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(1441, 657);
+            this.tcMainForm.Size = new System.Drawing.Size(1714, 601);
             this.tcMainForm.TabIndex = 0;
             // 
             // tpEvents
@@ -72,7 +75,9 @@
             // 
             // tbPlayers
             // 
-            this.tbPlayers.Controls.Add(this.lstBoxPlayer);
+            this.tbPlayers.Controls.Add(this.gridViewPlayers);
+            this.tbPlayers.Controls.Add(this.BtnSearch);
+            this.tbPlayers.Controls.Add(this.tbSearch);
             this.tbPlayers.Controls.Add(this.cbxGender);
             this.tbPlayers.Controls.Add(this.lblGender);
             this.tbPlayers.Controls.Add(this.lblAge);
@@ -88,23 +93,11 @@
             this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(1425, 610);
+            this.tbPlayers.Size = new System.Drawing.Size(1698, 554);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
-            // 
-            // lstBoxPlayer
-            // 
-            this.lstBoxPlayer.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lstBoxPlayer.FormattingEnabled = true;
-            this.lstBoxPlayer.ItemHeight = 25;
-            this.lstBoxPlayer.Items.AddRange(new object[] {
-            " "});
-            this.lstBoxPlayer.Location = new System.Drawing.Point(703, 6);
-            this.lstBoxPlayer.Name = "lstBoxPlayer";
-            this.lstBoxPlayer.Size = new System.Drawing.Size(716, 598);
-            this.lstBoxPlayer.TabIndex = 12;
             // 
             // cbxGender
             // 
@@ -195,7 +188,7 @@
             // 
             // btnAddPlayer
             // 
-            this.btnAddPlayer.Location = new System.Drawing.Point(500, 45);
+            this.btnAddPlayer.Location = new System.Drawing.Point(197, 342);
             this.btnAddPlayer.Name = "btnAddPlayer";
             this.btnAddPlayer.Size = new System.Drawing.Size(149, 59);
             this.btnAddPlayer.TabIndex = 0;
@@ -203,11 +196,41 @@
             this.btnAddPlayer.UseVisualStyleBackColor = true;
             this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
+            // tbSearch
+            // 
+            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSearch.Location = new System.Drawing.Point(896, 32);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(793, 31);
+            this.tbSearch.TabIndex = 13;
+            // 
+            // BtnSearch
+            // 
+            this.BtnSearch.Location = new System.Drawing.Point(690, 25);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(171, 45);
+            this.BtnSearch.TabIndex = 14;
+            this.BtnSearch.Text = "Search";
+            this.BtnSearch.UseVisualStyleBackColor = true;
+            // 
+            // gridViewPlayers
+            // 
+            this.gridViewPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridViewPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.gridViewPlayers.Location = new System.Drawing.Point(458, 102);
+            this.gridViewPlayers.Name = "gridViewPlayers";
+            this.gridViewPlayers.RowTemplate.Height = 33;
+            this.gridViewPlayers.Size = new System.Drawing.Size(1231, 443);
+            this.gridViewPlayers.TabIndex = 15;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1441, 657);
+            this.ClientSize = new System.Drawing.Size(1714, 601);
             this.Controls.Add(this.tcMainForm);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
@@ -216,6 +239,7 @@
             this.tcMainForm.ResumeLayout(false);
             this.tbPlayers.ResumeLayout(false);
             this.tbPlayers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPlayers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -236,7 +260,9 @@
         private System.Windows.Forms.Label lblPlayerNumber;
         private System.Windows.Forms.TextBox tbPlayerNumber;
         private System.Windows.Forms.Button btnAddPlayer;
-        private System.Windows.Forms.ListBox lstBoxPlayer;
+        private System.Windows.Forms.DataGridView gridViewPlayers;
+        private System.Windows.Forms.Button BtnSearch;
+        private System.Windows.Forms.TextBox tbSearch;
     }
 }
 

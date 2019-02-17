@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using SportsMeet.Data;
+﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SportsMeet
 {
     public partial class MainForm : Form
     {
-
         #region MainForm uicontrols
 
         public MainForm()
@@ -24,7 +18,6 @@ namespace SportsMeet
 
         private void tbPlayers_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
@@ -32,8 +25,8 @@ namespace SportsMeet
             if (String.IsNullOrEmpty(tbPlayerNumber.Text))
             {
                 MessageBox.Show("Invalid player number", "Please enter a valid number");
-
-            } else 
+            }
+            else
             if (!Int32.TryParse(mtbAge.Text, out var age))
             {
                 MessageBox.Show("Invalid Age", "Please enter a valid name");
@@ -41,11 +34,14 @@ namespace SportsMeet
             else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
             {
                 MessageBox.Show("Invalid Name", "Please enter the name.");
-            } 
+            }
             else
             {
-                Player newPlayer = new Player(tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age);
-               
+                Player newPlayer = new Player(tbPlayerNumber.Text.Trim(),
+                                                tbFirstName.Text.Trim(),
+                                                tbLastName.Text.Trim(),
+                                                age);
+
                 DataBase.SavePlayer(newPlayer);
 
                 LoadPlayerList();
@@ -57,14 +53,13 @@ namespace SportsMeet
             DBConnection.Connection.Close();
         }
 
-
-        #endregion
+        #endregion MainForm uicontrols
 
         #region DataRegion
 
         private List<Player> _players = new List<Player>();
 
-        #endregion
+        #endregion DataRegion
 
         #region DataProcessing
 
@@ -82,12 +77,11 @@ namespace SportsMeet
         private void RefreshGui()
         {
             _players.Sort();
-            lstBoxPlayer.DataSource = null;
-            lstBoxPlayer.DataSource = _players;
+            gridViewPlayers.DataSource = null;
+            gridViewPlayers.DataSource = _players;
             //lstBoxPlayer.DisplayMember = "FullName";
         }
 
-        #endregion
-
+        #endregion DataProcessing
     }
 }
