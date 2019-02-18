@@ -2,6 +2,7 @@
 using SportsMeet.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SportsMeet
@@ -27,7 +28,7 @@ namespace SportsMeet
                 MessageBox.Show("Invalid player number", "Please enter a valid number");
             }
             else
-            if (!Int32.TryParse(mtbAge.Text, out var age))
+            if (!Int32.TryParse(numUpDownAge.Text, out var age))
             {
                 MessageBox.Show("Invalid Age", "Please enter a valid name");
             }
@@ -51,6 +52,15 @@ namespace SportsMeet
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             DBConnection.Instance.Connection.Close();
+        }
+
+
+        private void toolStripMainAbout_Click(object sender, EventArgs e)
+        {
+            using (formAbout aboutForm = new formAbout())
+            {
+                aboutForm.ShowDialog();
+            }
         }
 
         #endregion MainForm uicontrols
@@ -82,6 +92,8 @@ namespace SportsMeet
             //lstBoxPlayer.DisplayMember = "FullName";
         }
 
+
         #endregion DataProcessing
+
     }
 }
