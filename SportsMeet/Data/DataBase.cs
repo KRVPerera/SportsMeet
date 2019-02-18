@@ -31,5 +31,10 @@ namespace SportsMeet.Data
             DBConnection.Instance.Connection.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
         }
 
+        public static void RemovePlayer(Player player)
+        {
+            DBConnection.Instance.Connection.Execute("DELETE FROM Players WHERE (number) = (@Number)", player);
+        }
+
     }
 }

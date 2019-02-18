@@ -63,6 +63,14 @@ namespace SportsMeet
             }
         }
 
+
+        private void btnDeletePlayer_Click(object sender, EventArgs e)
+        {
+            Player currentPlayer = (Player)gridViewPlayers.CurrentRow.DataBoundItem;
+            DataBase.RemovePlayer(currentPlayer);
+            LoadPlayerList();
+        }
+
         #endregion MainForm uicontrols
 
         #region DataRegion
@@ -89,11 +97,13 @@ namespace SportsMeet
             _players.Sort();
             gridViewPlayers.DataSource = null;
             gridViewPlayers.DataSource = _players;
+            tspLblPlayerCount.Text = _players.Count.ToString();
             //lstBoxPlayer.DisplayMember = "FullName";
         }
 
 
         #endregion DataProcessing
 
+        
     }
 }

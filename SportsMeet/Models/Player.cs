@@ -14,13 +14,12 @@ namespace SportsMeet.Models
             Number = number;
         }
 
-        public Player(int no, string number, string firstName, string lastName, int age, int schoolId)
+        public Player( string number, string firstName, string lastName, int age, int schoolId)
         {
-            Id = no;
+            Number = number;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
-            Number = number;
             SchoolId = schoolId;
         }
 
@@ -31,8 +30,6 @@ namespace SportsMeet.Models
         #endregion public constrctors
 
         #region public members
-
-        public int Id { get; set; }
 
         public string Number { get; set; }
 

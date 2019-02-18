@@ -53,6 +53,7 @@
             this.toolStripMainAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tabButtonImages = new System.Windows.Forms.ImageList(this.components);
+            this.btnDeletePlayer = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownAge)).BeginInit();
@@ -80,6 +81,7 @@
             // 
             // tbPlayers
             // 
+            this.tbPlayers.Controls.Add(this.btnDeletePlayer);
             this.tbPlayers.Controls.Add(this.numUpDownAge);
             this.tbPlayers.Controls.Add(this.gridViewPlayers);
             this.tbPlayers.Controls.Add(this.BtnSearch);
@@ -233,7 +235,7 @@
             // 
             // btnAddPlayer
             // 
-            this.btnAddPlayer.Location = new System.Drawing.Point(309, 480);
+            this.btnAddPlayer.Location = new System.Drawing.Point(21, 509);
             this.btnAddPlayer.Name = "btnAddPlayer";
             this.btnAddPlayer.Size = new System.Drawing.Size(192, 65);
             this.btnAddPlayer.TabIndex = 0;
@@ -310,6 +312,16 @@
             this.tabButtonImages.Images.SetKeyName(0, "Icons8-Windows-8-Sports-Running-Man.ico");
             this.tabButtonImages.Images.SetKeyName(1, "Icons8-Windows-8-Sports-Football-2.ico");
             // 
+            // btnDeletePlayer
+            // 
+            this.btnDeletePlayer.Location = new System.Drawing.Point(257, 509);
+            this.btnDeletePlayer.Name = "btnDeletePlayer";
+            this.btnDeletePlayer.Size = new System.Drawing.Size(192, 65);
+            this.btnDeletePlayer.TabIndex = 17;
+            this.btnDeletePlayer.Text = "Delete";
+            this.btnDeletePlayer.UseVisualStyleBackColor = true;
+            this.btnDeletePlayer.Click += new System.EventHandler(this.btnDeletePlayer_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -360,6 +372,7 @@
         private System.Windows.Forms.ToolStripLabel tspLblPlayerCount;
         private System.Windows.Forms.ToolStripButton toolStripMainAbout;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Button btnDeletePlayer;
     }
 }
 
