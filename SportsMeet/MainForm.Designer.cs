@@ -69,16 +69,13 @@
             this.tcMainForm.Controls.Add(this.tpEvents);
             this.tcMainForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcMainForm.ImageList = this.tabButtonImages;
-            this.tcMainForm.ItemSize = new System.Drawing.Size(100, 80);
-            this.tcMainForm.Location = new System.Drawing.Point(0, 0);
+            this.tcMainForm.ItemSize = new System.Drawing.Size(40, 50);
+            this.tcMainForm.Location = new System.Drawing.Point(8, -3);
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(6);
             this.tcMainForm.Multiline = true;
             this.tcMainForm.Name = "tcMainForm";
-            this.tcMainForm.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tcMainForm.RightToLeftLayout = true;
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(2172, 795);
-            this.tcMainForm.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
+            this.tcMainForm.Size = new System.Drawing.Size(1616, 728);
             this.tcMainForm.TabIndex = 0;
             // 
             // tbPlayers
@@ -98,11 +95,10 @@
             this.tbPlayers.Controls.Add(this.tbPlayerNumber);
             this.tbPlayers.Controls.Add(this.btnAddPlayer);
             this.tbPlayers.ImageIndex = 0;
-            this.tbPlayers.Location = new System.Drawing.Point(8, 88);
-            this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
+            this.tbPlayers.Location = new System.Drawing.Point(8, 58);
+            this.tbPlayers.Margin = new System.Windows.Forms.Padding(0);
             this.tbPlayers.Name = "tbPlayers";
-            this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(2156, 699);
+            this.tbPlayers.Size = new System.Drawing.Size(1600, 662);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
@@ -130,11 +126,13 @@
             this.gridViewPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridViewPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.gridViewPlayers.Location = new System.Drawing.Point(709, 114);
+            this.gridViewPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridViewPlayers.ColumnHeadersHeight = 30;
+            this.gridViewPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.gridViewPlayers.Location = new System.Drawing.Point(703, 108);
             this.gridViewPlayers.Name = "gridViewPlayers";
             this.gridViewPlayers.RowTemplate.Height = 33;
-            this.gridViewPlayers.Size = new System.Drawing.Size(1423, 515);
+            this.gridViewPlayers.Size = new System.Drawing.Size(874, 513);
             this.gridViewPlayers.TabIndex = 15;
             // 
             // BtnSearch
@@ -150,9 +148,9 @@
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSearch.Location = new System.Drawing.Point(912, 38);
+            this.tbSearch.Location = new System.Drawing.Point(902, 39);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(1220, 44);
+            this.tbSearch.Size = new System.Drawing.Size(675, 44);
             this.tbSearch.TabIndex = 13;
             // 
             // cbxGender
@@ -170,7 +168,7 @@
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(20, 321);
+            this.lblGender.Location = new System.Drawing.Point(14, 315);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(123, 37);
             this.lblGender.TabIndex = 10;
@@ -179,7 +177,7 @@
             // lblAge
             // 
             this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(20, 252);
+            this.lblAge.Location = new System.Drawing.Point(14, 246);
             this.lblAge.Name = "lblAge";
             this.lblAge.Size = new System.Drawing.Size(74, 37);
             this.lblAge.TabIndex = 9;
@@ -188,7 +186,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(20, 183);
+            this.lblLastName.Location = new System.Drawing.Point(14, 177);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(173, 37);
             this.lblLastName.TabIndex = 8;
@@ -197,7 +195,7 @@
             // lbFirstName
             // 
             this.lbFirstName.AutoSize = true;
-            this.lbFirstName.Location = new System.Drawing.Point(20, 114);
+            this.lbFirstName.Location = new System.Drawing.Point(14, 108);
             this.lbFirstName.Name = "lbFirstName";
             this.lbFirstName.Size = new System.Drawing.Size(175, 37);
             this.lbFirstName.TabIndex = 7;
@@ -220,7 +218,7 @@
             // lblPlayerNumber
             // 
             this.lblPlayerNumber.AutoSize = true;
-            this.lblPlayerNumber.Location = new System.Drawing.Point(20, 45);
+            this.lblPlayerNumber.Location = new System.Drawing.Point(14, 39);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
             this.lblPlayerNumber.Size = new System.Drawing.Size(230, 37);
             this.lblPlayerNumber.TabIndex = 2;
@@ -235,9 +233,9 @@
             // 
             // btnAddPlayer
             // 
-            this.btnAddPlayer.Location = new System.Drawing.Point(309, 512);
+            this.btnAddPlayer.Location = new System.Drawing.Point(309, 480);
             this.btnAddPlayer.Name = "btnAddPlayer";
-            this.btnAddPlayer.Size = new System.Drawing.Size(192, 59);
+            this.btnAddPlayer.Size = new System.Drawing.Size(192, 65);
             this.btnAddPlayer.TabIndex = 0;
             this.btnAddPlayer.Text = "Add Player";
             this.btnAddPlayer.UseVisualStyleBackColor = true;
@@ -250,7 +248,7 @@
             this.tpEvents.Location = new System.Drawing.Point(8, 88);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(2156, 699);
+            this.tpEvents.Size = new System.Drawing.Size(2047, 829);
             this.tpEvents.TabIndex = 0;
             this.tpEvents.Text = "Events";
             this.tpEvents.ToolTipText = "Add Players";
@@ -258,29 +256,33 @@
             // 
             // toolStripMainBottom
             // 
-            this.toolStripMainBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStripMainBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.toolStripMainBottom.AutoSize = false;
+            this.toolStripMainBottom.CanOverflow = false;
+            this.toolStripMainBottom.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStripMainBottom.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolStripMainBottom.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStripMainBottom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tspLabelTotalPlayers,
             this.tspLblPlayerCount,
             this.toolStripMainAbout,
             this.toolStripSeparator1});
-            this.toolStripMainBottom.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripMainBottom.Location = new System.Drawing.Point(0, 789);
+            this.toolStripMainBottom.Location = new System.Drawing.Point(8, 722);
             this.toolStripMainBottom.Name = "toolStripMainBottom";
-            this.toolStripMainBottom.Size = new System.Drawing.Size(2172, 39);
+            this.toolStripMainBottom.Size = new System.Drawing.Size(1607, 48);
             this.toolStripMainBottom.TabIndex = 0;
             // 
             // tspLabelTotalPlayers
             // 
             this.tspLabelTotalPlayers.Name = "tspLabelTotalPlayers";
-            this.tspLabelTotalPlayers.Size = new System.Drawing.Size(147, 36);
+            this.tspLabelTotalPlayers.Size = new System.Drawing.Size(147, 45);
             this.tspLabelTotalPlayers.Text = "Total Players";
             // 
             // tspLblPlayerCount
             // 
             this.tspLblPlayerCount.Name = "tspLblPlayerCount";
-            this.tspLblPlayerCount.Size = new System.Drawing.Size(28, 36);
+            this.tspLblPlayerCount.Size = new System.Drawing.Size(28, 45);
             this.tspLblPlayerCount.Text = "0";
             // 
             // toolStripMainAbout
@@ -290,7 +292,7 @@
             this.toolStripMainAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripMainAbout.Name = "toolStripMainAbout";
             this.toolStripMainAbout.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripMainAbout.Size = new System.Drawing.Size(84, 36);
+            this.toolStripMainAbout.Size = new System.Drawing.Size(84, 45);
             this.toolStripMainAbout.Text = "About";
             this.toolStripMainAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.toolStripMainAbout.ToolTipText = "About";
@@ -299,7 +301,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
             // 
             // tabButtonImages
             // 
@@ -312,12 +314,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2172, 828);
+            this.ClientSize = new System.Drawing.Size(1624, 779);
             this.Controls.Add(this.toolStripMainBottom);
             this.Controls.Add(this.tcMainForm);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MinimumSize = new System.Drawing.Size(1650, 850);
             this.Name = "MainForm";
             this.Text = "Sports Meet";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
@@ -329,7 +332,6 @@
             this.toolStripMainBottom.ResumeLayout(false);
             this.toolStripMainBottom.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
