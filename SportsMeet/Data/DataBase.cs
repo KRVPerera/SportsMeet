@@ -36,5 +36,11 @@ namespace SportsMeet.Data
             DBConnection.Instance.Connection.Execute("DELETE FROM Players WHERE (number) = (@Number)", player);
         }
 
+        public static List<School> LoadSchools()
+        {
+            var output = DBConnection.Instance.Connection.Query<School>("select * from Schools", new DynamicParameters());
+            return output.ToList();
+        }
+
     }
 }

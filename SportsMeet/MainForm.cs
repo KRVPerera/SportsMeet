@@ -20,6 +20,8 @@ namespace SportsMeet
             InitializeComponent();
             DataInit();
             LoadPlayerList();
+            LoadSchoolList();
+            RefreshGui();
         }
 
         private void tbPlayers_Click(object sender, EventArgs e)
@@ -68,7 +70,7 @@ namespace SportsMeet
         {
             using (Form abForm = new formAbout())
             {
-                abForm.Show();
+                abForm.ShowDialog();
             }
         }
 
@@ -84,12 +86,9 @@ namespace SportsMeet
 
         private void RefreshGui()
         {
-            _players.Sort();
-            dataGridViewPlayers.DataSource = null;
-            dataGridViewPlayers.DataSource = _players;
             tbPlayerSearch.Text = Resources.DefaultSearchString;
             tbPlayerSearch.ForeColor = Color.DimGray;
-            toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
+            tbPlayerNumber.Clear();
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -112,6 +111,7 @@ namespace SportsMeet
         #region DataRegion
 
         private List<Player> _players = new List<Player>();
+        private List<School> _schools = new List<School>();
 
         #endregion DataRegion
 
@@ -119,16 +119,23 @@ namespace SportsMeet
 
         private void DataInit()
         {
-            _players = DataBase.LoadPlayers();
         }
 
         private void LoadPlayerList()
         {
             _players = DataBase.LoadPlayers();
-            RefreshGui();
+            bindingSourcePlayers.DataSource = _players;
+            bindingSourcePlayers.ResetBindings(false);
+            toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
         }
 
-
+        private void LoadSchoolList()
+        {
+            _schools = DataBase.LoadSchools();
+            bindingSourceSchools.DataSource = _schools;
+            bindingSourceSchools.ResetBindings(false);
+            toolStripLabelSchoolCount.Text = _schools.Count.ToString();
+        }
 
         #endregion DataProcessing
 

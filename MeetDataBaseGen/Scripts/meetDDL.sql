@@ -1,6 +1,7 @@
 ﻿CREATE TABLE Schools (
     schoolId INTEGER    PRIMARY KEY,
-    name     TEXT (100) 
+    name     TEXT (100) UNIQUE,
+	district TEXT,
 );
 
 CREATE TABLE Events (
