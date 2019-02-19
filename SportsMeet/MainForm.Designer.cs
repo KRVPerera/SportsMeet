@@ -56,6 +56,7 @@ namespace SportsMeet
             this.tbPlayerSearch = new System.Windows.Forms.TextBox();
             this.lblDistrict = new System.Windows.Forms.Label();
             this.cbxDistrict = new System.Windows.Forms.ComboBox();
+            this.bindingSourceDistricts = new System.Windows.Forms.BindingSource(this.components);
             this.cbxEvent = new System.Windows.Forms.ComboBox();
             this.tbEventNumber = new System.Windows.Forms.TextBox();
             this.lblEvent = new System.Windows.Forms.Label();
@@ -103,18 +104,17 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabelSchools = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
-            this.bindingSourceDistricts = new System.Windows.Forms.BindingSource(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceSchools)).BeginInit();
             this.tbEvents.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tbFilterByPlayer.SuspendLayout();
             this.toolStripStatusBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -260,6 +260,8 @@ namespace SportsMeet
             // 
             this.tbPlayerSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbPlayerSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbPlayerSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbPlayerSearch.Location = new System.Drawing.Point(453, 43);
             this.tbPlayerSearch.Name = "tbPlayerSearch";
             this.tbPlayerSearch.Size = new System.Drawing.Size(639, 31);
@@ -280,13 +282,20 @@ namespace SportsMeet
             // 
             // cbxDistrict
             // 
+            this.cbxDistrict.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxDistrict.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxDistrict.DataSource = this.bindingSourceDistricts;
+            this.cbxDistrict.DisplayMember = "Name";
             this.cbxDistrict.FormattingEnabled = true;
             this.cbxDistrict.Location = new System.Drawing.Point(183, 245);
             this.cbxDistrict.Margin = new System.Windows.Forms.Padding(6);
             this.cbxDistrict.Name = "cbxDistrict";
             this.cbxDistrict.Size = new System.Drawing.Size(180, 33);
             this.cbxDistrict.TabIndex = 23;
+            // 
+            // bindingSourceDistricts
+            // 
+            this.bindingSourceDistricts.DataSource = typeof(SportsMeet.Models.District);
             // 
             // cbxEvent
             // 
@@ -337,6 +346,8 @@ namespace SportsMeet
             // 
             // cbxSchool
             // 
+            this.cbxSchool.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbxSchool.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbxSchool.DataSource = this.bindingSourceSchools;
             this.cbxSchool.DisplayMember = "Name";
             this.cbxSchool.FormattingEnabled = true;
@@ -777,6 +788,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAge)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceSchools)).EndInit();
             this.tbEvents.ResumeLayout(false);
             this.tbEvents.PerformLayout();
@@ -786,7 +798,6 @@ namespace SportsMeet
             this.tbFilterByPlayer.PerformLayout();
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).EndInit();
             this.ResumeLayout(false);
 
         }

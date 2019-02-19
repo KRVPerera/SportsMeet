@@ -48,5 +48,11 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static List<String> LoadPlayerNumbers()
+        {
+            var output = DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
+            return output.ToList();
+        }
+
     }
 }

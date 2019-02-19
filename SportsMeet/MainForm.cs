@@ -38,7 +38,7 @@ namespace SportsMeet
             else
             if (!Int32.TryParse(numericUpDownAge.Text, out var age))
             {
-                MessageBox.Show("Invalid Age", "Please enter a valid age");
+                MessageBox.Show("Please enter a valid age", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
             {
@@ -60,10 +60,11 @@ namespace SportsMeet
 
             if (searchString != Resources.DefaultSearchString)
             {
+                var playerList = DataBase.LoadPlayers();
                 var myRegex = new Regex(@"^" + searchString + ".*$");
-                IEnumerable<Player> result = _players.Where(player => myRegex.IsMatch(player.Number));
-                dataGridViewPlayers.DataSource = null;
-                dataGridViewPlayers.DataSource = result.ToList();
+                IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                bindingSourcePlayers.DataSource = result.ToList();
+                bindingSourcePlayers.ResetBindings(false);
             }
         }
 
@@ -90,6 +91,10 @@ namespace SportsMeet
             tbPlayerSearch.Text = Resources.DefaultSearchString;
             tbPlayerSearch.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
+
+//            var autoComplete = new AutoCompleteStringCollection();
+//            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
+//            tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -98,6 +103,8 @@ namespace SportsMeet
             {
                 tbPlayerSearch.Text = Resources.DefaultSearchString;
                 tbPlayerSearch.ForeColor = Color.DimGray;
+                bindingSourcePlayers.DataSource = _players;
+                bindingSourcePlayers.ResetBindings(false);
             }
         }
 
@@ -129,6 +136,10 @@ namespace SportsMeet
             bindingSourcePlayers.DataSource = _players;
             bindingSourcePlayers.ResetBindings(false);
             toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
+            tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
         }
 
         private void LoadSchoolList()
