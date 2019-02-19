@@ -32,9 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tbPlayers = new System.Windows.Forms.TabPage();
+            this.btnDeletePlayer = new System.Windows.Forms.Button();
             this.numUpDownAge = new System.Windows.Forms.NumericUpDown();
             this.gridViewPlayers = new System.Windows.Forms.DataGridView();
-            this.BtnSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.lblGender = new System.Windows.Forms.Label();
@@ -47,13 +47,12 @@
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tpEvents = new System.Windows.Forms.TabPage();
+            this.tabButtonImages = new System.Windows.Forms.ImageList(this.components);
             this.toolStripMainBottom = new System.Windows.Forms.ToolStrip();
             this.tspLabelTotalPlayers = new System.Windows.Forms.ToolStripLabel();
             this.tspLblPlayerCount = new System.Windows.Forms.ToolStripLabel();
             this.toolStripMainAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tabButtonImages = new System.Windows.Forms.ImageList(this.components);
-            this.btnDeletePlayer = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownAge)).BeginInit();
@@ -84,7 +83,6 @@
             this.tbPlayers.Controls.Add(this.btnDeletePlayer);
             this.tbPlayers.Controls.Add(this.numUpDownAge);
             this.tbPlayers.Controls.Add(this.gridViewPlayers);
-            this.tbPlayers.Controls.Add(this.BtnSearch);
             this.tbPlayers.Controls.Add(this.tbSearch);
             this.tbPlayers.Controls.Add(this.cbxGender);
             this.tbPlayers.Controls.Add(this.lblGender);
@@ -105,6 +103,16 @@
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
+            // 
+            // btnDeletePlayer
+            // 
+            this.btnDeletePlayer.Location = new System.Drawing.Point(257, 509);
+            this.btnDeletePlayer.Name = "btnDeletePlayer";
+            this.btnDeletePlayer.Size = new System.Drawing.Size(192, 65);
+            this.btnDeletePlayer.TabIndex = 17;
+            this.btnDeletePlayer.Text = "Delete";
+            this.btnDeletePlayer.UseVisualStyleBackColor = true;
+            this.btnDeletePlayer.Click += new System.EventHandler(this.btnDeletePlayer_Click);
             // 
             // numUpDownAge
             // 
@@ -137,23 +145,19 @@
             this.gridViewPlayers.Size = new System.Drawing.Size(874, 513);
             this.gridViewPlayers.TabIndex = 15;
             // 
-            // BtnSearch
-            // 
-            this.BtnSearch.Location = new System.Drawing.Point(709, 31);
-            this.BtnSearch.Name = "BtnSearch";
-            this.BtnSearch.Size = new System.Drawing.Size(171, 58);
-            this.BtnSearch.TabIndex = 14;
-            this.BtnSearch.Text = "Search";
-            this.BtnSearch.UseVisualStyleBackColor = true;
-            // 
             // tbSearch
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSearch.Location = new System.Drawing.Point(902, 39);
+            this.tbSearch.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.tbSearch.Location = new System.Drawing.Point(703, 39);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(675, 44);
+            this.tbSearch.Size = new System.Drawing.Size(874, 44);
             this.tbSearch.TabIndex = 13;
+            this.tbSearch.Text = "Type Player Number to search";
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.tbSearch.Enter += new System.EventHandler(this.tbSearch_Enter);
+            this.tbSearch.Leave += new System.EventHandler(this.tbSearch_Leave);
             // 
             // cbxGender
             // 
@@ -247,14 +251,21 @@
             // 
             this.tpEvents.AutoScroll = true;
             this.tpEvents.ImageIndex = 1;
-            this.tpEvents.Location = new System.Drawing.Point(8, 88);
+            this.tpEvents.Location = new System.Drawing.Point(8, 58);
             this.tpEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tpEvents.Name = "tpEvents";
-            this.tpEvents.Size = new System.Drawing.Size(2047, 829);
+            this.tpEvents.Size = new System.Drawing.Size(1600, 662);
             this.tpEvents.TabIndex = 0;
             this.tpEvents.Text = "Events";
             this.tpEvents.ToolTipText = "Add Players";
             this.tpEvents.UseVisualStyleBackColor = true;
+            // 
+            // tabButtonImages
+            // 
+            this.tabButtonImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("tabButtonImages.ImageStream")));
+            this.tabButtonImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.tabButtonImages.Images.SetKeyName(0, "Icons8-Windows-8-Sports-Running-Man.ico");
+            this.tabButtonImages.Images.SetKeyName(1, "Icons8-Windows-8-Sports-Football-2.ico");
             // 
             // toolStripMainBottom
             // 
@@ -305,23 +316,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 48);
             // 
-            // tabButtonImages
-            // 
-            this.tabButtonImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("tabButtonImages.ImageStream")));
-            this.tabButtonImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.tabButtonImages.Images.SetKeyName(0, "Icons8-Windows-8-Sports-Running-Man.ico");
-            this.tabButtonImages.Images.SetKeyName(1, "Icons8-Windows-8-Sports-Football-2.ico");
-            // 
-            // btnDeletePlayer
-            // 
-            this.btnDeletePlayer.Location = new System.Drawing.Point(257, 509);
-            this.btnDeletePlayer.Name = "btnDeletePlayer";
-            this.btnDeletePlayer.Size = new System.Drawing.Size(192, 65);
-            this.btnDeletePlayer.TabIndex = 17;
-            this.btnDeletePlayer.Text = "Delete";
-            this.btnDeletePlayer.UseVisualStyleBackColor = true;
-            this.btnDeletePlayer.Click += new System.EventHandler(this.btnDeletePlayer_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -363,7 +357,6 @@
         private System.Windows.Forms.TextBox tbPlayerNumber;
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.DataGridView gridViewPlayers;
-        private System.Windows.Forms.Button BtnSearch;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.NumericUpDown numUpDownAge;
         private System.Windows.Forms.ImageList tabButtonImages;

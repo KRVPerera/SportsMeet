@@ -1,8 +1,12 @@
 ﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using SportsMeet.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SportsMeet
@@ -19,6 +23,28 @@ namespace SportsMeet
 
         private void tbPlayers_Click(object sender, EventArgs e)
         {
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DBConnection.Instance.Connection.Close();
+        }
+
+        #region button clicks
+
+        private void toolStripMainAbout_Click(object sender, EventArgs e)
+        {
+            using (formAbout aboutForm = new formAbout())
+            {
+                aboutForm.ShowDialog();
+            }
+        }
+
+        private void btnDeletePlayer_Click(object sender, EventArgs e)
+        {
+            Player currentPlayer = (Player)gridViewPlayers.CurrentRow.DataBoundItem;
+            DataBase.RemovePlayer(currentPlayer);
+            LoadPlayerList();
         }
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
@@ -39,9 +65,9 @@ namespace SportsMeet
             else
             {
                 Player newPlayer = new Player(tbPlayerNumber.Text.Trim(),
-                                                tbFirstName.Text.Trim(),
-                                                tbLastName.Text.Trim(),
-                                                age);
+                    tbFirstName.Text.Trim(),
+                    tbLastName.Text.Trim(),
+                    age);
 
                 DataBase.SavePlayer(newPlayer);
 
@@ -49,27 +75,39 @@ namespace SportsMeet
             }
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            DBConnection.Instance.Connection.Close();
-        }
+        #endregion button clicks
 
+        #region player search
 
-        private void toolStripMainAbout_Click(object sender, EventArgs e)
+        private void tbSearch_TextChanged(object sender, EventArgs e)
         {
-            using (formAbout aboutForm = new formAbout())
+            String searchString = tbSearch.Text.Trim();
+
+            if (searchString != Resources.DefaultSearchString)
             {
-                aboutForm.ShowDialog();
+                var myRegex = new Regex(@"^" + searchString + ".*$");
+                IEnumerable<Player> result = _players.Where(player => myRegex.IsMatch(player.Number));
+                gridViewPlayers.DataSource = null;
+                gridViewPlayers.DataSource = result.ToList();
             }
         }
 
-
-        private void btnDeletePlayer_Click(object sender, EventArgs e)
+        private void tbSearch_Leave(object sender, EventArgs e)
         {
-            Player currentPlayer = (Player)gridViewPlayers.CurrentRow.DataBoundItem;
-            DataBase.RemovePlayer(currentPlayer);
-            LoadPlayerList();
+            if (String.IsNullOrEmpty(tbSearch.Text))
+            {
+                tbSearch.Text = Resources.DefaultSearchString;
+                tbSearch.ForeColor = Color.DimGray;
+            }
         }
+
+        private void tbSearch_Enter(object sender, EventArgs e)
+        {
+            tbSearch.Text = "";
+            tbSearch.ForeColor = DefaultForeColor;
+        }
+
+        #endregion player search
 
         #endregion MainForm uicontrols
 
@@ -98,12 +136,8 @@ namespace SportsMeet
             gridViewPlayers.DataSource = null;
             gridViewPlayers.DataSource = _players;
             tspLblPlayerCount.Text = _players.Count.ToString();
-            //lstBoxPlayer.DisplayMember = "FullName";
         }
 
-
         #endregion DataProcessing
-
-        
     }
 }
