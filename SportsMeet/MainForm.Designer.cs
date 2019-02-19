@@ -103,6 +103,7 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabelSchools = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
+            this.bindingSourceDistricts = new System.Windows.Forms.BindingSource(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -113,6 +114,7 @@ namespace SportsMeet
             this.tbSchool.SuspendLayout();
             this.tbFilterByPlayer.SuspendLayout();
             this.toolStripStatusBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -278,11 +280,8 @@ namespace SportsMeet
             // 
             // cbxDistrict
             // 
+            this.cbxDistrict.DataSource = this.bindingSourceDistricts;
             this.cbxDistrict.FormattingEnabled = true;
-            this.cbxDistrict.Items.AddRange(new object[] {
-            "Matara",
-            "Galle",
-            "Hambanthota"});
             this.cbxDistrict.Location = new System.Drawing.Point(183, 245);
             this.cbxDistrict.Margin = new System.Windows.Forms.Padding(6);
             this.cbxDistrict.Name = "cbxDistrict";
@@ -787,6 +786,7 @@ namespace SportsMeet
             this.tbFilterByPlayer.PerformLayout();
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDistricts)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -855,6 +855,7 @@ namespace SportsMeet
         private BindingSource bindingSourceSchools;
         private ToolStripLabel toolStripLabelSchools;
         private ToolStripLabel toolStripLabelSchoolCount;
+        private BindingSource bindingSourceDistricts;
     }
     
 }

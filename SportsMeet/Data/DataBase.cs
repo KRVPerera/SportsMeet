@@ -42,5 +42,11 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static List<District> LoadDistricts()
+        {
+            var output = DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
+            return output.ToList();
+        }
+
     }
 }

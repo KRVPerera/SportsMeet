@@ -68,6 +68,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\District.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\School.cs" />
