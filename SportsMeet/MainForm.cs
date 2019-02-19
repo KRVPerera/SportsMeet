@@ -91,10 +91,6 @@ namespace SportsMeet
             tbPlayerSearch.Text = Resources.DefaultSearchString;
             tbPlayerSearch.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
-
-//            var autoComplete = new AutoCompleteStringCollection();
-//            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
-//            tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
