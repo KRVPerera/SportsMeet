@@ -37,7 +37,7 @@ namespace SportsMeet
                 MessageBox.Show("Invalid player number", "Please enter a valid number");
 
             } else 
-            if (!Int32.TryParse(mtbAge.Text, out var age))
+            if (!Int32.TryParse(numericUpDownAge.Text, out var age))
             {
                 MessageBox.Show("Invalid Age", "Please enter a valid name");
             }
@@ -78,17 +78,11 @@ namespace SportsMeet
         private void RefreshGui()
         {
             _players.Sort();
-            lstBoxPlayer.DataSource = null;
-            lstBoxPlayer.DataSource = _players;
-            lstBoxPlayer.DisplayMember = "FullName";
+            dataGridViewPlayers.DataSource = null;
+            dataGridViewPlayers.DataSource = _players;
         }
 
         #endregion
-
-        private void lstBoxPlayer_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
@@ -98,8 +92,8 @@ namespace SportsMeet
             {
                 var myRegex = new Regex(@"^" + searchString + ".*$");
                 IEnumerable<Player> result = _players.Where(player => myRegex.IsMatch(player.Number));
-                //gridViewPlayers.DataSource = null;
-                //gridViewPlayers.DataSource = result.ToList();
+                dataGridViewPlayers.DataSource = null;
+                dataGridViewPlayers.DataSource = result.ToList();
             }
         }
 
