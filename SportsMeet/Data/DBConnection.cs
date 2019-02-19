@@ -18,7 +18,7 @@ namespace SportsMeet.Data
         {
             connection = new SQLiteConnection(LoadConnectionString());
             connection.Open();
-            SanitizeDb();
+//            SanitizeDb();
         }
 
         public static DBConnection Instance
@@ -38,14 +38,15 @@ namespace SportsMeet.Data
 
         private void SanitizeDb()
         {
-            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='{Players}';") <= 0)
+            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='Players';") <= 0)
             {
                 MessageBox.Show("Players table missing - Please reinstall.", "Table Missing !", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Console.WriteLine(connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='Players';"));
                 Environment.Exit(-1);
             }
             else
-            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='{Events}';") <= 0)
+            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='Events';") <= 0)
             {
                 MessageBox.Show("Events table missing - Please reinstall.", "Table Missing !", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -53,7 +54,7 @@ namespace SportsMeet.Data
             }
             else
 
-            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='{Districts}';") <= 0)
+            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='Districts';") <= 0)
             {
                 MessageBox.Show("Districts table missing - Please reinstall.", "Table Missing !", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -61,7 +62,7 @@ namespace SportsMeet.Data
             }
             else
 
-            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='{Schools}';") <= 0)
+            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='Schools';") <= 0)
             {
                 MessageBox.Show("Schools table missing - Please reinstall.", "Table Missing !", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -69,7 +70,7 @@ namespace SportsMeet.Data
             }
             else
 
-            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='{PlayerEvents}';") <= 0)
+            if (connection.Execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='PlayerEvents';") <= 0)
             {
                 MessageBox.Show("PlayerEvents table missing - Please reinstall.", "Table Missing !", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
