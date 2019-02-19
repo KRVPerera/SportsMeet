@@ -1,21 +1,18 @@
-﻿using System;
+﻿using SportsMeet.Data;
+using SportsMeet.Models;
+using SportsMeet.Properties;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using SportsMeet.Data;
-using SportsMeet.Models;
-using SportsMeet.Properties;
 
 namespace SportsMeet
 {
     public partial class MainForm : Form
     {
-
         #region MainForm uicontrols
 
         public MainForm()
@@ -27,7 +24,6 @@ namespace SportsMeet
 
         private void tbPlayers_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
@@ -35,8 +31,8 @@ namespace SportsMeet
             if (String.IsNullOrEmpty(tbPlayerNumber.Text))
             {
                 MessageBox.Show("Invalid player number", "Please enter a valid number");
-
-            } else 
+            }
+            else
             if (!Int32.TryParse(numericUpDownAge.Text, out var age))
             {
                 MessageBox.Show("Invalid Age", "Please enter a valid name");
@@ -44,45 +40,16 @@ namespace SportsMeet
             else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
             {
                 MessageBox.Show("Invalid Name", "Please enter the name.");
-            } 
+            }
             else
             {
                 Player newPlayer = new Player(tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age);
-               
+
                 DataBase.SavePlayer(newPlayer);
 
                 LoadPlayerList();
             }
         }
-
-        #endregion
-
-        #region DataRegion
-
-        private List<Player> _players = new List<Player>();
-
-        #endregion
-
-        #region DataProcessing
-
-        private void DataInit()
-        {
-            _players = DataBase.LoadPlayers();
-        }
-
-        private void LoadPlayerList()
-        {
-            RefreshGui();
-        }
-
-        private void RefreshGui()
-        {
-            _players.Sort();
-            dataGridViewPlayers.DataSource = null;
-            dataGridViewPlayers.DataSource = _players;
-        }
-
-        #endregion
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
@@ -104,5 +71,66 @@ namespace SportsMeet
                 abForm.Show();
             }
         }
+
+        private void deletePlayer_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPlayers.CurrentRow != null)
+            {
+                Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
+                DataBase.RemovePlayer(currentPlayer);
+                LoadPlayerList();
+            }
+        }
+
+        private void RefreshGui()
+        {
+            _players.Sort();
+            dataGridViewPlayers.DataSource = null;
+            dataGridViewPlayers.DataSource = _players;
+            tbPlayerSearch.Text = Resources.DefaultSearchString;
+            tbPlayerSearch.ForeColor = Color.DimGray;
+            toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
+        }
+
+        private void tbPlayerSearch_Leave(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(tbPlayerSearch.Text))
+            {
+                tbPlayerSearch.Text = Resources.DefaultSearchString;
+                tbPlayerSearch.ForeColor = Color.DimGray;
+            }
+        }
+
+        private void tbPlayerSearch_Enter(object sender, EventArgs e)
+        {
+            tbPlayerSearch.Text = "";
+            tbPlayerSearch.ForeColor = DefaultForeColor;
+        }
+
+        #endregion MainForm uicontrols
+
+        #region DataRegion
+
+        private List<Player> _players = new List<Player>();
+
+        #endregion DataRegion
+
+        #region DataProcessing
+
+        private void DataInit()
+        {
+            _players = DataBase.LoadPlayers();
+        }
+
+        private void LoadPlayerList()
+        {
+            _players = DataBase.LoadPlayers();
+            RefreshGui();
+        }
+
+
+
+        #endregion DataProcessing
+
     }
 }

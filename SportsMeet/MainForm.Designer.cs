@@ -645,6 +645,8 @@ namespace SportsMeet
             this.tbPlayerSearch.Size = new System.Drawing.Size(665, 31);
             this.tbPlayerSearch.TabIndex = 25;
             this.tbPlayerSearch.TextChanged += new System.EventHandler(this.tbPlayerSearch_TextChanged);
+            this.tbPlayerSearch.Enter += new System.EventHandler(this.tbPlayerSearch_Enter);
+            this.tbPlayerSearch.Leave += new System.EventHandler(this.tbPlayerSearch_Leave);
             // 
             // dataGridViewPlayers
             // 
@@ -676,6 +678,7 @@ namespace SportsMeet
             this.deletePlayer.TabIndex = 29;
             this.deletePlayer.Text = "Delete";
             this.deletePlayer.UseVisualStyleBackColor = true;
+            this.deletePlayer.Click += new System.EventHandler(this.deletePlayer_Click);
             // 
             // imageListForTabs
             // 
