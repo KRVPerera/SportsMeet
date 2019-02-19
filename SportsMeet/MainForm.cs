@@ -21,6 +21,7 @@ namespace SportsMeet
             DataInit();
             LoadPlayerList();
             LoadSchoolList();
+            LoadDistrictList();
             RefreshGui();
         }
 
@@ -112,6 +113,7 @@ namespace SportsMeet
 
         private List<Player> _players = new List<Player>();
         private List<School> _schools = new List<School>();
+        private List<District> _districts = new List<District>();
 
         #endregion DataRegion
 
@@ -135,6 +137,13 @@ namespace SportsMeet
             bindingSourceSchools.DataSource = _schools;
             bindingSourceSchools.ResetBindings(false);
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
+        }
+
+        private void LoadDistrictList()
+        {
+            _districts = DataBase.LoadDistricts();
+            bindingSourceDistricts.DataSource = _districts;
+            bindingSourceDistricts.ResetBindings(false);
         }
 
         #endregion DataProcessing

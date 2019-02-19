@@ -1,6 +1,6 @@
 ﻿CREATE TABLE IF NOT EXISTS Districts (
-    [no]      INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE,
+    [no]  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	name  TEXT      UNIQUE
 );
 
 
@@ -9,13 +9,13 @@ CREATE TABLE Schools (
     name     TEXT (100) UNIQUE,
 	districId INTEGER,
 
-	CONSTRAINT school_to_district FOREIGN KEY ( districId )
-
-	REFERENCES Schools (districId) ON DELETE SET NULL ON UPDATE CASCADE
+	CONSTRAINT school_to_district 
+	FOREIGN KEY ( districId )
+	REFERENCES Districts (districId) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Events (
-    [id]      INT     PRIMARY KEY AUTOINCREMENT,
+    [id]     INTEGER     PRIMARY KEY AUTOINCREMENT,
     name     TEXT    UNIQUE NOT NULL,
     gender   BOOLEAN,
     agelimit INTEGER NOT NULL
@@ -31,35 +31,33 @@ CREATE TABLE Players (
     schoolId  INTEGER,
 	districId INTEGER,
     
-	CONSTRAINT student_to_school FOREIGN KEY ( schoolId )
+	CONSTRAINT student_to_school 
+	FOREIGN KEY ( schoolId )
+	REFERENCES Schools (schoolId) ON DELETE SET NULL ON UPDATE CASCADE,
 
-	CONSTRAINT student_to_district FOREIGN KEY ( districId )
-
-    REFERENCES Schools (schoolId) ON DELETE SET NULL ON UPDATE CASCADE
-
-	REFERENCES Schools (districId) ON DELETE SET NULL ON UPDATE CASCADE
+	CONSTRAINT student_to_district 
+	FOREIGN KEY ( districId )
+	REFERENCES Districts (districId) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 
 CREATE TABLE PlayerEvents (
-    eventId  INT NOT NULL,
-    playerId INT NOT NULL,
+    eventId  INTEGER NOT NULL,
+    playerId INTEGER NOT NULL,
 
-    FOREIGN KEY (
-        playerId
-    )
 
-    REFERENCES Players (number) ON DELETE CASCADE
-                                ON UPDATE CASCADE,
+	CONSTRAINT playerevent_to_players
+    FOREIGN KEY (playerId)
+	REFERENCES Players (no) ON DELETE CASCADE ON UPDATE CASCADE,
+
     PRIMARY KEY (
         eventId,
         playerId
     ),
-    FOREIGN KEY (
-        eventId
-    )
-    REFERENCES Events (id) ON DELETE CASCADE
-                           ON UPDATE CASCADE
+
+	CONSTRAINT playerevent_to_events
+    FOREIGN KEY (eventId)
+    REFERENCES Events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 

@@ -30,13 +30,23 @@ namespace MeetDataBaseGen
 
             var connectionString = "Data Source=" + folderPath + "\\meet.db; Version=3";
 
-            var upgrader =
+            UpgradeEngine upgrader = null;
+
+            try
+            {
+                upgrader =
                     DeployChanges.To
                         .SQLiteDatabase(connectionString)
                         .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
                         .LogToConsole()
                         .Build();
-
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+            
             if (!upgrader.IsUpgradeRequired())
             {
                 Console.ForegroundColor = ConsoleColor.Green;

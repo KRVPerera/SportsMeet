@@ -7,6 +7,9 @@ namespace SportsMeet.Models
 {
     class District
     {
+
+        public District() { }
+
         public String Name { get; set; }
     }
 }

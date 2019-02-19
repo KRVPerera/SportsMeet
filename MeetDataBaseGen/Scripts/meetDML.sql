@@ -1,6 +1,6 @@
 ﻿CREATE TABLE IF NOT EXISTS Districts (
     [no]      INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE,
+	name  TEXT      UNIQUE
 );
 
 INSERT INTO Districts (name) VALUES  ('Ampara');
