@@ -547,6 +547,7 @@ namespace SportsMeet
             this.tbSchool.Controls.Add(this.lblNewSchoolsDistrict);
             this.tbSchool.Controls.Add(this.lblNewSchoolsName);
             this.tbSchool.Controls.Add(this.btnAddSchool);
+            this.tbSchool.ImageIndex = 2;
             this.tbSchool.Location = new System.Drawing.Point(8, 43);
             this.tbSchool.Margin = new System.Windows.Forms.Padding(4);
             this.tbSchool.Name = "tbSchool";
@@ -698,6 +699,7 @@ namespace SportsMeet
             this.imageListForTabs.TransparentColor = System.Drawing.Color.Transparent;
             this.imageListForTabs.Images.SetKeyName(0, "Icons8-Windows-8-Sports-Football-2.ico");
             this.imageListForTabs.Images.SetKeyName(1, "Icons8-Windows-8-Sports-Running-Man.ico");
+            this.imageListForTabs.Images.SetKeyName(2, "Icons8-Windows-8-Science-School.ico");
             // 
             // toolStripStatusBar
             // 
