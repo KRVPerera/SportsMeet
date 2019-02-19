@@ -32,16 +32,16 @@ namespace SportsMeet
         {
             if (String.IsNullOrEmpty(tbPlayerNumber.Text))
             {
-                MessageBox.Show("Invalid player number", "Please enter a valid number");
+                MessageBox.Show("Invalid player number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             if (!Int32.TryParse(numericUpDownAge.Text, out var age))
             {
-                MessageBox.Show("Invalid Age", "Please enter a valid name");
+                MessageBox.Show("Invalid Age", "Please enter a valid age");
             }
             else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
             {
-                MessageBox.Show("Invalid Name", "Please enter the name.");
+                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

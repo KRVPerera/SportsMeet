@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using DbUp;
+using DbUp.Engine;
 
 namespace MeetDataBaseGen
 {
@@ -13,6 +14,9 @@ namespace MeetDataBaseGen
     {
         static int Main(string[] args)
         {
+
+            bool debug = (args.Length != 0);
+
             var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MeetTracker";
             try
             {
@@ -25,7 +29,6 @@ namespace MeetDataBaseGen
             }
 
             var connectionString = "Data Source=" + folderPath + "\\meet.db; Version=3";
-            //EnsureDatabase.For.SQLiteDatabase(connectionString);
 
             var upgrader =
                     DeployChanges.To
@@ -34,24 +37,52 @@ namespace MeetDataBaseGen
                         .LogToConsole()
                         .Build();
 
-                var result = upgrader.PerformUpgrade();
+            if (!upgrader.IsUpgradeRequired())
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Success!");
+                Console.ResetColor();
+                if (debug)
+                {
+                    Console.ReadKey();
 
+                }
+                return 0;
+            }
+
+            DatabaseUpgradeResult result = null;
+
+            try
+            {
+               result = upgrader.PerformUpgrade();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
                 if (!result.Successful)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(result.Error);
                     Console.ResetColor();
-#if DEBUG
-                    Console.ReadLine();
-#endif
+                    if (debug)
+                    {
+                        Console.ReadKey();
+
+                    }
                     return -1;
                 }
+            }
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(connectionString);
-                Console.WriteLine("Success!");
-                Console.ResetColor();
-                return 0;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(connectionString);
+            Console.WriteLine("Success!");
+            Console.ResetColor();
+            if (debug)
+            {
+                Console.ReadKey();
+
+            }
+            return 0;
             
         }
     }
