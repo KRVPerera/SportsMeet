@@ -59,5 +59,14 @@ namespace SportsMeet.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Player Number to search.
+        /// </summary>
+        internal static string DefaultSearchString {
+            get {
+                return ResourceManager.GetString("DefaultSearchString", resourceCulture);
+            }
+        }
     }
 }

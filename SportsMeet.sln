@@ -5,16 +5,27 @@ VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsMeet", "SportsMeet\SportsMeet.csproj", "{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetDataBaseGen", "MeetDataBaseGen\MeetDataBaseGen.csproj", "{E15D43E9-F99B-4006-8FBC-885FB5999DF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All|Any CPU = All|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.All|Any CPU.Build.0 = Release|Any CPU
 		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C99E69E5-CE88-445A-A66A-E86E61D9DFAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.All|Any CPU.Build.0 = Release|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,27 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SportsMeet.Models
 {
-    class Player : IComparable
+    internal class Player : IComparable
     {
+        #region public constrctors
+
         public Player(string number, string firstName, string lastName, int age)
         {
             FirstName = firstName;
             LastName = lastName;
-            Age = age; 
+            Age = age;
             Number = number;
         }
 
-        public Player(int no, string number, string firstName, string lastName, int age, int schoolId)
+        public Player( string number, string firstName, string lastName, int age, int schoolId)
         {
-            Id = no;
+            Number = number;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
-            Number = number;
             SchoolId = schoolId;
         }
 
@@ -29,7 +27,9 @@ namespace SportsMeet.Models
         {
         }
 
-        public int Id { get; set; }
+        #endregion public constrctors
+
+        #region public members
 
         public string Number { get; set; }
 
@@ -41,9 +41,18 @@ namespace SportsMeet.Models
 
         public int SchoolId { get; set; }
 
+        #endregion public members
+
+        #region public derived members
+
         public string FullName() => $"{FirstName} {LastName}".Trim();
 
+        #endregion public derived members
+
+        #region public overrides
+
         public override string ToString() => FullName();
+
         public int CompareTo(object obj)
         {
             Player otherPlayer = obj as Player;
@@ -59,5 +68,7 @@ namespace SportsMeet.Models
 
             return 1;
         }
+
+        #endregion public overrides
     }
 }

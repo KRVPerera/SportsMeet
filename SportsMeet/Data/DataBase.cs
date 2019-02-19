@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using System;
+using Dapper;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -15,37 +16,24 @@ namespace SportsMeet.Data
 {
     class DataBase
     {
-        //private SqliteConnection dbConnection;
-
         public DataBase()
         {
-            //dbConnection = new SqliteConnection("Data_Source=data/meet.db");
-            if (!File.Exists("Data/meet.db"))
-            {
-             //   SqliteConnection.crea
-            }
         }
 
         public static List<Player> LoadPlayers()
         {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = conn.Query<Player>("select * from Players", new DynamicParameters());
-                return output.ToList();
-            }
+            var output = DBConnection.Instance.Connection.Query<Player>("select * from Players", new DynamicParameters());
+            return output.ToList();
         }
 
         public static void SavePlayer(Player player)
         {
-            using (IDbConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
-            }
+            DBConnection.Instance.Connection.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
         }
 
-        private static string LoadConnectionString(string id = "Default")
+        public static void RemovePlayer(Player player)
         {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            DBConnection.Instance.Connection.Execute("DELETE FROM Players WHERE (number) = (@Number)", player);
         }
 
     }
