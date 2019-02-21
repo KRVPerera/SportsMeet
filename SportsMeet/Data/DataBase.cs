@@ -1,20 +1,12 @@
-﻿using System;
-using Dapper;
-using System.IO;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Data.Sql;
-using System.Data.SQLite;
-using System.Text;
+﻿using Dapper;
 using SportsMeet.Models;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SportsMeet.Data
 {
-    class DataBase
+    internal class DataBase
     {
         public DataBase()
         {
@@ -53,6 +45,5 @@ namespace SportsMeet.Data
             var output = DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
             return output.ToList();
         }
-
     }
 }

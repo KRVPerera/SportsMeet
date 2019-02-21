@@ -18,7 +18,7 @@ namespace SportsMeet.Data
         {
             connection = new SQLiteConnection(LoadConnectionString());
             connection.Open();
-//            SanitizeDb();
+            //            SanitizeDb();
         }
 
         public static DBConnection Instance

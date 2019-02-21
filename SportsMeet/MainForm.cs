@@ -155,5 +155,12 @@ namespace SportsMeet
 
         #endregion DataProcessing
 
+        private void dataGridViewPlayers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void btnAddSchool_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

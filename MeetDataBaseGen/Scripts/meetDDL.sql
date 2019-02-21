@@ -5,7 +5,7 @@
 
 
 CREATE TABLE Schools (
-    schoolId INTEGER    PRIMARY KEY,
+    schoolId INTEGER    PRIMARY KEY AUTOINCREMENT,
     name     TEXT (100) UNIQUE,
 	districId INTEGER,
 

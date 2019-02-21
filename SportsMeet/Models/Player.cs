@@ -14,7 +14,7 @@ namespace SportsMeet.Models
             Number = number;
         }
 
-        public Player( string number, string firstName, string lastName, int age, int schoolId)
+        public Player(string number, string firstName, string lastName, int age, int schoolId)
         {
             Number = number;
             FirstName = firstName;

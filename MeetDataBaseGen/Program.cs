@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using DbUp;
+﻿using DbUp;
 using DbUp.Engine;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace MeetDataBaseGen
 {
-    class Program
+    internal class Program
     {
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
-
             bool debug = (args.Length != 0);
 
             var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MeetTracker";
@@ -46,7 +41,7 @@ namespace MeetDataBaseGen
                 Console.WriteLine(e);
                 return -1;
             }
-            
+
             if (!upgrader.IsUpgradeRequired())
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -55,7 +50,6 @@ namespace MeetDataBaseGen
                 if (debug)
                 {
                     Console.ReadKey();
-
                 }
                 return 0;
             }
@@ -64,7 +58,7 @@ namespace MeetDataBaseGen
 
             try
             {
-               result = upgrader.PerformUpgrade();
+                result = upgrader.PerformUpgrade();
             }
             catch (Exception e)
             {
@@ -77,7 +71,6 @@ namespace MeetDataBaseGen
                     if (debug)
                     {
                         Console.ReadKey();
-
                     }
                     return -1;
                 }
@@ -90,10 +83,8 @@ namespace MeetDataBaseGen
             if (debug)
             {
                 Console.ReadKey();
-
             }
             return 0;
-            
         }
     }
 }
