@@ -3,6 +3,7 @@ using SportsMeet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Dapper.Contrib.Extensions;
 
 namespace SportsMeet.Data
 {
@@ -12,20 +13,33 @@ namespace SportsMeet.Data
         {
         }
 
-        public static List<Player> LoadPlayers()
+        public static IEnumerable<Player> LoadPlayers()
         {
-            var output = DBConnection.Instance.Connection.Query<Player>("select * from Players", new DynamicParameters());
-            return output.ToList();
+            //var output = DBConnection.Instance.Connection.Query<Player>("select * from Players", new DynamicParameters());
+            //return output.ToList();
+            return DBConnection.Instance.Connection.GetAll<Player>();
         }
 
-        public static void SavePlayer(Player player)
+        public static long SavePlayer(Player player)
         {
-            DBConnection.Instance.Connection.Execute("insert into Players (number, firstName, lastName, age) values (@Number, @FirstName, @LastName, @Age)", player);
+            return DBConnection.Instance.Connection.Insert(player);
         }
 
-        public static void RemovePlayer(Player player)
+        public static bool EditPlayer(Player player)
         {
-            DBConnection.Instance.Connection.Execute("DELETE FROM Players WHERE (number) = (@Number)", player);
+           return DBConnection.Instance.Connection.Update(player);
+        }
+
+        public static Player FindPlayer(Player player)
+        {
+            string query = "select * from Players where number=@Number;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
+        }
+
+        public static bool RemovePlayer(Player player)
+        {
+            return DBConnection.Instance.Connection.Delete(player);
         }
 
         public static List<School> LoadSchools()

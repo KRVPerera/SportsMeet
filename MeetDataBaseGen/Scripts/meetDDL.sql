@@ -1,4 +1,7 @@
-﻿CREATE TABLE IF NOT EXISTS Districts (
+﻿PRAGMA foreign_keys = ON;
+
+
+CREATE TABLE IF NOT EXISTS Districts (
     [no]  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
@@ -23,7 +26,7 @@ CREATE TABLE Events (
 
 
 CREATE TABLE Players (
-    [no]      INTEGER      PRIMARY KEY AUTOINCREMENT,
+    id        INTEGER      PRIMARY KEY AUTOINCREMENT,
     number    TEXT         UNIQUE,
     firstName TEXT ,
     lastName  TEXT ,
@@ -33,11 +36,11 @@ CREATE TABLE Players (
     
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
-	REFERENCES Schools (schoolId) ON DELETE SET NULL ON UPDATE CASCADE,
+	REFERENCES Schools (schoolId) ON UPDATE CASCADE,
 
 	CONSTRAINT student_to_district 
 	FOREIGN KEY ( districId )
-	REFERENCES Districts (districId) ON DELETE SET NULL ON UPDATE CASCADE
+	REFERENCES Districts (districId) ON UPDATE CASCADE
 );
 
 

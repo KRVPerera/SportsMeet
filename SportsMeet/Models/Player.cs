@@ -1,4 +1,5 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 
 namespace SportsMeet.Models
 {
@@ -6,42 +7,41 @@ namespace SportsMeet.Models
     {
         #region public constrctors
 
-        public Player(string number, string firstName, string lastName, int age)
+        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Int64 schoolId, Int64 districId)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            Age = age;
-            Number = number;
-        }
-
-        public Player(string number, string firstName, string lastName, int age, int schoolId)
-        {
+            Id = id;
             Number = number;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
             SchoolId = schoolId;
-        }
-
-        public Player()
-        {
+            DistricId = districId;
         }
 
         #endregion public constrctors
 
-        #region public members
+        #region public properties
 
-        public string Number { get; set; }
+        public String Number { get; set; }
 
-        public string FirstName { get; set; }
+        public String FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public String LastName { get; set; }
 
-        public int Age { get; set; } // TODO: sanitize
+        public Int64 Age { get; set; }
 
-        public int SchoolId { get; set; }
+        public Int64 SchoolId { get; set; }
 
-        #endregion public members
+        public Int64 DistricId { get; set; }
+
+        [Key]
+        public Int64 Id { get; set; }
+
+        #endregion public properties
+
+        #region public  methods
+
+        #endregion
 
         #region public derived members
 

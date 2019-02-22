@@ -46,7 +46,25 @@ namespace SportsMeet
             }
             else
             {
-                Player newPlayer = new Player(tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age);
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 0, cbxDistrict.SelectedIndex);
+
+                Player existingPlayer = DataBase.FindPlayer(newPlayer);
+
+                if (existingPlayer != null)
+                {
+                    Console.WriteLine(existingPlayer.Id);
+                    tbPlayerSearch.Text = existingPlayer.Number;
+                    DialogResult result = MessageBox.Show("Player already exists. Do you want to override ?",
+                        "Existing ID !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        newPlayer.Id = existingPlayer.Id;
+                        DataBase.EditPlayer(newPlayer);
+                        LoadPlayerList();
+                    }
+                    return;
+                }
 
                 DataBase.SavePlayer(newPlayer);
 
@@ -128,7 +146,7 @@ namespace SportsMeet
 
         private void LoadPlayerList()
         {
-            _players = DataBase.LoadPlayers();
+            _players = DataBase.LoadPlayers().ToList();
             bindingSourcePlayers.DataSource = _players;
             bindingSourcePlayers.ResetBindings(false);
             toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
@@ -155,12 +173,9 @@ namespace SportsMeet
 
         #endregion DataProcessing
 
-        private void dataGridViewPlayers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
+
         }
     }
 }

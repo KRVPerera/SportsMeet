@@ -263,3 +263,5 @@ __pycache__/
 # Removed db file to prevet update conflicts
 meet.db
 /Setup/Output/MeetSetup.exe
+/SportsMeet/Resources/ERP Status.pptx
+/SportsMeet/Resources/Samsung_top_violation_debug_Enhancements.pptx
