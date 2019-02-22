@@ -69,6 +69,10 @@ namespace SportsMeet
                 DataBase.SavePlayer(newPlayer);
 
                 LoadPlayerList();
+
+                tbPlayerNumber.Clear();
+                tbFirstName.Clear();
+                tbLastName.Clear();
             }
         }
 
