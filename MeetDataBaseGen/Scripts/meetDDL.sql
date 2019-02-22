@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS Districts (
 CREATE TABLE Schools (
     schoolId INTEGER    PRIMARY KEY AUTOINCREMENT,
     name     TEXT (100) UNIQUE,
-	districId INTEGER,
+	districtId INTEGER,
 
 	CONSTRAINT school_to_district 
-	FOREIGN KEY ( districId )
-	REFERENCES Districts (districId) ON DELETE SET NULL ON UPDATE CASCADE
+	FOREIGN KEY ( districtId )
+	REFERENCES Districts (districtId) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Events (
@@ -32,15 +32,15 @@ CREATE TABLE Players (
     lastName  TEXT ,
     age       INTEGER  DEFAULT (0),
     schoolId  INTEGER,
-	districId INTEGER,
+	districtId INTEGER,
     
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
 	REFERENCES Schools (schoolId) ON UPDATE CASCADE,
 
 	CONSTRAINT student_to_district 
-	FOREIGN KEY ( districId )
-	REFERENCES Districts (districId) ON UPDATE CASCADE
+	FOREIGN KEY ( districtId )
+	REFERENCES Districts (districtId) ON UPDATE CASCADE
 );
 
 
