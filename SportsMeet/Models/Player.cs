@@ -7,15 +7,16 @@ namespace SportsMeet.Models
     {
         #region public constrctors
 
-        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Int64 schoolId, Int64 districId)
+        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Byte sex, Int64 schoolId, Int64 districtId)
         {
             Id = id;
             Number = number;
             FirstName = firstName;
             LastName = lastName;
             Age = age;
+            Sex = sex;
             SchoolId = schoolId;
-            DistricId = districId;
+            DistrictId = districtId;
         }
 
         #endregion public constrctors
@@ -30,9 +31,11 @@ namespace SportsMeet.Models
 
         public Int64 Age { get; set; }
 
+        public byte Sex { get; set; }
+
         public Int64 SchoolId { get; set; }
 
-        public Int64 DistricId { get; set; }
+        public Int64 DistrictId { get; set; }
 
         [Key]
         public Int64 Id { get; set; }

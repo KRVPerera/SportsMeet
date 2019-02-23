@@ -1,24 +1,24 @@
-﻿PRAGMA foreign_keys = ON;
+﻿PRAGMA foreign_keys=ON;
 
 
 CREATE TABLE IF NOT EXISTS Districts (
-    [no]  INTEGER  PRIMARY KEY AUTOINCREMENT,
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
 
 CREATE TABLE Schools (
-    schoolId INTEGER    PRIMARY KEY AUTOINCREMENT,
+    id INTEGER    PRIMARY KEY AUTOINCREMENT,
     name     TEXT (100) UNIQUE,
-	districId INTEGER,
+	districtId INTEGER,
 
 	CONSTRAINT school_to_district 
-	FOREIGN KEY ( districId )
-	REFERENCES Districts (districId) ON DELETE SET NULL ON UPDATE CASCADE
+	FOREIGN KEY ( districtId )
+	REFERENCES Districts (districtId) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Events (
-    [id]     INTEGER     PRIMARY KEY AUTOINCREMENT,
+    id     INTEGER     PRIMARY KEY AUTOINCREMENT,
     name     TEXT    UNIQUE NOT NULL,
     gender   BOOLEAN,
     agelimit INTEGER NOT NULL
@@ -31,16 +31,17 @@ CREATE TABLE Players (
     firstName TEXT ,
     lastName  TEXT ,
     age       INTEGER  DEFAULT (0),
+	sex		  TINYINT,
     schoolId  INTEGER,
-	districId INTEGER,
+	districtId INTEGER,
     
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
 	REFERENCES Schools (schoolId) ON UPDATE CASCADE,
 
 	CONSTRAINT student_to_district 
-	FOREIGN KEY ( districId )
-	REFERENCES Districts (districId) ON UPDATE CASCADE
+	FOREIGN KEY ( districtId )
+	REFERENCES Districts (districtId) ON UPDATE CASCADE
 );
 
 
