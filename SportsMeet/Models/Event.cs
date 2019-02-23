@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace SportsMeet.Models
 {
-    class Event
+    internal class Event
     {
         #region public constructors
 
-        public Event(Int64 id, String number, String name, byte sex, Int64 ageLimit)
+        public Event(Int64 id, String number, String name, Byte sex, Int64 agelimit)
         {
             Id = id;
             Number = number;
             Name = name;
             Sex = sex;
-            AgeLimit = ageLimit;
+            AgeLimit = agelimit;
         }
 
-        #endregion
+
+
+        #endregion public constructors
 
         #region public members
 
@@ -32,6 +32,18 @@ namespace SportsMeet.Models
 
         public Int64 AgeLimit { get; set; }
 
-        #endregion
+        #endregion public members
+
+        public override String ToString()
+        {
+            StringBuilder sb = new StringBuilder("U");
+            sb.Append(AgeLimit);
+            sb.Append(" ");
+            Util.SexEnum sexEnum = (Util.SexEnum)Sex;
+            sb.Append(Util.SexEnumToSex(sexEnum));
+            sb.Append(" ");
+            sb.Append(Name);
+            return sb.ToString();
+        }
     }
 }
