@@ -46,10 +46,16 @@ namespace SportsMeet
             }
             else
             {
-
                 Util.SexEnum sexByteEnum = Util.SexStringToEnum(cbxGender.Text);
-                
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, cbxDistrict.SelectedIndex);
+
+                long districtId = 0;
+                District district = DataBase.GetDistrictByName(cbxDistrict.Text);
+                if (district != null)
+                {
+                    districtId = district.Id;
+                }
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, districtId);
 
                 Player existingPlayer = DataBase.FindPlayer(newPlayer);
 
@@ -77,15 +83,18 @@ namespace SportsMeet
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
-            String searchString = tbPlayerSearch.Text.Trim();
-
-            if (searchString != Resources.DefaultSearchString)
+            var textbox = sender as TextBox;
             {
-                var playerList = DataBase.LoadPlayers();
-                var myRegex = new Regex(@"^" + searchString + ".*$");
-                IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-                bindingSourcePlayers.DataSource = result.ToList();
-                bindingSourcePlayers.ResetBindings(false);
+                String searchString = textbox.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    bindingSourcePlayers.DataSource = result.ToList();
+                    bindingSourcePlayers.ResetBindings(false);
+                }
             }
         }
 
@@ -116,19 +125,28 @@ namespace SportsMeet
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbPlayerSearch.Text))
+            var textbox = sender as TextBox;
             {
-                tbPlayerSearch.Text = Resources.DefaultSearchString;
-                tbPlayerSearch.ForeColor = Color.DimGray;
-                bindingSourcePlayers.DataSource = _players;
-                bindingSourcePlayers.ResetBindings(false);
+                if (String.IsNullOrEmpty(textbox?.Text))
+                {
+                    textbox.Text = Resources.DefaultSearchString;
+                    textbox.ForeColor = Color.DimGray;
+                    bindingSourcePlayers.DataSource = _players;
+                    bindingSourcePlayers.ResetBindings(false);
+                }
             }
         }
 
         private void tbPlayerSearch_Enter(object sender, EventArgs e)
         {
-            tbPlayerSearch.Text = "";
-            tbPlayerSearch.ForeColor = DefaultForeColor;
+            var textbox = sender as TextBox;
+            {
+                if (textbox != null)
+                {
+                    textbox.Text = "";
+                    textbox.ForeColor = DefaultForeColor;
+                }
+            }
         }
 
         #endregion MainForm uicontrols
@@ -178,12 +196,10 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e)
@@ -199,36 +215,69 @@ namespace SportsMeet
             }
             else
             {
-
                 Util.SexEnum sexByteEnum = Util.SexStringToEnum(numericUpDownEventAgeLimit.Text);
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, cbxDistrict.SelectedIndex);
+                Event neweEvent = new Event(0, tbNewEventsNumber.Text, tbNewEventsName.Text, (byte)sexByteEnum, age);
 
-                Player existingPlayer = DataBase.FindPlayer(newPlayer);
+                long eventId = DataBase.SaveEvent(neweEvent);
 
-                if (existingPlayer != null)
-                {
-                    Console.WriteLine(existingPlayer.Id);
-                    tbPlayerSearch.Text = existingPlayer.Number;
-                    DialogResult result = MessageBox.Show("Player already exists. Do you want to override ?",
-                        "Existing ID !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
-                    {
-                        newPlayer.Id = existingPlayer.Id;
-                        DataBase.EditPlayer(newPlayer);
-                    }
-                    tbPlayerSearch.Clear();
-                    LoadPlayerList();
-                    return;
-                }
+                cbxEvent.Text = eventId.ToString();
 
-                DataBase.SavePlayer(newPlayer);
-
-                LoadPlayerList();
+                //LoadPlayerList();
             }
+        }
 
-            //Event neweEvent = new Event();
+        //TODO: refactor and remove duplicate code
+        private void tbFilterByPlayersNumber_TextChanged(object sender, EventArgs e)
+        {
+            CleanupFilterByPlayerTabLabels();
+            var textbox = sender as TextBox;
+            {
+                if (textbox != null)
+                {
+                    String searchString = textbox.Text.Trim();
 
+                    if (searchString != Resources.DefaultSearchString)
+                    {
+                        var playerList = DataBase.LoadPlayers();
+                        var myRegex = new Regex(@"^" + searchString + ".*$");
+                        IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
+
+                        List<Player> players = searchedPlayers.ToList();
+                        bindingSourcePlayers.DataSource = players;
+                        bindingSourcePlayers.ResetBindings(false);
+
+                        if (players.Count > 1)
+                        {
+                            return;
+                        }
+
+                        Player searchedPlayer = players.SingleOrDefault();
+
+                        if (searchedPlayer != null)
+                        {
+                            lblFilterByPlayerNameOutput.Text = searchedPlayer.FullName();
+
+                            District district = DataBase.GetDistrict(searchedPlayer.DistrictId);
+                            if (district != null)
+                            {
+                                lblFilterByPlayerDistrictOutput.Text = district.Name;
+                            }
+                            lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
+
+                            Int64 playerId = searchedPlayer.Id;
+                            //List<Event>
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CleanupFilterByPlayerTabLabels()
+        {
+            lblFilterByPlayerNameOutput.Text = "";
+            lblFilterByPlayerDistrictOutput.Text = "";
+            lblFilterByPlayerSchoolOutput.Text = "";
         }
     }
 }

@@ -9,9 +9,10 @@ namespace SportsMeet.Models
     {
         #region public constructors
 
-        public Event(Int64 id, String name, byte sex, Int64 ageLimit)
+        public Event(Int64 id, String number, String name, byte sex, Int64 ageLimit)
         {
             Id = id;
+            Number = number;
             Name = name;
             Sex = sex;
             AgeLimit = ageLimit;
@@ -22,6 +23,8 @@ namespace SportsMeet.Models
         #region public members
 
         public Int64 Id { get; set; }
+
+        public String Number { get; set; }
 
         public String Name { get; set; }
 
