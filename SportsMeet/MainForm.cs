@@ -121,6 +121,7 @@ namespace SportsMeet
             tbPlayerSearch.Text = Resources.DefaultSearchString;
             tbPlayerSearch.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
+            CleanupFilterByPlayerTabLabels();
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)

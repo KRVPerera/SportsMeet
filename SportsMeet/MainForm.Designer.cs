@@ -101,13 +101,11 @@ namespace SportsMeet
             this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnFilterByPlayerFilter = new System.Windows.Forms.Button();
             this.lblFilterByPlayerEvents = new System.Windows.Forms.Label();
             this.lblFilterByPlayerDistrict = new System.Windows.Forms.Label();
             this.lblFilterByPlayerSchool = new System.Windows.Forms.Label();
             this.lblFilerByPlayerName = new System.Windows.Forms.Label();
             this.tbFilterByPlayersNumber = new System.Windows.Forms.TextBox();
-            this.lblFilterByPlayerPlayerNumber = new System.Windows.Forms.Label();
             this.tbFilterByEvent = new System.Windows.Forms.TabPage();
             this.btnFilterByEventFilter = new System.Windows.Forms.Button();
             this.lblFIlterByEventPlayers = new System.Windows.Forms.Label();
@@ -291,7 +289,7 @@ namespace SportsMeet
             this.tbPlayerSearch.Enter += new System.EventHandler(this.tbPlayerSearch_Enter);
             this.tbPlayerSearch.Leave += new System.EventHandler(this.tbPlayerSearch_Leave);
             // 
-            // lblDistricttbPlayerSearch_TextChanged
+            // lblDistrict
             // 
             this.lblDistrict.AutoSize = true;
             this.lblDistrict.Location = new System.Drawing.Point(21, 249);
@@ -690,13 +688,11 @@ namespace SportsMeet
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerNameOutput);
             this.tbFilterByPlayer.Controls.Add(this.dataGridViewEventsOfPlayer);
             this.tbFilterByPlayer.Controls.Add(this.dataGridPlayerFiltering);
-            this.tbFilterByPlayer.Controls.Add(this.btnFilterByPlayerFilter);
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerEvents);
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerDistrict);
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerSchool);
             this.tbFilterByPlayer.Controls.Add(this.lblFilerByPlayerName);
             this.tbFilterByPlayer.Controls.Add(this.tbFilterByPlayersNumber);
-            this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerPlayerNumber);
             this.tbFilterByPlayer.Location = new System.Drawing.Point(4, 23);
             this.tbFilterByPlayer.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByPlayer.Name = "tbFilterByPlayer";
@@ -735,14 +731,22 @@ namespace SportsMeet
             // 
             // dataGridViewEventsOfPlayer
             // 
+            this.dataGridViewEventsOfPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridViewEventsOfPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEventsOfPlayer.Location = new System.Drawing.Point(42, 101);
             this.dataGridViewEventsOfPlayer.Name = "dataGridViewEventsOfPlayer";
-            this.dataGridViewEventsOfPlayer.Size = new System.Drawing.Size(373, 224);
+            this.dataGridViewEventsOfPlayer.Size = new System.Drawing.Size(373, 401);
             this.dataGridViewEventsOfPlayer.TabIndex = 7;
             // 
             // dataGridPlayerFiltering
             // 
+            this.dataGridPlayerFiltering.AllowUserToAddRows = false;
+            this.dataGridPlayerFiltering.AllowUserToDeleteRows = false;
+            this.dataGridPlayerFiltering.AllowUserToOrderColumns = true;
+            this.dataGridPlayerFiltering.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridPlayerFiltering.AutoGenerateColumns = false;
             this.dataGridPlayerFiltering.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPlayerFiltering.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -751,9 +755,9 @@ namespace SportsMeet
             this.LastName,
             this.ageDataGridViewTextBoxColumn1});
             this.dataGridPlayerFiltering.DataSource = this.bindingSourcePlayers;
-            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(443, 15);
+            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(443, 44);
             this.dataGridPlayerFiltering.Name = "dataGridPlayerFiltering";
-            this.dataGridPlayerFiltering.Size = new System.Drawing.Size(446, 396);
+            this.dataGridPlayerFiltering.Size = new System.Drawing.Size(446, 458);
             this.dataGridPlayerFiltering.TabIndex = 6;
             // 
             // numberDataGridViewTextBoxColumn1
@@ -779,15 +783,6 @@ namespace SportsMeet
             this.ageDataGridViewTextBoxColumn1.DataPropertyName = "Age";
             this.ageDataGridViewTextBoxColumn1.HeaderText = "Age";
             this.ageDataGridViewTextBoxColumn1.Name = "ageDataGridViewTextBoxColumn1";
-            // 
-            // btnFilterByPlayerFilter
-            // 
-            this.btnFilterByPlayerFilter.Location = new System.Drawing.Point(42, 331);
-            this.btnFilterByPlayerFilter.Name = "btnFilterByPlayerFilter";
-            this.btnFilterByPlayerFilter.Size = new System.Drawing.Size(110, 29);
-            this.btnFilterByPlayerFilter.TabIndex = 5;
-            this.btnFilterByPlayerFilter.Text = "Filter";
-            this.btnFilterByPlayerFilter.UseVisualStyleBackColor = true;
             // 
             // lblFilterByPlayerEvents
             // 
@@ -831,23 +826,15 @@ namespace SportsMeet
             // 
             // tbFilterByPlayersNumber
             // 
-            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(125, 11);
+            this.tbFilterByPlayersNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(443, 12);
             this.tbFilterByPlayersNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByPlayersNumber.Name = "tbFilterByPlayersNumber";
-            this.tbFilterByPlayersNumber.Size = new System.Drawing.Size(196, 20);
+            this.tbFilterByPlayersNumber.Size = new System.Drawing.Size(446, 20);
             this.tbFilterByPlayersNumber.TabIndex = 1;
             this.tbFilterByPlayersNumber.TextChanged += new System.EventHandler(this.tbFilterByPlayersNumber_TextChanged);
             this.tbFilterByPlayersNumber.Leave += new System.EventHandler(this.tbPlayerSearch_Leave);
-            // 
-            // lblFilterByPlayerPlayerNumber
-            // 
-            this.lblFilterByPlayerPlayerNumber.AutoSize = true;
-            this.lblFilterByPlayerPlayerNumber.Location = new System.Drawing.Point(11, 15);
-            this.lblFilterByPlayerPlayerNumber.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblFilterByPlayerPlayerNumber.Name = "lblFilterByPlayerPlayerNumber";
-            this.lblFilterByPlayerPlayerNumber.Size = new System.Drawing.Size(76, 13);
-            this.lblFilterByPlayerPlayerNumber.TabIndex = 0;
-            this.lblFilterByPlayerPlayerNumber.Text = "Player Number";
             // 
             // tbFilterByEvent
             // 
@@ -1044,7 +1031,6 @@ namespace SportsMeet
         private System.Windows.Forms.Label lblFilterByPlayerSchool;
         private System.Windows.Forms.Label lblFilerByPlayerName;
         private System.Windows.Forms.TextBox tbFilterByPlayersNumber;
-        private System.Windows.Forms.Label lblFilterByPlayerPlayerNumber;
         private System.Windows.Forms.Label lblFilterByPlayerEvents;
         private ToolStrip toolStripStatusBar;
         private ToolStripLabel toolStripLabel1;
@@ -1062,7 +1048,6 @@ namespace SportsMeet
         private ToolStripLabel toolStripLabelSchools;
         private ToolStripLabel toolStripLabelSchoolCount;
         private BindingSource bindingSourceDistricts;
-        private Button btnFilterByPlayerFilter;
         private Button btnFilterByEventFilter;
         private Label lblFIlterByEventPlayers;
         private TextBox tbFilterByEventEventNumber;
