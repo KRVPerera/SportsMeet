@@ -63,8 +63,9 @@ namespace SportsMeet
                     {
                         newPlayer.Id = existingPlayer.Id;
                         DataBase.EditPlayer(newPlayer);
-                        LoadPlayerList();
                     }
+                    tbPlayerSearch.Clear();
+                    LoadPlayerList();
                     return;
                 }
 
@@ -177,6 +178,56 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddEvent_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(tbEventNumber.Text))
+            {
+                MessageBox.Show("Invalid event number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            if (!Int32.TryParse(numericUpDownEventAgeLimit.Text, out var age))
+            {
+                MessageBox.Show("Please enter a valid age limit", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+
+                Util.SexEnum sexByteEnum = Util.SexStringToEnum(numericUpDownEventAgeLimit.Text);
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, cbxDistrict.SelectedIndex);
+
+                Player existingPlayer = DataBase.FindPlayer(newPlayer);
+
+                if (existingPlayer != null)
+                {
+                    Console.WriteLine(existingPlayer.Id);
+                    tbPlayerSearch.Text = existingPlayer.Number;
+                    DialogResult result = MessageBox.Show("Player already exists. Do you want to override ?",
+                        "Existing ID !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        newPlayer.Id = existingPlayer.Id;
+                        DataBase.EditPlayer(newPlayer);
+                    }
+                    tbPlayerSearch.Clear();
+                    LoadPlayerList();
+                    return;
+                }
+
+                DataBase.SavePlayer(newPlayer);
+
+                LoadPlayerList();
+            }
+
+            //Event neweEvent = new Event();
 
         }
     }
