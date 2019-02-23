@@ -201,11 +201,8 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            School newSchool = new School(0, tbNewSchoolsName.Text, cbxNewSchoolsDistrict.SelectedIndex);
-||||||| merged common ancestors
 
-=======
+            School newSchool = new School(0, tbNewSchoolsName.Text, cbxNewSchoolsDistrict.SelectedIndex);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -288,7 +285,6 @@ namespace SportsMeet
             lblFilterByPlayerNameOutput.Text = "";
             lblFilterByPlayerDistrictOutput.Text = "";
             lblFilterByPlayerSchoolOutput.Text = "";
->>>>>>> 708385ba34ff88c2ea466ab5eeffb7fbd35f4e73
         }
     }
 }
