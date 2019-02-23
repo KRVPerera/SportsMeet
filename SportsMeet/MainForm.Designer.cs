@@ -50,7 +50,6 @@ namespace SportsMeet
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.schoolIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourcePlayers = new System.Windows.Forms.BindingSource(this.components);
             this.numericUpDownAge = new System.Windows.Forms.NumericUpDown();
             this.tbPlayerSearch = new System.Windows.Forms.TextBox();
@@ -139,7 +138,7 @@ namespace SportsMeet
             this.tcMainForm.Name = "tcMainForm";
             this.tcMainForm.Padding = new System.Drawing.Point(0, 0);
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(1118, 567);
+            this.tcMainForm.Size = new System.Drawing.Size(915, 538);
             this.tcMainForm.TabIndex = 0;
             // 
             // tbPlayers
@@ -173,7 +172,7 @@ namespace SportsMeet
             this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(1110, 540);
+            this.tbPlayers.Size = new System.Drawing.Size(907, 511);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
@@ -211,13 +210,12 @@ namespace SportsMeet
             this.numberDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.lastNameDataGridViewTextBoxColumn,
-            this.ageDataGridViewTextBoxColumn,
-            this.schoolIdDataGridViewTextBoxColumn});
+            this.ageDataGridViewTextBoxColumn});
             this.dataGridViewPlayers.DataSource = this.bindingSourcePlayers;
             this.dataGridViewPlayers.Location = new System.Drawing.Point(453, 90);
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
             this.dataGridViewPlayers.RowTemplate.Height = 33;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(647, 440);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 411);
             this.dataGridViewPlayers.TabIndex = 27;
             // 
             // numberDataGridViewTextBoxColumn
@@ -244,12 +242,6 @@ namespace SportsMeet
             this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
             this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
             // 
-            // schoolIdDataGridViewTextBoxColumn
-            // 
-            this.schoolIdDataGridViewTextBoxColumn.DataPropertyName = "SchoolId";
-            this.schoolIdDataGridViewTextBoxColumn.HeaderText = "SchoolId";
-            this.schoolIdDataGridViewTextBoxColumn.Name = "schoolIdDataGridViewTextBoxColumn";
-            // 
             // bindingSourcePlayers
             // 
             this.bindingSourcePlayers.DataSource = typeof(SportsMeet.Models.Player);
@@ -270,7 +262,7 @@ namespace SportsMeet
             this.tbPlayerSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbPlayerSearch.Location = new System.Drawing.Point(453, 43);
             this.tbPlayerSearch.Name = "tbPlayerSearch";
-            this.tbPlayerSearch.Size = new System.Drawing.Size(647, 20);
+            this.tbPlayerSearch.Size = new System.Drawing.Size(444, 20);
             this.tbPlayerSearch.TabIndex = 25;
             this.tbPlayerSearch.TextChanged += new System.EventHandler(this.tbPlayerSearch_TextChanged);
             this.tbPlayerSearch.Enter += new System.EventHandler(this.tbPlayerSearch_Enter);
@@ -381,8 +373,10 @@ namespace SportsMeet
             // 
             this.cbxGender.FormattingEnabled = true;
             this.cbxGender.Items.AddRange(new object[] {
+            "Not known",
             "Male",
-            "Female"});
+            "Female",
+            "Not applicable"});
             this.cbxGender.Location = new System.Drawing.Point(183, 210);
             this.cbxGender.Margin = new System.Windows.Forms.Padding(4);
             this.cbxGender.Name = "cbxGender";
@@ -782,10 +776,10 @@ namespace SportsMeet
             this.toolStripLabelSchools,
             this.toolStripLabelSchoolCount});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripStatusBar.Location = new System.Drawing.Point(8, 576);
+            this.toolStripStatusBar.Location = new System.Drawing.Point(8, 547);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
             this.toolStripStatusBar.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStripStatusBar.Size = new System.Drawing.Size(1110, 45);
+            this.toolStripStatusBar.Size = new System.Drawing.Size(907, 45);
             this.toolStripStatusBar.Stretch = true;
             this.toolStripStatusBar.TabIndex = 1;
             this.toolStripStatusBar.Text = "toolStrip";
@@ -830,11 +824,12 @@ namespace SportsMeet
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(1119, 630);
+            this.ClientSize = new System.Drawing.Size(916, 601);
             this.Controls.Add(this.toolStripStatusBar);
             this.Controls.Add(this.tcMainForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MinimumSize = new System.Drawing.Size(932, 640);
             this.Name = "MainForm";
             this.Text = "Sports Meet";
             this.tcMainForm.ResumeLayout(false);
@@ -914,11 +909,6 @@ namespace SportsMeet
         private Label lblAgeUnderValue;
         private Button deletePlayer;
         private ImageList imageListForTabs;
-        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn schoolIdDataGridViewTextBoxColumn;
         private BindingSource bindingSourcePlayers;
         private BindingSource bindingSourceSchools;
         private ToolStripLabel toolStripLabelSchools;
@@ -929,6 +919,10 @@ namespace SportsMeet
         private Label lblFIlterByEventPlayers;
         private TextBox tbFilterByEventEventNumber;
         private Label lblFilterByEventEventNumber;
+        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
     }
     
 }

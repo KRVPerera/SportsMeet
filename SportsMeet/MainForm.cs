@@ -47,7 +47,9 @@ namespace SportsMeet
             else
             {
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 0, cbxDistrict.SelectedIndex);
+                Util.SexEnum sexByteEnum = Util.SexStringToEnum(cbxGender.Text);
+                
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, cbxDistrict.SelectedIndex);
 
                 Player existingPlayer = DataBase.FindPlayer(newPlayer);
 
