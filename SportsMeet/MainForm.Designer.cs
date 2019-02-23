@@ -119,6 +119,7 @@ namespace SportsMeet
             this.toolStripLabelSchools = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
             this.bindingSourceEvents = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -136,6 +137,7 @@ namespace SportsMeet
             this.tbFilterByEvent.SuspendLayout();
             this.toolStripStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -988,6 +990,7 @@ namespace SportsMeet
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1072,6 +1075,7 @@ namespace SportsMeet
         private Label lblFilterByPlayerDistrictOutput;
         private Label lblFilterByPlayerSchoolOutput;
         private Label lblFilterByPlayerNameOutput;
+        private BindingSource bindingSourceFilterByPlayerEvents;
     }
     
 }
