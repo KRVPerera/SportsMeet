@@ -59,5 +59,25 @@ namespace SportsMeet.Data
             var output = DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
             return output.ToList();
         }
+
+        public static long SaveEvent(Event neweEvent)
+        {
+            return DBConnection.Instance.Connection.Insert(neweEvent);
+        }
+
+        public static District GetDistrict(Int64 districtId)
+        {
+            return DBConnection.Instance.Connection.Get<District>(districtId);
+        }
+
+        public static District GetDistrictByName(String districtName)
+        {
+            string query = "select * from Districts where Name = @Name";
+            District nameDistrict = new District();
+            nameDistrict.Name = districtName;
+            
+            IEnumerable<District> result = DBConnection.Instance.Connection.Query<District>(query, nameDistrict);
+            return result.FirstOrDefault();
+        }
     }
 }

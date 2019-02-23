@@ -1,14 +1,14 @@
-﻿PRAGMA foreign_keys = ON;
+﻿PRAGMA foreign_keys=ON;
 
 
 CREATE TABLE IF NOT EXISTS Districts (
-    [no]  INTEGER  PRIMARY KEY AUTOINCREMENT,
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
 
 CREATE TABLE Schools (
-    schoolId INTEGER    PRIMARY KEY AUTOINCREMENT,
+    id INTEGER    PRIMARY KEY AUTOINCREMENT,
     name     TEXT (100) UNIQUE,
 	districtId INTEGER,
 
@@ -18,7 +18,7 @@ CREATE TABLE Schools (
 );
 
 CREATE TABLE Events (
-    [id]     INTEGER     PRIMARY KEY AUTOINCREMENT,
+    id     INTEGER     PRIMARY KEY AUTOINCREMENT,
     name     TEXT    UNIQUE NOT NULL,
     gender   BOOLEAN,
     agelimit INTEGER NOT NULL
@@ -31,6 +31,7 @@ CREATE TABLE Players (
     firstName TEXT ,
     lastName  TEXT ,
     age       INTEGER  DEFAULT (0),
+	sex		  TINYINT,
     schoolId  INTEGER,
 	districtId INTEGER,
     
