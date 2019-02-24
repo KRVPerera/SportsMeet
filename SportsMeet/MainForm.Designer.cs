@@ -572,7 +572,6 @@ namespace SportsMeet
             this.dataGridViewEvents.Name = "dataGridViewEvents";
             this.dataGridViewEvents.Size = new System.Drawing.Size(538, 503);
             this.dataGridViewEvents.TabIndex = 8;
-            this.dataGridViewEvents.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dataGridViewEvents_CellParsing);
             // 
             // numberDataGridViewTextBoxColumn2
             // 
