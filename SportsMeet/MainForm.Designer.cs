@@ -102,6 +102,9 @@ namespace SportsMeet
             this.lblNewEventsNumber = new System.Windows.Forms.Label();
             this.btnAddEvent = new System.Windows.Forms.Button();
             this.tbSchool = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDeleteSchool = new System.Windows.Forms.Button();
             this.btnEditSchool = new System.Windows.Forms.Button();
             this.tbSchoolName = new System.Windows.Forms.TextBox();
@@ -154,6 +157,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEventAgeLimit)).BeginInit();
             this.tbSchool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tbFilterByPlayer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsOfPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPlayerFiltering)).BeginInit();
@@ -227,7 +231,7 @@ namespace SportsMeet
             this.checkBoxDeleteSelection.AutoSize = true;
             this.checkBoxDeleteSelection.Location = new System.Drawing.Point(545, 7);
             this.checkBoxDeleteSelection.Name = "checkBoxDeleteSelection";
-            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(93, 23);
+            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(119, 27);
             this.checkBoxDeleteSelection.TabIndex = 39;
             this.checkBoxDeleteSelection.Text = "Delete selection";
             this.checkBoxDeleteSelection.UseVisualStyleBackColor = true;
@@ -239,7 +243,7 @@ namespace SportsMeet
             this.checkBoxLoadSelection.AutoSize = true;
             this.checkBoxLoadSelection.Location = new System.Drawing.Point(453, 7);
             this.checkBoxLoadSelection.Name = "checkBoxLoadSelection";
-            this.checkBoxLoadSelection.Size = new System.Drawing.Size(86, 23);
+            this.checkBoxLoadSelection.Size = new System.Drawing.Size(110, 27);
             this.checkBoxLoadSelection.TabIndex = 38;
             this.checkBoxLoadSelection.Text = "Load selection";
             this.checkBoxLoadSelection.UseVisualStyleBackColor = true;
@@ -250,7 +254,7 @@ namespace SportsMeet
             this.checkBoxPlayerAutoFilter.AutoSize = true;
             this.checkBoxPlayerAutoFilter.Location = new System.Drawing.Point(361, 38);
             this.checkBoxPlayerAutoFilter.Name = "checkBoxPlayerAutoFilter";
-            this.checkBoxPlayerAutoFilter.Size = new System.Drawing.Size(70, 17);
+            this.checkBoxPlayerAutoFilter.Size = new System.Drawing.Size(90, 21);
             this.checkBoxPlayerAutoFilter.TabIndex = 37;
             this.checkBoxPlayerAutoFilter.Text = "Auto filter";
             this.checkBoxPlayerAutoFilter.UseVisualStyleBackColor = true;
@@ -290,7 +294,7 @@ namespace SportsMeet
             this.lblEventNumber.Location = new System.Drawing.Point(7, 36);
             this.lblEventNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEventNumber.Name = "lblEventNumber";
-            this.lblEventNumber.Size = new System.Drawing.Size(75, 13);
+            this.lblEventNumber.Size = new System.Drawing.Size(98, 17);
             this.lblEventNumber.TabIndex = 19;
             this.lblEventNumber.Text = "Event Number";
             // 
@@ -300,7 +304,7 @@ namespace SportsMeet
             this.lblEvent.Location = new System.Drawing.Point(7, 64);
             this.lblEvent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEvent.Name = "lblEvent";
-            this.lblEvent.Size = new System.Drawing.Size(35, 13);
+            this.lblEvent.Size = new System.Drawing.Size(44, 17);
             this.lblEvent.TabIndex = 20;
             this.lblEvent.Text = "Event";
             // 
@@ -309,7 +313,7 @@ namespace SportsMeet
             this.checkBoxAddToMoreEvents.AutoSize = true;
             this.checkBoxAddToMoreEvents.Location = new System.Drawing.Point(238, 91);
             this.checkBoxAddToMoreEvents.Name = "checkBoxAddToMoreEvents";
-            this.checkBoxAddToMoreEvents.Size = new System.Drawing.Size(118, 17);
+            this.checkBoxAddToMoreEvents.Size = new System.Drawing.Size(153, 21);
             this.checkBoxAddToMoreEvents.TabIndex = 9;
             this.checkBoxAddToMoreEvents.Text = "Add to more events";
             this.checkBoxAddToMoreEvents.UseVisualStyleBackColor = true;
@@ -320,7 +324,7 @@ namespace SportsMeet
             this.lblAgeUnder.Location = new System.Drawing.Point(7, 95);
             this.lblAgeUnder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAgeUnder.Name = "lblAgeUnder";
-            this.lblAgeUnder.Size = new System.Drawing.Size(58, 13);
+            this.lblAgeUnder.Size = new System.Drawing.Size(76, 17);
             this.lblAgeUnder.TabIndex = 17;
             this.lblAgeUnder.Text = "Age Under";
             // 
@@ -333,7 +337,7 @@ namespace SportsMeet
             this.cbxEvent.Location = new System.Drawing.Point(106, 33);
             this.cbxEvent.Margin = new System.Windows.Forms.Padding(4);
             this.cbxEvent.Name = "cbxEvent";
-            this.cbxEvent.Size = new System.Drawing.Size(180, 21);
+            this.cbxEvent.Size = new System.Drawing.Size(180, 24);
             this.cbxEvent.TabIndex = 8;
             this.cbxEvent.SelectedIndexChanged += new System.EventHandler(this.cbxEvent_SelectedIndexChanged);
             // 
@@ -347,7 +351,7 @@ namespace SportsMeet
             this.labelEventNamePlayerstab.AutoSize = true;
             this.labelEventNamePlayerstab.Location = new System.Drawing.Point(103, 64);
             this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
-            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
+            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(92, 17);
             this.labelEventNamePlayerstab.TabIndex = 30;
             this.labelEventNamePlayerstab.Text = "dummy event";
             // 
@@ -365,7 +369,7 @@ namespace SportsMeet
             this.checkBoxAddtoanEvent.AutoSize = true;
             this.checkBoxAddtoanEvent.Location = new System.Drawing.Point(131, 291);
             this.checkBoxAddtoanEvent.Name = "checkBoxAddtoanEvent";
-            this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(103, 17);
+            this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(131, 21);
             this.checkBoxAddtoanEvent.TabIndex = 7;
             this.checkBoxAddtoanEvent.Text = "Add to an Event";
             this.checkBoxAddtoanEvent.UseVisualStyleBackColor = true;
@@ -547,7 +551,7 @@ namespace SportsMeet
             this.lblGender.Location = new System.Drawing.Point(21, 214);
             this.lblGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(42, 13);
+            this.lblGender.Size = new System.Drawing.Size(56, 17);
             this.lblGender.TabIndex = 10;
             this.lblGender.Text = "Gender";
             // 
@@ -829,6 +833,7 @@ namespace SportsMeet
             // 
             // tbSchool
             // 
+            this.tbSchool.Controls.Add(this.dataGridView1);
             this.tbSchool.Controls.Add(this.btnDeleteSchool);
             this.tbSchool.Controls.Add(this.btnEditSchool);
             this.tbSchool.Controls.Add(this.tbSchoolName);
@@ -842,6 +847,33 @@ namespace SportsMeet
             this.tbSchool.TabIndex = 2;
             this.tbSchool.Text = "School";
             this.tbSchool.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn1});
+            this.dataGridView1.DataSource = this.bindingSourceSchools;
+            this.dataGridView1.Location = new System.Drawing.Point(399, 32);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(481, 300);
+            this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.TabStop = false;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
             // 
             // btnDeleteSchool
             // 
@@ -862,6 +894,7 @@ namespace SportsMeet
             this.btnEditSchool.TabStop = false;
             this.btnEditSchool.Text = "Edit";
             this.btnEditSchool.UseVisualStyleBackColor = true;
+            this.btnEditSchool.Click += new System.EventHandler(this.btnEditSchool_Click);
             // 
             // tbSchoolName
             // 
@@ -1194,7 +1227,7 @@ namespace SportsMeet
             this.toolStripButtonAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAbout.Image")));
             this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAbout.Name = "toolStripButtonAbout";
-            this.toolStripButtonAbout.Size = new System.Drawing.Size(44, 42);
+            this.toolStripButtonAbout.Size = new System.Drawing.Size(54, 42);
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
@@ -1231,6 +1264,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEventAgeLimit)).EndInit();
             this.tbSchool.ResumeLayout(false);
             this.tbSchool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tbFilterByPlayer.ResumeLayout(false);
             this.tbFilterByPlayer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsOfPlayer)).EndInit();
@@ -1345,8 +1379,11 @@ namespace SportsMeet
         private ToolStripSeparator toolStripSeparator4;
         private Button btnDeleteSchool;
         private Button btnEditSchool;
+   		private DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1
     }
     
 }

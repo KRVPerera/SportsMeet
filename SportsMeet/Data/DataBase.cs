@@ -81,6 +81,20 @@ namespace SportsMeet.Data
             return DBConnection.Instance.Connection.Insert(school);
         }
 
+        public static bool EditSchool(School oldSchool)
+        {
+            return DBConnection.Instance.Connection.Update(oldSchool);
+        }
+
+        public static School GetSchool(String schoolName)
+        {
+            string query = "select * from Schools where Name = @Name";
+            Event namedSchool = new Event(0, "", schoolName, 1, 17);
+
+            IEnumerable<School> result = DBConnection.Instance.Connection.Query<School>(query, namedSchool);
+            return result.FirstOrDefault();
+        }
+
         #endregion Schools
 
         #region Events
