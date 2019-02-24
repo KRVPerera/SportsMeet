@@ -435,9 +435,9 @@ namespace SportsMeet
             this.lblGender.Location = new System.Drawing.Point(21, 214);
             this.lblGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(25, 13);
+            this.lblGender.Size = new System.Drawing.Size(42, 13);
             this.lblGender.TabIndex = 10;
-            this.lblGender.Text = "Sex";
+            this.lblGender.Text = "Gender";
             // 
             // lblAge
             // 

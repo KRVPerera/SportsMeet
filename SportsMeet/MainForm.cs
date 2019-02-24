@@ -127,6 +127,7 @@ namespace SportsMeet
             tbPlayerNumber.Clear();
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
+            cbxGender.SelectedIndex = 1;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
