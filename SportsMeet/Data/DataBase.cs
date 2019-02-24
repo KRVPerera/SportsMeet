@@ -62,6 +62,11 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static long SaveSchool(School school)
+        {
+            return DBConnection.Instance.Connection.Insert(school);
+        }
+
         #endregion Schools
 
         #region Events
