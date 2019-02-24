@@ -79,9 +79,7 @@ namespace SportsMeet
 
                 LoadPlayerList();
 
-                tbPlayerNumber.Clear();
-                tbFirstName.Clear();
-                tbLastName.Clear();
+                CleanupPlayerTabTextBoxes();
             }
         }
 
@@ -285,6 +283,13 @@ namespace SportsMeet
             lblFilterByPlayerNameOutput.Text = "";
             lblFilterByPlayerDistrictOutput.Text = "";
             lblFilterByPlayerSchoolOutput.Text = "";
+        }
+
+        private void CleanupPlayerTabTextBoxes()
+        {
+            tbPlayerNumber.Clear();
+            tbFirstName.Clear();
+            tbLastName.Clear();
         }
     }
 }
