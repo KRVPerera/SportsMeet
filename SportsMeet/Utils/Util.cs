@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using SportsMeet.Models;
 
 namespace SportsMeet
 {
@@ -69,6 +72,18 @@ namespace SportsMeet
             {
                 return "NA";
             }
+        }
+
+        public static List<long> GetEventIdListFromPlayerEventList(List<PlayerEvent> playerEventList)
+        {
+            List<long> idList = new List<long>();
+
+            foreach (var playerEvent in playerEventList)
+            {
+                idList.Add(playerEvent.EventId);
+            }
+
+            return idList;
         }
     }
 }
