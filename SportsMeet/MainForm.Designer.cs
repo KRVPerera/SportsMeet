@@ -76,6 +76,9 @@ namespace SportsMeet
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tbEvents = new System.Windows.Forms.TabPage();
+            this.btnEventEdit = new System.Windows.Forms.Button();
+            this.btnEvetSearch = new System.Windows.Forms.Button();
+            this.btnEventDelete = new System.Windows.Forms.Button();
             this.comboBoxEventsSex = new System.Windows.Forms.ComboBox();
             this.labelEventsSex = new System.Windows.Forms.Label();
             this.dataGridViewEvents = new System.Windows.Forms.DataGridView();
@@ -125,9 +128,6 @@ namespace SportsMeet
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnEventDelete = new System.Windows.Forms.Button();
-            this.btnEvetSearch = new System.Windows.Forms.Button();
-            this.btnEventEdit = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -347,6 +347,7 @@ namespace SportsMeet
             // bindingSourceEvents
             // 
             this.bindingSourceEvents.DataSource = typeof(SportsMeet.Models.Event);
+            this.bindingSourceEvents.Sort = "Number";
             // 
             // tbEventNumber
             // 
@@ -537,6 +538,38 @@ namespace SportsMeet
             this.tbEvents.TabIndex = 0;
             this.tbEvents.Text = "Events";
             this.tbEvents.UseVisualStyleBackColor = true;
+            // 
+            // btnEventEdit
+            // 
+            this.btnEventEdit.Location = new System.Drawing.Point(172, 168);
+            this.btnEventEdit.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEventEdit.Name = "btnEventEdit";
+            this.btnEventEdit.Size = new System.Drawing.Size(66, 28);
+            this.btnEventEdit.TabIndex = 12;
+            this.btnEventEdit.Text = "Edit";
+            this.btnEventEdit.UseVisualStyleBackColor = true;
+            this.btnEventEdit.Click += new System.EventHandler(this.btnEventEdit_Click);
+            // 
+            // btnEvetSearch
+            // 
+            this.btnEvetSearch.Location = new System.Drawing.Point(96, 168);
+            this.btnEvetSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEvetSearch.Name = "btnEvetSearch";
+            this.btnEvetSearch.Size = new System.Drawing.Size(66, 28);
+            this.btnEvetSearch.TabIndex = 11;
+            this.btnEvetSearch.Text = "Search";
+            this.btnEvetSearch.UseVisualStyleBackColor = true;
+            this.btnEvetSearch.Click += new System.EventHandler(this.EventSearchClick);
+            // 
+            // btnEventDelete
+            // 
+            this.btnEventDelete.Location = new System.Drawing.Point(248, 168);
+            this.btnEventDelete.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEventDelete.Name = "btnEventDelete";
+            this.btnEventDelete.Size = new System.Drawing.Size(66, 28);
+            this.btnEventDelete.TabIndex = 10;
+            this.btnEventDelete.Text = "Delete";
+            this.btnEventDelete.UseVisualStyleBackColor = true;
             // 
             // comboBoxEventsSex
             // 
@@ -1025,37 +1058,6 @@ namespace SportsMeet
             // eventBindingSource
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
-            // 
-            // btnEventDelete
-            // 
-            this.btnEventDelete.Location = new System.Drawing.Point(248, 168);
-            this.btnEventDelete.Margin = new System.Windows.Forms.Padding(6);
-            this.btnEventDelete.Name = "btnEventDelete";
-            this.btnEventDelete.Size = new System.Drawing.Size(66, 28);
-            this.btnEventDelete.TabIndex = 10;
-            this.btnEventDelete.Text = "Delete";
-            this.btnEventDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnEvetSearch
-            // 
-            this.btnEvetSearch.Location = new System.Drawing.Point(96, 168);
-            this.btnEvetSearch.Margin = new System.Windows.Forms.Padding(6);
-            this.btnEvetSearch.Name = "btnEvetSearch";
-            this.btnEvetSearch.Size = new System.Drawing.Size(66, 28);
-            this.btnEvetSearch.TabIndex = 11;
-            this.btnEvetSearch.Text = "Search";
-            this.btnEvetSearch.UseVisualStyleBackColor = true;
-            this.btnEvetSearch.Click += new System.EventHandler(this.EventSearchClick);
-            // 
-            // btnEventEdit
-            // 
-            this.btnEventEdit.Location = new System.Drawing.Point(172, 168);
-            this.btnEventEdit.Margin = new System.Windows.Forms.Padding(6);
-            this.btnEventEdit.Name = "btnEventEdit";
-            this.btnEventEdit.Size = new System.Drawing.Size(66, 28);
-            this.btnEventEdit.TabIndex = 12;
-            this.btnEventEdit.Text = "Edit";
-            this.btnEventEdit.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

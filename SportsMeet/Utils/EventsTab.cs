@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using SportsMeet.Data;
+﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using System;
+using System.Windows.Forms;
 
 namespace SportsMeet.Utils
 {
-    class EventsTab
+    internal class EventsTab
     {
-
-        public static bool AddEvent(String eventNumber, String ageText, String eventName, String sex)
+        public static bool AddEvent(String eventNumber, String ageText, String eventName, String sex, bool editMode = false)
         {
             if (String.IsNullOrEmpty(eventNumber))
             {
@@ -32,9 +28,13 @@ namespace SportsMeet.Utils
                 if (searchedNamedEvent != null)
                 {
                     neweEvent.Id = searchedNamedEvent.Id;
+                    DialogResult result = DialogResult.Yes;
+                    if (!editMode)
+                    {
+                        result = MessageBox.Show("Event already exists. Do you want to override ?",
+                            "Existing event !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    }
 
-                    DialogResult result = MessageBox.Show("Event already exists. Do you want to override ?",
-                        "Existing event !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
                         return DataBase.EditEvent(neweEvent);
@@ -43,7 +43,6 @@ namespace SportsMeet.Utils
                     {
                         return false;
                     }
-                    
                 }
 
                 Event searchedNumbderedEvent = DataBase.GetEventByNumber(eventNumber);
@@ -51,8 +50,12 @@ namespace SportsMeet.Utils
                 {
                     neweEvent.Id = searchedNumbderedEvent.Id;
 
-                    DialogResult result = MessageBox.Show("Event already exists. Do you want to override ?",
-                        "Existing event !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    DialogResult result = DialogResult.Yes;
+                    if (!editMode)
+                    {
+                        result = MessageBox.Show("Event already exists. Do you want to override ?",
+                            "Existing event !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    }
                     if (result == DialogResult.Yes)
                     {
                         return DataBase.EditEvent(neweEvent);
@@ -61,7 +64,6 @@ namespace SportsMeet.Utils
                     {
                         return false;
                     }
-
                 }
                 else
                 {
@@ -72,6 +74,5 @@ namespace SportsMeet.Utils
 
             return false;
         }
-
     }
 }

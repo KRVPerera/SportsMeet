@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Dapper.Contrib.Extensions;
 
 namespace SportsMeet.Models
 {
@@ -28,6 +29,7 @@ namespace SportsMeet.Models
 
         public byte Sex { get; set; }
 
+        [Write(false)]
         public String Gender
         {
             get { return Util.SexEnumToSex((Util.SexEnum) Sex); }

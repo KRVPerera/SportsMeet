@@ -338,5 +338,18 @@ namespace SportsMeet
                 numericUpDownEventAgeLimit.Text = searchedEvent.AgeLimit.ToString();
             }
         }
+
+        private void btnEventEdit_Click(object sender, EventArgs e)
+        {
+            if (EventsTab.AddEvent(
+                tbNewEventsNumber.Text,
+                numericUpDownEventAgeLimit.Text,
+                tbNewEventsName.Text,
+                comboBoxEventsSex.Text,
+                editMode: true))
+            {
+                LoadEventList();
+            }
+        }
     }
 }
