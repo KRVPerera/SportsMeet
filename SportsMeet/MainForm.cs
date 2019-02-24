@@ -234,6 +234,10 @@ namespace SportsMeet
             bindingSourceEvents.ResetBindings(false);
 
             toolStripLabelTotalEvents.Text = _events.Count.ToString();
+            if (_events.Count > 0)
+            {
+                cbxEvent.SelectedIndex = 0;
+            }
 
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
@@ -328,6 +332,7 @@ namespace SportsMeet
             if (searchedEvent != null)
             {
                 lblAgeUnderValue.Text = searchedEvent.AgeLimit.ToString();
+                labelEventNamePlayerstab.Text = searchedEvent.Name;
             }
         }
 

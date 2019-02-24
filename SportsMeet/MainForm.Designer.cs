@@ -58,7 +58,6 @@ namespace SportsMeet
             this.bindingSourceDistricts = new System.Windows.Forms.BindingSource(this.components);
             this.cbxEvent = new System.Windows.Forms.ComboBox();
             this.bindingSourceEvents = new System.Windows.Forms.BindingSource(this.components);
-            this.tbEventNumber = new System.Windows.Forms.TextBox();
             this.lblEvent = new System.Windows.Forms.Label();
             this.lblEventNumber = new System.Windows.Forms.Label();
             this.lblAgeUnder = new System.Windows.Forms.Label();
@@ -130,6 +129,7 @@ namespace SportsMeet
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelTotalEvents = new System.Windows.Forms.ToolStripLabel();
+            this.labelEventNamePlayerstab = new System.Windows.Forms.Label();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -173,6 +173,7 @@ namespace SportsMeet
             // 
             // tbPlayers
             // 
+            this.tbPlayers.Controls.Add(this.labelEventNamePlayerstab);
             this.tbPlayers.Controls.Add(this.deletePlayer);
             this.tbPlayers.Controls.Add(this.lblAgeUnderValue);
             this.tbPlayers.Controls.Add(this.dataGridViewPlayers);
@@ -181,7 +182,6 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.lblDistrict);
             this.tbPlayers.Controls.Add(this.cbxDistrict);
             this.tbPlayers.Controls.Add(this.cbxEvent);
-            this.tbPlayers.Controls.Add(this.tbEventNumber);
             this.tbPlayers.Controls.Add(this.lblEvent);
             this.tbPlayers.Controls.Add(this.lblEventNumber);
             this.tbPlayers.Controls.Add(this.lblAgeUnder);
@@ -350,14 +350,6 @@ namespace SportsMeet
             // 
             this.bindingSourceEvents.DataSource = typeof(SportsMeet.Models.Event);
             this.bindingSourceEvents.Sort = "Number";
-            // 
-            // tbEventNumber
-            // 
-            this.tbEventNumber.Location = new System.Drawing.Point(183, 316);
-            this.tbEventNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.tbEventNumber.Name = "tbEventNumber";
-            this.tbEventNumber.Size = new System.Drawing.Size(148, 20);
-            this.tbEventNumber.TabIndex = 8;
             // 
             // lblEvent
             // 
@@ -1075,6 +1067,14 @@ namespace SportsMeet
             this.toolStripLabelTotalEvents.Name = "toolStripLabelTotalEvents";
             this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelTotalEvents.Text = "0";
+            // labelEventNamePlayerstab
+            // 
+            this.labelEventNamePlayerstab.AutoSize = true;
+            this.labelEventNamePlayerstab.Location = new System.Drawing.Point(183, 319);
+            this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
+            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
+            this.labelEventNamePlayerstab.TabIndex = 30;
+            this.labelEventNamePlayerstab.Text = "dummy event";
             // 
             // MainForm
             // 
@@ -1136,7 +1136,6 @@ namespace SportsMeet
         private System.Windows.Forms.Label lblAgeUnder;
         private System.Windows.Forms.TabPage tbSchool;
         private System.Windows.Forms.ComboBox cbxEvent;
-        private System.Windows.Forms.TextBox tbEventNumber;
         private System.Windows.Forms.Label lblEvent;
         private System.Windows.Forms.Label lblEventNumber;
         private System.Windows.Forms.Label lblDistrict;
@@ -1207,6 +1206,7 @@ namespace SportsMeet
         private Button btnEventDelete;
         private ToolStripLabel toolStripLabel2;
         private ToolStripLabel toolStripLabelTotalEvents;
+        private Label labelEventNamePlayerstab;
     }
     
 }
