@@ -12,12 +12,6 @@ namespace SportsMeet.Models
             Name = name;
         }
 
-        public School(Int64 id, String name)
-        {
-            Id = id;
-            Name = name;
-        }
-
         #endregion public constructors
 
         #region public members
