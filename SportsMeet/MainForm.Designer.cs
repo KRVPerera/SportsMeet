@@ -43,6 +43,7 @@ namespace SportsMeet
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tbPlayers = new System.Windows.Forms.TabPage();
+            this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxLoadSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayerAutoFilter = new System.Windows.Forms.CheckBox();
             this.btnPlayerSearch = new System.Windows.Forms.Button();
@@ -139,7 +140,9 @@ namespace SportsMeet
             this.statusLabel = new System.Windows.Forms.ToolStripLabel();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.groupBoxFirstEvent.SuspendLayout();
@@ -220,6 +223,18 @@ namespace SportsMeet
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
             // 
+            // checkBoxDeleteSelection
+            // 
+            this.checkBoxDeleteSelection.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxDeleteSelection.AutoSize = true;
+            this.checkBoxDeleteSelection.Location = new System.Drawing.Point(545, 7);
+            this.checkBoxDeleteSelection.Name = "checkBoxDeleteSelection";
+            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(93, 23);
+            this.checkBoxDeleteSelection.TabIndex = 39;
+            this.checkBoxDeleteSelection.Text = "Delete selection";
+            this.checkBoxDeleteSelection.UseVisualStyleBackColor = true;
+            this.checkBoxDeleteSelection.CheckedChanged += new System.EventHandler(this.checkBoxDeleteSelection_CheckedChanged);
+            // 
             // checkBoxLoadSelection
             // 
             this.checkBoxLoadSelection.Appearance = System.Windows.Forms.Appearance.Button;
@@ -245,7 +260,7 @@ namespace SportsMeet
             // 
             // btnPlayerSearch
             // 
-            this.btnPlayerSearch.Location = new System.Drawing.Point(171, 471);
+            this.btnPlayerSearch.Location = new System.Drawing.Point(315, 471);
             this.btnPlayerSearch.Name = "btnPlayerSearch";
             this.btnPlayerSearch.Size = new System.Drawing.Size(66, 28);
             this.btnPlayerSearch.TabIndex = 36;
@@ -360,6 +375,7 @@ namespace SportsMeet
             // 
             // btnAddEventsToPlayer
             // 
+            this.btnAddEventsToPlayer.Enabled = false;
             this.btnAddEventsToPlayer.Location = new System.Drawing.Point(98, 471);
             this.btnAddEventsToPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
@@ -371,7 +387,8 @@ namespace SportsMeet
             // 
             // btnPlayerEdit
             // 
-            this.btnPlayerEdit.Location = new System.Drawing.Point(243, 471);
+            this.btnPlayerEdit.Enabled = false;
+            this.btnPlayerEdit.Location = new System.Drawing.Point(171, 471);
             this.btnPlayerEdit.Name = "btnPlayerEdit";
             this.btnPlayerEdit.Size = new System.Drawing.Size(66, 28);
             this.btnPlayerEdit.TabIndex = 31;
@@ -381,7 +398,7 @@ namespace SportsMeet
             // 
             // btnDeletePlayer
             // 
-            this.btnDeletePlayer.Location = new System.Drawing.Point(315, 471);
+            this.btnDeletePlayer.Location = new System.Drawing.Point(243, 471);
             this.btnDeletePlayer.Name = "btnDeletePlayer";
             this.btnDeletePlayer.Size = new System.Drawing.Size(66, 28);
             this.btnDeletePlayer.TabIndex = 29;
@@ -1109,12 +1126,15 @@ namespace SportsMeet
             this.toolStripLabel1,
             this.toolStripLabelTotalPlayerCount,
             this.toolStripButtonAbout,
+            this.toolStripSeparator2,
             this.toolStripLabelSchools,
             this.toolStripLabelSchoolCount,
+            this.toolStripSeparator3,
             this.toolStripLabel2,
             this.toolStripLabelTotalEvents,
             this.toolStripSeparator1,
-            this.statusLabel});
+            this.statusLabel,
+            this.toolStripSeparator4});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripStatusBar.Location = new System.Drawing.Point(8, 547);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
@@ -1189,16 +1209,20 @@ namespace SportsMeet
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
             // 
-            // checkBoxDeleteSelection
+            // toolStripSeparator2
             // 
-            this.checkBoxDeleteSelection.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBoxDeleteSelection.AutoSize = true;
-            this.checkBoxDeleteSelection.Location = new System.Drawing.Point(545, 7);
-            this.checkBoxDeleteSelection.Name = "checkBoxDeleteSelection";
-            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(93, 23);
-            this.checkBoxDeleteSelection.TabIndex = 39;
-            this.checkBoxDeleteSelection.Text = "Delete selection";
-            this.checkBoxDeleteSelection.UseVisualStyleBackColor = true;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 45);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 45);
             // 
             // MainForm
             // 
@@ -1343,6 +1367,9 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private CheckBox checkBoxLoadSelection;
         private CheckBox checkBoxDeleteSelection;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripSeparator toolStripSeparator4;
     }
     
 }

@@ -93,8 +93,6 @@ namespace SportsMeet
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!checkBoxPlayerAutoFilter.Checked) return;
-
             var textbox = sender as TextBox;
             {
                 String searchString = textbox.Text.Trim();
@@ -104,8 +102,37 @@ namespace SportsMeet
                     var playerList = DataBase.LoadPlayers();
                     var myRegex = new Regex(@"^" + searchString + ".*$");
                     IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-                    bindingSourcePlayers.DataSource = result.ToList();
-                    bindingSourcePlayers.ResetBindings(false);
+                    List<Player> players = result.ToList();
+
+                    if (players.Count > 0 && checkBoxPlayerAutoFilter.Checked)
+                    {
+                        bindingSourcePlayers.DataSource = players;
+                        bindingSourcePlayers.ResetBindings(false);
+                    }
+
+                    if (players.Count == 1)
+                    {
+                        Player searchMe = new Player(searchString);
+                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                        if (searchByNumber != null)
+                        {
+                            btnAddEventsToPlayer.Enabled = true;
+                            btnPlayerEdit.Enabled = true;
+                            btnDeletePlayer.Enabled = true;
+                        }
+                        else
+                        {
+                            btnAddEventsToPlayer.Enabled = false;
+                            btnPlayerEdit.Enabled = false;
+                            btnDeletePlayer.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        btnAddEventsToPlayer.Enabled = false;
+                        btnPlayerEdit.Enabled = false;
+                        btnDeletePlayer.Enabled = false;
+                    }
                 }
             }
         }
@@ -126,7 +153,6 @@ namespace SportsMeet
             {
                 currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
             }
-
 
             if (currentPlayer == null)
             {
@@ -501,9 +527,13 @@ namespace SportsMeet
 
         private void dataGridViewPlayers_SelectionChanged(object sender, EventArgs e)
         {
-            if (!checkBoxLoadSelection.Checked) return;
             if (dataGridViewPlayers.CurrentRow != null)
             {
+                if (checkBoxDeleteSelection.Checked && dataGridViewPlayers.CurrentRow != null)
+                {
+                    btnDeletePlayer.Enabled = true;
+                }
+                if (!checkBoxLoadSelection.Checked) return;
                 Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
                 LoadPlayerToPLayerTab(currentPlayer);
             }
@@ -536,6 +566,19 @@ namespace SportsMeet
             if (!checkBox.Checked)
             {
                 CleanupPlayerTabTextBoxes();
+            }
+        }
+
+        private void checkBoxDeleteSelection_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (checkBox.Checked && dataGridViewPlayers.CurrentRow != null)
+            {
+                btnDeletePlayer.Enabled = true;
+            }
+            else
+            {
+                btnDeletePlayer.Enabled = false;
             }
         }
     }

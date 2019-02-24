@@ -39,6 +39,13 @@ namespace SportsMeet.Data
             return output;
         }
 
+        public static Player FindPlayerByNumber(Player player)
+        {
+            string query = "select * from Players where number=@Number;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
+        }
+
         public static bool RemovePlayer(Player player)
         {
             return DBConnection.Instance.Connection.Delete(player);
