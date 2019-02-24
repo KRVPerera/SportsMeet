@@ -56,7 +56,7 @@ namespace SportsMeet
             this.bindingSourceEvents = new System.Windows.Forms.BindingSource(this.components);
             this.labelEventNamePlayerstab = new System.Windows.Forms.Label();
             this.lblAgeUnderValue = new System.Windows.Forms.Label();
-            this.checkBoxHideEvent = new System.Windows.Forms.CheckBox();
+            this.checkBoxAddtoanEvent = new System.Windows.Forms.CheckBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnPlayerEdit = new System.Windows.Forms.Button();
             this.btnDeletePlayer = new System.Windows.Forms.Button();
@@ -131,18 +131,18 @@ namespace SportsMeet
             this.toolStripStatusBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelTotalPlayerCount = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelSchools = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelTotalEvents = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusLabel = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.groupBoxFirstEvent.SuspendLayout();
@@ -192,7 +192,7 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.checkBoxPlayerAutoFilter);
             this.tbPlayers.Controls.Add(this.btnPlayerSearch);
             this.tbPlayers.Controls.Add(this.groupBoxFirstEvent);
-            this.tbPlayers.Controls.Add(this.checkBoxHideEvent);
+            this.tbPlayers.Controls.Add(this.checkBoxAddtoanEvent);
             this.tbPlayers.Controls.Add(this.btnAddEventsToPlayer);
             this.tbPlayers.Controls.Add(this.btnPlayerEdit);
             this.tbPlayers.Controls.Add(this.btnDeletePlayer);
@@ -362,16 +362,16 @@ namespace SportsMeet
             this.lblAgeUnderValue.TabIndex = 28;
             this.lblAgeUnderValue.Text = "0";
             // 
-            // checkBoxHideEvent
+            // checkBoxAddtoanEvent
             // 
-            this.checkBoxHideEvent.AutoSize = true;
-            this.checkBoxHideEvent.Location = new System.Drawing.Point(131, 291);
-            this.checkBoxHideEvent.Name = "checkBoxHideEvent";
-            this.checkBoxHideEvent.Size = new System.Drawing.Size(103, 17);
-            this.checkBoxHideEvent.TabIndex = 7;
-            this.checkBoxHideEvent.Text = "Add to an Event";
-            this.checkBoxHideEvent.UseVisualStyleBackColor = true;
-            this.checkBoxHideEvent.CheckedChanged += new System.EventHandler(this.checkBoxHideEvent_CheckedChanged);
+            this.checkBoxAddtoanEvent.AutoSize = true;
+            this.checkBoxAddtoanEvent.Location = new System.Drawing.Point(131, 291);
+            this.checkBoxAddtoanEvent.Name = "checkBoxAddtoanEvent";
+            this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(103, 17);
+            this.checkBoxAddtoanEvent.TabIndex = 7;
+            this.checkBoxAddtoanEvent.Text = "Add to an Event";
+            this.checkBoxAddtoanEvent.UseVisualStyleBackColor = true;
+            this.checkBoxAddtoanEvent.CheckedChanged += new System.EventHandler(this.checkBoxHideEvent_CheckedChanged);
             // 
             // btnAddEventsToPlayer
             // 
@@ -1125,7 +1125,6 @@ namespace SportsMeet
             this.toolStripStatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripLabelTotalPlayerCount,
-            this.toolStripButtonAbout,
             this.toolStripSeparator2,
             this.toolStripLabelSchools,
             this.toolStripLabelSchoolCount,
@@ -1134,7 +1133,8 @@ namespace SportsMeet
             this.toolStripLabelTotalEvents,
             this.toolStripSeparator1,
             this.statusLabel,
-            this.toolStripSeparator4});
+            this.toolStripSeparator4,
+            this.toolStripButtonAbout});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripStatusBar.Location = new System.Drawing.Point(8, 547);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
@@ -1157,17 +1157,10 @@ namespace SportsMeet
             this.toolStripLabelTotalPlayerCount.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelTotalPlayerCount.Text = "0";
             // 
-            // toolStripButtonAbout
+            // toolStripSeparator2
             // 
-            this.toolStripButtonAbout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAbout.Image")));
-            this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAbout.Name = "toolStripButtonAbout";
-            this.toolStripButtonAbout.Size = new System.Drawing.Size(44, 42);
-            this.toolStripButtonAbout.Text = "About";
-            this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
             // 
             // toolStripLabelSchools
             // 
@@ -1180,6 +1173,11 @@ namespace SportsMeet
             this.toolStripLabelSchoolCount.Name = "toolStripLabelSchoolCount";
             this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelSchoolCount.Text = "0";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 45);
             // 
             // toolStripLabel2
             // 
@@ -1205,24 +1203,25 @@ namespace SportsMeet
             this.statusLabel.Size = new System.Drawing.Size(500, 42);
             this.statusLabel.Text = "Status of the application";
             // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 45);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 45);
+            // 
+            // toolStripButtonAbout
+            // 
+            this.toolStripButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAbout.Image")));
+            this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAbout.Name = "toolStripButtonAbout";
+            this.toolStripButtonAbout.Size = new System.Drawing.Size(44, 42);
+            this.toolStripButtonAbout.Text = "About";
+            this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
+            // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // MainForm
             // 
@@ -1355,7 +1354,7 @@ namespace SportsMeet
         private Button btnPlayerEdit;
         private CheckBox checkBoxAddToMoreEvents;
         private Button btnAddEventsToPlayer;
-        private CheckBox checkBoxHideEvent;
+        private CheckBox checkBoxAddtoanEvent;
         private GroupBox groupBoxFirstEvent;
         private Button btnPlayerSearch;
         private CheckBox checkBoxPlayerAutoFilter;

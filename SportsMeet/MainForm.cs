@@ -34,7 +34,7 @@ namespace SportsMeet
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbPlayerNumber.Text))
+            if (String.IsNullOrEmpty(tbPlayerNumber.Text.Trim()))
             {
                 MessageBox.Show("Invalid player number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -43,13 +43,18 @@ namespace SportsMeet
             {
                 MessageBox.Show("Please enter a valid age", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
+            else if (String.IsNullOrEmpty(tbFirstName.Text.Trim()) || String.IsNullOrEmpty(tbLastName.Text.Trim()))
             {
-                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (String.IsNullOrEmpty(cbxDistrict.Text))
+            else if (String.IsNullOrEmpty(cbxDistrict.Text.Trim()))
             {
-                MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
@@ -68,24 +73,29 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }*/
 
-                Event currentEvent = DataBase.GetEventByNumber(cbxEvent.Text.Trim());
-
-                if (currentEvent != null)
-                {
-                    if (currentEvent.AgeLimit <= age)
-                    {
-                        MessageBox.Show("Player exceeds events age limit!",
-                            "Player age exceeds!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    return;
-                }
-
                 Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)
                 {
                     LoadPlayerList();
+
+                    if (checkBoxAddtoanEvent.Checked)
+                    {
+                        Event currentEvent = DataBase.GetEventByNumber(cbxEvent.Text.Trim());
+
+                        if (currentEvent != null)
+                        {
+                            if (!PlayersTab.AddPlayerToEvent(result.Item2, currentEvent))
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
                     CleanupPlayerTabTextBoxes();
                 }
             }
@@ -489,6 +499,7 @@ namespace SportsMeet
         private void btnPlayerSearch_Click(object sender, EventArgs e)
         {
             var textbox = sender as TextBox;
+            if (textbox == null) return;
             {
                 String searchString = textbox.Text.Trim();
 

@@ -31,5 +31,45 @@ namespace SportsMeet.Utils
 
             return result;
         }
+
+        public static bool AddPlayerToEvent(long playerId, Event currentEvent)
+        {
+            Player searchMe = new Player(playerId, "","","",0,0,0,0);
+            Player player = DataBase.FindPlayerById(searchMe);
+
+            if (player == null) return false; 
+
+            if (currentEvent.AgeLimit <= player.Age)
+            {
+                MessageBox.Show("Player exceeds events age limit! ",
+                    "Player age exceeds!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (currentEvent.Sex != player.Sex)
+            {
+                Util.SexEnum eventSex = (Util.SexEnum)currentEvent.Sex;
+                Util.SexEnum playerSex = (Util.SexEnum)player.Sex;
+                
+                if (!(eventSex == Util.SexEnum.NOT_KNOWN || eventSex == Util.SexEnum.NOT_APPLICABLE))
+                {
+                    return false;
+                }
+            }
+            PlayerEvent playerEvent = new PlayerEvent(currentEvent.Id, playerId);
+
+            PlayerEvent searched = DataBase.GetPlayerEvent(playerEvent);
+
+            if (searched == null)
+            {
+                long id = DataBase.SavePlayerEvent(playerEvent);
+                return id >= 0;
+            }
+            else
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

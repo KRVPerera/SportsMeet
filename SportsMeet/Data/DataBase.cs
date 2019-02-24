@@ -58,6 +58,13 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static Player FindPlayerById(Player player)
+        {
+            string query = "select * from Players where id=@Id;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
+        }
+
         #endregion Players
 
         #region Schools
@@ -159,5 +166,23 @@ namespace SportsMeet.Data
         }
 
         #endregion Districts
+
+        #region PlayerEvents
+
+        public static long SavePlayerEvent(PlayerEvent playerEvent)
+        {
+            return DBConnection.Instance.Connection.Insert(playerEvent);
+        }
+
+        public static PlayerEvent GetPlayerEvent(PlayerEvent playerEvent)
+        {
+            string query = "select * from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
+            IEnumerable<PlayerEvent> result = DBConnection.Instance.Connection.Query<PlayerEvent>(query, playerEvent);
+            return result.FirstOrDefault();
+        }
+
+        #endregion
+
+
     }
 }
