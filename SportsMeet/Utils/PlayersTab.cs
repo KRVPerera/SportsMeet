@@ -69,7 +69,6 @@ namespace SportsMeet.Utils
                 return true;
             }
 
-            return false;
         }
     }
 }
