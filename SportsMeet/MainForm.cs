@@ -339,7 +339,7 @@ namespace SportsMeet
 
             if (searchedEvent != null)
             {
-                tbNewEventsNumber = searchedEvent.Number.Text;
+                tbNewEventsNumber.Text = searchedEvent.Number;
                 tbNewEventsName.Text = searchedEvent.Name;
                 comboBoxEventsSex.Text = searchedEvent.Gender;
                 numericUpDownEventAgeLimit.Text = searchedEvent.AgeLimit.ToString();
