@@ -76,6 +76,9 @@ namespace SportsMeet
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tbEvents = new System.Windows.Forms.TabPage();
+            this.btnEventEdit = new System.Windows.Forms.Button();
+            this.btnEvetSearch = new System.Windows.Forms.Button();
+            this.btnEventDelete = new System.Windows.Forms.Button();
             this.comboBoxEventsSex = new System.Windows.Forms.ComboBox();
             this.labelEventsSex = new System.Windows.Forms.Label();
             this.dataGridViewEvents = new System.Windows.Forms.DataGridView();
@@ -344,6 +347,7 @@ namespace SportsMeet
             // bindingSourceEvents
             // 
             this.bindingSourceEvents.DataSource = typeof(SportsMeet.Models.Event);
+            this.bindingSourceEvents.Sort = "Number";
             // 
             // tbEventNumber
             // 
@@ -513,6 +517,9 @@ namespace SportsMeet
             // tbEvents
             // 
             this.tbEvents.AutoScroll = true;
+            this.tbEvents.Controls.Add(this.btnEventEdit);
+            this.tbEvents.Controls.Add(this.btnEvetSearch);
+            this.tbEvents.Controls.Add(this.btnEventDelete);
             this.tbEvents.Controls.Add(this.comboBoxEventsSex);
             this.tbEvents.Controls.Add(this.labelEventsSex);
             this.tbEvents.Controls.Add(this.dataGridViewEvents);
@@ -531,6 +538,39 @@ namespace SportsMeet
             this.tbEvents.TabIndex = 0;
             this.tbEvents.Text = "Events";
             this.tbEvents.UseVisualStyleBackColor = true;
+            // 
+            // btnEventEdit
+            // 
+            this.btnEventEdit.Location = new System.Drawing.Point(172, 168);
+            this.btnEventEdit.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEventEdit.Name = "btnEventEdit";
+            this.btnEventEdit.Size = new System.Drawing.Size(66, 28);
+            this.btnEventEdit.TabIndex = 12;
+            this.btnEventEdit.Text = "Edit";
+            this.btnEventEdit.UseVisualStyleBackColor = true;
+            this.btnEventEdit.Click += new System.EventHandler(this.btnEventEdit_Click);
+            // 
+            // btnEvetSearch
+            // 
+            this.btnEvetSearch.Location = new System.Drawing.Point(96, 168);
+            this.btnEvetSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEvetSearch.Name = "btnEvetSearch";
+            this.btnEvetSearch.Size = new System.Drawing.Size(66, 28);
+            this.btnEvetSearch.TabIndex = 11;
+            this.btnEvetSearch.Text = "Search";
+            this.btnEvetSearch.UseVisualStyleBackColor = true;
+            this.btnEvetSearch.Click += new System.EventHandler(this.EventSearchClick);
+            // 
+            // btnEventDelete
+            // 
+            this.btnEventDelete.Location = new System.Drawing.Point(248, 168);
+            this.btnEventDelete.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEventDelete.Name = "btnEventDelete";
+            this.btnEventDelete.Size = new System.Drawing.Size(66, 28);
+            this.btnEventDelete.TabIndex = 10;
+            this.btnEventDelete.Text = "Delete";
+            this.btnEventDelete.UseVisualStyleBackColor = true;
+            this.btnEventDelete.Click += new System.EventHandler(this.btnEventDelete_Click);
             // 
             // comboBoxEventsSex
             // 
@@ -572,6 +612,7 @@ namespace SportsMeet
             this.dataGridViewEvents.Name = "dataGridViewEvents";
             this.dataGridViewEvents.Size = new System.Drawing.Size(538, 503);
             this.dataGridViewEvents.TabIndex = 8;
+            this.dataGridViewEvents.TabStop = false;
             // 
             // numberDataGridViewTextBoxColumn2
             // 
@@ -630,11 +671,14 @@ namespace SportsMeet
             // 
             // tbNewEventsNumber
             // 
+            this.tbNewEventsNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbNewEventsNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbNewEventsNumber.Location = new System.Drawing.Point(109, 11);
             this.tbNewEventsNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbNewEventsNumber.Name = "tbNewEventsNumber";
             this.tbNewEventsNumber.Size = new System.Drawing.Size(196, 20);
             this.tbNewEventsNumber.TabIndex = 0;
+            this.tbNewEventsNumber.TextChanged += new System.EventHandler(this.EventsNumberTextChanged);
             // 
             // lblNewEventsName
             // 
@@ -661,9 +705,9 @@ namespace SportsMeet
             this.btnAddEvent.Location = new System.Drawing.Point(20, 168);
             this.btnAddEvent.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddEvent.Name = "btnAddEvent";
-            this.btnAddEvent.Size = new System.Drawing.Size(115, 28);
+            this.btnAddEvent.Size = new System.Drawing.Size(66, 28);
             this.btnAddEvent.TabIndex = 4;
-            this.btnAddEvent.Text = "Add Event";
+            this.btnAddEvent.Text = "Add";
             this.btnAddEvent.UseVisualStyleBackColor = true;
             this.btnAddEvent.Click += new System.EventHandler(this.btnAddEvent_Click);
             // 
@@ -1142,6 +1186,9 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn ageLimitDataGridViewTextBoxColumn;
+        private Button btnEventEdit;
+        private Button btnEvetSearch;
+        private Button btnEventDelete;
     }
     
 }
