@@ -232,6 +232,8 @@ namespace SportsMeet
             bindingSourceEvents.DataSource = _events;
             bindingSourceEvents.ResetBindings(false);
 
+            toolStripLabelTotalEvents.Text = _events.Count.ToString();
+
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
             tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;

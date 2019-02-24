@@ -128,6 +128,8 @@ namespace SportsMeet
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripLabelTotalEvents = new System.Windows.Forms.ToolStripLabel();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -1009,7 +1011,9 @@ namespace SportsMeet
             this.toolStripLabelTotalPlayerCount,
             this.toolStripButtonAbout,
             this.toolStripLabelSchools,
-            this.toolStripLabelSchoolCount});
+            this.toolStripLabelSchoolCount,
+            this.toolStripLabel2,
+            this.toolStripLabelTotalEvents});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripStatusBar.Location = new System.Drawing.Point(8, 547);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
@@ -1059,6 +1063,18 @@ namespace SportsMeet
             // eventBindingSource
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(76, 42);
+            this.toolStripLabel2.Text = "Total Events :";
+            // 
+            // toolStripLabelTotalEvents
+            // 
+            this.toolStripLabelTotalEvents.Name = "toolStripLabelTotalEvents";
+            this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(13, 42);
+            this.toolStripLabelTotalEvents.Text = "0";
             // 
             // MainForm
             // 
@@ -1189,6 +1205,8 @@ namespace SportsMeet
         private Button btnEventEdit;
         private Button btnEvetSearch;
         private Button btnEventDelete;
+        private ToolStripLabel toolStripLabel2;
+        private ToolStripLabel toolStripLabelTotalEvents;
     }
     
 }
