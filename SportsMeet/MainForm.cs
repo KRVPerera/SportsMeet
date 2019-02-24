@@ -59,9 +59,30 @@ namespace SportsMeet
                     districtId = district.Id;
                 }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+                /*
+                long schoolId = 0;
+                School school = DataBase.GetSchoolByName(cbxDistrict.Text);
+                if (district != null)
+                {
+                    schoolId = school.Id;
+                }*/
 
-                if (PlayersTab.AddPlayer(newPlayer).Item1)
+                Event currentEvent = DataBase.GetEventByNumber(cbxEvent.Text.Trim());
+
+                if (currentEvent != null)
+                {
+                    if (currentEvent.AgeLimit <= age)
+                    {
+                        MessageBox.Show("Player exceeds events age limit!",
+                            "Player age exceeds!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    return;
+                }
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+                var result = PlayersTab.AddPlayer(newPlayer);
+                if (result.Item1)
                 {
                     LoadPlayerList();
                     CleanupPlayerTabTextBoxes();
@@ -218,10 +239,6 @@ namespace SportsMeet
             bindingSourceEvents.ResetBindings(false);
 
             toolStripLabelTotalEvents.Text = _events.Count.ToString();
-            if (_events.Count > 0)
-            {
-                cbxEvent.SelectedIndex = 0;
-            }
 
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
@@ -371,6 +388,46 @@ namespace SportsMeet
                 comboBoxEventsSex.Text.Trim()))
             {
                 LoadEventList();
+            }
+        }
+
+        private void checkBoxHideEvent_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBoxAddEvent = sender as CheckBox;
+            if (checkBoxAddEvent == null) return;
+
+            if (checkBoxAddEvent.Checked)
+            {
+                groupBoxFirstEvent.Visible = true;
+            }
+            else
+            {
+                groupBoxFirstEvent.Visible = false;
+                labelEventNamePlayerstab.Text = "";
+                lblAgeUnderValue.Text = "0";
+                foreach (Control ctr in checkBoxAddEvent.Controls)
+                {
+                    if (ctr is TextBox)
+                    {
+                        ctr.Text = "";
+                    }
+                    else if (ctr is CheckedListBox)
+                    {
+                        CheckedListBox clb = (CheckedListBox)ctr;
+                        foreach (int checkedItemIndex in clb.CheckedIndices)
+                        {
+                            clb.SetItemChecked(checkedItemIndex, false);
+                        }
+                    }
+                    else if (ctr is CheckBox)
+                    {
+                        ((CheckBox)ctr).Checked = false;
+                    }
+                    else if (ctr is ComboBox)
+                    {
+                        ((ComboBox)ctr).SelectedIndex = 0;
+                    }
+                }
             }
         }
     }

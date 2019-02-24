@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using SportsMeet.Data;
+﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using System;
+using System.Windows.Forms;
 
 namespace SportsMeet.Utils
 {
-    class PlayersTab
+    internal class PlayersTab
     {
         public static Tuple<bool, long> AddPlayer(Player newPlayer)
         {
-            Tuple<bool, long> result;
+            Tuple<bool, long> result = new Tuple<bool, long>(false, 0);
             Player existingPlayer = DataBase.FindPlayer(newPlayer);
 
             if (existingPlayer != null)
@@ -23,16 +20,16 @@ namespace SportsMeet.Utils
                 {
                     newPlayer.Id = existingPlayer.Id;
                     bool retVal = DataBase.EditPlayer(newPlayer);
-                    return new Tuple<bool, long>(true, newPlayer.Id);
+                    result = new Tuple<bool, long>(true, newPlayer.Id);
                 }
             }
             else
             {
                 long id = DataBase.SavePlayer(newPlayer);
-                return new Tuple<bool, long>(true, id);
+                result = new Tuple<bool, long>(true, id);
             }
 
-            return new Tuple<bool, long>(false, 0);
+            return result;
         }
     }
 }
