@@ -106,5 +106,19 @@ namespace SportsMeet.Utils
 
             return null;
         }
+
+        public static bool DeleteEvent(String eventNumber, String ageText, String eventName, String sex)
+        {
+            if (!String.IsNullOrEmpty(eventNumber))
+            {
+                Event searchedNumberedEvent = DataBase.GetEventByNumber(eventNumber);
+                if (searchedNumberedEvent != null)
+                {
+                    return DataBase.RemoveEvent(searchedNumberedEvent);
+                }
+            }
+
+            return false;
+        }
     }
 }

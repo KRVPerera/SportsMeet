@@ -115,6 +115,11 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static bool RemoveEvent(Event searchedNumberedEvent)
+        {
+            return DBConnection.Instance.Connection.Delete(searchedNumberedEvent);
+        }
+
         #endregion Events
 
         #region Districts

@@ -349,11 +349,23 @@ namespace SportsMeet
         private void btnEventEdit_Click(object sender, EventArgs e)
         {
             if (EventsTab.AddEvent(
-                tbNewEventsNumber.Text,
-                numericUpDownEventAgeLimit.Text,
-                tbNewEventsName.Text,
-                comboBoxEventsSex.Text,
+                tbNewEventsNumber.Text.Trim(),
+                numericUpDownEventAgeLimit.Text.Trim(),
+                tbNewEventsName.Text.Trim(),
+                comboBoxEventsSex.Text.Trim(),
                 editMode: true))
+            {
+                LoadEventList();
+            }
+        }
+
+        private void btnEventDelete_Click(object sender, EventArgs e)
+        {
+            if (EventsTab.DeleteEvent(
+                tbNewEventsNumber.Text.Trim(),
+                numericUpDownEventAgeLimit.Text.Trim(),
+                tbNewEventsName.Text.Trim(),
+                comboBoxEventsSex.Text.Trim()))
             {
                 LoadEventList();
             }

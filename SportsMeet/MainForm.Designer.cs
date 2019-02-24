@@ -570,6 +570,7 @@ namespace SportsMeet
             this.btnEventDelete.TabIndex = 10;
             this.btnEventDelete.Text = "Delete";
             this.btnEventDelete.UseVisualStyleBackColor = true;
+            this.btnEventDelete.Click += new System.EventHandler(this.btnEventDelete_Click);
             // 
             // comboBoxEventsSex
             // 
