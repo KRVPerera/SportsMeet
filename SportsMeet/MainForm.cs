@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -92,6 +93,8 @@ namespace SportsMeet
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
+            if (!checkBoxPlayerAutoFilter.Checked) return;
+
             var textbox = sender as TextBox;
             {
                 String searchString = textbox.Text.Trim();
@@ -117,18 +120,43 @@ namespace SportsMeet
 
         private void deletePlayer_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPlayers.CurrentRow != null)
+            Player currentPlayer = null;
+
+            if (checkBoxDeleteSelection.Checked && dataGridViewPlayers.CurrentRow != null)
             {
-                Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
-                DataBase.RemovePlayer(currentPlayer);
-                LoadPlayerList();
+                currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
             }
+
+
+            if (currentPlayer == null)
+            {
+                MessageBox.Show("Player not found!", "Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Are you sure you want to delete the player [");
+            sb.Append(currentPlayer.Number);
+            sb.Append("] - Name :");
+            sb.Append(currentPlayer.FullName());
+            string message = sb.ToString();
+
+            var result = MessageBox.Show(message, "Deleting player", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (DialogResult.Yes != result)
+            {
+                return;
+            }
+
+            DataBase.RemovePlayer(currentPlayer);
+            LoadPlayerList();
         }
 
         private void RefreshGui()
         {
-            tbPlayerSearch.Text = Resources.DefaultSearchString;
-            tbPlayerSearch.ForeColor = Color.DimGray;
+            tbPlayerNumber.Text = Resources.DefaultSearchString;
+            tbPlayerNumber.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
@@ -159,6 +187,7 @@ namespace SportsMeet
                     textbox.ForeColor = DefaultForeColor;
                 }
             }
+            CleanupPlayerTabTextBoxes();
         }
 
         #endregion MainForm uicontrols
@@ -187,7 +216,7 @@ namespace SportsMeet
 
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
-            tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
+            tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
         }
 
@@ -428,6 +457,85 @@ namespace SportsMeet
                         ((ComboBox)ctr).SelectedIndex = 0;
                     }
                 }
+            }
+        }
+
+        private void btnPlayerSearch_Click(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            {
+                String searchString = textbox.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    //                    Player searchedPlayer =
+                }
+            }
+        }
+
+        private void checkBoxPlayerAutoFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (checkBox == null) return;
+            if (!checkBox.Checked)
+            {
+                LoadPlayerList();
+            }
+            else
+            {
+                String searchString = tbPlayerNumber.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    bindingSourcePlayers.DataSource = result.ToList();
+                    bindingSourcePlayers.ResetBindings(false);
+                }
+            }
+        }
+
+        private void dataGridViewPlayers_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!checkBoxLoadSelection.Checked) return;
+            if (dataGridViewPlayers.CurrentRow != null)
+            {
+                Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
+                LoadPlayerToPLayerTab(currentPlayer);
+            }
+        }
+
+        private void LoadPlayerToPLayerTab(Player player)
+        {
+            tbPlayerNumber.Text = player.Number;
+            tbFirstName.Text = player.FirstName;
+            tbLastName.Text = player.LastName;
+            /*School school = DataBase.getSchoolById(player.SchoolId);
+            if (school != null)
+            {
+                cbxSchool.SelectedText = school.Name;
+            }*/
+
+            numericUpDownAge.Text = player.Age.ToString();
+            cbxGender.SelectedIndex = player.Sex;
+
+            District district = DataBase.GetDistrict(player.DistrictId);
+            if (district != null)
+            {
+                cbxDistrict.SelectedText = district.Name;
+            }
+        }
+
+        private void checkBoxLoadSelection_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (!checkBox.Checked)
+            {
+                CleanupPlayerTabTextBoxes();
             }
         }
     }
