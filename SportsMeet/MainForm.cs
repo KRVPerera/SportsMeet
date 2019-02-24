@@ -54,7 +54,6 @@ namespace SportsMeet
             else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
             {
                 MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             else
             {
@@ -326,26 +325,37 @@ namespace SportsMeet
                         bindingSourcePlayers.DataSource = players;
                         bindingSourcePlayers.ResetBindings(false);
 
-                        if (players.Count > 1)
+                        /*if (players.Count > 1)
                         {
                             return;
-                        }
+                        }*/
 
-                        Player searchedPlayer = players.SingleOrDefault();
+                        Player searchedPlayer = players.FirstOrDefault();
 
                         if (searchedPlayer != null)
                         {
-                            lblFilterByPlayerNameOutput.Text = searchedPlayer.FullName();
-
-                            District district = DataBase.GetDistrict(searchedPlayer.DistrictId);
-                            if (district != null)
+                            Player searchMe = new Player(searchString);
+                            Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                            if (searchByNumber != null)
                             {
-                                lblFilterByPlayerDistrictOutput.Text = district.Name;
-                            }
-                            lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
+                                lblFilterByPlayerNameOutput.Text = searchedPlayer.FullName();
 
-                            Int64 playerId = searchedPlayer.Id;
-                            //List<Event>
+                                District district = DataBase.GetDistrict(searchedPlayer.DistrictId);
+                                if (district != null)
+                                {
+                                    lblFilterByPlayerDistrictOutput.Text = district.Name;
+                                }
+
+                                lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
+                                PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
+                                List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
+                                if (playerEventList.Count > 0)
+                                {
+                                    List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
+                                    dataGridViewEventsOfPlayer.DataSource = null;
+                                    dataGridViewEventsOfPlayer.DataSource = eventList;
+                                }
+                            }
                         }
                     }
                 }

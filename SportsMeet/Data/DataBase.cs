@@ -132,6 +132,15 @@ namespace SportsMeet.Data
             return result.FirstOrDefault();
         }
 
+        public static Event GetEventById(long id)
+        {
+            string query = "select * from Events where id = @Id;";
+            Event namedEvent = new Event(id, "", "", 1, 17);
+
+            IEnumerable<Event> result = DBConnection.Instance.Connection.Query<Event>(query, namedEvent);
+            return result.FirstOrDefault();
+        }
+
         public static Event GetEventByAgeLimit(int age)
         {
             string query = "select * from Events where agelimit = @AgeLimit";
@@ -195,7 +204,29 @@ namespace SportsMeet.Data
             return result.FirstOrDefault();
         }
 
-        #endregion
+        public static List<PlayerEvent> GetPlayerEventsByPlayer(PlayerEvent searchedPlayerEvent)
+        {
+            string query = "select * from PlayerEvents where playerId = @PlayerId;";
+            IEnumerable<PlayerEvent> result = DBConnection.Instance.Connection.Query<PlayerEvent>(query, searchedPlayerEvent);
+            return result.ToList();
+        }
+
+        public static List<Event> GetEventsForPlayerEvents(List<PlayerEvent> playerEventList)
+        {
+            List<Event> eventList = new List<Event>();
+            List<long> eventIdList = Util.GetEventIdListFromPlayerEventList(playerEventList);
+            foreach (var eventId in eventIdList)
+            {
+                Event searchedEvent = GetEventById(eventId);
+                if (searchedEvent != null)
+                {
+                    eventList.Add(searchedEvent);
+                }
+            }
+            return eventList;
+        }
+
+        #endregion PlayerEvents
 
 
     }
