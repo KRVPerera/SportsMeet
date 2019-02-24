@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SportsMeet.Utils;
 
 namespace SportsMeet
 {
@@ -22,6 +23,7 @@ namespace SportsMeet
             LoadPlayerList();
             LoadSchoolList();
             LoadDistrictList();
+            LoadEventList();
             RefreshGui();
         }
 
@@ -124,6 +126,7 @@ namespace SportsMeet
             tbPlayerSearch.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
             CleanupFilterByPlayerTabLabels();
+            comboBoxEventsSex.SelectedIndex = 0;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -159,6 +162,7 @@ namespace SportsMeet
         private List<Player> _players = new List<Player>();
         private List<School> _schools = new List<School>();
         private List<District> _districts = new List<District>();
+        private List<Event> _events = new List<Event>();
 
         #endregion DataRegion
 
@@ -178,6 +182,7 @@ namespace SportsMeet
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
             tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
+            tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
         }
 
         private void LoadSchoolList()
@@ -209,27 +214,15 @@ namespace SportsMeet
 
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbEventNumber.Text))
-            {
-                MessageBox.Show("Invalid event number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            if (!Int32.TryParse(numericUpDownEventAgeLimit.Text, out var age))
-            {
-                MessageBox.Show("Please enter a valid age limit", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Util.SexEnum sexByteEnum = Util.SexStringToEnum(numericUpDownEventAgeLimit.Text);
+            EventsTab.AddEvent(tbNewEventsNumber.Text, numericUpDownEventAgeLimit.Text, tbNewEventsName.Text, comboBoxEventsSex.Text);
+            LoadEventList();
+        }
 
-                Event neweEvent = new Event(0, tbNewEventsNumber.Text, tbNewEventsName.Text, (byte)sexByteEnum, age);
-
-                long eventId = DataBase.SaveEvent(neweEvent);
-
-                cbxEvent.Text = eventId.ToString();
-
-                //LoadPlayerList();
-            }
+        private void LoadEventList()
+        {
+            _events = DataBase.LoadEvents().ToList();
+            bindingSourceEvents.DataSource = _events;
+            bindingSourceEvents.ResetBindings(false);
         }
 
         //TODO: refactor and remove duplicate code
@@ -291,5 +284,32 @@ namespace SportsMeet
             tbFirstName.Clear();
             tbLastName.Clear();
         }
+
+        private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var tabControlMain = sender as TabControl;
+            if (tabControlMain == null) return;
+          
+            if (tabControlMain.SelectedIndex == 1)
+            {
+                LoadEventList();
+            } else if (tabControlMain.SelectedIndex == 0)
+            {
+                LoadPlayerList();
+            }
+        }
+
+        private void cbxEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cbx = sender as ComboBox;
+            if (cbx == null) return;
+            Event searchedEvent = DataBase.GetEventByNumber(cbx.Text);
+            if (searchedEvent != null)
+            {
+                lblAgeUnderValue.Text = searchedEvent.AgeLimit.ToString();
+            }
+
+        }
+>>>>>>> f9c1a6f19ee5e291dff00d2b2dbf0ee41b3f95eb
     }
 }

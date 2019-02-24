@@ -1,6 +1,8 @@
 # SportsMeet
 This is a small program which tracker sports meet data with Players and the events they participate. Currently under development. Final product will help users to enter data during the meet and later generate reports to view data.
 
+[![Build Status](https://travis-ci.com/KRVPerera/SportsMeet.svg?branch=master)](https://travis-ci.com/KRVPerera/SportsMeet)
+
 ## Dependencies
 | Dependency              | Version   |
 | ----------------------- | --------- |

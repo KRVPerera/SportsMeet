@@ -19,8 +19,9 @@ CREATE TABLE Schools (
 
 CREATE TABLE Events (
     id     INTEGER     PRIMARY KEY AUTOINCREMENT,
+	number    TEXT         UNIQUE,
     name     TEXT    UNIQUE NOT NULL,
-    gender   BOOLEAN,
+    sex   TINYINT,
     agelimit INTEGER NOT NULL
 );
 

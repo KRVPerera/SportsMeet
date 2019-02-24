@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 
 namespace SportsMeet
 {
-    class Util
+    internal class Util
     {
         public enum SexEnum : byte
         {
@@ -33,10 +29,30 @@ namespace SportsMeet
             }
             else if (sex == "")
             {
-                sexEnum = SexEnum.NOT_KNOWN;
+                sexEnum = SexEnum.NOT_APPLICABLE;
             }
 
             return sexEnum;
+        }
+
+        public static String SexEnumToSex(SexEnum sex)
+        {
+            if (sex == SexEnum.MALE)
+            {
+                return "Male";
+            }
+            else if (sex == SexEnum.FEMALE)
+            {
+                return "Female";
+            }
+            else if (sex == SexEnum.NOT_KNOWN)
+            {
+                return "not known";
+            }
+            else
+            {
+                return "NA";
+            }
         }
     }
 }
