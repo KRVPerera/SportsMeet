@@ -1,6 +1,7 @@
 ﻿using SportsMeet.Data;
 using SportsMeet.Models;
 using SportsMeet.Properties;
+using SportsMeet.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +9,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using SportsMeet.Utils;
 
 namespace SportsMeet
 {
@@ -204,7 +204,6 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-
             School newSchool = new School(0, tbNewSchoolsName.Text, cbxNewSchoolsDistrict.SelectedIndex);
         }
 
@@ -214,7 +213,10 @@ namespace SportsMeet
 
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
-            EventsTab.AddEvent(tbNewEventsNumber.Text, numericUpDownEventAgeLimit.Text, tbNewEventsName.Text, comboBoxEventsSex.Text);
+            EventsTab.AddEvent(tbNewEventsNumber.Text.Trim(),
+                numericUpDownEventAgeLimit.Text.Trim(),
+                tbNewEventsName.Text.Trim(),
+                comboBoxEventsSex.Text.Trim());
             LoadEventList();
         }
 
@@ -293,11 +295,12 @@ namespace SportsMeet
         {
             var tabControlMain = sender as TabControl;
             if (tabControlMain == null) return;
-          
+
             if (tabControlMain.SelectedIndex == 1)
             {
                 LoadEventList();
-            } else if (tabControlMain.SelectedIndex == 0)
+            }
+            else if (tabControlMain.SelectedIndex == 0)
             {
                 LoadPlayerList();
             }
@@ -312,7 +315,6 @@ namespace SportsMeet
             {
                 lblAgeUnderValue.Text = searchedEvent.AgeLimit.ToString();
             }
-
         }
 
         private void EventsNumberTextChanged(object sender, EventArgs e)
@@ -329,10 +331,15 @@ namespace SportsMeet
 
         private void EventSearchClick(object sender, EventArgs e)
         {
-            var searchEventNumber = tbNewEventsNumber.Text;
-            Event searchedEvent = DataBase.GetEventByNumber(searchEventNumber);
+            Event searchedEvent = EventsTab.SearchEvent(
+                tbNewEventsNumber.Text,
+                numericUpDownEventAgeLimit.Text,
+                tbNewEventsName.Text,
+                comboBoxEventsSex.Text);
+
             if (searchedEvent != null)
             {
+                tbNewEventsNumber = searchedEvent.Number.Text;
                 tbNewEventsName.Text = searchedEvent.Name;
                 comboBoxEventsSex.Text = searchedEvent.Gender;
                 numericUpDownEventAgeLimit.Text = searchedEvent.AgeLimit.ToString();

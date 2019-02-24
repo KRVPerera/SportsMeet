@@ -46,7 +46,8 @@ namespace SportsMeet.Data
 
         public static List<String> LoadPlayerNumbers()
         {
-            var output = DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
+            var output =
+                DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
             return output.ToList();
         }
 
@@ -56,7 +57,8 @@ namespace SportsMeet.Data
 
         public static List<School> LoadSchools()
         {
-            var output = DBConnection.Instance.Connection.Query<School>("select * from Schools", new DynamicParameters());
+            var output =
+                DBConnection.Instance.Connection.Query<School>("select * from Schools", new DynamicParameters());
             return output.ToList();
         }
 
@@ -97,9 +99,19 @@ namespace SportsMeet.Data
             return result.FirstOrDefault();
         }
 
+        public static Event GetEventByAgeLimit(int age)
+        {
+            string query = "select * from Events where agelimit = @AgeLimit";
+            Event namedEvent = new Event(0, "", "", 1, age);
+
+            IEnumerable<Event> result = DBConnection.Instance.Connection.Query<Event>(query, namedEvent);
+            return result.FirstOrDefault();
+        }
+
         public static List<String> LoadEventNumbers()
         {
-            var output = DBConnection.Instance.Connection.Query<String>("select number from Events", new DynamicParameters());
+            var output =
+                DBConnection.Instance.Connection.Query<String>("select number from Events", new DynamicParameters());
             return output.ToList();
         }
 
@@ -109,7 +121,8 @@ namespace SportsMeet.Data
 
         public static List<District> LoadDistricts()
         {
-            var output = DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
+            var output =
+                DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
             return output.ToList();
         }
 
@@ -129,7 +142,5 @@ namespace SportsMeet.Data
         }
 
         #endregion Districts
-
-
     }
 }

@@ -74,5 +74,37 @@ namespace SportsMeet.Utils
 
             return false;
         }
+
+        public static Event SearchEvent(String eventNumber, String ageText, String eventName, String sex)
+        {
+            if (!String.IsNullOrEmpty(eventNumber))
+            {
+                Event searchedNumberedEvent = DataBase.GetEventByNumber(eventNumber);
+                if (searchedNumberedEvent != null)
+                {
+                    return searchedNumberedEvent;
+                }
+            }
+
+            if (!String.IsNullOrEmpty(eventName))
+            {
+                Event searchedNamedEvent = DataBase.GetEventByName(eventName);
+                if (searchedNamedEvent != null)
+                {
+                    return searchedNamedEvent;
+                }
+            }
+
+            if (!String.IsNullOrEmpty(ageText) && Int32.TryParse(ageText, out var age))
+            {
+                Event searchedAgedEvent = DataBase.GetEventByAgeLimit(age);
+                if (searchedAgedEvent != null)
+                {
+                    return searchedAgedEvent;
+                }
+            }
+
+            return null;
+        }
     }
 }
