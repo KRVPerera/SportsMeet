@@ -315,5 +315,16 @@ namespace SportsMeet
 
         }
 
+        private void EventsNumberTextChanged(object sender, EventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
+            var searchString = textBox.Text.Trim();
+            var eventList = DataBase.LoadEvents();
+            var myRegex = new Regex(@"^" + searchString + ".*$");
+            IEnumerable<Event> result = eventList.Where(curEvent => myRegex.IsMatch(curEvent.Number));
+            bindingSourceEvents.DataSource = result.ToList();
+            bindingSourceEvents.ResetBindings(false);
+        }
     }
 }

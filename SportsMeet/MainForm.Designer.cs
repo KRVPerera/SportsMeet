@@ -637,6 +637,7 @@ namespace SportsMeet
             this.tbNewEventsNumber.Name = "tbNewEventsNumber";
             this.tbNewEventsNumber.Size = new System.Drawing.Size(196, 20);
             this.tbNewEventsNumber.TabIndex = 0;
+            this.tbNewEventsNumber.TextChanged += new System.EventHandler(this.EventsNumberTextChanged);
             // 
             // lblNewEventsName
             // 
