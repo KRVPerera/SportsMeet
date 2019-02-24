@@ -275,12 +275,8 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            School newSchool = new School(0, tbSchoolName.Text);
-
-            DataBase.SaveSchool(newSchool);
-
+            SchoolsTab.AddSchool(tbSchoolName.Text.Trim());
             LoadSchoolList();
-
             CleanupSchoolTabTextBoxes();
         }
 
