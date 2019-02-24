@@ -9,12 +9,7 @@ CREATE TABLE IF NOT EXISTS Districts (
 
 CREATE TABLE Schools (
     id INTEGER    PRIMARY KEY AUTOINCREMENT,
-    name     TEXT (100) UNIQUE,
-	districtId INTEGER,
-
-	CONSTRAINT school_to_district 
-	FOREIGN KEY ( districtId )
-	REFERENCES Districts (districtId) ON DELETE SET NULL ON UPDATE CASCADE
+    name     TEXT (100) UNIQUE
 );
 
 CREATE TABLE Events (
@@ -38,11 +33,11 @@ CREATE TABLE Players (
     
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
-	REFERENCES Schools (schoolId) ON UPDATE CASCADE,
+	REFERENCES Schools (id) ON UPDATE CASCADE,
 
 	CONSTRAINT student_to_district 
 	FOREIGN KEY ( districtId )
-	REFERENCES Districts (districtId) ON UPDATE CASCADE
+	REFERENCES Districts (id) ON UPDATE CASCADE
 );
 
 

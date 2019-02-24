@@ -15,6 +15,12 @@ namespace SportsMeet
         public static SexEnum SexStringToEnum(String sex)
         {
             SexEnum sexEnum = SexEnum.NOT_APPLICABLE;
+
+            if (String.IsNullOrEmpty(sex))
+            {
+                return sexEnum;
+            }
+
             if (sex == "Male")
             {
                 sexEnum = SexEnum.MALE;
@@ -27,12 +33,22 @@ namespace SportsMeet
             {
                 sexEnum = SexEnum.NOT_KNOWN;
             }
-            else if (sex == "")
+            else
             {
                 sexEnum = SexEnum.NOT_APPLICABLE;
             }
 
             return sexEnum;
+        }
+
+        public static bool ValidHumanSexString(String sex)
+        {
+            if (sex == "Male" || sex == "Female")
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public static String SexEnumToSex(SexEnum sex)

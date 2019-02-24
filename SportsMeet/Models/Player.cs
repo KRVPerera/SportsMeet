@@ -19,6 +19,18 @@ namespace SportsMeet.Models
             DistrictId = districtId;
         }
 
+        public Player(String number)
+        {
+            Id = 0;
+            Number = number;
+            FirstName = "";
+            LastName = "";
+            Age = 0;
+            Sex = 0;
+            SchoolId = 0;
+            DistrictId = 0;
+        }
+
         #endregion public constrctors
 
         #region public properties

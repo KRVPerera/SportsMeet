@@ -75,10 +75,12 @@
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\PlayerEvent.cs" />
     <Compile Include="Models\School.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\EventsTab.cs" />
+    <Compile Include="Utils\PlayersTab.cs" />
     <Compile Include="Utils\Util.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -33,7 +34,7 @@ namespace SportsMeet
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbPlayerNumber.Text))
+            if (String.IsNullOrEmpty(tbPlayerNumber.Text.Trim()))
             {
                 MessageBox.Show("Invalid player number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -42,14 +43,21 @@ namespace SportsMeet
             {
                 MessageBox.Show("Please enter a valid age", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (String.IsNullOrEmpty(tbFirstName.Text) || String.IsNullOrEmpty(tbLastName.Text))
+            else if (String.IsNullOrEmpty(tbFirstName.Text.Trim()) || String.IsNullOrEmpty(tbLastName.Text.Trim()))
             {
-                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (String.IsNullOrEmpty(cbxDistrict.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
-                Util.SexEnum sexByteEnum = Util.SexStringToEnum(cbxGender.Text);
-
                 long districtId = 0;
                 District district = DataBase.GetDistrictByName(cbxDistrict.Text);
                 if (district != null)
@@ -57,31 +65,39 @@ namespace SportsMeet
                     districtId = district.Id;
                 }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, districtId);
-
-                Player existingPlayer = DataBase.FindPlayer(newPlayer);
-
-                if (existingPlayer != null)
+                /*
+                long schoolId = 0;
+                School school = DataBase.GetSchoolByName(cbxDistrict.Text);
+                if (district != null)
                 {
-                    Console.WriteLine(existingPlayer.Id);
-                    tbPlayerSearch.Text = existingPlayer.Number;
-                    DialogResult result = MessageBox.Show("Player already exists. Do you want to override ?",
-                        "Existing ID !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
-                    {
-                        newPlayer.Id = existingPlayer.Id;
-                        DataBase.EditPlayer(newPlayer);
-                    }
-                    tbPlayerSearch.Clear();
+                    schoolId = school.Id;
+                }*/
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+                var result = PlayersTab.AddPlayer(newPlayer);
+                if (result.Item1)
+                {
                     LoadPlayerList();
-                    return;
+
+                    if (checkBoxAddtoanEvent.Checked)
+                    {
+                        Event currentEvent = DataBase.GetEventByNumber(cbxEvent.Text.Trim());
+
+                        if (currentEvent != null)
+                        {
+                            if (!PlayersTab.AddPlayerToEvent(result.Item2, currentEvent))
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+                    }
+
+                    CleanupPlayerTabTextBoxes();
                 }
-
-                DataBase.SavePlayer(newPlayer);
-
-                LoadPlayerList();
-
-                CleanupPlayerTabTextBoxes();
             }
         }
 
@@ -96,8 +112,37 @@ namespace SportsMeet
                     var playerList = DataBase.LoadPlayers();
                     var myRegex = new Regex(@"^" + searchString + ".*$");
                     IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-                    bindingSourcePlayers.DataSource = result.ToList();
-                    bindingSourcePlayers.ResetBindings(false);
+                    List<Player> players = result.ToList();
+
+                    if (players.Count > 0 && checkBoxPlayerAutoFilter.Checked)
+                    {
+                        bindingSourcePlayers.DataSource = players;
+                        bindingSourcePlayers.ResetBindings(false);
+                    }
+
+                    if (players.Count == 1)
+                    {
+                        Player searchMe = new Player(searchString);
+                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                        if (searchByNumber != null)
+                        {
+                            btnAddEventsToPlayer.Enabled = true;
+                            btnPlayerEdit.Enabled = true;
+                            btnDeletePlayer.Enabled = true;
+                        }
+                        else
+                        {
+                            btnAddEventsToPlayer.Enabled = false;
+                            btnPlayerEdit.Enabled = false;
+                            btnDeletePlayer.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        btnAddEventsToPlayer.Enabled = false;
+                        btnPlayerEdit.Enabled = false;
+                        btnDeletePlayer.Enabled = false;
+                    }
                 }
             }
         }
@@ -112,21 +157,46 @@ namespace SportsMeet
 
         private void deletePlayer_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPlayers.CurrentRow != null)
+            Player currentPlayer = null;
+
+            if (checkBoxDeleteSelection.Checked && dataGridViewPlayers.CurrentRow != null)
             {
-                Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
-                DataBase.RemovePlayer(currentPlayer);
-                LoadPlayerList();
+                currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
             }
+
+            if (currentPlayer == null)
+            {
+                MessageBox.Show("Player not found!", "Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Are you sure you want to delete the player [");
+            sb.Append(currentPlayer.Number);
+            sb.Append("] - Name :");
+            sb.Append(currentPlayer.FullName());
+            string message = sb.ToString();
+
+            var result = MessageBox.Show(message, "Deleting player", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (DialogResult.Yes != result)
+            {
+                return;
+            }
+
+            DataBase.RemovePlayer(currentPlayer);
+            LoadPlayerList();
         }
 
         private void RefreshGui()
         {
-            tbPlayerSearch.Text = Resources.DefaultSearchString;
-            tbPlayerSearch.ForeColor = Color.DimGray;
+            tbPlayerNumber.Text = Resources.DefaultSearchString;
+            tbPlayerNumber.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
+            cbxGender.SelectedIndex = 1;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -153,6 +223,7 @@ namespace SportsMeet
                     textbox.ForeColor = DefaultForeColor;
                 }
             }
+            CleanupPlayerTabTextBoxes();
         }
 
         #endregion MainForm uicontrols
@@ -181,7 +252,7 @@ namespace SportsMeet
 
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
-            tbPlayerSearch.AutoCompleteCustomSource = autoComplete;
+            tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
         }
 
@@ -327,6 +398,7 @@ namespace SportsMeet
             if (searchedEvent != null)
             {
                 lblAgeUnderValue.Text = searchedEvent.AgeLimit.ToString();
+                labelEventNamePlayerstab.Text = searchedEvent.Name;
             }
         }
 
@@ -381,6 +453,143 @@ namespace SportsMeet
                 comboBoxEventsSex.Text.Trim()))
             {
                 LoadEventList();
+            }
+        }
+
+        private void checkBoxHideEvent_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBoxAddEvent = sender as CheckBox;
+            if (checkBoxAddEvent == null) return;
+
+            if (checkBoxAddEvent.Checked)
+            {
+                groupBoxFirstEvent.Visible = true;
+            }
+            else
+            {
+                groupBoxFirstEvent.Visible = false;
+                labelEventNamePlayerstab.Text = "";
+                lblAgeUnderValue.Text = "0";
+                foreach (Control ctr in checkBoxAddEvent.Controls)
+                {
+                    if (ctr is TextBox)
+                    {
+                        ctr.Text = "";
+                    }
+                    else if (ctr is CheckedListBox)
+                    {
+                        CheckedListBox clb = (CheckedListBox)ctr;
+                        foreach (int checkedItemIndex in clb.CheckedIndices)
+                        {
+                            clb.SetItemChecked(checkedItemIndex, false);
+                        }
+                    }
+                    else if (ctr is CheckBox)
+                    {
+                        ((CheckBox)ctr).Checked = false;
+                    }
+                    else if (ctr is ComboBox)
+                    {
+                        ((ComboBox)ctr).SelectedIndex = 0;
+                    }
+                }
+            }
+        }
+
+        private void btnPlayerSearch_Click(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox == null) return;
+            {
+                String searchString = textbox.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    //                    Player searchedPlayer =
+                }
+            }
+        }
+
+        private void checkBoxPlayerAutoFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (checkBox == null) return;
+            if (!checkBox.Checked)
+            {
+                LoadPlayerList();
+            }
+            else
+            {
+                String searchString = tbPlayerNumber.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    bindingSourcePlayers.DataSource = result.ToList();
+                    bindingSourcePlayers.ResetBindings(false);
+                }
+            }
+        }
+
+        private void dataGridViewPlayers_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewPlayers.CurrentRow != null)
+            {
+                if (checkBoxDeleteSelection.Checked && dataGridViewPlayers.CurrentRow != null)
+                {
+                    btnDeletePlayer.Enabled = true;
+                }
+                if (!checkBoxLoadSelection.Checked) return;
+                Player currentPlayer = (Player)dataGridViewPlayers.CurrentRow.DataBoundItem;
+                LoadPlayerToPLayerTab(currentPlayer);
+            }
+        }
+
+        private void LoadPlayerToPLayerTab(Player player)
+        {
+            tbPlayerNumber.Text = player.Number;
+            tbFirstName.Text = player.FirstName;
+            tbLastName.Text = player.LastName;
+            /*School school = DataBase.getSchoolById(player.SchoolId);
+            if (school != null)
+            {
+                cbxSchool.SelectedText = school.Name;
+            }*/
+
+            numericUpDownAge.Text = player.Age.ToString();
+            cbxGender.SelectedIndex = player.Sex;
+
+            District district = DataBase.GetDistrict(player.DistrictId);
+            if (district != null)
+            {
+                cbxDistrict.SelectedText = district.Name;
+            }
+        }
+
+        private void checkBoxLoadSelection_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (!checkBox.Checked)
+            {
+                CleanupPlayerTabTextBoxes();
+            }
+        }
+
+        private void checkBoxDeleteSelection_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (checkBox.Checked && dataGridViewPlayers.CurrentRow != null)
+            {
+                btnDeletePlayer.Enabled = true;
+            }
+            else
+            {
+                btnDeletePlayer.Enabled = false;
             }
         }
     }

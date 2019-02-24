@@ -39,6 +39,13 @@ namespace SportsMeet.Data
             return output;
         }
 
+        public static Player FindPlayerByNumber(Player player)
+        {
+            string query = "select * from Players where number=@Number;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
+        }
+
         public static bool RemovePlayer(Player player)
         {
             return DBConnection.Instance.Connection.Delete(player);
@@ -49,6 +56,13 @@ namespace SportsMeet.Data
             var output =
                 DBConnection.Instance.Connection.Query<String>("select number from Players", new DynamicParameters());
             return output.ToList();
+        }
+
+        public static Player FindPlayerById(Player player)
+        {
+            string query = "select * from Players where id=@Id;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
         }
 
         #endregion Players
@@ -152,5 +166,23 @@ namespace SportsMeet.Data
         }
 
         #endregion Districts
+
+        #region PlayerEvents
+
+        public static long SavePlayerEvent(PlayerEvent playerEvent)
+        {
+            return DBConnection.Instance.Connection.Insert(playerEvent);
+        }
+
+        public static PlayerEvent GetPlayerEvent(PlayerEvent playerEvent)
+        {
+            string query = "select * from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
+            IEnumerable<PlayerEvent> result = DBConnection.Instance.Connection.Query<PlayerEvent>(query, playerEvent);
+            return result.FirstOrDefault();
+        }
+
+        #endregion
+
+
     }
 }
