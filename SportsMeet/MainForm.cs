@@ -204,7 +204,7 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            School newSchool = new School(0, tbNewSchoolsName.Text, cbxNewSchoolsDistrict.SelectedIndex);
+            School newSchool = new School(0, tbSchoolName.Text);
 
             DataBase.SaveSchool(newSchool);
 
@@ -301,7 +301,7 @@ namespace SportsMeet
 
         private void CleanupSchoolTabTextBoxes()
         {
-            tbNewSchoolsName.Clear();
+            tbSchoolName.Clear();
         }
 
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
