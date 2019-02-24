@@ -1364,8 +1364,6 @@ namespace SportsMeet
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripSeparator toolStripSeparator4;
-        private Button btnDeleteSchool;
-        private Button btnEditSchool;
     }
     
 }
