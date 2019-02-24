@@ -126,7 +126,7 @@ namespace SportsMeet
             tbPlayerSearch.ForeColor = Color.DimGray;
             tbPlayerNumber.Clear();
             CleanupFilterByPlayerTabLabels();
-            comboBoxEventsSex.SelectedIndex = 0;
+            comboBoxEventsSex.SelectedIndex = 1;
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
