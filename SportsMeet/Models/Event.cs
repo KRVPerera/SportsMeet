@@ -15,9 +15,7 @@ namespace SportsMeet.Models
             Sex = sex;
             AgeLimit = agelimit;
         }
-
-
-
+        
         #endregion public constructors
 
         #region public members
@@ -29,6 +27,11 @@ namespace SportsMeet.Models
         public String Name { get; set; }
 
         public byte Sex { get; set; }
+
+        public String Gender
+        {
+            get { return Util.SexEnumToSex((Util.SexEnum) Sex); }
+        }
 
         public Int64 AgeLimit { get; set; }
 

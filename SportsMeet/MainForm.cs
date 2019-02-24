@@ -305,5 +305,32 @@ namespace SportsMeet
             }
 
         }
+
+        private void dataGridViewEvents_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView == null) return;
+            if (dataGridView.Columns[e.ColumnIndex].Name == "Sex")
+            {
+                if (e != null)
+                {
+                    if (e.Value != null)
+                    {
+                        try
+                        {
+                            Util.SexEnum sex = (Util.SexEnum) e.Value;
+                            String sexString = Util.SexEnumToSex(sex);
+                            e.Value = sexString;
+                            e.ParsingApplied = true;
+
+                        }
+                        catch (FormatException)
+                        {
+                            e.ParsingApplied = false;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
