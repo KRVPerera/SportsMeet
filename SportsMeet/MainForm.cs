@@ -223,6 +223,10 @@ namespace SportsMeet
             _events = DataBase.LoadEvents().ToList();
             bindingSourceEvents.DataSource = _events;
             bindingSourceEvents.ResetBindings(false);
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
+            tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
         }
 
         //TODO: refactor and remove duplicate code

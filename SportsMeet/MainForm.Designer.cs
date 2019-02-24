@@ -630,6 +630,8 @@ namespace SportsMeet
             // 
             // tbNewEventsNumber
             // 
+            this.tbNewEventsNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbNewEventsNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tbNewEventsNumber.Location = new System.Drawing.Point(109, 11);
             this.tbNewEventsNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbNewEventsNumber.Name = "tbNewEventsNumber";
