@@ -326,5 +326,17 @@ namespace SportsMeet
             bindingSourceEvents.DataSource = result.ToList();
             bindingSourceEvents.ResetBindings(false);
         }
+
+        private void EventSearchClick(object sender, EventArgs e)
+        {
+            var searchEventNumber = tbNewEventsNumber.Text;
+            Event searchedEvent = DataBase.GetEventByNumber(searchEventNumber);
+            if (searchedEvent != null)
+            {
+                tbNewEventsName.Text = searchedEvent.Name;
+                comboBoxEventsSex.Text = searchedEvent.Gender;
+                numericUpDownEventAgeLimit.Text = searchedEvent.AgeLimit.ToString();
+            }
+        }
     }
 }
