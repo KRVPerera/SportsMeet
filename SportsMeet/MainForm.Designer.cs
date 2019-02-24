@@ -43,6 +43,7 @@ namespace SportsMeet
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tbPlayers = new System.Windows.Forms.TabPage();
+            this.labelEventNamePlayerstab = new System.Windows.Forms.Label();
             this.deletePlayer = new System.Windows.Forms.Button();
             this.lblAgeUnderValue = new System.Windows.Forms.Label();
             this.dataGridViewPlayers = new System.Windows.Forms.DataGridView();
@@ -125,11 +126,11 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabelSchools = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelSchoolCount = new System.Windows.Forms.ToolStripLabel();
-            this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
-            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabelTotalEvents = new System.Windows.Forms.ToolStripLabel();
-            this.labelEventNamePlayerstab = new System.Windows.Forms.Label();
+            this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -173,6 +174,7 @@ namespace SportsMeet
             // 
             // tbPlayers
             // 
+            this.tbPlayers.Controls.Add(this.button1);
             this.tbPlayers.Controls.Add(this.labelEventNamePlayerstab);
             this.tbPlayers.Controls.Add(this.deletePlayer);
             this.tbPlayers.Controls.Add(this.lblAgeUnderValue);
@@ -208,11 +210,20 @@ namespace SportsMeet
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
             // 
+            // labelEventNamePlayerstab
+            // 
+            this.labelEventNamePlayerstab.AutoSize = true;
+            this.labelEventNamePlayerstab.Location = new System.Drawing.Point(183, 319);
+            this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
+            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
+            this.labelEventNamePlayerstab.TabIndex = 30;
+            this.labelEventNamePlayerstab.Text = "dummy event";
+            // 
             // deletePlayer
             // 
-            this.deletePlayer.Location = new System.Drawing.Point(188, 430);
+            this.deletePlayer.Location = new System.Drawing.Point(521, 58);
             this.deletePlayer.Name = "deletePlayer";
-            this.deletePlayer.Size = new System.Drawing.Size(164, 54);
+            this.deletePlayer.Size = new System.Drawing.Size(62, 26);
             this.deletePlayer.TabIndex = 29;
             this.deletePlayer.TabStop = false;
             this.deletePlayer.Text = "Delete";
@@ -297,7 +308,7 @@ namespace SportsMeet
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbPlayerSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.tbPlayerSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbPlayerSearch.Location = new System.Drawing.Point(453, 43);
+            this.tbPlayerSearch.Location = new System.Drawing.Point(453, 32);
             this.tbPlayerSearch.Name = "tbPlayerSearch";
             this.tbPlayerSearch.Size = new System.Drawing.Size(444, 20);
             this.tbPlayerSearch.TabIndex = 25;
@@ -499,10 +510,10 @@ namespace SportsMeet
             // 
             // btnAddPlayer
             // 
-            this.btnAddPlayer.Location = new System.Drawing.Point(11, 430);
+            this.btnAddPlayer.Location = new System.Drawing.Point(24, 395);
             this.btnAddPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddPlayer.Name = "btnAddPlayer";
-            this.btnAddPlayer.Size = new System.Drawing.Size(164, 54);
+            this.btnAddPlayer.Size = new System.Drawing.Size(102, 30);
             this.btnAddPlayer.TabIndex = 9;
             this.btnAddPlayer.Text = "Add Player";
             this.btnAddPlayer.UseVisualStyleBackColor = true;
@@ -1052,10 +1063,6 @@ namespace SportsMeet
             this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelSchoolCount.Text = "0";
             // 
-            // eventBindingSource
-            // 
-            this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
-            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
@@ -1067,14 +1074,20 @@ namespace SportsMeet
             this.toolStripLabelTotalEvents.Name = "toolStripLabelTotalEvents";
             this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelTotalEvents.Text = "0";
-            // labelEventNamePlayerstab
             // 
-            this.labelEventNamePlayerstab.AutoSize = true;
-            this.labelEventNamePlayerstab.Location = new System.Drawing.Point(183, 319);
-            this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
-            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
-            this.labelEventNamePlayerstab.TabIndex = 30;
-            this.labelEventNamePlayerstab.Text = "dummy event";
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(453, 58);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(62, 26);
+            this.button1.TabIndex = 31;
+            this.button1.TabStop = false;
+            this.button1.Text = "Edit";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1207,6 +1220,7 @@ namespace SportsMeet
         private ToolStripLabel toolStripLabel2;
         private ToolStripLabel toolStripLabelTotalEvents;
         private Label labelEventNamePlayerstab;
+        private Button button1;
     }
     
 }

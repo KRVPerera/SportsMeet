@@ -46,10 +46,12 @@ namespace SportsMeet
             {
                 MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else if (String.IsNullOrEmpty(cbxDistrict.Text))
+            {
+                MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
-                Util.SexEnum sexByteEnum = Util.SexStringToEnum(cbxGender.Text);
-
                 long districtId = 0;
                 District district = DataBase.GetDistrictByName(cbxDistrict.Text);
                 if (district != null)
@@ -57,31 +59,13 @@ namespace SportsMeet
                     districtId = district.Id;
                 }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)sexByteEnum, 0, districtId);
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
 
-                Player existingPlayer = DataBase.FindPlayer(newPlayer);
-
-                if (existingPlayer != null)
+                if (PlayersTab.AddPlayer(newPlayer).Item1)
                 {
-                    Console.WriteLine(existingPlayer.Id);
-                    tbPlayerSearch.Text = existingPlayer.Number;
-                    DialogResult result = MessageBox.Show("Player already exists. Do you want to override ?",
-                        "Existing ID !", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    if (result == DialogResult.Yes)
-                    {
-                        newPlayer.Id = existingPlayer.Id;
-                        DataBase.EditPlayer(newPlayer);
-                    }
-                    tbPlayerSearch.Clear();
                     LoadPlayerList();
-                    return;
+                    CleanupPlayerTabTextBoxes();
                 }
-
-                DataBase.SavePlayer(newPlayer);
-
-                LoadPlayerList();
-
-                CleanupPlayerTabTextBoxes();
             }
         }
 
