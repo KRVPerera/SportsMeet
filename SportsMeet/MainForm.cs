@@ -588,5 +588,14 @@ namespace SportsMeet
                 btnDeletePlayer.Enabled = false;
             }
         }
+
+        private void btnEditSchool_Click(object sender, EventArgs e)
+        {
+            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(), editMode: true))
+            {
+                LoadSchoolList();
+            }
+            CleanupSchoolTabTextBoxes();
+        }
     }
 }
