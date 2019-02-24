@@ -1383,7 +1383,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
     }
     
 }
