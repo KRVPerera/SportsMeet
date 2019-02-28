@@ -32,5 +32,19 @@ namespace SportsMeet.Utils
             }
             return false;
         }
+
+        public static bool DeleteSchool(String schoolName)
+        {
+            if (!String.IsNullOrEmpty(schoolName))
+            {
+                School searchedSchool = DataBase.GetSchool(schoolName);
+                if (searchedSchool != null)
+                {
+                    return DataBase.RemoveSchool(searchedSchool);
+                }
+            }
+
+            return false;
+        }
     }
 }

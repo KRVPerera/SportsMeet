@@ -883,6 +883,7 @@ namespace SportsMeet
             this.btnDeleteSchool.TabStop = false;
             this.btnDeleteSchool.Text = "Delete";
             this.btnDeleteSchool.UseVisualStyleBackColor = true;
+            this.btnDeleteSchool.Click += new System.EventHandler(this.btnDeleteSchool_Click);
             // 
             // btnEditSchool
             // 
@@ -1223,7 +1224,6 @@ namespace SportsMeet
             // toolStripButtonAbout
             // 
             this.toolStripButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAbout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAbout.Image")));
             this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAbout.Name = "toolStripButtonAbout";
             this.toolStripButtonAbout.Size = new System.Drawing.Size(44, 42);

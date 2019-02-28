@@ -603,5 +603,15 @@ namespace SportsMeet
             }
             CleanupSchoolTabTextBoxes();
         }
+
+        private void btnDeleteSchool_Click(object sender, EventArgs e)
+        {
+            if (SchoolsTab.DeleteSchool(
+                tbSchoolName.Text.Trim()))
+            {
+                LoadSchoolList();
+            }
+            CleanupSchoolTabTextBoxes();
+        }
     }
 }

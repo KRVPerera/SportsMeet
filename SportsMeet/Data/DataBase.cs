@@ -95,6 +95,10 @@ namespace SportsMeet.Data
             return result.FirstOrDefault();
         }
 
+        public static bool RemoveSchool(School searchedSchool)
+        {
+            return DBConnection.Instance.Connection.Delete(searchedSchool);
+        }
         #endregion Schools
 
         #region Events
