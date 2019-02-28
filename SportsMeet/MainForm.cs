@@ -279,10 +279,6 @@ namespace SportsMeet
             CleanupSchoolTabTextBoxes();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
             EventsTab.AddEvent(tbNewEventsNumber.Text.Trim(),

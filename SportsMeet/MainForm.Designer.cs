@@ -779,7 +779,6 @@ namespace SportsMeet
             this.labelEventsAgeLimit.Size = new System.Drawing.Size(50, 13);
             this.labelEventsAgeLimit.TabIndex = 6;
             this.labelEventsAgeLimit.Text = "Age Limit";
-            this.labelEventsAgeLimit.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbNewEventsName
             // 
