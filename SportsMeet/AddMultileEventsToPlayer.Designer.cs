@@ -38,7 +38,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddMultipleEventsToPlayer";
-            this.Text = "AddMultileEventsToPlayer";
+            this.Text = "Add Player to Events";
             this.ResumeLayout(false);
 
         }

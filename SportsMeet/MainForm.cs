@@ -636,7 +636,7 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
-            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0);
             Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
             if (existingPlayer != null)
             {
