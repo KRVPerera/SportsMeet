@@ -18,6 +18,11 @@ namespace SportsMeet
         {
             InitializeComponent();
             CurrentPlayer = existingPlayer;
+
+            labelAddEventsPlayerNumber.Text = existingPlayer.Number;
+            labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
+            labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
+            labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum)existingPlayer.Sex);
         }
     }
 }
