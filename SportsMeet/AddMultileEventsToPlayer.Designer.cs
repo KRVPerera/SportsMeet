@@ -37,12 +37,22 @@
             this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerGender = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
+            this.newEventsListBox = new System.Windows.Forms.ListBox();
+            this.groupBoxPlayerDetails = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.groupBoxNewEvents = new System.Windows.Forms.GroupBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
+            this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
+            this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.groupBoxPlayerDetails.SuspendLayout();
+            this.groupBoxNewEvents.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblPlayerNumber
             // 
             this.lblPlayerNumber.AutoSize = true;
-            this.lblPlayerNumber.Location = new System.Drawing.Point(13, 9);
+            this.lblPlayerNumber.Location = new System.Drawing.Point(8, 22);
             this.lblPlayerNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
             this.lblPlayerNumber.Size = new System.Drawing.Size(76, 13);
@@ -52,7 +62,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 22);
+            this.label1.Location = new System.Drawing.Point(8, 35);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
@@ -62,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 48);
+            this.label2.Location = new System.Drawing.Point(8, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
@@ -72,7 +82,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 35);
+            this.label3.Location = new System.Drawing.Point(8, 48);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
@@ -82,7 +92,7 @@
             // labelAddEventsPlayerNumber
             // 
             this.labelAddEventsPlayerNumber.AutoSize = true;
-            this.labelAddEventsPlayerNumber.Location = new System.Drawing.Point(97, 8);
+            this.labelAddEventsPlayerNumber.Location = new System.Drawing.Point(91, 22);
             this.labelAddEventsPlayerNumber.Name = "labelAddEventsPlayerNumber";
             this.labelAddEventsPlayerNumber.Size = new System.Drawing.Size(35, 13);
             this.labelAddEventsPlayerNumber.TabIndex = 7;
@@ -91,7 +101,7 @@
             // labelAddEventsPlayerFullName
             // 
             this.labelAddEventsPlayerFullName.AutoSize = true;
-            this.labelAddEventsPlayerFullName.Location = new System.Drawing.Point(97, 21);
+            this.labelAddEventsPlayerFullName.Location = new System.Drawing.Point(91, 35);
             this.labelAddEventsPlayerFullName.Name = "labelAddEventsPlayerFullName";
             this.labelAddEventsPlayerFullName.Size = new System.Drawing.Size(35, 13);
             this.labelAddEventsPlayerFullName.TabIndex = 8;
@@ -100,7 +110,7 @@
             // labelAddEventsPlayerGender
             // 
             this.labelAddEventsPlayerGender.AutoSize = true;
-            this.labelAddEventsPlayerGender.Location = new System.Drawing.Point(97, 35);
+            this.labelAddEventsPlayerGender.Location = new System.Drawing.Point(91, 49);
             this.labelAddEventsPlayerGender.Name = "labelAddEventsPlayerGender";
             this.labelAddEventsPlayerGender.Size = new System.Drawing.Size(35, 13);
             this.labelAddEventsPlayerGender.TabIndex = 9;
@@ -109,30 +119,140 @@
             // labelAddEventsPlayerAge
             // 
             this.labelAddEventsPlayerAge.AutoSize = true;
-            this.labelAddEventsPlayerAge.Location = new System.Drawing.Point(97, 48);
+            this.labelAddEventsPlayerAge.Location = new System.Drawing.Point(91, 62);
             this.labelAddEventsPlayerAge.Name = "labelAddEventsPlayerAge";
             this.labelAddEventsPlayerAge.Size = new System.Drawing.Size(35, 13);
             this.labelAddEventsPlayerAge.TabIndex = 10;
             this.labelAddEventsPlayerAge.Text = "label7";
+            // 
+            // newEventsListBox
+            // 
+            this.newEventsListBox.FormattingEnabled = true;
+            this.newEventsListBox.Items.AddRange(new object[] {
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6"});
+            this.newEventsListBox.Location = new System.Drawing.Point(76, 155);
+            this.newEventsListBox.Name = "newEventsListBox";
+            this.newEventsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.newEventsListBox.Size = new System.Drawing.Size(207, 134);
+            this.newEventsListBox.TabIndex = 11;
+            // 
+            // groupBoxPlayerDetails
+            // 
+            this.groupBoxPlayerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxPlayerDetails.Controls.Add(this.listBox1);
+            this.groupBoxPlayerDetails.Controls.Add(this.newEventsListBox);
+            this.groupBoxPlayerDetails.Controls.Add(this.lblPlayerNumber);
+            this.groupBoxPlayerDetails.Controls.Add(this.label1);
+            this.groupBoxPlayerDetails.Controls.Add(this.labelAddEventsPlayerAge);
+            this.groupBoxPlayerDetails.Controls.Add(this.label2);
+            this.groupBoxPlayerDetails.Controls.Add(this.labelAddEventsPlayerGender);
+            this.groupBoxPlayerDetails.Controls.Add(this.label3);
+            this.groupBoxPlayerDetails.Controls.Add(this.labelAddEventsPlayerFullName);
+            this.groupBoxPlayerDetails.Controls.Add(this.labelAddEventsPlayerNumber);
+            this.groupBoxPlayerDetails.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxPlayerDetails.Name = "groupBoxPlayerDetails";
+            this.groupBoxPlayerDetails.Size = new System.Drawing.Size(352, 433);
+            this.groupBoxPlayerDetails.TabIndex = 13;
+            this.groupBoxPlayerDetails.TabStop = false;
+            this.groupBoxPlayerDetails.Text = "Player Details";
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6"});
+            this.listBox1.Location = new System.Drawing.Point(0, 98);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox1.Size = new System.Drawing.Size(344, 329);
+            this.listBox1.TabIndex = 14;
+            // 
+            // groupBoxNewEvents
+            // 
+            this.groupBoxNewEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxNewEvents.Controls.Add(this.textBoxAddEventEventFilter);
+            this.groupBoxNewEvents.Controls.Add(this.listBox2);
+            this.groupBoxNewEvents.Location = new System.Drawing.Point(423, 12);
+            this.groupBoxNewEvents.Name = "groupBoxNewEvents";
+            this.groupBoxNewEvents.Size = new System.Drawing.Size(365, 433);
+            this.groupBoxNewEvents.TabIndex = 14;
+            this.groupBoxNewEvents.TabStop = false;
+            this.groupBoxNewEvents.Text = "New Events";
+            // 
+            // listBox2
+            // 
+            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Items.AddRange(new object[] {
+            "t1",
+            "t2",
+            "t3",
+            "t4",
+            "t5",
+            "t6"});
+            this.listBox2.Location = new System.Drawing.Point(6, 56);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBox2.Size = new System.Drawing.Size(353, 368);
+            this.listBox2.TabIndex = 15;
+            // 
+            // textBoxAddEventEventFilter
+            // 
+            this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(6, 16);
+            this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
+            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(353, 20);
+            this.textBoxAddEventEventFilter.TabIndex = 16;
+            // 
+            // btnAddEventsToPlayer
+            // 
+            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(371, 167);
+            this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
+            this.btnAddEventsToPlayer.Size = new System.Drawing.Size(46, 23);
+            this.btnAddEventsToPlayer.TabIndex = 15;
+            this.btnAddEventsToPlayer.Text = "<<";
+            this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveEventFromPlayer
+            // 
+            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(370, 214);
+            this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
+            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(46, 23);
+            this.btnRemoveEventFromPlayer.TabIndex = 16;
+            this.btnRemoveEventFromPlayer.Text = ">>";
+            this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
             // 
             // AddMultipleEventsToPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.labelAddEventsPlayerAge);
-            this.Controls.Add(this.labelAddEventsPlayerGender);
-            this.Controls.Add(this.labelAddEventsPlayerFullName);
-            this.Controls.Add(this.labelAddEventsPlayerNumber);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblPlayerNumber);
+            this.Controls.Add(this.btnRemoveEventFromPlayer);
+            this.Controls.Add(this.btnAddEventsToPlayer);
+            this.Controls.Add(this.groupBoxNewEvents);
+            this.Controls.Add(this.groupBoxPlayerDetails);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddMultipleEventsToPlayer";
             this.Text = "Add Player to Events";
+            this.groupBoxPlayerDetails.ResumeLayout(false);
+            this.groupBoxPlayerDetails.PerformLayout();
+            this.groupBoxNewEvents.ResumeLayout(false);
+            this.groupBoxNewEvents.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -146,5 +266,13 @@
         private System.Windows.Forms.Label labelAddEventsPlayerFullName;
         private System.Windows.Forms.Label labelAddEventsPlayerGender;
         private System.Windows.Forms.Label labelAddEventsPlayerAge;
+        private System.Windows.Forms.ListBox newEventsListBox;
+        private System.Windows.Forms.GroupBox groupBoxPlayerDetails;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.GroupBox groupBoxNewEvents;
+        private System.Windows.Forms.TextBox textBoxAddEventEventFilter;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button btnAddEventsToPlayer;
+        private System.Windows.Forms.Button btnRemoveEventFromPlayer;
     }
 }
