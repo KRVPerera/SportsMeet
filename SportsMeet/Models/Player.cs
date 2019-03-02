@@ -3,7 +3,7 @@ using Dapper.Contrib.Extensions;
 
 namespace SportsMeet.Models
 {
-    internal class Player : IComparable
+    public class Player : IComparable
     {
         #region public constrctors
 

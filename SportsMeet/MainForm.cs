@@ -633,5 +633,20 @@ namespace SportsMeet
                     bindingSourceSchools.ResetBindings(false);
                 }
         }
+
+        private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
+        {
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+            Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
+            if (existingPlayer != null)
+            {
+                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
+                eventForm.ShowDialog();
+            }
+            else
+            {
+                // TODO: update status bar to player not found
+            }
+        }
     }
 }

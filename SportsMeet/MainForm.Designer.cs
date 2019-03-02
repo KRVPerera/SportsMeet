@@ -386,6 +386,7 @@ namespace SportsMeet
             this.btnAddEventsToPlayer.TabStop = false;
             this.btnAddEventsToPlayer.Text = "Events";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
+            this.btnAddEventsToPlayer.Click += new System.EventHandler(this.btnAddEventsToPlayer_Click);
             // 
             // btnPlayerEdit
             // 
