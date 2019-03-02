@@ -50,16 +50,15 @@ Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"
 Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"
 Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x86"
 Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x64"
-Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker" 
-Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker" 
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker"
+Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker"
 Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; Check: FrameworkIsNotInstalled; AfterInstall: InstallFramework
 
-Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion
-Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe"; DestDir: "{tmp}\MeetTracker" ; Flags: ignoreversion deleteafterinstall; AfterInstall: CreateMeetDatabase
-Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}" ; Flags: ignoreversion
-Source: "..\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}" ; Flags: ignoreversion
-
-
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker"; Flags: ignoreversion
+Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe"; DestDir: "{tmp}\MeetTracker"; Flags: ignoreversion deleteafterinstall; AfterInstall: CreateMeetDatabase
+Source: "..\SportsMeet\bin\Debug\SportsMeet.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\SportsMeet.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\SportsMeet\bin\Debug\Dapper.Contrib.dll"; DestDir: "{app}"
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
