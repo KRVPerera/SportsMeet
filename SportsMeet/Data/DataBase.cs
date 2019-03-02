@@ -76,6 +76,13 @@ namespace SportsMeet.Data
             return output.ToList();
         }
 
+        public static List<String> LoadSchoolNames()
+        {
+            var output =
+                DBConnection.Instance.Connection.Query<String>("select name from Schools", new DynamicParameters());
+            return output.ToList();
+        }
+
         public static long SaveSchool(School school)
         {
             return DBConnection.Instance.Connection.Insert(school);

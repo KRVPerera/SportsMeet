@@ -261,6 +261,10 @@ namespace SportsMeet
             bindingSourceSchools.DataSource = _schools;
             bindingSourceSchools.ResetBindings(false);
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
+
+            //var autoComplete = new AutoCompleteStringCollection();
+            //autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
+            //tbSchoolName.AutoCompleteCustomSource = autoComplete;
         }
 
         private void LoadDistrictList()
@@ -613,5 +617,18 @@ namespace SportsMeet
             }
             CleanupSchoolTabTextBoxes();
         }
+
+        private void tbSchoolName_TextChanged(object sender, EventArgs e)
+        {
+                var textBox = sender as TextBox;
+                if (textBox == null) return;
+                var searchString = textBox.Text.Trim();
+                var schoolList = DataBase.LoadSchools();
+                var myRegex = new Regex(@"^" + searchString + ".*$");
+                IEnumerable<School> result = schoolList.Where(curSchool => myRegex.IsMatch(curSchool.Name));
+                bindingSourceSchools.DataSource = result.ToList();
+                bindingSourceSchools.ResetBindings(false);
+        }
+
     }
 }
