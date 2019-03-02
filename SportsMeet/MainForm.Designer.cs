@@ -253,10 +253,13 @@ namespace SportsMeet
             // 
             this.checkBoxLoadSelection.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkBoxLoadSelection.AutoSize = true;
+            this.checkBoxLoadSelection.Checked = true;
+            this.checkBoxLoadSelection.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxLoadSelection.Location = new System.Drawing.Point(453, 7);
             this.checkBoxLoadSelection.Name = "checkBoxLoadSelection";
             this.checkBoxLoadSelection.Size = new System.Drawing.Size(86, 23);
             this.checkBoxLoadSelection.TabIndex = 38;
+            this.checkBoxLoadSelection.TabStop = false;
             this.checkBoxLoadSelection.Text = "Load selection";
             this.checkBoxLoadSelection.UseVisualStyleBackColor = true;
             this.checkBoxLoadSelection.CheckedChanged += new System.EventHandler(this.checkBoxLoadSelection_CheckedChanged);
