@@ -43,9 +43,9 @@ namespace SportsMeet
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tcMainForm = new System.Windows.Forms.TabControl();
             this.tbPlayers = new System.Windows.Forms.TabPage();
+            this.textBoxPlayerSearch = new System.Windows.Forms.TextBox();
             this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxLoadSelection = new System.Windows.Forms.CheckBox();
-            this.checkBoxPlayerAutoFilter = new System.Windows.Forms.CheckBox();
             this.groupBoxFirstEvent = new System.Windows.Forms.GroupBox();
             this.lblEventNumber = new System.Windows.Forms.Label();
             this.lblEvent = new System.Windows.Forms.Label();
@@ -127,6 +127,7 @@ namespace SportsMeet
             this.lblFIlterByEventPlayers = new System.Windows.Forms.Label();
             this.tbFilterByEventEventNumber = new System.Windows.Forms.TextBox();
             this.lblFilterByEventEventNumber = new System.Windows.Forms.Label();
+            this.searchPlayerTab = new System.Windows.Forms.TabPage();
             this.imageListForTabs = new System.Windows.Forms.ImageList(this.components);
             this.toolStripStatusBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -143,7 +144,6 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.searchPlayerTab = new System.Windows.Forms.TabPage();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.groupBoxFirstEvent.SuspendLayout();
@@ -190,9 +190,9 @@ namespace SportsMeet
             // 
             // tbPlayers
             // 
+            this.tbPlayers.Controls.Add(this.textBoxPlayerSearch);
             this.tbPlayers.Controls.Add(this.checkBoxDeleteSelection);
             this.tbPlayers.Controls.Add(this.checkBoxLoadSelection);
-            this.tbPlayers.Controls.Add(this.checkBoxPlayerAutoFilter);
             this.tbPlayers.Controls.Add(this.groupBoxFirstEvent);
             this.tbPlayers.Controls.Add(this.checkBoxAddtoanEvent);
             this.tbPlayers.Controls.Add(this.btnAddEventsToPlayer);
@@ -225,6 +225,18 @@ namespace SportsMeet
             this.tbPlayers.UseVisualStyleBackColor = true;
             this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
             // 
+            // textBoxPlayerSearch
+            // 
+            this.textBoxPlayerSearch.Location = new System.Drawing.Point(453, 39);
+            this.textBoxPlayerSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPlayerSearch.Name = "textBoxPlayerSearch";
+            this.textBoxPlayerSearch.Size = new System.Drawing.Size(444, 20);
+            this.textBoxPlayerSearch.TabIndex = 40;
+            this.textBoxPlayerSearch.Text = " ";
+            this.textBoxPlayerSearch.TextChanged += new System.EventHandler(this.textBoxPlayerSearch_TextChanged);
+            this.textBoxPlayerSearch.Enter += new System.EventHandler(this.textBoxPlayerSearch_Enter);
+            this.textBoxPlayerSearch.Leave += new System.EventHandler(this.textBoxPlayerSearch_Leave);
+            // 
             // checkBoxDeleteSelection
             // 
             this.checkBoxDeleteSelection.Appearance = System.Windows.Forms.Appearance.Button;
@@ -248,17 +260,6 @@ namespace SportsMeet
             this.checkBoxLoadSelection.Text = "Load selection";
             this.checkBoxLoadSelection.UseVisualStyleBackColor = true;
             this.checkBoxLoadSelection.CheckedChanged += new System.EventHandler(this.checkBoxLoadSelection_CheckedChanged);
-            // 
-            // checkBoxPlayerAutoFilter
-            // 
-            this.checkBoxPlayerAutoFilter.AutoSize = true;
-            this.checkBoxPlayerAutoFilter.Location = new System.Drawing.Point(361, 38);
-            this.checkBoxPlayerAutoFilter.Name = "checkBoxPlayerAutoFilter";
-            this.checkBoxPlayerAutoFilter.Size = new System.Drawing.Size(70, 17);
-            this.checkBoxPlayerAutoFilter.TabIndex = 37;
-            this.checkBoxPlayerAutoFilter.Text = "Auto filter";
-            this.checkBoxPlayerAutoFilter.UseVisualStyleBackColor = true;
-            this.checkBoxPlayerAutoFilter.CheckedChanged += new System.EventHandler(this.checkBoxPlayerAutoFilter_CheckedChanged);
             // 
             // groupBoxFirstEvent
             // 
@@ -387,6 +388,7 @@ namespace SportsMeet
             this.btnPlayerEdit.TabStop = false;
             this.btnPlayerEdit.Text = "Edit";
             this.btnPlayerEdit.UseVisualStyleBackColor = true;
+            this.btnPlayerEdit.Click += new System.EventHandler(this.btnPlayerEdit_Click);
             // 
             // btnDeletePlayer
             // 
@@ -415,11 +417,11 @@ namespace SportsMeet
             this.ageDataGridViewTextBoxColumn});
             this.dataGridViewPlayers.DataSource = this.bindingSourcePlayers;
             this.dataGridViewPlayers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewPlayers.Location = new System.Drawing.Point(453, 36);
+            this.dataGridViewPlayers.Location = new System.Drawing.Point(453, 71);
             this.dataGridViewPlayers.MultiSelect = false;
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
             this.dataGridViewPlayers.RowTemplate.Height = 33;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 467);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 432);
             this.dataGridViewPlayers.TabIndex = 27;
             this.dataGridViewPlayers.TabStop = false;
             this.dataGridViewPlayers.SelectionChanged += new System.EventHandler(this.dataGridViewPlayers_SelectionChanged);
@@ -609,9 +611,6 @@ namespace SportsMeet
             this.tbPlayerNumber.Size = new System.Drawing.Size(212, 20);
             this.tbPlayerNumber.TabIndex = 0;
             this.tbPlayerNumber.Text = " ";
-            this.tbPlayerNumber.TextChanged += new System.EventHandler(this.tbPlayerSearch_TextChanged);
-            this.tbPlayerNumber.Enter += new System.EventHandler(this.tbPlayerSearch_Enter);
-            this.tbPlayerNumber.Leave += new System.EventHandler(this.tbPlayerSearch_Leave);
             // 
             // btnAddPlayer
             // 
@@ -1111,6 +1110,15 @@ namespace SportsMeet
             this.lblFilterByEventEventNumber.TabIndex = 0;
             this.lblFilterByEventEventNumber.Text = "Event Number";
             // 
+            // searchPlayerTab
+            // 
+            this.searchPlayerTab.Location = new System.Drawing.Point(4, 23);
+            this.searchPlayerTab.Name = "searchPlayerTab";
+            this.searchPlayerTab.Size = new System.Drawing.Size(907, 511);
+            this.searchPlayerTab.TabIndex = 5;
+            this.searchPlayerTab.Text = "Search Player";
+            this.searchPlayerTab.UseVisualStyleBackColor = true;
+            // 
             // imageListForTabs
             // 
             this.imageListForTabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListForTabs.ImageStream")));
@@ -1227,15 +1235,6 @@ namespace SportsMeet
             // eventBindingSource
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
-            // 
-            // searchPlayerTab
-            // 
-            this.searchPlayerTab.Location = new System.Drawing.Point(4, 23);
-            this.searchPlayerTab.Name = "searchPlayerTab";
-            this.searchPlayerTab.Size = new System.Drawing.Size(907, 511);
-            this.searchPlayerTab.TabIndex = 5;
-            this.searchPlayerTab.Text = "Search Player";
-            this.searchPlayerTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1365,7 +1364,6 @@ namespace SportsMeet
         private Button btnAddEventsToPlayer;
         private CheckBox checkBoxAddtoanEvent;
         private GroupBox groupBoxFirstEvent;
-        private CheckBox checkBoxPlayerAutoFilter;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel statusLabel;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
@@ -1385,6 +1383,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
         private TabPage searchPlayerTab;
+        private TextBox textBoxPlayerSearch;
     }
     
 }

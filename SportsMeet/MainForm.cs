@@ -102,48 +102,48 @@ namespace SportsMeet
 
         private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
         {
-            var textbox = sender as TextBox;
-            {
-                String searchString = textbox.Text.Trim();
-
-                if (searchString != Resources.DefaultSearchString)
-                {
-                    var playerList = DataBase.LoadPlayers();
-                    var myRegex = new Regex(@"^" + searchString + ".*$");
-                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-                    List<Player> players = result.ToList();
-
-                    if (players.Count > 0 && checkBoxPlayerAutoFilter.Checked)
-                    {
-                        bindingSourcePlayers.DataSource = players;
-                        bindingSourcePlayers.ResetBindings(false);
-                    }
-
-                    if (players.Count == 1)
-                    {
-                        Player searchMe = new Player(searchString);
-                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
-                        if (searchByNumber != null)
-                        {
-                            btnAddEventsToPlayer.Enabled = true;
-                            btnPlayerEdit.Enabled = true;
-                            btnDeletePlayer.Enabled = true;
-                        }
-                        else
-                        {
-                            btnAddEventsToPlayer.Enabled = false;
-                            btnPlayerEdit.Enabled = false;
-                            btnDeletePlayer.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        btnAddEventsToPlayer.Enabled = false;
-                        btnPlayerEdit.Enabled = false;
-                        btnDeletePlayer.Enabled = false;
-                    }
-                }
-            }
+//            var textbox = sender as TextBox;
+//            {
+//                String searchString = textbox.Text.Trim();
+//
+//                if (searchString != Resources.DefaultSearchString)
+//                {
+//                    var playerList = DataBase.LoadPlayers();
+//                    var myRegex = new Regex(@"^" + searchString + ".*$");
+//                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+//                    List<Player> players = result.ToList();
+//
+//                    if (players.Count > 0 && checkBoxPlayerAutoFilter.Checked)
+//                    {
+//                        bindingSourcePlayers.DataSource = players;
+//                        bindingSourcePlayers.ResetBindings(false);
+//                    }
+//
+//                    if (players.Count == 1)
+//                    {
+//                        Player searchMe = new Player(searchString);
+//                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+//                        if (searchByNumber != null)
+//                        {
+//                            btnAddEventsToPlayer.Enabled = true;
+//                            btnPlayerEdit.Enabled = true;
+//                            btnDeletePlayer.Enabled = true;
+//                        }
+//                        else
+//                        {
+//                            btnAddEventsToPlayer.Enabled = false;
+//                            btnPlayerEdit.Enabled = false;
+//                            btnDeletePlayer.Enabled = false;
+//                        }
+//                    }
+//                    else
+//                    {
+//                        btnAddEventsToPlayer.Enabled = false;
+//                        btnPlayerEdit.Enabled = false;
+//                        btnDeletePlayer.Enabled = false;
+//                    }
+//                }
+//            }
         }
 
         private void toolStripButtonAbout_Click(object sender, EventArgs e)
@@ -190,9 +190,10 @@ namespace SportsMeet
 
         private void RefreshGui()
         {
-            tbPlayerNumber.Text = Resources.DefaultSearchString;
-            tbPlayerNumber.ForeColor = Color.DimGray;
+            textBoxPlayerSearch.Clear();
             tbPlayerNumber.Clear();
+            textBoxPlayerSearch.Text = Resources.DefaultSearchString;
+            textBoxPlayerSearch.ForeColor = Color.DimGray;
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
@@ -646,6 +647,83 @@ namespace SportsMeet
             else
             {
                 // TODO: update status bar to player not found
+            }
+        }
+
+        private void btnPlayerEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxPlayerSearch_TextChanged(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            {
+                String searchString = textbox.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
+                {
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
+                    List<Player> players = result.ToList();
+
+                    if (players.Count > 0)
+                    {
+                        bindingSourcePlayers.DataSource = players;
+                        bindingSourcePlayers.ResetBindings(false);
+                    }
+
+                    if (players.Count == 1)
+                    {
+                        Player searchMe = new Player(searchString);
+                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                        if (searchByNumber != null)
+                        {
+                            btnAddEventsToPlayer.Enabled = true;
+                            btnPlayerEdit.Enabled = true;
+                            btnDeletePlayer.Enabled = true;
+                        }
+                        else
+                        {
+                            btnAddEventsToPlayer.Enabled = false;
+                            btnPlayerEdit.Enabled = false;
+                            btnDeletePlayer.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        btnAddEventsToPlayer.Enabled = false;
+                        btnPlayerEdit.Enabled = false;
+                        btnDeletePlayer.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void textBoxPlayerSearch_Leave(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            {
+                if (String.IsNullOrEmpty(textbox?.Text))
+                {
+                    textbox.Text = Resources.DefaultSearchString;
+                    textbox.ForeColor = Color.DimGray;
+                    bindingSourcePlayers.DataSource = _players;
+                    bindingSourcePlayers.ResetBindings(false);
+                }
+            }
+        }
+
+        private void textBoxPlayerSearch_Enter(object sender, EventArgs e)
+        {
+            var textbox = sender as TextBox;
+            {
+                if (textbox != null)
+                {
+                    textbox.Text = "";
+                    textbox.ForeColor = DefaultForeColor;
+                }
             }
         }
     }
