@@ -46,7 +46,6 @@ namespace SportsMeet
             this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxLoadSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayerAutoFilter = new System.Windows.Forms.CheckBox();
-            this.btnPlayerSearch = new System.Windows.Forms.Button();
             this.groupBoxFirstEvent = new System.Windows.Forms.GroupBox();
             this.lblEventNumber = new System.Windows.Forms.Label();
             this.lblEvent = new System.Windows.Forms.Label();
@@ -192,7 +191,6 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.checkBoxDeleteSelection);
             this.tbPlayers.Controls.Add(this.checkBoxLoadSelection);
             this.tbPlayers.Controls.Add(this.checkBoxPlayerAutoFilter);
-            this.tbPlayers.Controls.Add(this.btnPlayerSearch);
             this.tbPlayers.Controls.Add(this.groupBoxFirstEvent);
             this.tbPlayers.Controls.Add(this.checkBoxAddtoanEvent);
             this.tbPlayers.Controls.Add(this.btnAddEventsToPlayer);
@@ -259,17 +257,6 @@ namespace SportsMeet
             this.checkBoxPlayerAutoFilter.Text = "Auto filter";
             this.checkBoxPlayerAutoFilter.UseVisualStyleBackColor = true;
             this.checkBoxPlayerAutoFilter.CheckedChanged += new System.EventHandler(this.checkBoxPlayerAutoFilter_CheckedChanged);
-            // 
-            // btnPlayerSearch
-            // 
-            this.btnPlayerSearch.Location = new System.Drawing.Point(315, 471);
-            this.btnPlayerSearch.Name = "btnPlayerSearch";
-            this.btnPlayerSearch.Size = new System.Drawing.Size(66, 28);
-            this.btnPlayerSearch.TabIndex = 36;
-            this.btnPlayerSearch.TabStop = false;
-            this.btnPlayerSearch.Text = "Search";
-            this.btnPlayerSearch.UseVisualStyleBackColor = true;
-            this.btnPlayerSearch.Click += new System.EventHandler(this.btnPlayerSearch_Click);
             // 
             // groupBoxFirstEvent
             // 
@@ -1367,7 +1354,6 @@ namespace SportsMeet
         private Button btnAddEventsToPlayer;
         private CheckBox checkBoxAddtoanEvent;
         private GroupBox groupBoxFirstEvent;
-        private Button btnPlayerSearch;
         private CheckBox checkBoxPlayerAutoFilter;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel statusLabel;

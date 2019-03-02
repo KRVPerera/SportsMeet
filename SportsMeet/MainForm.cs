@@ -620,18 +620,18 @@ namespace SportsMeet
 
         private void tbSchoolName_TextChanged(object sender, EventArgs e)
         {
-                var textBox = sender as TextBox;
-                if (textBox == null) return;
-                var searchString = textBox.Text.Trim();
-                var schoolList = DataBase.LoadSchools();
-                var myRegex = new Regex(@"^" + searchString + ".*$");
-                IEnumerable<School> result = schoolList.Where(curSchool => myRegex.IsMatch(curSchool.Name));
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
+            var searchString = textBox.Text.Trim();
+            var schoolList = DataBase.LoadSchools();
+            var myRegex = new Regex(@"^" + searchString + ".*$");
+            IEnumerable<School> result = schoolList.Where(curSchool => myRegex.IsMatch(curSchool.Name));
 
-                if (result.Any())
-                {
-                    bindingSourceSchools.DataSource = result.ToList();
-                    bindingSourceSchools.ResetBindings(false);
-                }
+            if (result.Any())
+            {
+                bindingSourceSchools.DataSource = result.ToList();
+                bindingSourceSchools.ResetBindings(false);
+            }
         }
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)

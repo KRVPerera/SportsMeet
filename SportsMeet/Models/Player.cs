@@ -1,5 +1,5 @@
-﻿using System;
-using Dapper.Contrib.Extensions;
+﻿using Dapper.Contrib.Extensions;
+using System;
 
 namespace SportsMeet.Models
 {
@@ -54,9 +54,7 @@ namespace SportsMeet.Models
 
         #endregion public properties
 
-        #region public  methods
 
-        #endregion
 
         #region public derived members
 
