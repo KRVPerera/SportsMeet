@@ -370,7 +370,6 @@ namespace SportsMeet
             // 
             // btnAddEventsToPlayer
             // 
-            this.btnAddEventsToPlayer.Enabled = false;
             this.btnAddEventsToPlayer.Location = new System.Drawing.Point(98, 471);
             this.btnAddEventsToPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
@@ -383,7 +382,6 @@ namespace SportsMeet
             // 
             // btnPlayerEdit
             // 
-            this.btnPlayerEdit.Enabled = false;
             this.btnPlayerEdit.Location = new System.Drawing.Point(171, 471);
             this.btnPlayerEdit.Name = "btnPlayerEdit";
             this.btnPlayerEdit.Size = new System.Drawing.Size(66, 28);

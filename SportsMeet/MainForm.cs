@@ -673,30 +673,6 @@ namespace SportsMeet
                         bindingSourcePlayers.DataSource = players;
                         bindingSourcePlayers.ResetBindings(false);
                     }
-
-                    if (players.Count == 1)
-                    {
-                        Player searchMe = new Player(searchString);
-                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
-                        if (searchByNumber != null)
-                        {
-                            btnAddEventsToPlayer.Enabled = true;
-                            btnPlayerEdit.Enabled = true;
-                            btnDeletePlayer.Enabled = true;
-                        }
-                        else
-                        {
-                            btnAddEventsToPlayer.Enabled = false;
-                            btnPlayerEdit.Enabled = false;
-                            btnDeletePlayer.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        btnAddEventsToPlayer.Enabled = false;
-                        btnPlayerEdit.Enabled = false;
-                        btnDeletePlayer.Enabled = false;
-                    }
                 }
             }
         }
