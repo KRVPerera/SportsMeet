@@ -626,9 +626,12 @@ namespace SportsMeet
                 var schoolList = DataBase.LoadSchools();
                 var myRegex = new Regex(@"^" + searchString + ".*$");
                 IEnumerable<School> result = schoolList.Where(curSchool => myRegex.IsMatch(curSchool.Name));
-                bindingSourceSchools.DataSource = result.ToList();
-                bindingSourceSchools.ResetBindings(false);
-        }
 
+                if (result.Any())
+                {
+                    bindingSourceSchools.DataSource = result.ToList();
+                    bindingSourceSchools.ResetBindings(false);
+                }
+        }
     }
 }
