@@ -46,7 +46,6 @@ namespace SportsMeet
             this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxLoadSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxPlayerAutoFilter = new System.Windows.Forms.CheckBox();
-            this.btnPlayerSearch = new System.Windows.Forms.Button();
             this.groupBoxFirstEvent = new System.Windows.Forms.GroupBox();
             this.lblEventNumber = new System.Windows.Forms.Label();
             this.lblEvent = new System.Windows.Forms.Label();
@@ -144,6 +143,7 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchPlayerTab = new System.Windows.Forms.TabPage();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.groupBoxFirstEvent.SuspendLayout();
@@ -177,6 +177,7 @@ namespace SportsMeet
             this.tcMainForm.Controls.Add(this.tbSchool);
             this.tcMainForm.Controls.Add(this.tbFilterByPlayer);
             this.tcMainForm.Controls.Add(this.tbFilterByEvent);
+            this.tcMainForm.Controls.Add(this.searchPlayerTab);
             this.tcMainForm.ImageList = this.imageListForTabs;
             this.tcMainForm.Location = new System.Drawing.Point(0, 9);
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(0);
@@ -192,7 +193,6 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.checkBoxDeleteSelection);
             this.tbPlayers.Controls.Add(this.checkBoxLoadSelection);
             this.tbPlayers.Controls.Add(this.checkBoxPlayerAutoFilter);
-            this.tbPlayers.Controls.Add(this.btnPlayerSearch);
             this.tbPlayers.Controls.Add(this.groupBoxFirstEvent);
             this.tbPlayers.Controls.Add(this.checkBoxAddtoanEvent);
             this.tbPlayers.Controls.Add(this.btnAddEventsToPlayer);
@@ -215,11 +215,11 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.tbPlayerNumber);
             this.tbPlayers.Controls.Add(this.btnAddPlayer);
             this.tbPlayers.ImageIndex = 1;
-            this.tbPlayers.Location = new System.Drawing.Point(4, 25);
+            this.tbPlayers.Location = new System.Drawing.Point(4, 23);
             this.tbPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.Padding = new System.Windows.Forms.Padding(6);
-            this.tbPlayers.Size = new System.Drawing.Size(907, 509);
+            this.tbPlayers.Size = new System.Drawing.Size(907, 511);
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
@@ -231,7 +231,7 @@ namespace SportsMeet
             this.checkBoxDeleteSelection.AutoSize = true;
             this.checkBoxDeleteSelection.Location = new System.Drawing.Point(545, 7);
             this.checkBoxDeleteSelection.Name = "checkBoxDeleteSelection";
-            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(119, 27);
+            this.checkBoxDeleteSelection.Size = new System.Drawing.Size(93, 23);
             this.checkBoxDeleteSelection.TabIndex = 39;
             this.checkBoxDeleteSelection.Text = "Delete selection";
             this.checkBoxDeleteSelection.UseVisualStyleBackColor = true;
@@ -243,7 +243,7 @@ namespace SportsMeet
             this.checkBoxLoadSelection.AutoSize = true;
             this.checkBoxLoadSelection.Location = new System.Drawing.Point(453, 7);
             this.checkBoxLoadSelection.Name = "checkBoxLoadSelection";
-            this.checkBoxLoadSelection.Size = new System.Drawing.Size(110, 27);
+            this.checkBoxLoadSelection.Size = new System.Drawing.Size(86, 23);
             this.checkBoxLoadSelection.TabIndex = 38;
             this.checkBoxLoadSelection.Text = "Load selection";
             this.checkBoxLoadSelection.UseVisualStyleBackColor = true;
@@ -254,22 +254,11 @@ namespace SportsMeet
             this.checkBoxPlayerAutoFilter.AutoSize = true;
             this.checkBoxPlayerAutoFilter.Location = new System.Drawing.Point(361, 38);
             this.checkBoxPlayerAutoFilter.Name = "checkBoxPlayerAutoFilter";
-            this.checkBoxPlayerAutoFilter.Size = new System.Drawing.Size(90, 21);
+            this.checkBoxPlayerAutoFilter.Size = new System.Drawing.Size(70, 17);
             this.checkBoxPlayerAutoFilter.TabIndex = 37;
             this.checkBoxPlayerAutoFilter.Text = "Auto filter";
             this.checkBoxPlayerAutoFilter.UseVisualStyleBackColor = true;
             this.checkBoxPlayerAutoFilter.CheckedChanged += new System.EventHandler(this.checkBoxPlayerAutoFilter_CheckedChanged);
-            // 
-            // btnPlayerSearch
-            // 
-            this.btnPlayerSearch.Location = new System.Drawing.Point(315, 471);
-            this.btnPlayerSearch.Name = "btnPlayerSearch";
-            this.btnPlayerSearch.Size = new System.Drawing.Size(66, 28);
-            this.btnPlayerSearch.TabIndex = 36;
-            this.btnPlayerSearch.TabStop = false;
-            this.btnPlayerSearch.Text = "Search";
-            this.btnPlayerSearch.UseVisualStyleBackColor = true;
-            this.btnPlayerSearch.Click += new System.EventHandler(this.btnPlayerSearch_Click);
             // 
             // groupBoxFirstEvent
             // 
@@ -294,7 +283,7 @@ namespace SportsMeet
             this.lblEventNumber.Location = new System.Drawing.Point(7, 36);
             this.lblEventNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEventNumber.Name = "lblEventNumber";
-            this.lblEventNumber.Size = new System.Drawing.Size(98, 17);
+            this.lblEventNumber.Size = new System.Drawing.Size(75, 13);
             this.lblEventNumber.TabIndex = 19;
             this.lblEventNumber.Text = "Event Number";
             // 
@@ -304,7 +293,7 @@ namespace SportsMeet
             this.lblEvent.Location = new System.Drawing.Point(7, 64);
             this.lblEvent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEvent.Name = "lblEvent";
-            this.lblEvent.Size = new System.Drawing.Size(44, 17);
+            this.lblEvent.Size = new System.Drawing.Size(35, 13);
             this.lblEvent.TabIndex = 20;
             this.lblEvent.Text = "Event";
             // 
@@ -313,7 +302,7 @@ namespace SportsMeet
             this.checkBoxAddToMoreEvents.AutoSize = true;
             this.checkBoxAddToMoreEvents.Location = new System.Drawing.Point(238, 91);
             this.checkBoxAddToMoreEvents.Name = "checkBoxAddToMoreEvents";
-            this.checkBoxAddToMoreEvents.Size = new System.Drawing.Size(153, 21);
+            this.checkBoxAddToMoreEvents.Size = new System.Drawing.Size(118, 17);
             this.checkBoxAddToMoreEvents.TabIndex = 9;
             this.checkBoxAddToMoreEvents.Text = "Add to more events";
             this.checkBoxAddToMoreEvents.UseVisualStyleBackColor = true;
@@ -324,7 +313,7 @@ namespace SportsMeet
             this.lblAgeUnder.Location = new System.Drawing.Point(7, 95);
             this.lblAgeUnder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAgeUnder.Name = "lblAgeUnder";
-            this.lblAgeUnder.Size = new System.Drawing.Size(76, 17);
+            this.lblAgeUnder.Size = new System.Drawing.Size(58, 13);
             this.lblAgeUnder.TabIndex = 17;
             this.lblAgeUnder.Text = "Age Under";
             // 
@@ -337,7 +326,7 @@ namespace SportsMeet
             this.cbxEvent.Location = new System.Drawing.Point(106, 33);
             this.cbxEvent.Margin = new System.Windows.Forms.Padding(4);
             this.cbxEvent.Name = "cbxEvent";
-            this.cbxEvent.Size = new System.Drawing.Size(180, 24);
+            this.cbxEvent.Size = new System.Drawing.Size(180, 21);
             this.cbxEvent.TabIndex = 8;
             this.cbxEvent.SelectedIndexChanged += new System.EventHandler(this.cbxEvent_SelectedIndexChanged);
             // 
@@ -351,7 +340,7 @@ namespace SportsMeet
             this.labelEventNamePlayerstab.AutoSize = true;
             this.labelEventNamePlayerstab.Location = new System.Drawing.Point(103, 64);
             this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
-            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(92, 17);
+            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
             this.labelEventNamePlayerstab.TabIndex = 30;
             this.labelEventNamePlayerstab.Text = "dummy event";
             // 
@@ -360,7 +349,7 @@ namespace SportsMeet
             this.lblAgeUnderValue.AutoSize = true;
             this.lblAgeUnderValue.Location = new System.Drawing.Point(103, 95);
             this.lblAgeUnderValue.Name = "lblAgeUnderValue";
-            this.lblAgeUnderValue.Size = new System.Drawing.Size(16, 17);
+            this.lblAgeUnderValue.Size = new System.Drawing.Size(13, 13);
             this.lblAgeUnderValue.TabIndex = 28;
             this.lblAgeUnderValue.Text = "0";
             // 
@@ -369,7 +358,7 @@ namespace SportsMeet
             this.checkBoxAddtoanEvent.AutoSize = true;
             this.checkBoxAddtoanEvent.Location = new System.Drawing.Point(131, 291);
             this.checkBoxAddtoanEvent.Name = "checkBoxAddtoanEvent";
-            this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(131, 21);
+            this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(103, 17);
             this.checkBoxAddtoanEvent.TabIndex = 7;
             this.checkBoxAddtoanEvent.Text = "Add to an Event";
             this.checkBoxAddtoanEvent.UseVisualStyleBackColor = true;
@@ -386,6 +375,7 @@ namespace SportsMeet
             this.btnAddEventsToPlayer.TabStop = false;
             this.btnAddEventsToPlayer.Text = "Events";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
+            this.btnAddEventsToPlayer.Click += new System.EventHandler(this.btnAddEventsToPlayer_Click);
             // 
             // btnPlayerEdit
             // 
@@ -429,7 +419,7 @@ namespace SportsMeet
             this.dataGridViewPlayers.MultiSelect = false;
             this.dataGridViewPlayers.Name = "dataGridViewPlayers";
             this.dataGridViewPlayers.RowTemplate.Height = 33;
-            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 465);
+            this.dataGridViewPlayers.Size = new System.Drawing.Size(444, 467);
             this.dataGridViewPlayers.TabIndex = 27;
             this.dataGridViewPlayers.TabStop = false;
             this.dataGridViewPlayers.SelectionChanged += new System.EventHandler(this.dataGridViewPlayers_SelectionChanged);
@@ -467,7 +457,7 @@ namespace SportsMeet
             // 
             this.numericUpDownAge.Location = new System.Drawing.Point(131, 176);
             this.numericUpDownAge.Name = "numericUpDownAge";
-            this.numericUpDownAge.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownAge.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownAge.TabIndex = 4;
             this.numericUpDownAge.Value = new decimal(new int[] {
             15,
@@ -481,7 +471,7 @@ namespace SportsMeet
             this.lblDistrict.Location = new System.Drawing.Point(21, 249);
             this.lblDistrict.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDistrict.Name = "lblDistrict";
-            this.lblDistrict.Size = new System.Drawing.Size(51, 17);
+            this.lblDistrict.Size = new System.Drawing.Size(39, 13);
             this.lblDistrict.TabIndex = 24;
             this.lblDistrict.Text = "District";
             // 
@@ -496,7 +486,7 @@ namespace SportsMeet
             this.cbxDistrict.Location = new System.Drawing.Point(131, 245);
             this.cbxDistrict.Margin = new System.Windows.Forms.Padding(6);
             this.cbxDistrict.Name = "cbxDistrict";
-            this.cbxDistrict.Size = new System.Drawing.Size(180, 24);
+            this.cbxDistrict.Size = new System.Drawing.Size(180, 21);
             this.cbxDistrict.TabIndex = 6;
             // 
             // bindingSourceDistricts
@@ -513,7 +503,7 @@ namespace SportsMeet
             this.cbxSchool.Location = new System.Drawing.Point(131, 140);
             this.cbxSchool.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSchool.Name = "cbxSchool";
-            this.cbxSchool.Size = new System.Drawing.Size(180, 24);
+            this.cbxSchool.Size = new System.Drawing.Size(180, 21);
             this.cbxSchool.TabIndex = 3;
             // 
             // bindingSourceSchools
@@ -526,7 +516,7 @@ namespace SportsMeet
             this.lblSchool.Location = new System.Drawing.Point(21, 144);
             this.lblSchool.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSchool.Name = "lblSchool";
-            this.lblSchool.Size = new System.Drawing.Size(51, 17);
+            this.lblSchool.Size = new System.Drawing.Size(40, 13);
             this.lblSchool.TabIndex = 15;
             this.lblSchool.Text = "School";
             // 
@@ -542,7 +532,7 @@ namespace SportsMeet
             this.cbxGender.Location = new System.Drawing.Point(131, 210);
             this.cbxGender.Margin = new System.Windows.Forms.Padding(4);
             this.cbxGender.Name = "cbxGender";
-            this.cbxGender.Size = new System.Drawing.Size(120, 24);
+            this.cbxGender.Size = new System.Drawing.Size(120, 21);
             this.cbxGender.TabIndex = 5;
             // 
             // lblGender
@@ -551,7 +541,7 @@ namespace SportsMeet
             this.lblGender.Location = new System.Drawing.Point(21, 214);
             this.lblGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(56, 17);
+            this.lblGender.Size = new System.Drawing.Size(42, 13);
             this.lblGender.TabIndex = 10;
             this.lblGender.Text = "Gender";
             // 
@@ -561,7 +551,7 @@ namespace SportsMeet
             this.lblAge.Location = new System.Drawing.Point(21, 179);
             this.lblAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(33, 17);
+            this.lblAge.Size = new System.Drawing.Size(26, 13);
             this.lblAge.TabIndex = 9;
             this.lblAge.Text = "Age";
             // 
@@ -571,7 +561,7 @@ namespace SportsMeet
             this.lblLastName.Location = new System.Drawing.Point(21, 109);
             this.lblLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLastName.Name = "lblLastName";
-            this.lblLastName.Size = new System.Drawing.Size(76, 17);
+            this.lblLastName.Size = new System.Drawing.Size(58, 13);
             this.lblLastName.TabIndex = 8;
             this.lblLastName.Text = "Last Name";
             // 
@@ -581,7 +571,7 @@ namespace SportsMeet
             this.lbFirstName.Location = new System.Drawing.Point(21, 74);
             this.lbFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbFirstName.Name = "lbFirstName";
-            this.lbFirstName.Size = new System.Drawing.Size(76, 17);
+            this.lbFirstName.Size = new System.Drawing.Size(57, 13);
             this.lbFirstName.TabIndex = 7;
             this.lbFirstName.Text = "First Name";
             // 
@@ -590,7 +580,7 @@ namespace SportsMeet
             this.tbLastName.Location = new System.Drawing.Point(131, 106);
             this.tbLastName.Margin = new System.Windows.Forms.Padding(4);
             this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(212, 22);
+            this.tbLastName.Size = new System.Drawing.Size(212, 20);
             this.tbLastName.TabIndex = 2;
             // 
             // tbFirstName
@@ -598,7 +588,7 @@ namespace SportsMeet
             this.tbFirstName.Location = new System.Drawing.Point(131, 71);
             this.tbFirstName.Margin = new System.Windows.Forms.Padding(4);
             this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(212, 22);
+            this.tbFirstName.Size = new System.Drawing.Size(212, 20);
             this.tbFirstName.TabIndex = 1;
             // 
             // lblPlayerNumber
@@ -607,7 +597,7 @@ namespace SportsMeet
             this.lblPlayerNumber.Location = new System.Drawing.Point(21, 39);
             this.lblPlayerNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
-            this.lblPlayerNumber.Size = new System.Drawing.Size(102, 17);
+            this.lblPlayerNumber.Size = new System.Drawing.Size(76, 13);
             this.lblPlayerNumber.TabIndex = 2;
             this.lblPlayerNumber.Text = "Player Number";
             // 
@@ -616,7 +606,7 @@ namespace SportsMeet
             this.tbPlayerNumber.Location = new System.Drawing.Point(131, 36);
             this.tbPlayerNumber.Margin = new System.Windows.Forms.Padding(4);
             this.tbPlayerNumber.Name = "tbPlayerNumber";
-            this.tbPlayerNumber.Size = new System.Drawing.Size(212, 22);
+            this.tbPlayerNumber.Size = new System.Drawing.Size(212, 20);
             this.tbPlayerNumber.TabIndex = 0;
             this.tbPlayerNumber.Text = " ";
             this.tbPlayerNumber.TextChanged += new System.EventHandler(this.tbPlayerSearch_TextChanged);
@@ -651,10 +641,10 @@ namespace SportsMeet
             this.tbEvents.Controls.Add(this.lblNewEventsNumber);
             this.tbEvents.Controls.Add(this.btnAddEvent);
             this.tbEvents.ImageIndex = 0;
-            this.tbEvents.Location = new System.Drawing.Point(4, 25);
+            this.tbEvents.Location = new System.Drawing.Point(4, 23);
             this.tbEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tbEvents.Name = "tbEvents";
-            this.tbEvents.Size = new System.Drawing.Size(907, 509);
+            this.tbEvents.Size = new System.Drawing.Size(907, 511);
             this.tbEvents.TabIndex = 0;
             this.tbEvents.Text = "Events";
             this.tbEvents.UseVisualStyleBackColor = true;
@@ -703,7 +693,7 @@ namespace SportsMeet
             "Not applicable"});
             this.comboBoxEventsSex.Location = new System.Drawing.Point(109, 101);
             this.comboBoxEventsSex.Name = "comboBoxEventsSex";
-            this.comboBoxEventsSex.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxEventsSex.Size = new System.Drawing.Size(121, 21);
             this.comboBoxEventsSex.TabIndex = 3;
             // 
             // labelEventsSex
@@ -711,7 +701,7 @@ namespace SportsMeet
             this.labelEventsSex.AutoSize = true;
             this.labelEventsSex.Location = new System.Drawing.Point(8, 105);
             this.labelEventsSex.Name = "labelEventsSex";
-            this.labelEventsSex.Size = new System.Drawing.Size(56, 17);
+            this.labelEventsSex.Size = new System.Drawing.Size(42, 13);
             this.labelEventsSex.TabIndex = 9;
             this.labelEventsSex.Text = "Gender";
             // 
@@ -730,7 +720,7 @@ namespace SportsMeet
             this.dataGridViewEvents.DataSource = this.bindingSourceEvents;
             this.dataGridViewEvents.Location = new System.Drawing.Point(362, 11);
             this.dataGridViewEvents.Name = "dataGridViewEvents";
-            this.dataGridViewEvents.Size = new System.Drawing.Size(538, 501);
+            this.dataGridViewEvents.Size = new System.Drawing.Size(538, 503);
             this.dataGridViewEvents.TabIndex = 8;
             this.dataGridViewEvents.TabStop = false;
             // 
@@ -763,7 +753,7 @@ namespace SportsMeet
             // 
             this.numericUpDownEventAgeLimit.Location = new System.Drawing.Point(109, 71);
             this.numericUpDownEventAgeLimit.Name = "numericUpDownEventAgeLimit";
-            this.numericUpDownEventAgeLimit.Size = new System.Drawing.Size(120, 22);
+            this.numericUpDownEventAgeLimit.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownEventAgeLimit.TabIndex = 2;
             this.numericUpDownEventAgeLimit.Value = new decimal(new int[] {
             15,
@@ -776,7 +766,7 @@ namespace SportsMeet
             this.labelEventsAgeLimit.AutoSize = true;
             this.labelEventsAgeLimit.Location = new System.Drawing.Point(8, 75);
             this.labelEventsAgeLimit.Name = "labelEventsAgeLimit";
-            this.labelEventsAgeLimit.Size = new System.Drawing.Size(66, 17);
+            this.labelEventsAgeLimit.Size = new System.Drawing.Size(50, 13);
             this.labelEventsAgeLimit.TabIndex = 6;
             this.labelEventsAgeLimit.Text = "Age Limit";
             // 
@@ -785,7 +775,7 @@ namespace SportsMeet
             this.tbNewEventsName.Location = new System.Drawing.Point(109, 41);
             this.tbNewEventsName.Margin = new System.Windows.Forms.Padding(6);
             this.tbNewEventsName.Name = "tbNewEventsName";
-            this.tbNewEventsName.Size = new System.Drawing.Size(196, 22);
+            this.tbNewEventsName.Size = new System.Drawing.Size(196, 20);
             this.tbNewEventsName.TabIndex = 1;
             // 
             // tbNewEventsNumber
@@ -795,7 +785,7 @@ namespace SportsMeet
             this.tbNewEventsNumber.Location = new System.Drawing.Point(109, 11);
             this.tbNewEventsNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbNewEventsNumber.Name = "tbNewEventsNumber";
-            this.tbNewEventsNumber.Size = new System.Drawing.Size(196, 22);
+            this.tbNewEventsNumber.Size = new System.Drawing.Size(196, 20);
             this.tbNewEventsNumber.TabIndex = 0;
             this.tbNewEventsNumber.TextChanged += new System.EventHandler(this.EventsNumberTextChanged);
             // 
@@ -805,7 +795,7 @@ namespace SportsMeet
             this.lblNewEventsName.Location = new System.Drawing.Point(8, 45);
             this.lblNewEventsName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblNewEventsName.Name = "lblNewEventsName";
-            this.lblNewEventsName.Size = new System.Drawing.Size(85, 17);
+            this.lblNewEventsName.Size = new System.Drawing.Size(66, 13);
             this.lblNewEventsName.TabIndex = 2;
             this.lblNewEventsName.Text = "Event Name";
             // 
@@ -815,7 +805,7 @@ namespace SportsMeet
             this.lblNewEventsNumber.Location = new System.Drawing.Point(7, 15);
             this.lblNewEventsNumber.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblNewEventsNumber.Name = "lblNewEventsNumber";
-            this.lblNewEventsNumber.Size = new System.Drawing.Size(98, 17);
+            this.lblNewEventsNumber.Size = new System.Drawing.Size(75, 13);
             this.lblNewEventsNumber.TabIndex = 1;
             this.lblNewEventsNumber.Text = "Event Number";
             // 
@@ -839,10 +829,10 @@ namespace SportsMeet
             this.tbSchool.Controls.Add(this.lblSchoolName);
             this.tbSchool.Controls.Add(this.btnAddSchool);
             this.tbSchool.ImageIndex = 2;
-            this.tbSchool.Location = new System.Drawing.Point(4, 25);
+            this.tbSchool.Location = new System.Drawing.Point(4, 23);
             this.tbSchool.Margin = new System.Windows.Forms.Padding(4);
             this.tbSchool.Name = "tbSchool";
-            this.tbSchool.Size = new System.Drawing.Size(907, 509);
+            this.tbSchool.Size = new System.Drawing.Size(907, 511);
             this.tbSchool.TabIndex = 2;
             this.tbSchool.Text = "School";
             this.tbSchool.UseVisualStyleBackColor = true;
@@ -903,7 +893,7 @@ namespace SportsMeet
             this.tbSchoolName.Location = new System.Drawing.Point(135, 32);
             this.tbSchoolName.Margin = new System.Windows.Forms.Padding(6);
             this.tbSchoolName.Name = "tbSchoolName";
-            this.tbSchoolName.Size = new System.Drawing.Size(226, 22);
+            this.tbSchoolName.Size = new System.Drawing.Size(226, 20);
             this.tbSchoolName.TabIndex = 0;
             this.tbSchoolName.TextChanged += new System.EventHandler(this.tbSchoolName_TextChanged);
             // 
@@ -913,7 +903,7 @@ namespace SportsMeet
             this.lblSchoolName.Location = new System.Drawing.Point(31, 35);
             this.lblSchoolName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSchoolName.Name = "lblSchoolName";
-            this.lblSchoolName.Size = new System.Drawing.Size(92, 17);
+            this.lblSchoolName.Size = new System.Drawing.Size(71, 13);
             this.lblSchoolName.TabIndex = 6;
             this.lblSchoolName.Text = "School Name";
             // 
@@ -940,11 +930,11 @@ namespace SportsMeet
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerSchool);
             this.tbFilterByPlayer.Controls.Add(this.lblFilerByPlayerName);
             this.tbFilterByPlayer.Controls.Add(this.tbFilterByPlayersNumber);
-            this.tbFilterByPlayer.Location = new System.Drawing.Point(4, 25);
+            this.tbFilterByPlayer.Location = new System.Drawing.Point(4, 23);
             this.tbFilterByPlayer.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByPlayer.Name = "tbFilterByPlayer";
             this.tbFilterByPlayer.Padding = new System.Windows.Forms.Padding(6);
-            this.tbFilterByPlayer.Size = new System.Drawing.Size(907, 509);
+            this.tbFilterByPlayer.Size = new System.Drawing.Size(907, 511);
             this.tbFilterByPlayer.TabIndex = 3;
             this.tbFilterByPlayer.Text = "Filter By Player";
             this.tbFilterByPlayer.UseVisualStyleBackColor = true;
@@ -954,7 +944,7 @@ namespace SportsMeet
             this.lblFilterByPlayerDistrictOutput.AutoSize = true;
             this.lblFilterByPlayerDistrictOutput.Location = new System.Drawing.Point(125, 57);
             this.lblFilterByPlayerDistrictOutput.Name = "lblFilterByPlayerDistrictOutput";
-            this.lblFilterByPlayerDistrictOutput.Size = new System.Drawing.Size(49, 17);
+            this.lblFilterByPlayerDistrictOutput.Size = new System.Drawing.Size(37, 13);
             this.lblFilterByPlayerDistrictOutput.TabIndex = 10;
             this.lblFilterByPlayerDistrictOutput.Text = "district";
             // 
@@ -963,7 +953,7 @@ namespace SportsMeet
             this.lblFilterByPlayerSchoolOutput.AutoSize = true;
             this.lblFilterByPlayerSchoolOutput.Location = new System.Drawing.Point(125, 44);
             this.lblFilterByPlayerSchoolOutput.Name = "lblFilterByPlayerSchoolOutput";
-            this.lblFilterByPlayerSchoolOutput.Size = new System.Drawing.Size(49, 17);
+            this.lblFilterByPlayerSchoolOutput.Size = new System.Drawing.Size(38, 13);
             this.lblFilterByPlayerSchoolOutput.TabIndex = 9;
             this.lblFilterByPlayerSchoolOutput.Text = "school";
             // 
@@ -972,7 +962,7 @@ namespace SportsMeet
             this.lblFilterByPlayerNameOutput.AutoSize = true;
             this.lblFilterByPlayerNameOutput.Location = new System.Drawing.Point(125, 31);
             this.lblFilterByPlayerNameOutput.Name = "lblFilterByPlayerNameOutput";
-            this.lblFilterByPlayerNameOutput.Size = new System.Drawing.Size(43, 17);
+            this.lblFilterByPlayerNameOutput.Size = new System.Drawing.Size(33, 13);
             this.lblFilterByPlayerNameOutput.TabIndex = 8;
             this.lblFilterByPlayerNameOutput.Text = "name";
             // 
@@ -984,7 +974,7 @@ namespace SportsMeet
             this.dataGridViewEventsOfPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEventsOfPlayer.Location = new System.Drawing.Point(9, 101);
             this.dataGridViewEventsOfPlayer.Name = "dataGridViewEventsOfPlayer";
-            this.dataGridViewEventsOfPlayer.Size = new System.Drawing.Size(373, 399);
+            this.dataGridViewEventsOfPlayer.Size = new System.Drawing.Size(373, 401);
             this.dataGridViewEventsOfPlayer.TabIndex = 7;
             this.dataGridViewEventsOfPlayer.TabStop = false;
             // 
@@ -1001,9 +991,9 @@ namespace SportsMeet
             this.numberDataGridViewTextBoxColumn1,
             this.ageDataGridViewTextBoxColumn1});
             this.dataGridPlayerFiltering.DataSource = this.bindingSourcePlayers;
-            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(640, 44);
+            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(455, 44);
             this.dataGridPlayerFiltering.Name = "dataGridPlayerFiltering";
-            this.dataGridPlayerFiltering.Size = new System.Drawing.Size(446, 456);
+            this.dataGridPlayerFiltering.Size = new System.Drawing.Size(446, 458);
             this.dataGridPlayerFiltering.TabIndex = 6;
             this.dataGridPlayerFiltering.TabStop = false;
             // 
@@ -1025,7 +1015,7 @@ namespace SportsMeet
             this.lblFilterByPlayerEvents.Location = new System.Drawing.Point(13, 76);
             this.lblFilterByPlayerEvents.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFilterByPlayerEvents.Name = "lblFilterByPlayerEvents";
-            this.lblFilterByPlayerEvents.Size = new System.Drawing.Size(51, 17);
+            this.lblFilterByPlayerEvents.Size = new System.Drawing.Size(40, 13);
             this.lblFilterByPlayerEvents.TabIndex = 1;
             this.lblFilterByPlayerEvents.Text = "Events";
             // 
@@ -1035,7 +1025,7 @@ namespace SportsMeet
             this.lblFilterByPlayerDistrict.Location = new System.Drawing.Point(13, 57);
             this.lblFilterByPlayerDistrict.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFilterByPlayerDistrict.Name = "lblFilterByPlayerDistrict";
-            this.lblFilterByPlayerDistrict.Size = new System.Drawing.Size(51, 17);
+            this.lblFilterByPlayerDistrict.Size = new System.Drawing.Size(39, 13);
             this.lblFilterByPlayerDistrict.TabIndex = 4;
             this.lblFilterByPlayerDistrict.Text = "District";
             // 
@@ -1045,7 +1035,7 @@ namespace SportsMeet
             this.lblFilterByPlayerSchool.Location = new System.Drawing.Point(12, 44);
             this.lblFilterByPlayerSchool.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFilterByPlayerSchool.Name = "lblFilterByPlayerSchool";
-            this.lblFilterByPlayerSchool.Size = new System.Drawing.Size(51, 17);
+            this.lblFilterByPlayerSchool.Size = new System.Drawing.Size(40, 13);
             this.lblFilterByPlayerSchool.TabIndex = 3;
             this.lblFilterByPlayerSchool.Text = "School";
             // 
@@ -1055,7 +1045,7 @@ namespace SportsMeet
             this.lblFilerByPlayerName.Location = new System.Drawing.Point(12, 31);
             this.lblFilerByPlayerName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFilerByPlayerName.Name = "lblFilerByPlayerName";
-            this.lblFilerByPlayerName.Size = new System.Drawing.Size(45, 17);
+            this.lblFilerByPlayerName.Size = new System.Drawing.Size(35, 13);
             this.lblFilerByPlayerName.TabIndex = 2;
             this.lblFilerByPlayerName.Text = "Name";
             // 
@@ -1064,10 +1054,10 @@ namespace SportsMeet
             this.tbFilterByPlayersNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFilterByPlayersNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.tbFilterByPlayersNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(640, 12);
+            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(455, 12);
             this.tbFilterByPlayersNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByPlayersNumber.Name = "tbFilterByPlayersNumber";
-            this.tbFilterByPlayersNumber.Size = new System.Drawing.Size(446, 22);
+            this.tbFilterByPlayersNumber.Size = new System.Drawing.Size(446, 20);
             this.tbFilterByPlayersNumber.TabIndex = 0;
             this.tbFilterByPlayersNumber.TextChanged += new System.EventHandler(this.tbFilterByPlayersNumber_TextChanged);
             this.tbFilterByPlayersNumber.Leave += new System.EventHandler(this.tbPlayerSearch_Leave);
@@ -1078,11 +1068,11 @@ namespace SportsMeet
             this.tbFilterByEvent.Controls.Add(this.lblFIlterByEventPlayers);
             this.tbFilterByEvent.Controls.Add(this.tbFilterByEventEventNumber);
             this.tbFilterByEvent.Controls.Add(this.lblFilterByEventEventNumber);
-            this.tbFilterByEvent.Location = new System.Drawing.Point(4, 25);
+            this.tbFilterByEvent.Location = new System.Drawing.Point(4, 23);
             this.tbFilterByEvent.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByEvent.Name = "tbFilterByEvent";
             this.tbFilterByEvent.Padding = new System.Windows.Forms.Padding(6);
-            this.tbFilterByEvent.Size = new System.Drawing.Size(907, 509);
+            this.tbFilterByEvent.Size = new System.Drawing.Size(907, 511);
             this.tbFilterByEvent.TabIndex = 4;
             this.tbFilterByEvent.Text = "Filter By Event";
             this.tbFilterByEvent.UseVisualStyleBackColor = true;
@@ -1101,7 +1091,7 @@ namespace SportsMeet
             this.lblFIlterByEventPlayers.AutoSize = true;
             this.lblFIlterByEventPlayers.Location = new System.Drawing.Point(89, 141);
             this.lblFIlterByEventPlayers.Name = "lblFIlterByEventPlayers";
-            this.lblFIlterByEventPlayers.Size = new System.Drawing.Size(55, 17);
+            this.lblFIlterByEventPlayers.Size = new System.Drawing.Size(41, 13);
             this.lblFIlterByEventPlayers.TabIndex = 2;
             this.lblFIlterByEventPlayers.Text = "Players";
             // 
@@ -1109,7 +1099,7 @@ namespace SportsMeet
             // 
             this.tbFilterByEventEventNumber.Location = new System.Drawing.Point(253, 74);
             this.tbFilterByEventEventNumber.Name = "tbFilterByEventEventNumber";
-            this.tbFilterByEventEventNumber.Size = new System.Drawing.Size(122, 22);
+            this.tbFilterByEventEventNumber.Size = new System.Drawing.Size(122, 20);
             this.tbFilterByEventEventNumber.TabIndex = 0;
             // 
             // lblFilterByEventEventNumber
@@ -1117,7 +1107,7 @@ namespace SportsMeet
             this.lblFilterByEventEventNumber.AutoSize = true;
             this.lblFilterByEventEventNumber.Location = new System.Drawing.Point(89, 80);
             this.lblFilterByEventEventNumber.Name = "lblFilterByEventEventNumber";
-            this.lblFilterByEventEventNumber.Size = new System.Drawing.Size(98, 17);
+            this.lblFilterByEventEventNumber.Size = new System.Drawing.Size(75, 13);
             this.lblFilterByEventEventNumber.TabIndex = 0;
             this.lblFilterByEventEventNumber.Text = "Event Number";
             // 
@@ -1164,13 +1154,13 @@ namespace SportsMeet
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripLabel1.Size = new System.Drawing.Size(99, 42);
+            this.toolStripLabel1.Size = new System.Drawing.Size(79, 42);
             this.toolStripLabel1.Text = "Total Players :";
             // 
             // toolStripLabelTotalPlayerCount
             // 
             this.toolStripLabelTotalPlayerCount.Name = "toolStripLabelTotalPlayerCount";
-            this.toolStripLabelTotalPlayerCount.Size = new System.Drawing.Size(17, 42);
+            this.toolStripLabelTotalPlayerCount.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelTotalPlayerCount.Text = "0";
             // 
             // toolStripSeparator2
@@ -1181,13 +1171,13 @@ namespace SportsMeet
             // toolStripLabelSchools
             // 
             this.toolStripLabelSchools.Name = "toolStripLabelSchools";
-            this.toolStripLabelSchools.Size = new System.Drawing.Size(104, 42);
+            this.toolStripLabelSchools.Size = new System.Drawing.Size(83, 42);
             this.toolStripLabelSchools.Text = "Total Schools :";
             // 
             // toolStripLabelSchoolCount
             // 
             this.toolStripLabelSchoolCount.Name = "toolStripLabelSchoolCount";
-            this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(17, 42);
+            this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelSchoolCount.Text = "0";
             // 
             // toolStripSeparator3
@@ -1198,13 +1188,13 @@ namespace SportsMeet
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(95, 42);
+            this.toolStripLabel2.Size = new System.Drawing.Size(76, 42);
             this.toolStripLabel2.Text = "Total Events :";
             // 
             // toolStripLabelTotalEvents
             // 
             this.toolStripLabelTotalEvents.Name = "toolStripLabelTotalEvents";
-            this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(17, 42);
+            this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(13, 42);
             this.toolStripLabelTotalEvents.Text = "0";
             // 
             // toolStripSeparator1
@@ -1229,7 +1219,7 @@ namespace SportsMeet
             this.toolStripButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAbout.Name = "toolStripButtonAbout";
-            this.toolStripButtonAbout.Size = new System.Drawing.Size(54, 42);
+            this.toolStripButtonAbout.Size = new System.Drawing.Size(44, 42);
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
@@ -1237,6 +1227,15 @@ namespace SportsMeet
             // eventBindingSource
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // searchPlayerTab
+            // 
+            this.searchPlayerTab.Location = new System.Drawing.Point(4, 23);
+            this.searchPlayerTab.Name = "searchPlayerTab";
+            this.searchPlayerTab.Size = new System.Drawing.Size(907, 511);
+            this.searchPlayerTab.TabIndex = 5;
+            this.searchPlayerTab.Text = "Search Player";
+            this.searchPlayerTab.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -1366,7 +1365,6 @@ namespace SportsMeet
         private Button btnAddEventsToPlayer;
         private CheckBox checkBoxAddtoanEvent;
         private GroupBox groupBoxFirstEvent;
-        private Button btnPlayerSearch;
         private CheckBox checkBoxPlayerAutoFilter;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel statusLabel;
@@ -1386,6 +1384,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private TabPage searchPlayerTab;
     }
     
 }

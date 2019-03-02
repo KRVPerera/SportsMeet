@@ -7,7 +7,7 @@ namespace SportsMeet.Utils
 {
     internal class PlayersTab
     {
-        public static Tuple<bool, long> AddPlayer(Player newPlayer)
+        public static Tuple<bool, long> AddPlayer(Player newPlayer, bool quiet = false)
         {
             Tuple<bool, long> result = new Tuple<bool, long>(false, 0);
             Player existingPlayer = DataBase.FindPlayer(newPlayer);
@@ -34,10 +34,10 @@ namespace SportsMeet.Utils
 
         public static bool AddPlayerToEvent(long playerId, Event currentEvent)
         {
-            Player searchMe = new Player(playerId, "","","",0,0,0,0);
+            Player searchMe = new Player(playerId, "", "", "", 0, 0, 0, 0);
             Player player = DataBase.FindPlayerById(searchMe);
 
-            if (player == null) return false; 
+            if (player == null) return false;
 
             if (currentEvent.AgeLimit <= player.Age)
             {
@@ -49,7 +49,7 @@ namespace SportsMeet.Utils
             {
                 Util.SexEnum eventSex = (Util.SexEnum)currentEvent.Sex;
                 Util.SexEnum playerSex = (Util.SexEnum)player.Sex;
-                
+
                 if (!(eventSex == Util.SexEnum.NOT_KNOWN || eventSex == Util.SexEnum.NOT_APPLICABLE))
                 {
                     return false;
@@ -64,11 +64,7 @@ namespace SportsMeet.Utils
                 long id = DataBase.SavePlayerEvent(playerEvent);
                 return id >= 0;
             }
-            else
-            {
-                return true;
-            }
-
+            return true;
         }
     }
 }

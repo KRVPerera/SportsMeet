@@ -106,6 +106,7 @@ namespace SportsMeet.Data
         {
             return DBConnection.Instance.Connection.Delete(searchedSchool);
         }
+
         #endregion Schools
 
         #region Events
@@ -238,7 +239,5 @@ namespace SportsMeet.Data
         }
 
         #endregion PlayerEvents
-
-
     }
 }
