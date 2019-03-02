@@ -143,6 +143,7 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.searchPlayerTab = new System.Windows.Forms.TabPage();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             this.groupBoxFirstEvent.SuspendLayout();
@@ -176,6 +177,7 @@ namespace SportsMeet
             this.tcMainForm.Controls.Add(this.tbSchool);
             this.tcMainForm.Controls.Add(this.tbFilterByPlayer);
             this.tcMainForm.Controls.Add(this.tbFilterByEvent);
+            this.tcMainForm.Controls.Add(this.searchPlayerTab);
             this.tcMainForm.ImageList = this.imageListForTabs;
             this.tcMainForm.Location = new System.Drawing.Point(0, 9);
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(0);
@@ -1226,6 +1228,15 @@ namespace SportsMeet
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
             // 
+            // searchPlayerTab
+            // 
+            this.searchPlayerTab.Location = new System.Drawing.Point(4, 23);
+            this.searchPlayerTab.Name = "searchPlayerTab";
+            this.searchPlayerTab.Size = new System.Drawing.Size(907, 511);
+            this.searchPlayerTab.TabIndex = 5;
+            this.searchPlayerTab.Text = "Search Player";
+            this.searchPlayerTab.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -1373,6 +1384,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private TabPage searchPlayerTab;
     }
     
 }
