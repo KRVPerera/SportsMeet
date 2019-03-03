@@ -6,7 +6,7 @@ using SportsMeet.Models;
 namespace SportsMeet.test
 {
     [TestClass]
-    public class UnitTest1
+    public class PlayerTests
     {
         [TestMethod]
         public void TestInvalidAgeForPlayers()
