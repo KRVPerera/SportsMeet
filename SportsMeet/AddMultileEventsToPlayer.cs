@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using SportsMeet.Data;
+﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using SportsMeet.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace SportsMeet
 {
@@ -24,9 +21,6 @@ namespace SportsMeet
             labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
             labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
             labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum)existingPlayer.Sex);
-
-            LoadPlayerEvents();
-            LoadNonPlayerEvents();
         }
 
         private void LoadPlayerEvents()
@@ -62,11 +56,26 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
+            for (int index = 0; index < dataGridViewNonPlayerEvents.SelectedRows.Count; index++)
+            {
+                var selectedRow = dataGridViewNonPlayerEvents.SelectedRows[index];
+                var rowEvent = (Event)selectedRow.DataBoundItem;
+                if (PlayersTab.AddPlayerToEvent(CurrentPlayer.Id, rowEvent))
+                {
+                    RefreshView();
+                }
+            }
+        }
+
+        private void RefreshView()
+        {
+            LoadPlayerEvents();
+            LoadNonPlayerEvents();
         }
 
         private void AddMultipleEventsToPlayer_Load(object sender, EventArgs e)
         {
-
+            RefreshView();
         }
     }
 }
