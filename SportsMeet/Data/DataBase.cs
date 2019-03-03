@@ -223,6 +223,13 @@ namespace SportsMeet.Data
             return result.ToList();
         }
 
+        public static List<PlayerEvent> GetPlayerEventsByEvent(PlayerEvent searchedPlayerEvent)
+        {
+            string query = "select * from PlayerEvents where eventId = @EventId;";
+            IEnumerable<PlayerEvent> result = DBConnection.Instance.Connection.Query<PlayerEvent>(query, searchedPlayerEvent);
+            return result.ToList();
+        }
+
         public static List<Event> GetEventsForPlayerEvents(List<PlayerEvent> playerEventList)
         {
             List<Event> eventList = new List<Event>();
@@ -236,6 +243,22 @@ namespace SportsMeet.Data
                 }
             }
             return eventList;
+        }
+
+        public static List<Player> GetPlayersForPlayerEvents(List<PlayerEvent> playerEventList)
+        {
+            List<Player> playerList = new List<Player>();
+            List<long> playerIdList = Util.GetPlayerIdListFromPlayerEventList(playerEventList);
+            foreach (var playerId in playerIdList)
+            {
+                Player searchMe = new Player(playerId);
+                Player searchedPlayer = FindPlayerById(searchMe);
+                if (searchedPlayer != null)
+                {
+                    playerList.Add(searchedPlayer);
+                }
+            }
+            return playerList;
         }
 
         #endregion PlayerEvents

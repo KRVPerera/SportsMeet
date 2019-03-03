@@ -300,12 +300,9 @@ namespace SportsMeet
                                 lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
                                 PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
                                 List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
-                                if (playerEventList.Count > 0)
-                                {
                                     List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
-                                    dataGridViewEventsOfPlayer.DataSource = null;
-                                    dataGridViewEventsOfPlayer.DataSource = eventList;
-                                }
+                                    bindingSourceFilteredEventsOnPlayers.DataSource = eventList;
+                                    bindingSourceFilteredEventsOnPlayers.ResetBindings(false);
                             }
                         }
                     }
@@ -642,6 +639,24 @@ namespace SportsMeet
                 {
                     textbox.Text = "";
                     textbox.ForeColor = DefaultForeColor;
+                }
+            }
+        }
+
+        private void btnFilterByEventFilter_Click(object sender, EventArgs e)
+        {
+            Event sEventByNumber = DataBase.GetEventByNumber(tbFilterByEventEventNumber.Text);
+
+            if (sEventByNumber != null)
+            {
+                PlayerEvent searchMe = new PlayerEvent(sEventByNumber.Id, 0);
+                List<PlayerEvent> playerEventsByEvent = DataBase.GetPlayerEventsByEvent(searchMe);
+                List<Player> players = DataBase.GetPlayersForPlayerEvents(playerEventsByEvent);
+
+                if (players.Count > 0)
+                {
+                    bindingSourceFilteredPlayersOnEvent.DataSource = players;
+                    bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
             }
         }

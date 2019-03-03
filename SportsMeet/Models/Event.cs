@@ -41,14 +41,22 @@ namespace SportsMeet.Models
 
         public override String ToString()
         {
-            StringBuilder sb = new StringBuilder("U");
-            sb.Append(AgeLimit);
-            sb.Append(" ");
-            Util.SexEnum sexEnum = (Util.SexEnum)Sex;
-            sb.Append(Util.SexEnumToSex(sexEnum));
-            sb.Append(" ");
-            sb.Append(Name);
-            return sb.ToString();
+            return FullName;
+        }
+
+        public String FullName
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder("U");
+                sb.Append(AgeLimit);
+                sb.Append(" ");
+                Util.SexEnum sexEnum = (Util.SexEnum) Sex;
+                sb.Append(Util.SexEnumToSex(sexEnum));
+                sb.Append(" ");
+                sb.Append(Name);
+                return sb.ToString();
+            }
         }
     }
 }

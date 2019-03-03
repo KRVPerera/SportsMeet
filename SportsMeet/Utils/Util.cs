@@ -85,5 +85,17 @@ namespace SportsMeet
 
             return idList;
         }
+
+        public static List<long> GetPlayerIdListFromPlayerEventList(List<PlayerEvent> playerEventList)
+        {
+            List<long> idList = new List<long>();
+
+            foreach (var playerEvent in playerEventList)
+            {
+                idList.Add(playerEvent.PlayerId);
+            }
+
+            return idList;
+        }
     }
 }
