@@ -223,6 +223,13 @@ namespace SportsMeet.Data
             return DBConnection.Instance.Connection.Insert(playerEvent);
         }
 
+        public static bool Delete(PlayerEvent playerEvent)
+        {
+            string query = "delete from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
+            DBConnection.Instance.Connection.Query<int>(query, playerEvent);
+            return true;
+        }
+
         public static PlayerEvent GetPlayerEvent(PlayerEvent playerEvent)
         {
             string query = "select * from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
@@ -275,13 +282,15 @@ namespace SportsMeet.Data
             return playerList;
         }
 
-        #endregion PlayerEvents
-
         public static List<long> GetPlayerEventsNotByPlayer(PlayerEvent searchPlayerEvents)
         {
             string query = "select id from Events where id not IN (select eventId from PlayerEvents where playerId = @PlayerId);";
             IEnumerable<long> result = DBConnection.Instance.Connection.Query<long>(query, searchPlayerEvents);
             return result.ToList();
         }
+
+        #endregion PlayerEvents
+
+
     }
 }

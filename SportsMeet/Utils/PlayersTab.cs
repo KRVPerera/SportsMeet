@@ -69,7 +69,21 @@ namespace SportsMeet.Utils
 
         public static bool SavePlayer(Player newPlayer)
         {
-            return  DataBase.EditPlayer(newPlayer);
+            return DataBase.EditPlayer(newPlayer);
+        }
+
+        public static bool RemovelayerFromEvent(long currentPlayerId, Event rowEvent)
+        {
+            PlayerEvent playerEvent = new PlayerEvent(rowEvent.Id, currentPlayerId);
+
+            PlayerEvent searched = DataBase.GetPlayerEvent(playerEvent);
+
+            if (searched != null)
+            {
+                return DataBase.Delete(playerEvent);
+            }
+
+            return false;
         }
     }
 }

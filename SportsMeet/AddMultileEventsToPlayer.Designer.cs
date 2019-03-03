@@ -40,24 +40,24 @@
             this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
             this.groupBoxPlayerDetails = new System.Windows.Forms.GroupBox();
             this.dataGridViewEventsBelongToPlayer = new System.Windows.Forms.DataGridView();
-            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.playerevents = new System.Windows.Forms.Label();
             this.groupBoxNewEvents = new System.Windows.Forms.GroupBox();
             this.dataGridViewNonPlayerEvents = new System.Windows.Forms.DataGridView();
-            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxPlayerDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsBelongToPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
             this.groupBoxNewEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNonPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPlayerNumber
@@ -173,23 +173,6 @@
             this.dataGridViewEventsBelongToPlayer.Size = new System.Drawing.Size(340, 328);
             this.dataGridViewEventsBelongToPlayer.TabIndex = 18;
             // 
-            // numberDataGridViewTextBoxColumn
-            // 
-            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
-            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bindingSourceEventsBelongToPlayer
-            // 
-            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
-            // 
             // playerevents
             // 
             this.playerevents.AutoSize = true;
@@ -228,23 +211,6 @@
             this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(353, 384);
             this.dataGridViewNonPlayerEvents.TabIndex = 17;
             // 
-            // numberDataGridViewTextBoxColumn1
-            // 
-            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
-            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
-            // 
-            // fullNameDataGridViewTextBoxColumn1
-            // 
-            this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn1.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
-            this.fullNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // bindingSourceEventsDoesNotBelongToPlayer
-            // 
-            this.bindingSourceEventsDoesNotBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
-            // 
             // textBoxAddEventEventFilter
             // 
             this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(6, 16);
@@ -270,6 +236,41 @@
             this.btnRemoveEventFromPlayer.TabIndex = 16;
             this.btnRemoveEventFromPlayer.Text = ">>";
             this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
+            this.btnRemoveEventFromPlayer.Click += new System.EventHandler(this.btnRemoveEventFromPlayer_Click);
+            // 
+            // numberDataGridViewTextBoxColumn1
+            // 
+            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
+            // 
+            // fullNameDataGridViewTextBoxColumn1
+            // 
+            this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn1.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
+            this.fullNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // bindingSourceEventsDoesNotBelongToPlayer
+            // 
+            this.bindingSourceEventsDoesNotBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // numberDataGridViewTextBoxColumn
+            // 
+            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bindingSourceEventsBelongToPlayer
+            // 
+            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // AddMultipleEventsToPlayer
             // 
@@ -287,11 +288,11 @@
             this.groupBoxPlayerDetails.ResumeLayout(false);
             this.groupBoxPlayerDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsBelongToPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
             this.groupBoxNewEvents.ResumeLayout(false);
             this.groupBoxNewEvents.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNonPlayerEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
