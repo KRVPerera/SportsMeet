@@ -53,7 +53,22 @@ namespace SportsMeet.Models
 
         public String LastName { get; set; }
 
-        public Int64 Age { get; set; }
+        public Int64 Age
+        {
+            get { return _age;}
+            set
+            {
+                if (value >= 0)
+                {
+                    _age = value;
+                }
+                else
+                {
+                    _age = 0;
+                    throw new ArgumentOutOfRangeException("Age cannot be minus value");
+                }
+            }
+        }
 
         public byte Sex { get; set; }
 
@@ -95,5 +110,12 @@ namespace SportsMeet.Models
         }
 
         #endregion public overrides
+
+
+        #region private members
+
+        private Int64 _age;
+
+        #endregion
     }
 }
