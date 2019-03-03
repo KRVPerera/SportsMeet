@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMultipleEventsToPlayer));
             this.lblPlayerNumber = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,13 +41,18 @@
             this.newEventsListBox = new System.Windows.Forms.ListBox();
             this.groupBoxPlayerDetails = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxNewEvents = new System.Windows.Forms.GroupBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.playerevents = new System.Windows.Forms.Label();
             this.groupBoxPlayerDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
             this.groupBoxNewEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPlayerNumber
@@ -145,6 +151,7 @@
             // 
             this.groupBoxPlayerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxPlayerDetails.Controls.Add(this.playerevents);
             this.groupBoxPlayerDetails.Controls.Add(this.listBox1);
             this.groupBoxPlayerDetails.Controls.Add(this.newEventsListBox);
             this.groupBoxPlayerDetails.Controls.Add(this.lblPlayerNumber);
@@ -166,19 +173,17 @@
             // 
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.listBox1.DataSource = this.bindingSourceEventsBelongToPlayer;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "t1",
-            "t2",
-            "t3",
-            "t4",
-            "t5",
-            "t6"});
-            this.listBox1.Location = new System.Drawing.Point(0, 98);
+            this.listBox1.Location = new System.Drawing.Point(6, 98);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox1.Size = new System.Drawing.Size(344, 329);
             this.listBox1.TabIndex = 14;
+            // 
+            // bindingSourceEventsBelongToPlayer
+            // 
+            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // groupBoxNewEvents
             // 
@@ -192,6 +197,13 @@
             this.groupBoxNewEvents.TabIndex = 14;
             this.groupBoxNewEvents.TabStop = false;
             this.groupBoxNewEvents.Text = "New Events";
+            // 
+            // textBoxAddEventEventFilter
+            // 
+            this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(6, 16);
+            this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
+            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(353, 20);
+            this.textBoxAddEventEventFilter.TabIndex = 16;
             // 
             // listBox2
             // 
@@ -211,30 +223,33 @@
             this.listBox2.Size = new System.Drawing.Size(353, 368);
             this.listBox2.TabIndex = 15;
             // 
-            // textBoxAddEventEventFilter
-            // 
-            this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(6, 16);
-            this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
-            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(353, 20);
-            this.textBoxAddEventEventFilter.TabIndex = 16;
-            // 
             // btnAddEventsToPlayer
             // 
-            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(371, 167);
+            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(371, 251);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
             this.btnAddEventsToPlayer.Size = new System.Drawing.Size(46, 23);
             this.btnAddEventsToPlayer.TabIndex = 15;
             this.btnAddEventsToPlayer.Text = "<<";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
+            this.btnAddEventsToPlayer.Click += new System.EventHandler(this.btnAddEventsToPlayer_Click);
             // 
             // btnRemoveEventFromPlayer
             // 
-            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(370, 214);
+            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(370, 301);
             this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
             this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(46, 23);
             this.btnRemoveEventFromPlayer.TabIndex = 16;
             this.btnRemoveEventFromPlayer.Text = ">>";
             this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
+            // 
+            // playerevents
+            // 
+            this.playerevents.AutoSize = true;
+            this.playerevents.Location = new System.Drawing.Point(125, 82);
+            this.playerevents.Name = "playerevents";
+            this.playerevents.Size = new System.Drawing.Size(107, 13);
+            this.playerevents.TabIndex = 15;
+            this.playerevents.Text = "Current player events";
             // 
             // AddMultipleEventsToPlayer
             // 
@@ -248,10 +263,13 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddMultipleEventsToPlayer";
             this.Text = "Add Player to Events";
+            this.Load += new System.EventHandler(this.AddMultipleEventsToPlayer_Load);
             this.groupBoxPlayerDetails.ResumeLayout(false);
             this.groupBoxPlayerDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
             this.groupBoxNewEvents.ResumeLayout(false);
             this.groupBoxNewEvents.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,5 +292,8 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button btnAddEventsToPlayer;
         private System.Windows.Forms.Button btnRemoveEventFromPlayer;
+        private System.Windows.Forms.BindingSource bindingSourceEventsDoesNotBelongToPlayer;
+        private System.Windows.Forms.BindingSource bindingSourceEventsBelongToPlayer;
+        private System.Windows.Forms.Label playerevents;
     }
 }

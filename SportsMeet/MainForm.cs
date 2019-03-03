@@ -79,70 +79,21 @@ namespace SportsMeet
 
                     if (checkBoxAddtoanEvent.Checked)
                     {
-                        Event currentEvent = DataBase.GetEventByNumber(cbxEvent.Text.Trim());
-
-                        if (currentEvent != null)
+                        Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
+                        if (existingPlayer != null)
                         {
-                            if (!PlayersTab.AddPlayerToEvent(result.Item2, currentEvent))
-                            {
-                                return;
-                            }
+                            Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
+                            eventForm.ShowDialog();
+                            // TODO get event Form status
                         }
                         else
                         {
-                            return;
+                            // TODO: update status bar to player not found
                         }
+                        CleanupPlayerTabTextBoxes();
                     }
-
-                    CleanupPlayerTabTextBoxes();
                 }
             }
-        }
-
-        private void tbPlayerSearch_TextChanged(object sender, EventArgs e)
-        {
-//            var textbox = sender as TextBox;
-//            {
-//                String searchString = textbox.Text.Trim();
-//
-//                if (searchString != Resources.DefaultSearchString)
-//                {
-//                    var playerList = DataBase.LoadPlayers();
-//                    var myRegex = new Regex(@"^" + searchString + ".*$");
-//                    IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-//                    List<Player> players = result.ToList();
-//
-//                    if (players.Count > 0 && checkBoxPlayerAutoFilter.Checked)
-//                    {
-//                        bindingSourcePlayers.DataSource = players;
-//                        bindingSourcePlayers.ResetBindings(false);
-//                    }
-//
-//                    if (players.Count == 1)
-//                    {
-//                        Player searchMe = new Player(searchString);
-//                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
-//                        if (searchByNumber != null)
-//                        {
-//                            btnAddEventsToPlayer.Enabled = true;
-//                            btnPlayerEdit.Enabled = true;
-//                            btnDeletePlayer.Enabled = true;
-//                        }
-//                        else
-//                        {
-//                            btnAddEventsToPlayer.Enabled = false;
-//                            btnPlayerEdit.Enabled = false;
-//                            btnDeletePlayer.Enabled = false;
-//                        }
-//                    }
-//                    else
-//                    {
-//                        btnAddEventsToPlayer.Enabled = false;
-//                        btnPlayerEdit.Enabled = false;
-//                        btnDeletePlayer.Enabled = false;
-//                    }
-//                }
-//            }
         }
 
         private void toolStripButtonAbout_Click(object sender, EventArgs e)
@@ -396,18 +347,6 @@ namespace SportsMeet
             }
         }
 
-        private void cbxEvent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var cbx = sender as ComboBox;
-            if (cbx == null) return;
-            Event searchedEvent = DataBase.GetEventByNumber(cbx.Text);
-            if (searchedEvent != null)
-            {
-                lblAgeUnderValue.Text = searchedEvent.AgeLimit.ToString();
-                labelEventNamePlayerstab.Text = searchedEvent.Name;
-            }
-        }
-
         private void EventsNumberTextChanged(object sender, EventArgs e)
         {
             var textBox = sender as TextBox;
@@ -459,46 +398,6 @@ namespace SportsMeet
                 comboBoxEventsSex.Text.Trim()))
             {
                 LoadEventList();
-            }
-        }
-
-        private void checkBoxHideEvent_CheckedChanged(object sender, EventArgs e)
-        {
-            var checkBoxAddEvent = sender as CheckBox;
-            if (checkBoxAddEvent == null) return;
-
-            if (checkBoxAddEvent.Checked)
-            {
-                groupBoxFirstEvent.Visible = true;
-            }
-            else
-            {
-                groupBoxFirstEvent.Visible = false;
-                labelEventNamePlayerstab.Text = "";
-                lblAgeUnderValue.Text = "0";
-                foreach (Control ctr in checkBoxAddEvent.Controls)
-                {
-                    if (ctr is TextBox)
-                    {
-                        ctr.Text = "";
-                    }
-                    else if (ctr is CheckedListBox)
-                    {
-                        CheckedListBox clb = (CheckedListBox)ctr;
-                        foreach (int checkedItemIndex in clb.CheckedIndices)
-                        {
-                            clb.SetItemChecked(checkedItemIndex, false);
-                        }
-                    }
-                    else if (ctr is CheckBox)
-                    {
-                        ((CheckBox)ctr).Checked = false;
-                    }
-                    else if (ctr is ComboBox)
-                    {
-                        ((ComboBox)ctr).SelectedIndex = 0;
-                    }
-                }
             }
         }
 
@@ -673,7 +572,6 @@ namespace SportsMeet
             }
             else
             {
-
                 long districtId = 0;
                 District district = DataBase.GetDistrictByName(cbxDistrict.Text);
                 if (district != null)

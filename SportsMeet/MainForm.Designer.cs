@@ -46,15 +46,7 @@ namespace SportsMeet
             this.textBoxPlayerSearch = new System.Windows.Forms.TextBox();
             this.checkBoxDeleteSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxLoadSelection = new System.Windows.Forms.CheckBox();
-            this.groupBoxFirstEvent = new System.Windows.Forms.GroupBox();
-            this.lblEventNumber = new System.Windows.Forms.Label();
-            this.lblEvent = new System.Windows.Forms.Label();
-            this.checkBoxAddToMoreEvents = new System.Windows.Forms.CheckBox();
-            this.lblAgeUnder = new System.Windows.Forms.Label();
-            this.cbxEvent = new System.Windows.Forms.ComboBox();
             this.bindingSourceEvents = new System.Windows.Forms.BindingSource(this.components);
-            this.labelEventNamePlayerstab = new System.Windows.Forms.Label();
-            this.lblAgeUnderValue = new System.Windows.Forms.Label();
             this.checkBoxAddtoanEvent = new System.Windows.Forms.CheckBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnPlayerEdit = new System.Windows.Forms.Button();
@@ -146,7 +138,6 @@ namespace SportsMeet
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
-            this.groupBoxFirstEvent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePlayers)).BeginInit();
@@ -193,7 +184,6 @@ namespace SportsMeet
             this.tbPlayers.Controls.Add(this.textBoxPlayerSearch);
             this.tbPlayers.Controls.Add(this.checkBoxDeleteSelection);
             this.tbPlayers.Controls.Add(this.checkBoxLoadSelection);
-            this.tbPlayers.Controls.Add(this.groupBoxFirstEvent);
             this.tbPlayers.Controls.Add(this.checkBoxAddtoanEvent);
             this.tbPlayers.Controls.Add(this.btnAddEventsToPlayer);
             this.tbPlayers.Controls.Add(this.btnPlayerEdit);
@@ -264,98 +254,10 @@ namespace SportsMeet
             this.checkBoxLoadSelection.UseVisualStyleBackColor = true;
             this.checkBoxLoadSelection.CheckedChanged += new System.EventHandler(this.checkBoxLoadSelection_CheckedChanged);
             // 
-            // groupBoxFirstEvent
-            // 
-            this.groupBoxFirstEvent.Controls.Add(this.lblEventNumber);
-            this.groupBoxFirstEvent.Controls.Add(this.lblEvent);
-            this.groupBoxFirstEvent.Controls.Add(this.checkBoxAddToMoreEvents);
-            this.groupBoxFirstEvent.Controls.Add(this.lblAgeUnder);
-            this.groupBoxFirstEvent.Controls.Add(this.cbxEvent);
-            this.groupBoxFirstEvent.Controls.Add(this.labelEventNamePlayerstab);
-            this.groupBoxFirstEvent.Controls.Add(this.lblAgeUnderValue);
-            this.groupBoxFirstEvent.Location = new System.Drawing.Point(21, 314);
-            this.groupBoxFirstEvent.Name = "groupBoxFirstEvent";
-            this.groupBoxFirstEvent.Size = new System.Drawing.Size(362, 122);
-            this.groupBoxFirstEvent.TabIndex = 35;
-            this.groupBoxFirstEvent.TabStop = false;
-            this.groupBoxFirstEvent.Text = "Event";
-            this.groupBoxFirstEvent.Visible = false;
-            // 
-            // lblEventNumber
-            // 
-            this.lblEventNumber.AutoSize = true;
-            this.lblEventNumber.Location = new System.Drawing.Point(7, 36);
-            this.lblEventNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEventNumber.Name = "lblEventNumber";
-            this.lblEventNumber.Size = new System.Drawing.Size(75, 13);
-            this.lblEventNumber.TabIndex = 19;
-            this.lblEventNumber.Text = "Event Number";
-            // 
-            // lblEvent
-            // 
-            this.lblEvent.AutoSize = true;
-            this.lblEvent.Location = new System.Drawing.Point(7, 64);
-            this.lblEvent.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEvent.Name = "lblEvent";
-            this.lblEvent.Size = new System.Drawing.Size(35, 13);
-            this.lblEvent.TabIndex = 20;
-            this.lblEvent.Text = "Event";
-            // 
-            // checkBoxAddToMoreEvents
-            // 
-            this.checkBoxAddToMoreEvents.AutoSize = true;
-            this.checkBoxAddToMoreEvents.Location = new System.Drawing.Point(238, 91);
-            this.checkBoxAddToMoreEvents.Name = "checkBoxAddToMoreEvents";
-            this.checkBoxAddToMoreEvents.Size = new System.Drawing.Size(118, 17);
-            this.checkBoxAddToMoreEvents.TabIndex = 9;
-            this.checkBoxAddToMoreEvents.Text = "Add to more events";
-            this.checkBoxAddToMoreEvents.UseVisualStyleBackColor = true;
-            // 
-            // lblAgeUnder
-            // 
-            this.lblAgeUnder.AutoSize = true;
-            this.lblAgeUnder.Location = new System.Drawing.Point(7, 95);
-            this.lblAgeUnder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAgeUnder.Name = "lblAgeUnder";
-            this.lblAgeUnder.Size = new System.Drawing.Size(58, 13);
-            this.lblAgeUnder.TabIndex = 17;
-            this.lblAgeUnder.Text = "Age Under";
-            // 
-            // cbxEvent
-            // 
-            this.cbxEvent.DataSource = this.bindingSourceEvents;
-            this.cbxEvent.DisplayMember = "Number";
-            this.cbxEvent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxEvent.FormattingEnabled = true;
-            this.cbxEvent.Location = new System.Drawing.Point(106, 33);
-            this.cbxEvent.Margin = new System.Windows.Forms.Padding(4);
-            this.cbxEvent.Name = "cbxEvent";
-            this.cbxEvent.Size = new System.Drawing.Size(180, 21);
-            this.cbxEvent.TabIndex = 8;
-            this.cbxEvent.SelectedIndexChanged += new System.EventHandler(this.cbxEvent_SelectedIndexChanged);
-            // 
             // bindingSourceEvents
             // 
             this.bindingSourceEvents.DataSource = typeof(SportsMeet.Models.Event);
             this.bindingSourceEvents.Sort = "Number";
-            // 
-            // labelEventNamePlayerstab
-            // 
-            this.labelEventNamePlayerstab.AutoSize = true;
-            this.labelEventNamePlayerstab.Location = new System.Drawing.Point(103, 64);
-            this.labelEventNamePlayerstab.Name = "labelEventNamePlayerstab";
-            this.labelEventNamePlayerstab.Size = new System.Drawing.Size(70, 13);
-            this.labelEventNamePlayerstab.TabIndex = 30;
-            this.labelEventNamePlayerstab.Text = "dummy event";
-            // 
-            // lblAgeUnderValue
-            // 
-            this.lblAgeUnderValue.AutoSize = true;
-            this.lblAgeUnderValue.Location = new System.Drawing.Point(103, 95);
-            this.lblAgeUnderValue.Name = "lblAgeUnderValue";
-            this.lblAgeUnderValue.Size = new System.Drawing.Size(13, 13);
-            this.lblAgeUnderValue.TabIndex = 28;
-            this.lblAgeUnderValue.Text = "0";
             // 
             // checkBoxAddtoanEvent
             // 
@@ -366,7 +268,6 @@ namespace SportsMeet
             this.checkBoxAddtoanEvent.TabIndex = 7;
             this.checkBoxAddtoanEvent.Text = "Add to an Event";
             this.checkBoxAddtoanEvent.UseVisualStyleBackColor = true;
-            this.checkBoxAddtoanEvent.CheckedChanged += new System.EventHandler(this.checkBoxHideEvent_CheckedChanged);
             // 
             // btnAddEventsToPlayer
             // 
@@ -1251,8 +1152,6 @@ namespace SportsMeet
             this.tcMainForm.ResumeLayout(false);
             this.tbPlayers.ResumeLayout(false);
             this.tbPlayers.PerformLayout();
-            this.groupBoxFirstEvent.ResumeLayout(false);
-            this.groupBoxFirstEvent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePlayers)).EndInit();
@@ -1297,11 +1196,7 @@ namespace SportsMeet
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.Label lblSchool;
         private System.Windows.Forms.ComboBox cbxSchool;
-        private System.Windows.Forms.Label lblAgeUnder;
         private System.Windows.Forms.TabPage tbSchool;
-        private System.Windows.Forms.ComboBox cbxEvent;
-        private System.Windows.Forms.Label lblEvent;
-        private System.Windows.Forms.Label lblEventNumber;
         private System.Windows.Forms.Label lblDistrict;
         private System.Windows.Forms.ComboBox cbxDistrict;
         private System.Windows.Forms.Label lblNewEventsName;
@@ -1324,7 +1219,6 @@ namespace SportsMeet
         private NumericUpDown numericUpDownAge;
         private Label labelEventsAgeLimit;
         private DataGridView dataGridViewPlayers;
-        private Label lblAgeUnderValue;
         private Button btnDeletePlayer;
         private ImageList imageListForTabs;
         private BindingSource bindingSourcePlayers;
@@ -1359,12 +1253,9 @@ namespace SportsMeet
         private Button btnEventDelete;
         private ToolStripLabel toolStripLabel2;
         private ToolStripLabel toolStripLabelTotalEvents;
-        private Label labelEventNamePlayerstab;
         private Button btnPlayerEdit;
-        private CheckBox checkBoxAddToMoreEvents;
         private Button btnAddEventsToPlayer;
         private CheckBox checkBoxAddtoanEvent;
-        private GroupBox groupBoxFirstEvent;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel statusLabel;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
