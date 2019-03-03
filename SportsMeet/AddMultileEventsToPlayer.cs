@@ -62,7 +62,6 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
-
         }
 
         private void AddMultipleEventsToPlayer_Load(object sender, EventArgs e)

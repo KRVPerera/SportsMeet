@@ -38,21 +38,26 @@
             this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerGender = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
-            this.newEventsListBox = new System.Windows.Forms.ListBox();
             this.groupBoxPlayerDetails = new System.Windows.Forms.GroupBox();
+            this.dataGridViewEventsBelongToPlayer = new System.Windows.Forms.DataGridView();
             this.playerevents = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxNewEvents = new System.Windows.Forms.GroupBox();
+            this.dataGridViewNonPlayerEvents = new System.Windows.Forms.DataGridView();
             this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
-            this.listBoxNonPlayerEvents = new System.Windows.Forms.ListBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxPlayerDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsBelongToPlayer)).BeginInit();
             this.groupBoxNewEvents.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNonPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPlayerNumber
@@ -131,29 +136,12 @@
             this.labelAddEventsPlayerAge.TabIndex = 10;
             this.labelAddEventsPlayerAge.Text = "label7";
             // 
-            // newEventsListBox
-            // 
-            this.newEventsListBox.FormattingEnabled = true;
-            this.newEventsListBox.Items.AddRange(new object[] {
-            "t1",
-            "t2",
-            "t3",
-            "t4",
-            "t5",
-            "t6"});
-            this.newEventsListBox.Location = new System.Drawing.Point(76, 155);
-            this.newEventsListBox.Name = "newEventsListBox";
-            this.newEventsListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.newEventsListBox.Size = new System.Drawing.Size(207, 134);
-            this.newEventsListBox.TabIndex = 11;
-            // 
             // groupBoxPlayerDetails
             // 
             this.groupBoxPlayerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxPlayerDetails.Controls.Add(this.dataGridViewEventsBelongToPlayer);
             this.groupBoxPlayerDetails.Controls.Add(this.playerevents);
-            this.groupBoxPlayerDetails.Controls.Add(this.listBox1);
-            this.groupBoxPlayerDetails.Controls.Add(this.newEventsListBox);
             this.groupBoxPlayerDetails.Controls.Add(this.lblPlayerNumber);
             this.groupBoxPlayerDetails.Controls.Add(this.label1);
             this.groupBoxPlayerDetails.Controls.Add(this.labelAddEventsPlayerAge);
@@ -169,6 +157,22 @@
             this.groupBoxPlayerDetails.TabStop = false;
             this.groupBoxPlayerDetails.Text = "Player Details";
             // 
+            // dataGridViewEventsBelongToPlayer
+            // 
+            this.dataGridViewEventsBelongToPlayer.AllowUserToAddRows = false;
+            this.dataGridViewEventsBelongToPlayer.AllowUserToDeleteRows = false;
+            this.dataGridViewEventsBelongToPlayer.AutoGenerateColumns = false;
+            this.dataGridViewEventsBelongToPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEventsBelongToPlayer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.numberDataGridViewTextBoxColumn,
+            this.fullNameDataGridViewTextBoxColumn});
+            this.dataGridViewEventsBelongToPlayer.DataSource = this.bindingSourceEventsBelongToPlayer;
+            this.dataGridViewEventsBelongToPlayer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewEventsBelongToPlayer.Location = new System.Drawing.Point(6, 98);
+            this.dataGridViewEventsBelongToPlayer.Name = "dataGridViewEventsBelongToPlayer";
+            this.dataGridViewEventsBelongToPlayer.Size = new System.Drawing.Size(340, 328);
+            this.dataGridViewEventsBelongToPlayer.TabIndex = 18;
+            // 
             // playerevents
             // 
             this.playerevents.AutoSize = true;
@@ -178,28 +182,12 @@
             this.playerevents.TabIndex = 15;
             this.playerevents.Text = "Current player events";
             // 
-            // listBox1
-            // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.DataSource = this.bindingSourceEventsBelongToPlayer;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 98);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(344, 329);
-            this.listBox1.TabIndex = 14;
-            // 
-            // bindingSourceEventsBelongToPlayer
-            // 
-            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
-            // 
             // groupBoxNewEvents
             // 
             this.groupBoxNewEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxNewEvents.Controls.Add(this.dataGridViewNonPlayerEvents);
             this.groupBoxNewEvents.Controls.Add(this.textBoxAddEventEventFilter);
-            this.groupBoxNewEvents.Controls.Add(this.listBoxNonPlayerEvents);
             this.groupBoxNewEvents.Location = new System.Drawing.Point(423, 12);
             this.groupBoxNewEvents.Name = "groupBoxNewEvents";
             this.groupBoxNewEvents.Size = new System.Drawing.Size(365, 433);
@@ -207,24 +195,28 @@
             this.groupBoxNewEvents.TabStop = false;
             this.groupBoxNewEvents.Text = "New Events";
             // 
+            // dataGridViewNonPlayerEvents
+            // 
+            this.dataGridViewNonPlayerEvents.AllowUserToAddRows = false;
+            this.dataGridViewNonPlayerEvents.AllowUserToDeleteRows = false;
+            this.dataGridViewNonPlayerEvents.AutoGenerateColumns = false;
+            this.dataGridViewNonPlayerEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewNonPlayerEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.numberDataGridViewTextBoxColumn1,
+            this.fullNameDataGridViewTextBoxColumn1});
+            this.dataGridViewNonPlayerEvents.DataSource = this.bindingSourceEventsDoesNotBelongToPlayer;
+            this.dataGridViewNonPlayerEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewNonPlayerEvents.Location = new System.Drawing.Point(6, 42);
+            this.dataGridViewNonPlayerEvents.Name = "dataGridViewNonPlayerEvents";
+            this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(353, 384);
+            this.dataGridViewNonPlayerEvents.TabIndex = 17;
+            // 
             // textBoxAddEventEventFilter
             // 
             this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(6, 16);
             this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
             this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(353, 20);
             this.textBoxAddEventEventFilter.TabIndex = 16;
-            // 
-            // listBoxNonPlayerEvents
-            // 
-            this.listBoxNonPlayerEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxNonPlayerEvents.DataSource = this.bindingSourceEventsDoesNotBelongToPlayer;
-            this.listBoxNonPlayerEvents.FormattingEnabled = true;
-            this.listBoxNonPlayerEvents.Location = new System.Drawing.Point(6, 56);
-            this.listBoxNonPlayerEvents.Name = "listBoxNonPlayerEvents";
-            this.listBoxNonPlayerEvents.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxNonPlayerEvents.Size = new System.Drawing.Size(353, 368);
-            this.listBoxNonPlayerEvents.TabIndex = 15;
             // 
             // btnAddEventsToPlayer
             // 
@@ -245,9 +237,39 @@
             this.btnRemoveEventFromPlayer.Text = ">>";
             this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
             // 
+            // numberDataGridViewTextBoxColumn1
+            // 
+            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
+            // 
+            // fullNameDataGridViewTextBoxColumn1
+            // 
+            this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn1.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
+            this.fullNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // bindingSourceEventsDoesNotBelongToPlayer
             // 
             this.bindingSourceEventsDoesNotBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // numberDataGridViewTextBoxColumn
+            // 
+            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bindingSourceEventsBelongToPlayer
+            // 
+            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // AddMultipleEventsToPlayer
             // 
@@ -264,10 +286,12 @@
             this.Load += new System.EventHandler(this.AddMultipleEventsToPlayer_Load);
             this.groupBoxPlayerDetails.ResumeLayout(false);
             this.groupBoxPlayerDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsBelongToPlayer)).EndInit();
             this.groupBoxNewEvents.ResumeLayout(false);
             this.groupBoxNewEvents.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNonPlayerEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,16 +306,19 @@
         private System.Windows.Forms.Label labelAddEventsPlayerFullName;
         private System.Windows.Forms.Label labelAddEventsPlayerGender;
         private System.Windows.Forms.Label labelAddEventsPlayerAge;
-        private System.Windows.Forms.ListBox newEventsListBox;
         private System.Windows.Forms.GroupBox groupBoxPlayerDetails;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox groupBoxNewEvents;
         private System.Windows.Forms.TextBox textBoxAddEventEventFilter;
-        private System.Windows.Forms.ListBox listBoxNonPlayerEvents;
         private System.Windows.Forms.Button btnAddEventsToPlayer;
         private System.Windows.Forms.Button btnRemoveEventFromPlayer;
         private System.Windows.Forms.BindingSource bindingSourceEventsDoesNotBelongToPlayer;
         private System.Windows.Forms.BindingSource bindingSourceEventsBelongToPlayer;
         private System.Windows.Forms.Label playerevents;
+        private System.Windows.Forms.DataGridView dataGridViewNonPlayerEvents;
+        private System.Windows.Forms.DataGridView dataGridViewEventsBelongToPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn1;
     }
 }
