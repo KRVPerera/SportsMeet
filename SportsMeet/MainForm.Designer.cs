@@ -1031,6 +1031,7 @@ namespace SportsMeet
             this.dataGridViewFilteredPlayers.Name = "dataGridViewFilteredPlayers";
             this.dataGridViewFilteredPlayers.Size = new System.Drawing.Size(545, 478);
             this.dataGridViewFilteredPlayers.TabIndex = 3;
+            this.dataGridViewFilteredPlayers.TabStop = false;
             // 
             // numberDataGridViewTextBoxColumn3
             // 
