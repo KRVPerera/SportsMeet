@@ -44,6 +44,7 @@ namespace SportsMeet.Models
             return FullName;
         }
 
+        [Write(false)]
         public String FullName
         {
             get

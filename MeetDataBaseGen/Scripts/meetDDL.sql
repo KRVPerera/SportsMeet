@@ -48,7 +48,7 @@ CREATE TABLE PlayerEvents (
 
 	CONSTRAINT playerevent_to_players
     FOREIGN KEY (playerId)
-	REFERENCES Players (no) ON DELETE CASCADE ON UPDATE CASCADE,
+	REFERENCES Players (id) ON DELETE CASCADE ON UPDATE CASCADE,
 
     PRIMARY KEY (
         eventId,
