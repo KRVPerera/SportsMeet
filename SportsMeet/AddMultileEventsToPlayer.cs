@@ -26,6 +26,7 @@ namespace SportsMeet
             labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum)existingPlayer.Sex);
 
             LoadPlayerEvents();
+            LoadNonPlayerEvents();
         }
 
         private void LoadPlayerEvents()
@@ -39,6 +40,22 @@ namespace SportsMeet
                 {
                     bindingSourceEventsBelongToPlayer.DataSource = eventList;
                     bindingSourceEventsBelongToPlayer.ResetBindings(false);
+                }
+            }
+        }
+
+        private void LoadNonPlayerEvents()
+        {
+            PlayerEvent searchPlayerEvents = new PlayerEvent(0, CurrentPlayer.Id);
+            List<long> eventIds = DataBase.GetPlayerEventsNotByPlayer(searchPlayerEvents);
+            Console.WriteLine(eventIds);
+            if (eventIds.Count > 0)
+            {
+                List<Event> eventList = DataBase.GetEventsForEventIds(eventIds);
+                if (eventList.Any())
+                {
+                    bindingSourceEventsDoesNotBelongToPlayer.DataSource = eventList;
+                    bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
                 }
             }
         }

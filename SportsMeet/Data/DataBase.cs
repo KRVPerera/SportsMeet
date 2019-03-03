@@ -65,6 +65,20 @@ namespace SportsMeet.Data
             return output;
         }
 
+        internal static List<Event> GetEventsForEventIds(List<long> eventIds)
+        {
+            List<Event> eventList = new List<Event>();
+            foreach (var eventId in eventIds)
+            {
+                Event searchedEvent = GetEventById(eventId);
+                if (searchedEvent != null)
+                {
+                    eventList.Add(searchedEvent);
+                }
+            }
+            return eventList;
+        }
+
         #endregion Players
 
         #region Schools
@@ -262,5 +276,12 @@ namespace SportsMeet.Data
         }
 
         #endregion PlayerEvents
+
+        public static List<long> GetPlayerEventsNotByPlayer(PlayerEvent searchPlayerEvents)
+        {
+            string query = "select id from Events where id not IN (select eventId from PlayerEvents where playerId = @PlayerId);";
+            IEnumerable<long> result = DBConnection.Instance.Connection.Query<long>(query, searchPlayerEvents);
+            return result.ToList();
+        }
     }
 }

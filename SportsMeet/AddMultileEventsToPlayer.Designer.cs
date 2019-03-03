@@ -40,15 +40,15 @@
             this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
             this.newEventsListBox = new System.Windows.Forms.ListBox();
             this.groupBoxPlayerDetails = new System.Windows.Forms.GroupBox();
+            this.playerevents = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxNewEvents = new System.Windows.Forms.GroupBox();
             this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxNonPlayerEvents = new System.Windows.Forms.ListBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
             this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
-            this.playerevents = new System.Windows.Forms.Label();
             this.groupBoxPlayerDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
             this.groupBoxNewEvents.SuspendLayout();
@@ -169,6 +169,15 @@
             this.groupBoxPlayerDetails.TabStop = false;
             this.groupBoxPlayerDetails.Text = "Player Details";
             // 
+            // playerevents
+            // 
+            this.playerevents.AutoSize = true;
+            this.playerevents.Location = new System.Drawing.Point(125, 82);
+            this.playerevents.Name = "playerevents";
+            this.playerevents.Size = new System.Drawing.Size(107, 13);
+            this.playerevents.TabIndex = 15;
+            this.playerevents.Text = "Current player events";
+            // 
             // listBox1
             // 
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -190,7 +199,7 @@
             this.groupBoxNewEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxNewEvents.Controls.Add(this.textBoxAddEventEventFilter);
-            this.groupBoxNewEvents.Controls.Add(this.listBox2);
+            this.groupBoxNewEvents.Controls.Add(this.listBoxNonPlayerEvents);
             this.groupBoxNewEvents.Location = new System.Drawing.Point(423, 12);
             this.groupBoxNewEvents.Name = "groupBoxNewEvents";
             this.groupBoxNewEvents.Size = new System.Drawing.Size(365, 433);
@@ -205,23 +214,17 @@
             this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(353, 20);
             this.textBoxAddEventEventFilter.TabIndex = 16;
             // 
-            // listBox2
+            // listBoxNonPlayerEvents
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxNonPlayerEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "t1",
-            "t2",
-            "t3",
-            "t4",
-            "t5",
-            "t6"});
-            this.listBox2.Location = new System.Drawing.Point(6, 56);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox2.Size = new System.Drawing.Size(353, 368);
-            this.listBox2.TabIndex = 15;
+            this.listBoxNonPlayerEvents.DataSource = this.bindingSourceEventsDoesNotBelongToPlayer;
+            this.listBoxNonPlayerEvents.FormattingEnabled = true;
+            this.listBoxNonPlayerEvents.Location = new System.Drawing.Point(6, 56);
+            this.listBoxNonPlayerEvents.Name = "listBoxNonPlayerEvents";
+            this.listBoxNonPlayerEvents.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listBoxNonPlayerEvents.Size = new System.Drawing.Size(353, 368);
+            this.listBoxNonPlayerEvents.TabIndex = 15;
             // 
             // btnAddEventsToPlayer
             // 
@@ -242,14 +245,9 @@
             this.btnRemoveEventFromPlayer.Text = ">>";
             this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
             // 
-            // playerevents
+            // bindingSourceEventsDoesNotBelongToPlayer
             // 
-            this.playerevents.AutoSize = true;
-            this.playerevents.Location = new System.Drawing.Point(125, 82);
-            this.playerevents.Name = "playerevents";
-            this.playerevents.Size = new System.Drawing.Size(107, 13);
-            this.playerevents.TabIndex = 15;
-            this.playerevents.Text = "Current player events";
+            this.bindingSourceEventsDoesNotBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // AddMultipleEventsToPlayer
             // 
@@ -289,7 +287,7 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.GroupBox groupBoxNewEvents;
         private System.Windows.Forms.TextBox textBoxAddEventEventFilter;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxNonPlayerEvents;
         private System.Windows.Forms.Button btnAddEventsToPlayer;
         private System.Windows.Forms.Button btnRemoveEventFromPlayer;
         private System.Windows.Forms.BindingSource bindingSourceEventsDoesNotBelongToPlayer;

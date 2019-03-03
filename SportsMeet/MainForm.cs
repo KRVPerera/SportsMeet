@@ -66,7 +66,7 @@ namespace SportsMeet
 
                 long schoolId = 0;
                 School school = DataBase.GetSchool(cbxSchool.Text);
-                if (district != null)
+                if (school != null)
                 {
                     schoolId = school.Id;
                 }

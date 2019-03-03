@@ -14,6 +14,10 @@ namespace SportsMeet.Models
             PlayerId = playerId;
         }
 
+        public PlayerEvent()
+        {
+        }
+
         public Int64 EventId { get; set; }
         public Int64 PlayerId { get; set; }
     }
