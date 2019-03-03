@@ -64,15 +64,14 @@ namespace SportsMeet
                     districtId = district.Id;
                 }
 
-                /*
                 long schoolId = 0;
-                School school = DataBase.GetSchoolByName(cbxDistrict.Text);
+                School school = DataBase.GetSchool(cbxSchool.Text);
                 if (district != null)
                 {
                     schoolId = school.Id;
-                }*/
+                }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), 0, districtId);
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)
                 {
@@ -652,7 +651,55 @@ namespace SportsMeet
 
         private void btnPlayerEdit_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(tbPlayerNumber.Text.Trim()))
+            {
+                MessageBox.Show("Invalid player number", "Invalid number", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            if (!Int32.TryParse(numericUpDownAge.Text, out var age))
+            {
+                MessageBox.Show("Please enter a valid age", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (String.IsNullOrEmpty(tbFirstName.Text.Trim()) || String.IsNullOrEmpty(tbLastName.Text.Trim()))
+            {
+                MessageBox.Show("Please enter both first name and last name.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (String.IsNullOrEmpty(cbxDistrict.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
 
+                long districtId = 0;
+                District district = DataBase.GetDistrictByName(cbxDistrict.Text);
+                if (district != null)
+                {
+                    districtId = district.Id;
+                }
+
+                long schoolId = 0;
+                School school = DataBase.GetSchool(cbxSchool.Text);
+                if (school != null)
+                {
+                    schoolId = school.Id;
+                }
+
+                string searchString = tbPlayerNumber.Text.Trim();
+                Player searchMe = new Player(searchString);
+                Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                if (searchByNumber != null)
+                {
+                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
+                    if (PlayersTab.SavePlayer(newPlayer))
+                    {
+                        LoadPlayerList();
+                    }
+                }
+            }
         }
 
         private void textBoxPlayerSearch_TextChanged(object sender, EventArgs e)
@@ -666,11 +713,9 @@ namespace SportsMeet
                     var playerList = DataBase.LoadPlayers();
                     var myRegex = new Regex(@"^" + searchString + ".*$");
                     IEnumerable<Player> result = playerList.Where(player => myRegex.IsMatch(player.Number));
-                    List<Player> players = result.ToList();
-
-                    if (players.Count > 0)
+                    if (result.Any())
                     {
-                        bindingSourcePlayers.DataSource = players;
+                        bindingSourcePlayers.DataSource = result.ToList();
                         bindingSourcePlayers.ResetBindings(false);
                     }
                 }

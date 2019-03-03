@@ -66,5 +66,10 @@ namespace SportsMeet.Utils
             }
             return true;
         }
+
+        public static bool SavePlayer(Player newPlayer)
+        {
+            return  DataBase.EditPlayer(newPlayer);
+        }
     }
 }
