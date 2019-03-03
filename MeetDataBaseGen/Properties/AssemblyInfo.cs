@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -8,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MeetDataBaseGen")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Synopsys Inc.")]
+[assembly: AssemblyCompany("Isuru and Rukshan")]
 [assembly: AssemblyProduct("MeetDataBaseGen")]
-[assembly: AssemblyCopyright("Copyright © Synopsys Inc. 2019")]
+[assembly: AssemblyCopyright("Copyright © Isuru and Rukshan 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

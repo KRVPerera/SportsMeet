@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SportsMeet.Models
 {
-    class PlayerEvent
+    internal class PlayerEvent
     {
-
         public PlayerEvent(Int64 eventId, Int64 playerId)
         {
             EventId = eventId;

@@ -1,11 +1,11 @@
-﻿using System;
-using SportsMeet.Data;
+﻿using SportsMeet.Data;
 using SportsMeet.Models;
+using System;
 using System.Windows.Forms;
 
 namespace SportsMeet.Utils
 {
-    class SchoolsTab
+    internal class SchoolsTab
     {
         public static bool AddSchool(String schoolName, bool editMode = false)
         {

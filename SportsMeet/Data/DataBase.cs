@@ -290,7 +290,5 @@ namespace SportsMeet.Data
         }
 
         #endregion PlayerEvents
-
-
     }
 }

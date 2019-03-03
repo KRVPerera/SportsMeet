@@ -55,7 +55,7 @@ namespace SportsMeet.Models
 
         public Int64 Age
         {
-            get { return _age;}
+            get { return _age; }
             set
             {
                 if (value >= 0)
@@ -80,8 +80,6 @@ namespace SportsMeet.Models
         public Int64 Id { get; set; }
 
         #endregion public properties
-
-
 
         #region public derived members
 
@@ -111,11 +109,10 @@ namespace SportsMeet.Models
 
         #endregion public overrides
 
-
         #region private members
 
         private Int64 _age;
 
-        #endregion
+        #endregion private members
     }
 }

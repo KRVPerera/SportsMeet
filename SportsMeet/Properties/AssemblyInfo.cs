@@ -1,6 +1,5 @@
-﻿using System.Resources;
-using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -9,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SportsMeet")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Synopsys Inc.")]
+[assembly: AssemblyCompany("Isuru and Rukshan")]
 [assembly: AssemblyProduct("SportsMeet")]
-[assembly: AssemblyCopyright("Copyright © Synopsys Inc. 2019")]
+[assembly: AssemblyCopyright("Copyright © Isuru and Rukshan 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,4 +35,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
-

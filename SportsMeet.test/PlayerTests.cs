@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq.Expressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SportsMeet.Models;
+using System;
 
 namespace SportsMeet.test
 {
@@ -16,13 +15,11 @@ namespace SportsMeet.test
             try
             {
                 newPlayer.Age = -2;
-
             }
             catch (ArgumentOutOfRangeException ex)
             {
                 // ok
             }
-
 
             Assert.IsTrue(0 == newPlayer.Age);
         }

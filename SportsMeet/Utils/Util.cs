@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SportsMeet.Models;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
-using SportsMeet.Models;
 
 namespace SportsMeet
 {

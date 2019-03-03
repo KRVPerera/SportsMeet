@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Text;
-using Dapper.Contrib.Extensions;
 
 namespace SportsMeet.Models
 {
@@ -16,7 +16,7 @@ namespace SportsMeet.Models
             Sex = sex;
             AgeLimit = agelimit;
         }
-        
+
         #endregion public constructors
 
         #region public members
@@ -32,7 +32,7 @@ namespace SportsMeet.Models
         [Write(false)]
         public String Gender
         {
-            get { return Util.SexEnumToSex((Util.SexEnum) Sex); }
+            get { return Util.SexEnumToSex((Util.SexEnum)Sex); }
         }
 
         public Int64 AgeLimit { get; set; }
@@ -52,7 +52,7 @@ namespace SportsMeet.Models
                 StringBuilder sb = new StringBuilder("U");
                 sb.Append(AgeLimit);
                 sb.Append(" ");
-                Util.SexEnum sexEnum = (Util.SexEnum) Sex;
+                Util.SexEnum sexEnum = (Util.SexEnum)Sex;
                 sb.Append(Util.SexEnumToSex(sexEnum));
                 sb.Append(" ");
                 sb.Append(Name);
