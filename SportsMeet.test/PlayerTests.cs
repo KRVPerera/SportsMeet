@@ -1,13 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SportsMeet.Models;
+﻿using SportsMeet.Models;
 using System;
+using NUnit.Framework;
 
 namespace SportsMeet.test
 {
-    [TestClass]
     public class PlayerTests
     {
-        [TestMethod]
+        [Test]
         public void TestInvalidAgeForPlayers()
         {
             Player newPlayer = new Player(123);
@@ -24,7 +23,7 @@ namespace SportsMeet.test
             Assert.IsTrue(0 == newPlayer.Age);
         }
 
-        [TestMethod]
+        [Test]
         public void TestCorrctAgeForPlayers()
         {
             Player newPlayer = new Player(123);

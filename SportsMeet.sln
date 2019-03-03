@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsMeet", "SportsMeet\Sp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetDataBaseGen", "MeetDataBaseGen\MeetDataBaseGen.csproj", "{E15D43E9-F99B-4006-8FBC-885FB5999DF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsMeet.test", "SportsMeet.test\SportsMeet.test.csproj", "{45981585-FC5D-4A92-9B08-5870301010F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportsMeet.test", "SportsMeet.test\SportsMeet.test.csproj", "{80D5EEB6-1184-461B-A271-66E971077F67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,12 +31,12 @@ Global
 		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E15D43E9-F99B-4006-8FBC-885FB5999DF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.All|Any CPU.ActiveCfg = Release|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.All|Any CPU.Build.0 = Release|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45981585-FC5D-4A92-9B08-5870301010F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.All|Any CPU.ActiveCfg = Release|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.All|Any CPU.Build.0 = Release|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D5EEB6-1184-461B-A271-66E971077F67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
