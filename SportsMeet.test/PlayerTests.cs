@@ -16,7 +16,7 @@ namespace SportsMeet.test
             {
                 newPlayer.Age = -2;
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (ArgumentOutOfRangeException)
             {
                 // ok
             }
