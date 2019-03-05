@@ -298,8 +298,6 @@ namespace SportsMeet.Data
             return result.ToList();
         }
 
-        
-
         #endregion PlayerEvents
     }
 }

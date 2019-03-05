@@ -112,6 +112,11 @@ namespace SportsMeet
             this.dataGridViewEventsOfPlaye = new System.Windows.Forms.DataGridView();
             this.bindingSourceFilteredEventsOnPlayers = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridPlayerFiltering = new System.Windows.Forms.DataGridView();
+            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblFilterByPlayerEvents = new System.Windows.Forms.Label();
             this.lblFilterByPlayerDistrict = new System.Windows.Forms.Label();
             this.lblFilterByPlayerSchool = new System.Windows.Forms.Label();
@@ -119,11 +124,6 @@ namespace SportsMeet
             this.tbFilterByPlayersNumber = new System.Windows.Forms.TextBox();
             this.tbFilterByEvent = new System.Windows.Forms.TabPage();
             this.dataGridViewFilteredPlayers = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceFilteredPlayersOnEvent = new System.Windows.Forms.BindingSource(this.components);
             this.btnFilterByEventFilter = new System.Windows.Forms.Button();
             this.lblFIlterByEventPlayers = new System.Windows.Forms.Label();
@@ -151,16 +151,9 @@ namespace SportsMeet
             this.lastNameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ageDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sexDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.schoolIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.districtIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -873,6 +866,7 @@ namespace SportsMeet
             // 
             // tbFilterByPlayer
             // 
+            this.tbFilterByPlayer.Controls.Add(this.label3);
             this.tbFilterByPlayer.Controls.Add(this.label2);
             this.tbFilterByPlayer.Controls.Add(this.label1);
             this.tbFilterByPlayer.Controls.Add(this.lblFilterByPlayerDistrictOutput);
@@ -907,7 +901,7 @@ namespace SportsMeet
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(352, 76);
+            this.label1.Location = new System.Drawing.Point(346, 76);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
@@ -950,7 +944,7 @@ namespace SportsMeet
             this.dataGridViewEventsOfPlaye.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEventsOfPlaye.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Number,
-            this.FullName});
+            this.fullNameDataGridViewTextBoxColumn});
             this.dataGridViewEventsOfPlaye.DataSource = this.bindingSourceFilteredEventsOnPlayers;
             this.dataGridViewEventsOfPlaye.Location = new System.Drawing.Point(28, 92);
             this.dataGridViewEventsOfPlaye.Name = "dataGridViewEventsOfPlaye";
@@ -978,11 +972,41 @@ namespace SportsMeet
             this.ageDataGridViewTextBoxColumn1,
             this.sexDataGridViewTextBoxColumn});
             this.dataGridPlayerFiltering.DataSource = this.bindingSourcePlayers;
-            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(355, 92);
+            this.dataGridPlayerFiltering.Location = new System.Drawing.Point(352, 92);
             this.dataGridPlayerFiltering.Name = "dataGridPlayerFiltering";
             this.dataGridPlayerFiltering.Size = new System.Drawing.Size(543, 401);
             this.dataGridPlayerFiltering.TabIndex = 6;
             this.dataGridPlayerFiltering.TabStop = false;
+            // 
+            // numberDataGridViewTextBoxColumn1
+            // 
+            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
+            // 
+            // firstNameDataGridViewTextBoxColumn1
+            // 
+            this.firstNameDataGridViewTextBoxColumn1.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn1.HeaderText = "First Name";
+            this.firstNameDataGridViewTextBoxColumn1.Name = "firstNameDataGridViewTextBoxColumn1";
+            // 
+            // lastNameDataGridViewTextBoxColumn1
+            // 
+            this.lastNameDataGridViewTextBoxColumn1.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn1.HeaderText = "Last Name";
+            this.lastNameDataGridViewTextBoxColumn1.Name = "lastNameDataGridViewTextBoxColumn1";
+            // 
+            // ageDataGridViewTextBoxColumn1
+            // 
+            this.ageDataGridViewTextBoxColumn1.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn1.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn1.Name = "ageDataGridViewTextBoxColumn1";
+            // 
+            // sexDataGridViewTextBoxColumn
+            // 
+            this.sexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
+            this.sexDataGridViewTextBoxColumn.HeaderText = "Gender";
+            this.sexDataGridViewTextBoxColumn.Name = "sexDataGridViewTextBoxColumn";
             // 
             // lblFilterByPlayerEvents
             // 
@@ -1029,7 +1053,7 @@ namespace SportsMeet
             this.tbFilterByPlayersNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFilterByPlayersNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.tbFilterByPlayersNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(355, 31);
+            this.tbFilterByPlayersNumber.Location = new System.Drawing.Point(349, 28);
             this.tbFilterByPlayersNumber.Margin = new System.Windows.Forms.Padding(6);
             this.tbFilterByPlayersNumber.Name = "tbFilterByPlayersNumber";
             this.tbFilterByPlayersNumber.Size = new System.Drawing.Size(546, 20);
@@ -1058,55 +1082,17 @@ namespace SportsMeet
             this.dataGridViewFilteredPlayers.AutoGenerateColumns = false;
             this.dataGridViewFilteredPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewFilteredPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
             this.numberDataGridViewTextBoxColumn3,
             this.firstNameDataGridViewTextBoxColumn2,
             this.lastNameDataGridViewTextBoxColumn2,
             this.ageDataGridViewTextBoxColumn2,
-            this.sexDataGridViewTextBoxColumn2,
-            this.schoolIdDataGridViewTextBoxColumn1,
-            this.districtIdDataGridViewTextBoxColumn1,
-            this.idDataGridViewTextBoxColumn1});
+            this.sexDataGridViewTextBoxColumn2});
             this.dataGridViewFilteredPlayers.DataSource = this.bindingSourceFilteredPlayersOnEvent;
-            this.dataGridViewFilteredPlayers.Location = new System.Drawing.Point(334, 27);
+            this.dataGridViewFilteredPlayers.Location = new System.Drawing.Point(351, 27);
             this.dataGridViewFilteredPlayers.Name = "dataGridViewFilteredPlayers";
-            this.dataGridViewFilteredPlayers.Size = new System.Drawing.Size(564, 460);
+            this.dataGridViewFilteredPlayers.Size = new System.Drawing.Size(547, 460);
             this.dataGridViewFilteredPlayers.TabIndex = 3;
             this.dataGridViewFilteredPlayers.TabStop = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Number";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Number";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FirstName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FirstName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "LastName";
-            this.dataGridViewTextBoxColumn3.HeaderText = "LastName";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Sex";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Sex";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Age";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Age";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // bindingSourceFilteredPlayersOnEvent
             // 
@@ -1114,7 +1100,7 @@ namespace SportsMeet
             // 
             // btnFilterByEventFilter
             // 
-            this.btnFilterByEventFilter.Location = new System.Drawing.Point(92, 85);
+            this.btnFilterByEventFilter.Location = new System.Drawing.Point(92, 61);
             this.btnFilterByEventFilter.Name = "btnFilterByEventFilter";
             this.btnFilterByEventFilter.Size = new System.Drawing.Size(82, 28);
             this.btnFilterByEventFilter.TabIndex = 1;
@@ -1282,13 +1268,13 @@ namespace SportsMeet
             // firstNameDataGridViewTextBoxColumn2
             // 
             this.firstNameDataGridViewTextBoxColumn2.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn2.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn2.HeaderText = "First Name";
             this.firstNameDataGridViewTextBoxColumn2.Name = "firstNameDataGridViewTextBoxColumn2";
             // 
             // lastNameDataGridViewTextBoxColumn2
             // 
             this.lastNameDataGridViewTextBoxColumn2.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn2.HeaderText = "LastName";
+            this.lastNameDataGridViewTextBoxColumn2.HeaderText = "Last Name";
             this.lastNameDataGridViewTextBoxColumn2.Name = "lastNameDataGridViewTextBoxColumn2";
             // 
             // ageDataGridViewTextBoxColumn2
@@ -1300,56 +1286,8 @@ namespace SportsMeet
             // sexDataGridViewTextBoxColumn2
             // 
             this.sexDataGridViewTextBoxColumn2.DataPropertyName = "Sex";
-            this.sexDataGridViewTextBoxColumn2.HeaderText = "Sex";
+            this.sexDataGridViewTextBoxColumn2.HeaderText = "Gender";
             this.sexDataGridViewTextBoxColumn2.Name = "sexDataGridViewTextBoxColumn2";
-            // 
-            // schoolIdDataGridViewTextBoxColumn1
-            // 
-            this.schoolIdDataGridViewTextBoxColumn1.DataPropertyName = "SchoolId";
-            this.schoolIdDataGridViewTextBoxColumn1.HeaderText = "SchoolId";
-            this.schoolIdDataGridViewTextBoxColumn1.Name = "schoolIdDataGridViewTextBoxColumn1";
-            // 
-            // districtIdDataGridViewTextBoxColumn1
-            // 
-            this.districtIdDataGridViewTextBoxColumn1.DataPropertyName = "DistrictId";
-            this.districtIdDataGridViewTextBoxColumn1.HeaderText = "DistrictId";
-            this.districtIdDataGridViewTextBoxColumn1.Name = "districtIdDataGridViewTextBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            // 
-            // numberDataGridViewTextBoxColumn1
-            // 
-            this.numberDataGridViewTextBoxColumn1.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn1.HeaderText = "Number";
-            this.numberDataGridViewTextBoxColumn1.Name = "numberDataGridViewTextBoxColumn1";
-            // 
-            // firstNameDataGridViewTextBoxColumn1
-            // 
-            this.firstNameDataGridViewTextBoxColumn1.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn1.HeaderText = "First Name";
-            this.firstNameDataGridViewTextBoxColumn1.Name = "firstNameDataGridViewTextBoxColumn1";
-            // 
-            // lastNameDataGridViewTextBoxColumn1
-            // 
-            this.lastNameDataGridViewTextBoxColumn1.DataPropertyName = "LastName";
-            this.lastNameDataGridViewTextBoxColumn1.HeaderText = "Last Name";
-            this.lastNameDataGridViewTextBoxColumn1.Name = "lastNameDataGridViewTextBoxColumn1";
-            // 
-            // ageDataGridViewTextBoxColumn1
-            // 
-            this.ageDataGridViewTextBoxColumn1.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn1.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn1.Name = "ageDataGridViewTextBoxColumn1";
-            // 
-            // sexDataGridViewTextBoxColumn
-            // 
-            this.sexDataGridViewTextBoxColumn.DataPropertyName = "Sex";
-            this.sexDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.sexDataGridViewTextBoxColumn.Name = "sexDataGridViewTextBoxColumn";
             // 
             // Number
             // 
@@ -1357,12 +1295,22 @@ namespace SportsMeet
             this.Number.HeaderText = "Number";
             this.Number.Name = "Number";
             // 
-            // FullName
+            // fullNameDataGridViewTextBoxColumn
             // 
-            this.FullName.DataPropertyName = "FullName";
-            this.FullName.HeaderText = "Event Name";
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(267, 31);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Player Number";
             // 
             // MainForm
             // 
@@ -1511,26 +1459,19 @@ namespace SportsMeet
         private BindingSource bindingSourceSchoolsFixed;
         private Label label2;
         private Label label1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn3;
-        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn2;
-        private DataGridViewTextBoxColumn schoolIdDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn districtIdDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private DataGridViewTextBoxColumn Number;
-        private DataGridViewTextBoxColumn FullName;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn Number;
+        private DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private Label label3;
     }
     
 }
