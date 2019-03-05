@@ -228,7 +228,8 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            SchoolsTab.AddSchool(tbSchoolName.Text.Trim());
+            SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
+                tbNewSchoolName.Text.Trim());
             LoadSchoolList();
             CleanupSchoolTabTextBoxes();
         }
@@ -324,6 +325,9 @@ namespace SportsMeet
         private void CleanupSchoolTabTextBoxes()
         {
             tbSchoolName.Clear();
+            tbNewSchoolName.Clear();
+            tbNewSchoolName.Enabled = false;
+            btnEditSchool.Enabled = false;
         }
 
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -494,7 +498,7 @@ namespace SportsMeet
 
         private void btnEditSchool_Click(object sender, EventArgs e)
         {
-            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(), editMode: true))
+            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(), tbNewSchoolName.Text.Trim(), editMode: true))
             {
                 LoadSchoolList();
             }
@@ -525,6 +529,18 @@ namespace SportsMeet
             {
                 bindingSourceSchools.DataSource = result.ToList();
                 bindingSourceSchools.ResetBindings(false);
+            }
+
+            School newSchool = new School(0, searchString);
+
+            School searchedSchool = DataBase.GetSchool(searchString);
+            if (searchedSchool != null)
+            {
+                tbNewSchoolName.Enabled = true;
+            }
+            else
+            {
+                tbNewSchoolName.Enabled = false;
             }
         }
 
@@ -656,6 +672,27 @@ namespace SportsMeet
                     bindingSourceFilteredPlayersOnEvent.DataSource = players;
                     bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
+            }
+        }
+
+        private void tbNewSchoolName_TextChanged(object sender, EventArgs e)
+        {
+            var searchString = tbSchoolName.Text.Trim();
+
+            School newSchool = new School(0, searchString);
+
+            School searchedSchool = DataBase.GetSchool(searchString);
+            if (searchedSchool != null)
+            {
+                tbNewSchoolName.Enabled = true;
+                if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
+                {
+                    btnEditSchool.Enabled = true;
+                }
+            }
+            else
+            {
+                tbNewSchoolName.Enabled = false;
             }
         }
     }
