@@ -46,5 +46,17 @@ namespace SportsMeet.Properties {
                 this["playersTabDeleteSelectionSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool addtoanEvent {
+            get {
+                return ((bool)(this["addtoanEvent"]));
+            }
+            set {
+                this["addtoanEvent"] = value;
+            }
+        }
     }
 }

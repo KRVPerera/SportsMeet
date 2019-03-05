@@ -714,15 +714,17 @@ namespace SportsMeet
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
-            Properties.Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
-            Properties.Settings.Default.Save();
+            Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxAddtoanEvent.Checked;
+            Settings.Default.Save();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            checkBoxLoadSelection.Checked = Properties.Settings.Default.playersTabLoadSelectionSettings;
-            checkBoxDeleteSelection.Checked = Properties.Settings.Default.playersTabDeleteSelectionSetting;
+            checkBoxLoadSelection.Checked = Settings.Default.playersTabLoadSelectionSettings;
+            checkBoxDeleteSelection.Checked = Settings.Default.playersTabDeleteSelectionSetting;
+            checkBoxAddtoanEvent.Checked = Settings.Default.playersTabDeleteSelectionSetting;
         }
     }
 }
