@@ -244,6 +244,13 @@ namespace SportsMeet
                 tbNewEventsName.Text.Trim(),
                 comboBoxEventsSex.Text.Trim());
             LoadEventList();
+            ClearEventsTab();
+        }
+
+        private void ClearEventsTab()
+        {
+            tbNewEventsNumber.Clear();
+            tbNewEventsName.Clear();
         }
 
         private void LoadEventList()
@@ -257,6 +264,7 @@ namespace SportsMeet
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
             tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
+            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
         }
 
         //TODO: refactor and remove duplicate code
