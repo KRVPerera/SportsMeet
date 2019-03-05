@@ -214,6 +214,10 @@ namespace SportsMeet
 
             bindingSourceSchoolsFixed.DataSource = _schools;
             bindingSourceSchoolsFixed.ResetBindings(false);
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
+            tbSchoolName.AutoCompleteCustomSource = autoComplete;
         }
 
         private void LoadDistrictList()
