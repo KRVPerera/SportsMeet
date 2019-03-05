@@ -529,6 +529,18 @@ namespace SportsMeet
                 bindingSourceSchools.DataSource = result.ToList();
                 bindingSourceSchools.ResetBindings(false);
             }
+
+            School newSchool = new School(0, searchString);
+
+            School searchedSchool = DataBase.GetSchool(searchString);
+            if (searchedSchool != null)
+            {
+                tbNewSchoolName.Enabled = true;
+            }
+            else
+            {
+                tbNewSchoolName.Enabled = false;
+            }
         }
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
