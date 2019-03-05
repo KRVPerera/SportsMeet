@@ -1325,6 +1325,8 @@ namespace SportsMeet
             this.MinimumSize = new System.Drawing.Size(932, 640);
             this.Name = "MainForm";
             this.Text = "Sports Meet";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tcMainForm.ResumeLayout(false);
             this.tbPlayers.ResumeLayout(false);
             this.tbPlayers.PerformLayout();

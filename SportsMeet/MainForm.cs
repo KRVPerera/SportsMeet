@@ -97,7 +97,7 @@ namespace SportsMeet
 
         private void toolStripButtonAbout_Click(object sender, EventArgs e)
         {
-            using (Form abForm = new formAbout())
+            using (Form abForm = new AboutBox())
             {
                 abForm.ShowDialog();
             }
@@ -313,7 +313,6 @@ namespace SportsMeet
                                 lblFilterByPlayerSchoolOutput.Text = school.Name;
                             }
 
-                            
                             PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
                             List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
                             List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
@@ -711,6 +710,19 @@ namespace SportsMeet
             {
                 tbNewSchoolName.Enabled = false;
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
+            Properties.Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            checkBoxLoadSelection.Checked = Properties.Settings.Default.playersTabLoadSelectionSettings;
+            checkBoxDeleteSelection.Checked = Properties.Settings.Default.playersTabDeleteSelectionSetting;
         }
     }
 }
