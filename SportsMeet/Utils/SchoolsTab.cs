@@ -7,7 +7,7 @@ namespace SportsMeet.Utils
 {
     internal class SchoolsTab
     {
-        public static bool AddSchool(String schoolName, bool editMode = false)
+        public static bool AddSchool(String schoolName, String newSchoolName, bool editMode = false)
         {
             if (String.IsNullOrEmpty(schoolName))
             {
@@ -16,13 +16,25 @@ namespace SportsMeet.Utils
             else
             {
                 School newSchool = new School(0, schoolName);
+                School newNameSchool = new School(0, newSchoolName);
 
                 School searchedSchool = DataBase.GetSchool(schoolName);
                 if (searchedSchool != null)
                 {
-                    MessageBox.Show("School already exists.",
-                                "Existing school !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
+                    newNameSchool.Id = searchedSchool.Id;
+                    if (!editMode)
+                    {
+                        MessageBox.Show("School already exists.",
+                                    "Existing school !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(newSchoolName))
+                        {
+                            return DataBase.EditSchool(newNameSchool);
+                        }
+                    }
                 }
                 else
                 {

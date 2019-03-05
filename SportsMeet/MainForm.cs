@@ -228,7 +228,8 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            SchoolsTab.AddSchool(tbSchoolName.Text.Trim());
+            SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
+                tbNewSchoolName.Text.Trim());
             LoadSchoolList();
             CleanupSchoolTabTextBoxes();
         }
@@ -326,6 +327,7 @@ namespace SportsMeet
         private void CleanupSchoolTabTextBoxes()
         {
             tbSchoolName.Clear();
+            tbNewSchoolName.Clear();
         }
 
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -496,7 +498,7 @@ namespace SportsMeet
 
         private void btnEditSchool_Click(object sender, EventArgs e)
         {
-            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(), editMode: true))
+            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(), tbNewSchoolName.Text.Trim(), editMode: true))
             {
                 LoadSchoolList();
             }
