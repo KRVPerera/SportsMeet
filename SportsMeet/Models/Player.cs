@@ -85,6 +85,15 @@ namespace SportsMeet.Models
 
         public string FullName() => $"{FirstName} {LastName}".Trim();
 
+        [Write(false)]
+        public string Gender
+        {
+            get
+            {
+                return Util.SexEnumToSex((Util.SexEnum)Sex);
+            }
+        }
+
         #endregion public derived members
 
         #region public overrides
