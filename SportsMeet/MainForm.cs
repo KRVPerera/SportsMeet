@@ -307,7 +307,13 @@ namespace SportsMeet
                                 lblFilterByPlayerDistrictOutput.Text = district.Name;
                             }
 
-                            lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
+                            School school = DataBase.GetSchool(searchedPlayer.SchoolId);
+                            if (school != null)
+                            {
+                                lblFilterByPlayerSchoolOutput.Text = school.Name;
+                            }
+
+                            
                             PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
                             List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
                             List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
