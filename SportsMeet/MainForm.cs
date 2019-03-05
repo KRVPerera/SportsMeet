@@ -212,9 +212,8 @@ namespace SportsMeet
             bindingSourceSchools.ResetBindings(false);
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
 
-            //var autoComplete = new AutoCompleteStringCollection();
-            //autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
-            //tbSchoolName.AutoCompleteCustomSource = autoComplete;
+            bindingSourceSchoolsFixed.DataSource = _schools;
+            bindingSourceSchoolsFixed.ResetBindings(false);
         }
 
         private void LoadDistrictList()
