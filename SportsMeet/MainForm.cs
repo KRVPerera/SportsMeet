@@ -328,6 +328,8 @@ namespace SportsMeet
         {
             tbSchoolName.Clear();
             tbNewSchoolName.Clear();
+            tbNewSchoolName.Enabled = false;
+            btnEditSchool.Enabled = false;
         }
 
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -671,6 +673,27 @@ namespace SportsMeet
                     bindingSourceFilteredPlayersOnEvent.DataSource = players;
                     bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
+            }
+        }
+
+        private void tbNewSchoolName_TextChanged(object sender, EventArgs e)
+        {
+            var searchString = tbSchoolName.Text.Trim();
+
+            School newSchool = new School(0, searchString);
+
+            School searchedSchool = DataBase.GetSchool(searchString);
+            if (searchedSchool != null)
+            {
+                tbNewSchoolName.Enabled = true;
+                if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
+                {
+                    btnEditSchool.Enabled = true;
+                }
+            }
+            else
+            {
+                tbNewSchoolName.Enabled = false;
             }
         }
     }

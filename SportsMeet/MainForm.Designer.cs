@@ -762,6 +762,7 @@ namespace SportsMeet
             this.tbNewSchoolName.Name = "tbNewSchoolName";
             this.tbNewSchoolName.Size = new System.Drawing.Size(554, 22);
             this.tbNewSchoolName.TabIndex = 12;
+            this.tbNewSchoolName.TextChanged += new System.EventHandler(this.tbNewSchoolName_TextChanged);
             // 
             // lblNewSchoolName
             // 
@@ -812,6 +813,7 @@ namespace SportsMeet
             // 
             // btnEditSchool
             // 
+            this.btnEditSchool.Enabled = false;
             this.btnEditSchool.Location = new System.Drawing.Point(125, 99);
             this.btnEditSchool.Name = "btnEditSchool";
             this.btnEditSchool.Size = new System.Drawing.Size(70, 30);
