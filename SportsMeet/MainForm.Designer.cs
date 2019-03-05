@@ -146,6 +146,8 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblNewSchoolName = new System.Windows.Forms.Label();
+            this.tbNewSchoolName = new System.Windows.Forms.TextBox();
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -736,6 +738,8 @@ namespace SportsMeet
             // 
             // tbSchool
             // 
+            this.tbSchool.Controls.Add(this.tbNewSchoolName);
+            this.tbSchool.Controls.Add(this.lblNewSchoolName);
             this.tbSchool.Controls.Add(this.dataGridView1);
             this.tbSchool.Controls.Add(this.btnDeleteSchool);
             this.tbSchool.Controls.Add(this.btnEditSchool);
@@ -759,10 +763,10 @@ namespace SportsMeet
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn1});
             this.dataGridView1.DataSource = this.bindingSourceSchools;
-            this.dataGridView1.Location = new System.Drawing.Point(399, 32);
+            this.dataGridView1.Location = new System.Drawing.Point(310, 99);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(481, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(559, 376);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.TabStop = false;
             // 
@@ -780,9 +784,9 @@ namespace SportsMeet
             // 
             // btnDeleteSchool
             // 
-            this.btnDeleteSchool.Location = new System.Drawing.Point(214, 88);
+            this.btnDeleteSchool.Location = new System.Drawing.Point(214, 99);
             this.btnDeleteSchool.Name = "btnDeleteSchool";
-            this.btnDeleteSchool.Size = new System.Drawing.Size(68, 34);
+            this.btnDeleteSchool.Size = new System.Drawing.Size(68, 30);
             this.btnDeleteSchool.TabIndex = 9;
             this.btnDeleteSchool.TabStop = false;
             this.btnDeleteSchool.Text = "Delete";
@@ -791,9 +795,9 @@ namespace SportsMeet
             // 
             // btnEditSchool
             // 
-            this.btnEditSchool.Location = new System.Drawing.Point(124, 88);
+            this.btnEditSchool.Location = new System.Drawing.Point(125, 99);
             this.btnEditSchool.Name = "btnEditSchool";
-            this.btnEditSchool.Size = new System.Drawing.Size(70, 34);
+            this.btnEditSchool.Size = new System.Drawing.Size(70, 30);
             this.btnEditSchool.TabIndex = 8;
             this.btnEditSchool.TabStop = false;
             this.btnEditSchool.Text = "Edit";
@@ -804,10 +808,10 @@ namespace SportsMeet
             // 
             this.tbSchoolName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.tbSchoolName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbSchoolName.Location = new System.Drawing.Point(135, 32);
+            this.tbSchoolName.Location = new System.Drawing.Point(164, 32);
             this.tbSchoolName.Margin = new System.Windows.Forms.Padding(6);
             this.tbSchoolName.Name = "tbSchoolName";
-            this.tbSchoolName.Size = new System.Drawing.Size(226, 22);
+            this.tbSchoolName.Size = new System.Drawing.Size(554, 22);
             this.tbSchoolName.TabIndex = 0;
             this.tbSchoolName.TextChanged += new System.EventHandler(this.tbSchoolName_TextChanged);
             // 
@@ -823,10 +827,10 @@ namespace SportsMeet
             // 
             // btnAddSchool
             // 
-            this.btnAddSchool.Location = new System.Drawing.Point(34, 88);
+            this.btnAddSchool.Location = new System.Drawing.Point(34, 99);
             this.btnAddSchool.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddSchool.Name = "btnAddSchool";
-            this.btnAddSchool.Size = new System.Drawing.Size(70, 34);
+            this.btnAddSchool.Size = new System.Drawing.Size(70, 30);
             this.btnAddSchool.TabIndex = 1;
             this.btnAddSchool.Text = "Add";
             this.btnAddSchool.UseVisualStyleBackColor = true;
@@ -1228,6 +1232,22 @@ namespace SportsMeet
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
             // 
+            // lblNewSchoolName
+            // 
+            this.lblNewSchoolName.AutoSize = true;
+            this.lblNewSchoolName.Location = new System.Drawing.Point(31, 63);
+            this.lblNewSchoolName.Name = "lblNewSchoolName";
+            this.lblNewSchoolName.Size = new System.Drawing.Size(123, 17);
+            this.lblNewSchoolName.TabIndex = 11;
+            this.lblNewSchoolName.Text = "New School Name";
+            // 
+            // tbNewSchoolName
+            // 
+            this.tbNewSchoolName.Location = new System.Drawing.Point(164, 62);
+            this.tbNewSchoolName.Name = "tbNewSchoolName";
+            this.tbNewSchoolName.Size = new System.Drawing.Size(554, 22);
+            this.tbNewSchoolName.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -1379,6 +1399,8 @@ namespace SportsMeet
         private BindingSource bindingSourceFilteredEventsOnPlayers;
         private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn FullName;
+        private TextBox tbNewSchoolName;
+        private Label lblNewSchoolName;
     }
     
 }
