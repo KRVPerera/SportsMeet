@@ -110,7 +110,7 @@ namespace SportsMeet.Data
         public static School GetSchool(String schoolName)
         {
             string query = "select * from Schools where Name = @Name";
-            Event namedSchool = new Event(0, "", schoolName, 1, 17);
+            School namedSchool = new School(0, schoolName);
 
             IEnumerable<School> result = DBConnection.Instance.Connection.Query<School>(query, namedSchool);
             return result.FirstOrDefault();
@@ -119,6 +119,15 @@ namespace SportsMeet.Data
         public static bool RemoveSchool(School searchedSchool)
         {
             return DBConnection.Instance.Connection.Delete(searchedSchool);
+        }
+
+        internal static School GetSchool(long schoolId)
+        {
+            string query = "select * from Schools where id = @Id";
+            School idedSchool = new School(schoolId, "");
+
+            IEnumerable<School> result = DBConnection.Instance.Connection.Query<School>(query, idedSchool);
+            return result.FirstOrDefault();
         }
 
         #endregion Schools

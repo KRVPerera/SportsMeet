@@ -97,7 +97,7 @@ namespace SportsMeet
 
         private void toolStripButtonAbout_Click(object sender, EventArgs e)
         {
-            using (Form abForm = new formAbout())
+            using (Form abForm = new AboutBox())
             {
                 abForm.ShowDialog();
             }
@@ -212,9 +212,12 @@ namespace SportsMeet
             bindingSourceSchools.ResetBindings(false);
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
 
-            //var autoComplete = new AutoCompleteStringCollection();
-            //autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
-            //tbSchoolName.AutoCompleteCustomSource = autoComplete;
+            bindingSourceSchoolsFixed.DataSource = _schools;
+            bindingSourceSchoolsFixed.ResetBindings(false);
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
+            tbSchoolName.AutoCompleteCustomSource = autoComplete;
         }
 
         private void LoadDistrictList()
@@ -241,6 +244,13 @@ namespace SportsMeet
                 tbNewEventsName.Text.Trim(),
                 comboBoxEventsSex.Text.Trim());
             LoadEventList();
+            ClearEventsTab();
+        }
+
+        private void ClearEventsTab()
+        {
+            tbNewEventsNumber.Clear();
+            tbNewEventsName.Clear();
         }
 
         private void LoadEventList()
@@ -254,6 +264,7 @@ namespace SportsMeet
             var autoComplete = new AutoCompleteStringCollection();
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
             tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
+            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
         }
 
         //TODO: refactor and remove duplicate code
@@ -261,49 +272,52 @@ namespace SportsMeet
         {
             CleanupFilterByPlayerTabLabels();
             var textbox = sender as TextBox;
+            if (textbox != null)
             {
-                if (textbox != null)
+                String searchString = textbox.Text.Trim();
+
+                if (searchString != Resources.DefaultSearchString)
                 {
-                    String searchString = textbox.Text.Trim();
+                    var playerList = DataBase.LoadPlayers();
+                    var myRegex = new Regex(@"^" + searchString + ".*$");
+                    IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
 
-                    if (searchString != Resources.DefaultSearchString)
+                    List<Player> players = searchedPlayers.ToList();
+                    bindingSourcePlayers.DataSource = players;
+                    bindingSourcePlayers.ResetBindings(false);
+
+                    /*if (players.Count > 1)
                     {
-                        var playerList = DataBase.LoadPlayers();
-                        var myRegex = new Regex(@"^" + searchString + ".*$");
-                        IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
+                        return;
+                    }*/
 
-                        List<Player> players = searchedPlayers.ToList();
-                        bindingSourcePlayers.DataSource = players;
-                        bindingSourcePlayers.ResetBindings(false);
+                    Player searchedPlayer = players.FirstOrDefault();
 
-                        /*if (players.Count > 1)
+                    if (searchedPlayer != null)
+                    {
+                        Player searchMe = new Player(searchString);
+                        Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
+                        if (searchByNumber != null)
                         {
-                            return;
-                        }*/
+                            lblFilterByPlayerNameOutput.Text = searchedPlayer.FullName();
 
-                        Player searchedPlayer = players.FirstOrDefault();
-
-                        if (searchedPlayer != null)
-                        {
-                            Player searchMe = new Player(searchString);
-                            Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
-                            if (searchByNumber != null)
+                            District district = DataBase.GetDistrict(searchedPlayer.DistrictId);
+                            if (district != null)
                             {
-                                lblFilterByPlayerNameOutput.Text = searchedPlayer.FullName();
-
-                                District district = DataBase.GetDistrict(searchedPlayer.DistrictId);
-                                if (district != null)
-                                {
-                                    lblFilterByPlayerDistrictOutput.Text = district.Name;
-                                }
-
-                                lblFilterByPlayerSchoolOutput.Text = searchedPlayer.SchoolId.ToString();
-                                PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
-                                List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
-                                    List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
-                                    bindingSourceFilteredEventsOnPlayers.DataSource = eventList;
-                                    bindingSourceFilteredEventsOnPlayers.ResetBindings(false);
+                                lblFilterByPlayerDistrictOutput.Text = district.Name;
                             }
+
+                            School school = DataBase.GetSchool(searchedPlayer.SchoolId);
+                            if (school != null)
+                            {
+                                lblFilterByPlayerSchoolOutput.Text = school.Name;
+                            }
+
+                            PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
+                            List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
+                            List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
+                            bindingSourceFilteredEventsOnPlayers.DataSource = eventList;
+                            bindingSourceFilteredEventsOnPlayers.ResetBindings(false);
                         }
                     }
                 }
@@ -521,6 +535,7 @@ namespace SportsMeet
         {
             var textBox = sender as TextBox;
             if (textBox == null) return;
+
             var searchString = textBox.Text.Trim();
             var schoolList = DataBase.LoadSchools();
             var myRegex = new Regex(@"^" + searchString + ".*$");
@@ -697,6 +712,21 @@ namespace SportsMeet
             {
                 btnEditSchool.Enabled = false;
             }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxAddtoanEvent.Checked;
+            Settings.Default.Save();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            checkBoxLoadSelection.Checked = Settings.Default.playersTabLoadSelectionSettings;
+            checkBoxDeleteSelection.Checked = Settings.Default.playersTabDeleteSelectionSetting;
+            checkBoxAddtoanEvent.Checked = Settings.Default.playersTabDeleteSelectionSetting;
         }
     }
 }

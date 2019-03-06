@@ -22,5 +22,41 @@ namespace SportsMeet.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool playersTabLoadSelectionSettings {
+            get {
+                return ((bool)(this["playersTabLoadSelectionSettings"]));
+            }
+            set {
+                this["playersTabLoadSelectionSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool playersTabDeleteSelectionSetting {
+            get {
+                return ((bool)(this["playersTabDeleteSelectionSetting"]));
+            }
+            set {
+                this["playersTabDeleteSelectionSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool addtoanEvent {
+            get {
+                return ((bool)(this["addtoanEvent"]));
+            }
+            set {
+                this["addtoanEvent"] = value;
+            }
+        }
     }
 }
