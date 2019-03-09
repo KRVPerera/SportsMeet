@@ -695,20 +695,22 @@ namespace SportsMeet
         {
             var searchString = tbSchoolName.Text.Trim();
 
-            School newSchool = new School(0, searchString);
-
             School searchedSchool = DataBase.GetSchool(searchString);
+
             if (searchedSchool != null)
             {
-                tbNewSchoolName.Enabled = true;
-                if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
+                if (tbNewSchoolName.Text.Trim() == tbSchoolName.Text.Trim())
+                {
+                    btnEditSchool.Enabled = false;
+                }
+                else if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
                 {
                     btnEditSchool.Enabled = true;
                 }
             }
             else
             {
-                tbNewSchoolName.Enabled = false;
+                btnEditSchool.Enabled = false;
             }
         }
 
