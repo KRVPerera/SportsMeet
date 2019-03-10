@@ -109,6 +109,7 @@
     <Compile Include="Utils\PlayersTab.cs" />
     <Compile Include="Utils\SchoolsTab.cs" />
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="View\StatusViewer.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

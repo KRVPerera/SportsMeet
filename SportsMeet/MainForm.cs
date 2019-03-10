@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
+using SportsMeet.View;
 
 namespace SportsMeet
 {
@@ -74,6 +76,7 @@ namespace SportsMeet
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)
                 {
+                    statusViewer.Update("Player saved sucecssfully...!", Status.INFO);
                     LoadPlayerList();
 
                     if (checkBoxAddtoanEvent.Checked)
@@ -88,6 +91,7 @@ namespace SportsMeet
                         else
                         {
                             // TODO: update status bar to player not found
+                            statusViewer.Update("Player not found...!", Status.ERROR);
                         }
                         CleanupPlayerTabTextBoxes();
                     }
@@ -146,6 +150,8 @@ namespace SportsMeet
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
+            statusViewer = new StatusViewer(this.statusLabel, this.statusTime);
+            statusViewer.Update("Program Loaded", Status.INFO);
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -231,8 +237,16 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
-                tbNewSchoolName.Text.Trim());
+            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
+                tbNewSchoolName.Text.Trim()))
+            {
+                statusViewer.Update("School saved successfully...!", Status.INFO);
+            }
+            else
+            {
+                statusViewer.Update("Failed to save school...!", Status.ERROR);
+            }
+
             LoadSchoolList();
             CleanupSchoolTabTextBoxes();
         }
@@ -727,6 +741,11 @@ namespace SportsMeet
             checkBoxLoadSelection.Checked = Settings.Default.playersTabLoadSelectionSettings;
             checkBoxDeleteSelection.Checked = Settings.Default.playersTabDeleteSelectionSetting;
             checkBoxAddtoanEvent.Checked = Settings.Default.playersTabDeleteSelectionSetting;
+        }
+
+        private void statusTime_Tick(object sender, EventArgs e)
+        {
+            statusViewer.Reset();
         }
     }
 }

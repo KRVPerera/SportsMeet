@@ -1,6 +1,7 @@
 ﻿using SportsMeet.Data;
 using SportsMeet.Models;
 using SportsMeet.Properties;
+using SportsMeet.View;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -112,6 +113,8 @@ namespace SportsMeet
             this.lblFilterByPlayerSchoolOutput = new System.Windows.Forms.Label();
             this.lblFilterByPlayerNameOutput = new System.Windows.Forms.Label();
             this.dataGridViewEventsOfPlaye = new System.Windows.Forms.DataGridView();
+            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceFilteredEventsOnPlayers = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridPlayerFiltering = new System.Windows.Forms.DataGridView();
             this.numberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -153,8 +156,7 @@ namespace SportsMeet
             this.toolStripButtonAbout = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusTime = new System.Windows.Forms.Timer(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbPlayers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlayers)).BeginInit();
@@ -972,6 +974,19 @@ namespace SportsMeet
             this.dataGridViewEventsOfPlaye.TabIndex = 7;
             this.dataGridViewEventsOfPlaye.TabStop = false;
             // 
+            // Number
+            // 
+            this.Number.DataPropertyName = "Number";
+            this.Number.HeaderText = "Number";
+            this.Number.Name = "Number";
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full Name";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // bindingSourceFilteredEventsOnPlayers
             // 
             this.bindingSourceFilteredEventsOnPlayers.DataSource = typeof(SportsMeet.Models.Event);
@@ -1230,6 +1245,7 @@ namespace SportsMeet
             this.toolStripStatusBar.Location = new System.Drawing.Point(8, 547);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
             this.toolStripStatusBar.Padding = new System.Windows.Forms.Padding(0);
+            this.toolStripStatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.toolStripStatusBar.Size = new System.Drawing.Size(907, 45);
             this.toolStripStatusBar.Stretch = true;
             this.toolStripStatusBar.TabIndex = 1;
@@ -1289,7 +1305,10 @@ namespace SportsMeet
             // 
             // statusLabel
             // 
+            this.statusLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.StatusBar;
             this.statusLabel.AutoSize = false;
+            this.statusLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.statusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(500, 42);
             this.statusLabel.Text = "Status of the application";
@@ -1313,18 +1332,10 @@ namespace SportsMeet
             // 
             this.eventBindingSource.DataSource = typeof(SportsMeet.Models.Event);
             // 
-            // Number
+            // statusTime
             // 
-            this.Number.DataPropertyName = "Number";
-            this.Number.HeaderText = "Number";
-            this.Number.Name = "Number";
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Full Name";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.statusTime.Interval = 3000;
+            this.statusTime.Tick += new System.EventHandler(this.statusTime_Tick);
             // 
             // MainForm
             // 
@@ -1489,6 +1500,8 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn Number;
         private DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private StatusViewer statusViewer;
+        private Timer statusTime;
     }
     
 }
