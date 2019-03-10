@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace SportsMeet.View
 {
@@ -13,13 +14,15 @@ namespace SportsMeet.View
     internal class StatusViewer
     {
         private System.Windows.Forms.ToolStripLabel stripLabel;
+        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.Timer statusTime;
 
         public StatusViewer(System.Windows.Forms.ToolStripLabel toolsStripLabel, 
-            System.Windows.Forms.Timer formStatusTime)
+            System.Windows.Forms.Timer formStatusTime, System.Windows.Forms.ToolStrip formsToolStrip)
         {
             stripLabel = toolsStripLabel;
             statusTime = formStatusTime;
+            toolStrip = formsToolStrip;
         }
 
         private void SetText(String text)
@@ -34,19 +37,20 @@ namespace SportsMeet.View
 
         private void SetInfo()
         {
+            toolStrip.BackColor = Color.GreenYellow;
             stripLabel.ForeColor = Color.Green;
         }
 
         private void SetError()
         {
-//            stripLabel.BackColor = Color.Red;
+            toolStrip.BackColor = Color.MistyRose;
             stripLabel.ForeColor = Color.Red;
         }
 
         private void SetDefault()
         {
-            stripLabel.BackColor = Color.Gray;
-            stripLabel.ForeColor = Color.Black;
+            toolStrip.BackColor = Control.DefaultBackColor;
+            stripLabel.ForeColor = Control.DefaultForeColor;
             SetText("");
         }
 

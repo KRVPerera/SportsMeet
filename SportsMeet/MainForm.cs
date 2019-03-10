@@ -150,7 +150,7 @@ namespace SportsMeet
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
-            statusViewer = new StatusViewer(this.statusLabel, this.statusTime);
+            statusViewer = new StatusViewer(this.statusLabel, this.statusTime, this.toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.INFO);
         }
 
