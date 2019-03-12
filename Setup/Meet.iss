@@ -52,6 +52,7 @@ Source: "..\SportsMeet\bin\Debug\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTr
 Source: "..\SportsMeet\bin\Debug\x64\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x64"
 Source: "..\MeetDataBaseGen\bin\Debug\dbup-core.dll"; DestDir: "{tmp}\MeetTracker"
 Source: "..\MeetDataBaseGen\bin\Debug\dbup-sqlite.dll"; DestDir: "{tmp}\MeetTracker"
+Source: "..\SportsMeet\bin\Debug\System.Data.SQLite.dll"; DestDir: "{tmp}\MeetTracker"
 Source: "dependencies\dotNetFx40_Full_x86_x64.exe"; DestDir: "{app}"; Flags: deleteafterinstall; Check: FrameworkIsNotInstalled; AfterInstall: InstallFramework
 
 Source: "..\MeetDataBaseGen\bin\Debug\MeetDataBaseGen.exe.config"; DestDir: "{tmp}\MeetTracker"; Flags: ignoreversion
