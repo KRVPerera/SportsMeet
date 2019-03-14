@@ -8,7 +8,8 @@ namespace SportsMeet.View
     {
         INFO,
         WARNING,
-        ERROR
+        ERROR,
+        SUCCESS
     }
 
     internal class StatusViewer
@@ -32,18 +33,24 @@ namespace SportsMeet.View
 
         private void SetWarning()
         {
-            stripLabel.BackColor = Color.LightYellow;
+            toolStrip.BackColor = Color.Gold;
         }
 
-        private void SetInfo()
+        private void SetSuccess()
         {
             toolStrip.BackColor = Color.GreenYellow;
             stripLabel.ForeColor = Color.Green;
         }
 
+        private void SetInfo()
+        {
+            toolStrip.BackColor = Color.LightSkyBlue;
+            stripLabel.ForeColor = Color.Blue;
+        }
+
         private void SetError()
         {
-            toolStrip.BackColor = Color.MistyRose;
+            toolStrip.BackColor = Color.LightPink;
             stripLabel.ForeColor = Color.Red;
         }
 
@@ -70,6 +77,10 @@ namespace SportsMeet.View
             else if (level == Status.INFO)
             {
                 SetInfo();
+            }
+            else if (level == Status.SUCCESS)
+            {
+                SetSuccess();
             }
             else
             {

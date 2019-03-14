@@ -15,31 +15,39 @@ namespace SportsMeet.Utils
             }
             else
             {
-                School newSchool = new School(0, schoolName);
-                School newNameSchool = new School(0, newSchoolName);
 
-                School searchedSchool = DataBase.GetSchool(schoolName);
-                if (searchedSchool != null)
+                try
                 {
-                    newNameSchool.Id = searchedSchool.Id;
-                    if (!editMode)
+                    School newSchool = new School(0, schoolName);
+                    School newNameSchool = new School(0, newSchoolName);
+
+                    School searchedSchool = DataBase.GetSchool(schoolName);
+                    if (searchedSchool != null)
                     {
-                        MessageBox.Show("School already exists.",
-                                    "Existing school !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return false;
+                        newNameSchool.Id = searchedSchool.Id;
+                        if (!editMode)
+                        {
+                            MessageBox.Show("School already exists.",
+                                        "Existing school !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
+                        else
+                        {
+                            if (!String.IsNullOrEmpty(newSchoolName))
+                            {
+                                return DataBase.EditSchool(newNameSchool);
+                            }
+                        }
                     }
                     else
                     {
-                        if (!String.IsNullOrEmpty(newSchoolName))
-                        {
-                            return DataBase.EditSchool(newNameSchool);
-                        }
+                        DataBase.SaveSchool(newSchool);
+                        return true;
                     }
                 }
-                else
+                catch (Exception)
                 {
-                    DataBase.SaveSchool(newSchool);
-                    return true;
+                    throw;
                 }
             }
             return false;

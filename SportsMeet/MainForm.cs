@@ -151,7 +151,7 @@ namespace SportsMeet
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
             statusViewer = new StatusViewer(this.statusLabel, this.statusTime, this.toolStripStatusBar);
-            statusViewer.Update("Program Loaded", Status.INFO);
+            statusViewer.Update("Program Loaded", Status.SUCCESS);
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -237,18 +237,24 @@ namespace SportsMeet
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
-            if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
-                tbNewSchoolName.Text.Trim()))
+            try
             {
-                statusViewer.Update("School saved successfully...!", Status.INFO);
+                if (SchoolsTab.AddSchool(tbSchoolName.Text.Trim(),
+                        tbNewSchoolName.Text.Trim()))
+                {
+                    statusViewer.Update("School saved successfully...!", Status.INFO);
+                }
+                else
+                {
+                    statusViewer.Update("Failed to save school...!", Status.ERROR);
+                }
+                LoadSchoolList();
+                CleanupSchoolTabTextBoxes();
             }
-            else
+            catch (Exception exception)
             {
-                statusViewer.Update("Failed to save school...!", Status.ERROR);
+                statusViewer.Update(exception.Message, Status.WARNING);
             }
-
-            LoadSchoolList();
-            CleanupSchoolTabTextBoxes();
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e)
@@ -320,11 +326,19 @@ namespace SportsMeet
                             {
                                 lblFilterByPlayerDistrictOutput.Text = district.Name;
                             }
+                            else
+                            {
+                                lblFilterByPlayerDistrictOutput.Text = "UNKNOWN";
+                            }
 
                             School school = DataBase.GetSchool(searchedPlayer.SchoolId);
                             if (school != null)
                             {
                                 lblFilterByPlayerSchoolOutput.Text = school.Name;
+                            }
+                            else
+                            {
+                                lblFilterByPlayerSchoolOutput.Text = "UNKNOWN";
                             }
 
                             PlayerEvent searchPlayerEvents = new PlayerEvent(0, searchedPlayer.Id);
@@ -561,16 +575,23 @@ namespace SportsMeet
                 bindingSourceSchools.ResetBindings(false);
             }
 
-            School newSchool = new School(0, searchString);
+            try
+            {
+                School newSchool = new School(0, searchString);
 
-            School searchedSchool = DataBase.GetSchool(searchString);
-            if (searchedSchool != null)
-            {
-                tbNewSchoolName.Enabled = true;
+                School searchedSchool = DataBase.GetSchool(searchString);
+                if (searchedSchool != null)
+                {
+                    tbNewSchoolName.Enabled = true;
+                }
+                else
+                {
+                    tbNewSchoolName.Enabled = false;
+                }
             }
-            else
+            catch (Exception exception)
             {
-                tbNewSchoolName.Enabled = false;
+                statusViewer.Update(exception.Message, Status.WARNING);
             }
         }
 

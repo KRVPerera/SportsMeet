@@ -1334,7 +1334,7 @@ namespace SportsMeet
             // 
             // statusTime
             // 
-            this.statusTime.Interval = 3000;
+            this.statusTime.Interval = 4000;
             this.statusTime.Tick += new System.EventHandler(this.statusTime_Tick);
             // 
             // MainForm
