@@ -76,6 +76,7 @@ namespace SportsMeet
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tbEvents = new System.Windows.Forms.TabPage();
+            this.btnEeventsTabAddPlayers = new System.Windows.Forms.Button();
             this.btnEventEdit = new System.Windows.Forms.Button();
             this.btnEvetSearch = new System.Windows.Forms.Button();
             this.btnEventDelete = new System.Windows.Forms.Button();
@@ -294,19 +295,19 @@ namespace SportsMeet
             // 
             // btnAddEventsToPlayer
             // 
-            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(98, 471);
+            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(105, 315);
             this.btnAddEventsToPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
-            this.btnAddEventsToPlayer.Size = new System.Drawing.Size(66, 28);
+            this.btnAddEventsToPlayer.Size = new System.Drawing.Size(180, 28);
             this.btnAddEventsToPlayer.TabIndex = 32;
             this.btnAddEventsToPlayer.TabStop = false;
-            this.btnAddEventsToPlayer.Text = "Events";
+            this.btnAddEventsToPlayer.Text = "Player Events Management ";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
             this.btnAddEventsToPlayer.Click += new System.EventHandler(this.btnAddEventsToPlayer_Click);
             // 
             // btnPlayerEdit
             // 
-            this.btnPlayerEdit.Location = new System.Drawing.Point(171, 471);
+            this.btnPlayerEdit.Location = new System.Drawing.Point(97, 471);
             this.btnPlayerEdit.Name = "btnPlayerEdit";
             this.btnPlayerEdit.Size = new System.Drawing.Size(66, 28);
             this.btnPlayerEdit.TabIndex = 31;
@@ -317,7 +318,7 @@ namespace SportsMeet
             // 
             // btnDeletePlayer
             // 
-            this.btnDeletePlayer.Location = new System.Drawing.Point(243, 471);
+            this.btnDeletePlayer.Location = new System.Drawing.Point(169, 471);
             this.btnDeletePlayer.Name = "btnDeletePlayer";
             this.btnDeletePlayer.Size = new System.Drawing.Size(66, 28);
             this.btnDeletePlayer.TabIndex = 29;
@@ -560,6 +561,7 @@ namespace SportsMeet
             // tbEvents
             // 
             this.tbEvents.AutoScroll = true;
+            this.tbEvents.Controls.Add(this.btnEeventsTabAddPlayers);
             this.tbEvents.Controls.Add(this.btnEventEdit);
             this.tbEvents.Controls.Add(this.btnEvetSearch);
             this.tbEvents.Controls.Add(this.btnEventDelete);
@@ -581,6 +583,17 @@ namespace SportsMeet
             this.tbEvents.TabIndex = 0;
             this.tbEvents.Text = "Events";
             this.tbEvents.UseVisualStyleBackColor = true;
+            // 
+            // btnEeventsTabAddPlayers
+            // 
+            this.btnEeventsTabAddPlayers.Location = new System.Drawing.Point(96, 281);
+            this.btnEeventsTabAddPlayers.Margin = new System.Windows.Forms.Padding(6);
+            this.btnEeventsTabAddPlayers.Name = "btnEeventsTabAddPlayers";
+            this.btnEeventsTabAddPlayers.Size = new System.Drawing.Size(170, 28);
+            this.btnEeventsTabAddPlayers.TabIndex = 13;
+            this.btnEeventsTabAddPlayers.Text = "Event Players Management ";
+            this.btnEeventsTabAddPlayers.UseVisualStyleBackColor = true;
+            this.btnEeventsTabAddPlayers.Visible = false;
             // 
             // btnEventEdit
             // 
@@ -1529,6 +1542,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn sexDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn1;
+        private Button btnEeventsTabAddPlayers;
     }
     
 }
