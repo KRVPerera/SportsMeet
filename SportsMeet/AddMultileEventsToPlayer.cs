@@ -3,6 +3,7 @@ using SportsMeet.Models;
 using SportsMeet.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SportsMeet
@@ -117,6 +118,12 @@ namespace SportsMeet
         private void AddMultipleEventsToPlayer_Load(object sender, EventArgs e)
         {
             RefreshView();
+        }
+
+        private void btnChangePlayerPlayerEventsMgt_Click(object sender, EventArgs e)
+        {
+                Form searchPlayer = new SearchPlayer();
+                searchPlayer.ShowDialog();
         }
     }
 }
