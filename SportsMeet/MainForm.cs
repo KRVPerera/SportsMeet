@@ -296,6 +296,12 @@ namespace SportsMeet
         private void tbFilterByPlayersNumber_TextChanged(object sender, EventArgs e)
         {
             CleanupFilterByPlayerTabLabels();
+
+            List<Event> el = new List<Event>();
+            bindingSourceFilteredEventsOnPlayers.DataSource = el;
+            bindingSourceFilteredEventsOnPlayers.ResetBindings(false);
+            lblFilterByPlayerNameOutput.Text = "Not found";
+
             var textbox = sender as TextBox;
             if (textbox != null)
             {
@@ -307,14 +313,10 @@ namespace SportsMeet
                     var myRegex = new Regex(@"^" + searchString + ".*$");
                     IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
 
+                    
                     List<Player> players = searchedPlayers.ToList();
                     bindingSourcePlayers.DataSource = players;
                     bindingSourcePlayers.ResetBindings(false);
-
-                    /*if (players.Count > 1)
-                    {
-                        return;
-                    }*/
 
                     Player searchedPlayer = players.FirstOrDefault();
 
