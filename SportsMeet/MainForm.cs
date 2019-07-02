@@ -259,12 +259,17 @@ namespace SportsMeet
 
         private void btnAddEvent_Click(object sender, EventArgs e)
         {
-            EventsTab.AddEvent(tbNewEventsNumber.Text.Trim(),
+            if (EventsTab.AddEvent(tbNewEventsNumber.Text.Trim(),
                 numericUpDownEventAgeLimit.Text.Trim(),
                 tbNewEventsName.Text.Trim(),
-                comboBoxEventsSex.Text.Trim());
-            LoadEventList();
-            ClearEventsTab();
+                comboBoxEventsSex.Text.Trim()))
+            {
+
+                statusViewer.Update("Event added !", Status.SUCCESS);
+                LoadEventList();
+                ClearEventsTab();
+            }
+
         }
 
         private void ClearEventsTab()
