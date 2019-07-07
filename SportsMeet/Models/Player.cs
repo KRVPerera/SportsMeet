@@ -1,5 +1,6 @@
 ﻿using Dapper.Contrib.Extensions;
 using System;
+using System.Collections.Generic;
 
 namespace SportsMeet.Models
 {
@@ -17,6 +18,28 @@ namespace SportsMeet.Models
             Sex = sex;
             SchoolId = schoolId;
             DistrictId = districtId;
+        }
+
+        public Player(String number, String firstName, String lastName, String age, String schoolId, String districtId)
+        {
+            Sex = (byte)0;
+            Id = 0;
+            
+            Number = number;
+            FirstName = firstName;
+            LastName = lastName;
+            if (!long.TryParse(age, out _age))
+            {
+                _age = -1;
+            }
+
+            long schoolIdP = -1;
+            long.TryParse(schoolId, out schoolIdP);
+            SchoolId = schoolIdP;
+
+            long districtIdP = -1;
+            long.TryParse(districtId, out districtIdP);
+            DistrictId = districtIdP;
         }
 
         public Player(String number)
@@ -80,6 +103,7 @@ namespace SportsMeet.Models
         public Int64 Id { get; set; }
 
         #endregion public properties
+
 
         #region public derived members
 

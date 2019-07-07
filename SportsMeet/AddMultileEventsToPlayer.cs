@@ -10,17 +10,24 @@ namespace SportsMeet
 {
     public partial class AddMultipleEventsToPlayer : Form
     {
-        public Player CurrentPlayer { get; }
+        public Player CurrentPlayer { get; set; }
 
         public AddMultipleEventsToPlayer(Player existingPlayer)
         {
             InitializeComponent();
-            CurrentPlayer = existingPlayer;
+            LoadPlayer(existingPlayer);
+        }
 
-            labelAddEventsPlayerNumber.Text = existingPlayer.Number;
-            labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
-            labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
-            labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum)existingPlayer.Sex);
+        private void LoadPlayer(Player existingPlayer)
+        {
+            if (existingPlayer != null)
+            {
+                CurrentPlayer = existingPlayer;
+                labelAddEventsPlayerNumber.Text = existingPlayer.Number;
+                labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
+                labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
+                labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum) existingPlayer.Sex);
+            }
         }
 
         private void LoadPlayerEvents()
@@ -122,8 +129,12 @@ namespace SportsMeet
 
         private void btnChangePlayerPlayerEventsMgt_Click(object sender, EventArgs e)
         {
-                Form searchPlayer = new SearchPlayer();
+                SearchPlayer searchPlayer = new SearchPlayer();
                 searchPlayer.ShowDialog();
+                Player pl = searchPlayer.Player;
+                LoadPlayer(pl);
+                LoadPlayerEvents();
+                LoadNonPlayerEvents();
         }
     }
 }

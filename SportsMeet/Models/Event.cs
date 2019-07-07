@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SportsMeet.Models
 {
-    internal class Event
+    public class Event
     {
         #region public constructors
 
@@ -15,6 +15,18 @@ namespace SportsMeet.Models
             Name = name;
             Sex = sex;
             AgeLimit = agelimit;
+        }
+
+        public Event(String number, String name, String agelimit)
+        {
+            Id = 0;
+            Sex = (byte) 0;
+
+            Number = number;
+            Name = name;
+            long ageLimit = 0;
+            long.TryParse(agelimit, out ageLimit);
+            AgeLimit = ageLimit;
         }
 
         #endregion public constructors

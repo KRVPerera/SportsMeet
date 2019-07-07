@@ -2,7 +2,7 @@
 
 namespace SportsMeet.Models
 {
-    internal class District
+    public class District
     {
         public District()
         {

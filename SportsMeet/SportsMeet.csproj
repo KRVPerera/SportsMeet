@@ -98,6 +98,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompletePlayer.cs" />
     <Compile Include="Models\District.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Player.cs" />
@@ -112,6 +113,7 @@
       <DependentUpon>SearchPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\EventsTab.cs" />
+    <Compile Include="Models\PlayerEventData.cs" />
     <Compile Include="Utils\PlayersTab.cs" />
     <Compile Include="Utils\SchoolsTab.cs" />
     <Compile Include="Utils\Util.cs" />

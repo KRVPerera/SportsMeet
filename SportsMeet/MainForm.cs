@@ -72,6 +72,8 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }
 
+//                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), school, district);
+
                 Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)

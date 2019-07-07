@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SportsMeet.Utils;
 
 namespace SportsMeet
 {
     public partial class SearchPlayer : Form
     {
+        public Player Player { get; set; }
+
+        Player playerSearched;
         public SearchPlayer()
         {
             InitializeComponent();
@@ -38,11 +42,66 @@ namespace SportsMeet
             String playerLastName = tbxLastNameSW.Text.Trim();
             String playerSchool = cbxSchoolSW.Text.Trim();
             String playerAge = numericUpDownAgeSW.Text.Trim();
+            String playerDistrcit = cbxDistrictSW.Text.Trim();
+            String playerRegion = cbxRegionsSW.Text.Trim();
 
-            String searchString = tbxPlayerNumberSW.Text.Trim();
-            var playerList = Data.DataBase.LoadPlayers();
-            var myRegex = new Regex(@"^" + searchString + ".*$");
-            IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
+  
+            Player searchPlayer = new Player(playerNumber, playerFirstName, playerLastName, playerAge, playerSchool, playerDistrcit);
+       
+            var players = Data.DataBase.LoadPlayers(searchPlayer);
+            Player foundPlayer = players.FirstOrDefault();
+            if (foundPlayer != null)
+            {
+                playerSearched = foundPlayer;
+                labelPlayerFullNameSW.Text = foundPlayer.FullName();
+                labelPlayerNumberSW.Text = foundPlayer.Number;
+                labelPlayerGenderSW.Text = foundPlayer.Gender;
+                labelPlayerAgeSW.Text = foundPlayer.Age.ToString();
+            }
+            else
+            {
+                labelPlayerFullNameSW.Text = "";
+                labelPlayerNumberSW.Text = "";
+                labelPlayerGenderSW.Text = "";
+                labelPlayerAgeSW.Text = "";
+                playerSearched = null;
+            }
+        }
+
+        private void lblDistrict_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAge_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonOkaySW_Click(object sender, EventArgs e)
+        {
+            Player = playerSearched;
+            Close();
         }
     }
 }

@@ -4,6 +4,7 @@ using SportsMeet.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SportsMeet.Utils;
 
 namespace SportsMeet.Data
 {
@@ -17,13 +18,109 @@ namespace SportsMeet.Data
 
         public static IEnumerable<Player> LoadPlayers()
         {
-            //var output = DBConnection.Instance.Connection.Query<Player>("select * from Players", new DynamicParameters());
-            //return output.ToList();
             return DBConnection.Instance.Connection.GetAll<Player>();
+        }
+
+        public static List<Player> LoadPlayers(Player sPlayer)
+        {
+            Console.WriteLine(sPlayer.FullName());
+            string query = @"
+            SELECT *
+            FROM players
+            where   
+                    firstName LIKE @FirstName AND
+                    lastName LIKE @LastName AND
+                    age = @Age AND
+                    id = @Id
+                ;
+            ";
+
+            bool agePattern = false;
+            if (sPlayer.Age == 0)
+            {
+                agePattern = true;
+            }
+
+            var p = new
+            {
+                FirstName = "%" + sPlayer.FirstName + "%",
+                LastName = "%" + sPlayer.LastName + "%",
+                Age = agePattern? "%" : sPlayer.Age.ToString(),
+                Id = sPlayer.Id.ToString() + "%"
+            };
+
+            Console.WriteLine(sPlayer.FullName());
+
+            var players = DBConnection.Instance.Connection.Query<Player>(query, p)
+                            .Distinct()
+                            .ToList();
+
+            Console.WriteLine(players.Count);
+            return players;
+
+        }
+
+        public static List<Player> LoadPlayers(PlayerEventData playerEventData)
+        {
+//            string query = "select * from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
+            string query = @"
+            SELECT pls.*,pes.*,evs.*
+            FROM (
+                (players pls INNER JOIN playerevents  pes ON pls.id = pes.playerId)
+                INNER JOIN events evs ON evs.id = pes.eventId
+                )
+
+                where   pls.firstName LIKE @FirstName AND
+                        pls.lastName LIKE @LastName
+                ;
+            ";
+
+            Player sPlayer = playerEventData.PlayerData;
+            Event sEvent = playerEventData.EventData;
+
+            if (sPlayer.FirstName == "")
+            {
+                sPlayer.FirstName = "%";
+            }
+
+            if (sPlayer.LastName == "")
+            {
+                sPlayer.LastName = "%";
+            }
+
+            var p = new
+            {
+                FirstName = sPlayer.FirstName,
+                LastName = sPlayer.LastName
+            };
+
+            var players = DBConnection.Instance.Connection.Query<Player, PlayerEventData, Event, Player>(
+                    query,
+                    (pPlayer, pevent, eEvent) =>
+                    {
+                        pevent.PlayerData = pPlayer;
+                        pevent.EventData = eEvent;
+                        return pPlayer;
+                    }, p, commandType: System.Data.CommandType.Text,
+                    splitOn: "id,eventId,id")
+                .Distinct()
+                .ToList();
+
+            Console.WriteLine(players.Count);
+            foreach (var dt1 in players)
+            {
+                string ss = dt1.ToString();
+                Console.WriteLine(ss);
+                
+            }
+
+            return players;
+
         }
 
         public static long SavePlayer(Player player)
         {
+//            DapperPlusManager.Entity<Supplier>().Table("Suppliers").Identity(x => x.SupplierID);
             return DBConnection.Instance.Connection.Insert(player);
         }
 
@@ -33,6 +130,13 @@ namespace SportsMeet.Data
         }
 
         public static Player FindPlayer(Player player)
+        {
+            string query = "select * from Players where number=@Number;";
+            var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
+            return output;
+        }
+
+        public static Player FindPlayer(Player player, Event eEvent)
         {
             string query = "select * from Players where number=@Number;";
             var output = DBConnection.Instance.Connection.QueryFirstOrDefault<Player>(query, player);
