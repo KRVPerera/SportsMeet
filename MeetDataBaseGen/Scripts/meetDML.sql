@@ -33,3 +33,9 @@ INSERT INTO Districts (name) VALUES  ('Puttalam');
 INSERT INTO Districts (name) VALUES  ('Ratnapura');
 INSERT INTO Districts (name) VALUES  ('Trincomalee');
 INSERT INTO Districts (name) VALUES  ('Vavuniya');
+
+
+INSERT INTO EducationZones (name) VALUES  ('Piliyandala');
+INSERT INTO EducationZones (name) VALUES  ('Hambantota');
+INSERT INTO EducationZones (name) VALUES  ('Matara');
+INSERT INTO EducationZones (name) VALUES  ('Vavuniya');
