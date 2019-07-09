@@ -34,7 +34,7 @@ namespace SportsMeet.Utils
 
         public static bool AddPlayerToEvent(long playerId, Event currentEvent)
         {
-            Player searchMe = new Player(playerId, "", "", "", 0, 0, 0, 0);
+            Player searchMe = new Player(playerId);
             Player player = DataBase.FindPlayerById(searchMe);
 
             if (player == null) return false;

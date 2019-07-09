@@ -7,7 +7,7 @@ namespace SportsMeet.Models
     {
         #region public constrctors
 
-        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Byte sex, Int64 schoolId, Int64 districtId)
+        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Byte sex, Int64 schoolId, Int64 districtId, Int64 educationZoneId)
         {
             Id = id;
             Number = number;
@@ -17,33 +17,39 @@ namespace SportsMeet.Models
             Sex = sex;
             SchoolId = schoolId;
             DistrictId = districtId;
+            EducationZoneId = educationZoneId;
         }
 
         public Player(String number)
         {
             Id = 0;
             Number = number;
-            FirstName = "";
-            LastName = "";
-            Age = 0;
-            Sex = 0;
-            SchoolId = 0;
-            DistrictId = 0;
+            Init();
         }
 
         public Player(Int64 id)
         {
             Id = id;
             Number = "";
+            Init();
+        }
+
+        #endregion public constrctors
+
+        #region private methods
+
+        private void Init()
+        {
             FirstName = "";
             LastName = "";
             Age = 0;
             Sex = 0;
             SchoolId = 0;
             DistrictId = 0;
+            EducationZoneId = 0;
         }
 
-        #endregion public constrctors
+        #endregion private methods
 
         #region public properties
 
@@ -75,6 +81,8 @@ namespace SportsMeet.Models
         public Int64 SchoolId { get; set; }
 
         public Int64 DistrictId { get; set; }
+
+        public Int64 EducationZoneId { get; set; }
 
         [Key]
         public Int64 Id { get; set; }
