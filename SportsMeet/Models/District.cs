@@ -2,14 +2,10 @@
 
 namespace SportsMeet.Models
 {
-    internal class District
+    class District : StringAttribute
     {
         public District()
         {
         }
-
-        public int Id { get; set; }
-
-        public String Name { get; set; }
     }
 }
