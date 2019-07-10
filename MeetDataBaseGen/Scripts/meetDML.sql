@@ -1,8 +1,12 @@
-﻿CREATE TABLE IF NOT EXISTS Districts (
-    [no]      INTEGER  PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE IF NOT EXISTS Districts (
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS EducationZones (
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	name  TEXT      UNIQUE
+);
 
 INSERT INTO Districts (name) VALUES  ('Galle');
 INSERT INTO Districts (name) VALUES  ('Hambantota');
