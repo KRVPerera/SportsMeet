@@ -72,7 +72,11 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
+                long educationZoneId = 0;
+
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                    (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
+
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)
                 {
@@ -604,7 +608,9 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
-            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0);
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, 
+                (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
+
             Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
             if (existingPlayer != null)
             {
@@ -655,12 +661,17 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }
 
+                long educationZoneId = 0;
+                //TODO: get from cache or DB
+
                 string searchString = tbPlayerNumber.Text.Trim();
                 Player searchMe = new Player(searchString);
                 Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
                 if (searchByNumber != null)
                 {
-                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
+                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                        (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
+
                     if (PlayersTab.SavePlayer(newPlayer))
                     {
                         LoadPlayerList();

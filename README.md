@@ -11,4 +11,6 @@ This is a small program which tracker sports meet data with Players and the even
 | Dapper.Contrib          | 1.50.0    |
 | dbup-core               | 4.2.0     |
 | dbup-sqlite             | 4.2.0     |
-| System.Data.SQLite.Core | 1.0.109.2 |
+| System.Data.SQLite.Core | 1.0.111.0 |
+| NUnit					  | 3.12.0    |
+| NUnit3TestAdapter       | 3.13.0    |

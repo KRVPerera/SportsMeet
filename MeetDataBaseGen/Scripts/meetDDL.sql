@@ -6,6 +6,11 @@ CREATE TABLE IF NOT EXISTS Districts (
 	name  TEXT      UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS EducationZones (
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	name  TEXT      UNIQUE
+);
+
 
 CREATE TABLE Schools (
     id INTEGER    PRIMARY KEY AUTOINCREMENT,
@@ -30,6 +35,7 @@ CREATE TABLE Players (
 	sex		  TINYINT,
     schoolId  INTEGER,
 	districtId INTEGER,
+	educationZoneId INTEGER,
     
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
@@ -38,6 +44,10 @@ CREATE TABLE Players (
 	CONSTRAINT student_to_district 
 	FOREIGN KEY ( districtId )
 	REFERENCES Districts (id) ON UPDATE CASCADE
+
+	CONSTRAINT student_to_educationzone 
+	FOREIGN KEY ( educationZoneId )
+	REFERENCES EducationZones (id) ON UPDATE CASCADE
 );
 
 
