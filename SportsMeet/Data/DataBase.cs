@@ -3,7 +3,10 @@ using Dapper.Contrib.Extensions;
 using SportsMeet.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.Caching;
 
 namespace SportsMeet.Data
 {
@@ -65,20 +68,6 @@ namespace SportsMeet.Data
             return output;
         }
 
-        internal static List<Event> GetEventsForEventIds(List<long> eventIds)
-        {
-            List<Event> eventList = new List<Event>();
-            foreach (var eventId in eventIds)
-            {
-                Event searchedEvent = GetEventById(eventId);
-                if (searchedEvent != null)
-                {
-                    eventList.Add(searchedEvent);
-                }
-            }
-            return eventList;
-        }
-
         #endregion Players
 
         #region Schools
@@ -133,6 +122,20 @@ namespace SportsMeet.Data
         #endregion Schools
 
         #region Events
+
+        internal static List<Event> GetEventsForEventIds(List<long> eventIds)
+        {
+            List<Event> eventList = new List<Event>();
+            foreach (var eventId in eventIds)
+            {
+                Event searchedEvent = GetEventById(eventId);
+                if (searchedEvent != null)
+                {
+                    eventList.Add(searchedEvent);
+                }
+            }
+            return eventList;
+        }
 
         public static long SaveEvent(Event neweEvent)
         {
@@ -203,9 +206,27 @@ namespace SportsMeet.Data
 
         public static List<District> LoadDistricts()
         {
-            var output =
-                DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
-            return output.ToList();
+            string cache_key = "DISTRICTS";
+
+            ObjectCache cache = MemoryCache.Default;
+
+            IEnumerable<District> districts = cache[cache_key] as IEnumerable<District>;
+
+            if (districts == null)
+            {
+//                CacheItemPolicy
+                districts =
+                    DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
+
+                cache.Set(cache_key, districts, DateTimeOffset.MaxValue);
+                Console.WriteLine("Cached set");
+            }
+            else 
+            {
+                Console.WriteLine("Cache used");
+            }
+
+            return districts.ToList();
         }
 
         public static District GetDistrict(Int64 districtId)
@@ -215,12 +236,51 @@ namespace SportsMeet.Data
 
         public static District GetDistrictByName(String districtName)
         {
-            string query = "select * from Districts where Name = @Name";
-            District nameDistrict = new District();
-            nameDistrict.Name = districtName;
+            string cache_key = "DISTRICTS_NAME_MAP";
 
-            IEnumerable<District> result = DBConnection.Instance.Connection.Query<District>(query, nameDistrict);
-            return result.FirstOrDefault();
+            ObjectCache cache = MemoryCache.Default;
+            District resDistrict = null;
+
+            Dictionary<String, District> districtsMDictionary = cache[cache_key] as Dictionary<String, District>;
+
+            if (districtsMDictionary == null)
+            {
+                List<District> districts = LoadDistricts();
+                districtsMDictionary = new Dictionary<string, District>();
+
+                foreach (var district in districts)
+                {
+                    String disName = district.Name;
+
+                    if (disName == districtName)
+                    {
+                        resDistrict = district;
+                    }
+
+                    districtsMDictionary.Add(district.Name, district);
+                }
+
+                cache.Set(cache_key, districtsMDictionary, DateTimeOffset.MaxValue);
+                Console.WriteLine("Cached set district by name");
+            }
+            else
+            {
+                if (!districtsMDictionary.TryGetValue(districtName, out resDistrict))
+                {
+                    string query = "select * from Districts where Name = @Name";
+                    District nameDistrict = new District();
+                    nameDistrict.Name = districtName;
+                    IEnumerable<District> result = DBConnection.Instance.Connection.Query<District>(query, nameDistrict);
+                    resDistrict = result.FirstOrDefault();
+                }
+                else
+                {
+                    Console.WriteLine("Cached used district by name");
+                }
+                
+            }
+
+            return resDistrict;
         }
 
         #endregion Districts

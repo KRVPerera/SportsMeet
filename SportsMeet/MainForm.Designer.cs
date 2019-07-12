@@ -192,9 +192,9 @@ namespace SportsMeet
             this.tcMainForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tcMainForm.Controls.Add(this.tbPlayers);
-            this.tcMainForm.Controls.Add(this.tbEvents);
             this.tcMainForm.Controls.Add(this.tbSchool);
+            this.tcMainForm.Controls.Add(this.tbEvents);
+            this.tcMainForm.Controls.Add(this.tbPlayers);
             this.tcMainForm.Controls.Add(this.tbFilterByPlayer);
             this.tcMainForm.Controls.Add(this.tbFilterByEvent);
             this.tcMainForm.Controls.Add(this.reportTab);
