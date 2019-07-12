@@ -14,3 +14,4 @@ This is a small program which tracker sports meet data with Players and the even
 | System.Data.SQLite.Core | 1.0.111.0 |
 | NUnit					  | 3.12.0    |
 | NUnit3TestAdapter       | 3.13.0    |
+| NLog					  | 4.6.5     |

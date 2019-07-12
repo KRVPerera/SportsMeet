@@ -12,6 +12,8 @@ namespace SportsMeet.Data
 {
     internal class DataBase
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         public DataBase()
         {
         }
@@ -214,16 +216,15 @@ namespace SportsMeet.Data
 
             if (districts == null)
             {
-//                CacheItemPolicy
                 districts =
                     DBConnection.Instance.Connection.Query<District>("select * from Districts", new DynamicParameters());
 
                 cache.Set(cache_key, districts, DateTimeOffset.MaxValue);
-                Console.WriteLine("Cached set");
+                logger.Debug("Cache set district");
             }
             else 
             {
-                Console.WriteLine("Cache used");
+                logger.Debug("Cache hit district");
             }
 
             return districts.ToList();
@@ -231,7 +232,54 @@ namespace SportsMeet.Data
 
         public static District GetDistrict(Int64 districtId)
         {
-            return DBConnection.Instance.Connection.Get<District>(districtId);
+//            return DBConnection.Instance.Connection.Get<District>(districtId);
+
+            string cache_key = "DISTRICTS_ID_MAP";
+
+            ObjectCache cache = MemoryCache.Default;
+            District resDistrict = null;
+
+            Dictionary<Int64, District> districtsMDictionary = cache[cache_key] as Dictionary<Int64, District>;
+
+            if (districtsMDictionary == null)
+            {
+                List<District> districts = LoadDistricts();
+                districtsMDictionary = new Dictionary<Int64, District>();
+
+                foreach (var district in districts)
+                {
+                    Int64 disId = district.Id;
+
+                    if (disId == districtId)
+                    {
+                        resDistrict = district;
+                    }
+
+                    districtsMDictionary.Add(disId, district);
+                }
+
+                cache.Set(cache_key, districtsMDictionary, DateTimeOffset.MaxValue);
+                logger.Debug("Cached set district by id");
+            }
+            else
+            {
+                if (!districtsMDictionary.TryGetValue(districtId, out resDistrict))
+                {
+                    /*string query = "select * from Districts where Name = @Name";
+                    District nameDistrict = new District();
+                    nameDistrict.Name = districtName;
+                    IEnumerable<District> result = DBConnection.Instance.Connection.Query<District>(query, nameDistrict);
+                    resDistrict = result.FirstOrDefault();*/
+                    logger.Debug("District by id not found in cache");
+                }
+                else
+                {
+                    logger.Debug("Cached used district by id");
+                }
+
+            }
+
+            return resDistrict;
         }
 
         public static District GetDistrictByName(String districtName)
@@ -261,21 +309,22 @@ namespace SportsMeet.Data
                 }
 
                 cache.Set(cache_key, districtsMDictionary, DateTimeOffset.MaxValue);
-                Console.WriteLine("Cached set district by name");
+                logger.Debug("Cached set district by name");
             }
             else
             {
                 if (!districtsMDictionary.TryGetValue(districtName, out resDistrict))
                 {
-                    string query = "select * from Districts where Name = @Name";
+                    /*string query = "select * from Districts where Name = @Name";
                     District nameDistrict = new District();
                     nameDistrict.Name = districtName;
                     IEnumerable<District> result = DBConnection.Instance.Connection.Query<District>(query, nameDistrict);
-                    resDistrict = result.FirstOrDefault();
+                    resDistrict = result.FirstOrDefault();*/
+                    logger.Debug("District by name not found in cache");
                 }
                 else
                 {
-                    Console.WriteLine("Cached used district by name");
+                    logger.Debug("Cached used district by name");
                 }
                 
             }
