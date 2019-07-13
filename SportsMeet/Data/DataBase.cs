@@ -14,9 +14,15 @@ namespace SportsMeet.Data
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
+
+        #region public constructors
+
         public DataBase()
         {
         }
+
+        #endregion
+
 
         #region Players
 
@@ -72,6 +78,7 @@ namespace SportsMeet.Data
 
         #endregion Players
 
+
         #region Schools
 
         public static List<School> LoadSchools()
@@ -122,6 +129,7 @@ namespace SportsMeet.Data
         }
 
         #endregion Schools
+
 
         #region Events
 
@@ -203,6 +211,7 @@ namespace SportsMeet.Data
         }
 
         #endregion Events
+
 
         #region Districts
 
@@ -333,6 +342,126 @@ namespace SportsMeet.Data
         }
 
         #endregion Districts
+
+
+        #region EducationZones
+
+        public static List<EducationZone> LoadEducationZones()
+        {
+            string cache_key = "EDUCATION_ZONES";
+
+            ObjectCache cache = MemoryCache.Default;
+
+            IEnumerable<EducationZone> educationZones = cache[cache_key] as IEnumerable<EducationZone>;
+
+            if (educationZones == null)
+            {
+                educationZones =
+                    DBConnection.Instance.Connection.Query<EducationZone>("select * from EducationZones", new DynamicParameters());
+
+                cache.Set(cache_key, educationZones, DateTimeOffset.MaxValue);
+                logger.Debug("Cache set district");
+            }
+            else
+            {
+                logger.Debug("Cache hit district");
+            }
+
+            return educationZones.ToList();
+        }
+
+        public static EducationZone GetEducationZone(Int64 educationId)
+        {
+            string cache_key = "EDUCATION_ZONES_ID_MAP";
+
+            ObjectCache cache = MemoryCache.Default;
+            EducationZone resEducation = null;
+
+            Dictionary<Int64, EducationZone> educationZonesDictionary = cache[cache_key] as Dictionary<Int64, EducationZone>;
+
+            if (educationZonesDictionary == null)
+            {
+                List<EducationZone> educationZoneList = LoadEducationZones();
+                educationZonesDictionary = new Dictionary<Int64, EducationZone>();
+
+                foreach (var zone in educationZoneList)
+                {
+                    Int64 zoneId = zone.Id;
+
+                    if (zoneId == educationId)
+                    {
+                        resEducation = zone;
+                    }
+
+                    educationZonesDictionary.Add(zoneId, zone);
+                }
+
+                cache.Set(cache_key, educationZonesDictionary, DateTimeOffset.MaxValue);
+                logger.Debug("Cached set EducationZone by id");
+            }
+            else
+            {
+                if (!educationZonesDictionary.TryGetValue(educationId, out resEducation))
+                {
+                    logger.Debug("EducationZone by id not found in cache");
+                }
+                else
+                {
+                    logger.Debug("Cached used EducationZone by id");
+                }
+
+            }
+
+            return resEducation;
+        }
+
+        public static EducationZone GetEducationZone(String educationZoneName)
+        {
+            string cache_key = "EDUCATION_ZONES_NAME_MAP";
+
+            ObjectCache cache = MemoryCache.Default;
+            EducationZone resEducation = null;
+
+            Dictionary<String, EducationZone> educationZonesDictionary = cache[cache_key] as Dictionary<String, EducationZone>;
+
+            if (educationZonesDictionary == null)
+            {
+                List<EducationZone> educationZoneList = LoadEducationZones();
+                educationZonesDictionary = new Dictionary<String, EducationZone>();
+
+                foreach (var zone in educationZoneList)
+                {
+                    String zoneName = zone.Name;
+
+                    if (zoneName == educationZoneName)
+                    {
+                        resEducation = zone;
+                    }
+
+                    educationZonesDictionary.Add(zoneName, zone);
+                }
+
+                cache.Set(cache_key, educationZonesDictionary, DateTimeOffset.MaxValue);
+                logger.Debug("Cached set EducationZone by name");
+            }
+            else
+            {
+                if (!educationZonesDictionary.TryGetValue(educationZoneName, out resEducation))
+                {
+                    logger.Debug("EducationZone by name not found in cache");
+                }
+                else
+                {
+                    logger.Debug("Cached used EducationZone by name");
+                }
+
+            }
+
+            return resEducation;
+        }
+
+        #endregion
+
 
         #region PlayerEvents
 
