@@ -367,6 +367,16 @@ namespace SportsMeet
                                 lblFilterByPlayerDistrictOutput.Text = "UNKNOWN";
                             }
 
+                            EducationZone zone = DataBase.GetEducationZone(searchedPlayer.EducationZoneId);
+                            if (zone != null)
+                            {
+                                labelEducationZoneFBP.Text = zone.Name;
+                            }
+                            else
+                            {
+                                labelEducationZoneFBP.Text = "UNKNOWN";
+                            }
+
                             School school = DataBase.GetSchool(searchedPlayer.SchoolId);
                             if (school != null)
                             {
