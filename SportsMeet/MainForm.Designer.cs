@@ -381,7 +381,7 @@ namespace SportsMeet
             this.tbEvents.Location = new System.Drawing.Point(4, 29);
             this.tbEvents.Margin = new System.Windows.Forms.Padding(0);
             this.tbEvents.Name = "tbEvents";
-            this.tbEvents.Size = new System.Drawing.Size(1322, 769);
+            this.tbEvents.Size = new System.Drawing.Size(1302, 725);
             this.tbEvents.TabIndex = 0;
             this.tbEvents.Text = "Events";
             this.tbEvents.UseVisualStyleBackColor = true;
@@ -398,10 +398,10 @@ namespace SportsMeet
             this.genderDataGridViewTextBoxColumn2,
             this.ageLimitDataGridViewTextBoxColumn1});
             this.dataGridViewAllEvents.DataSource = this.bindingSourceAllEvents;
-            this.dataGridViewAllEvents.Location = new System.Drawing.Point(487, 3);
+            this.dataGridViewAllEvents.Location = new System.Drawing.Point(477, 3);
             this.dataGridViewAllEvents.Name = "dataGridViewAllEvents";
             this.dataGridViewAllEvents.RowTemplate.Height = 28;
-            this.dataGridViewAllEvents.Size = new System.Drawing.Size(478, 757);
+            this.dataGridViewAllEvents.Size = new System.Drawing.Size(468, 713);
             this.dataGridViewAllEvents.TabIndex = 14;
             // 
             // bindingSourceAllEvents
@@ -491,7 +491,7 @@ namespace SportsMeet
             this.dataGridViewEvents.DataSource = this.bindingSourceEvents;
             this.dataGridViewEvents.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewEvents.Name = "dataGridViewEvents";
-            this.dataGridViewEvents.Size = new System.Drawing.Size(478, 757);
+            this.dataGridViewEvents.Size = new System.Drawing.Size(468, 713);
             this.dataGridViewEvents.TabIndex = 8;
             this.dataGridViewEvents.TabStop = false;
             // 
@@ -1477,7 +1477,7 @@ namespace SportsMeet
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 763);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(948, 719);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // tableLayoutPanel2

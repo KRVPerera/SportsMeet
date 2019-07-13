@@ -220,6 +220,10 @@ namespace SportsMeet
             _schools = DataBase.LoadSchools();
             bindingSourceSchools.DataSource = _schools;
             bindingSourceSchools.ResetBindings(false);
+
+            bindingSourceAllSchools.DataSource = _schools;
+            bindingSourceAllSchools.ResetBindings(false);
+
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
 
             bindingSourceSchoolsFixed.DataSource = _schools;
@@ -287,6 +291,9 @@ namespace SportsMeet
             _events = DataBase.LoadEvents().ToList();
             bindingSourceEvents.DataSource = _events;
             bindingSourceEvents.ResetBindings(false);
+
+            bindingSourceAllEvents.DataSource = _events;
+            bindingSourceAllEvents.ResetBindings(false);
 
             toolStripLabelTotalEvents.Text = _events.Count.ToString();
 
