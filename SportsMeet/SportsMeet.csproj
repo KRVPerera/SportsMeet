@@ -145,9 +145,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SportsMeet.Models.District.datasource" />
+    <None Include="Properties\DataSources\SportsMeet.Models.EducationZone.datasource" />
     <None Include="Properties\DataSources\SportsMeet.Models.Event.datasource" />
     <None Include="Properties\DataSources\SportsMeet.Models.Player.datasource" />
+    <None Include="Properties\DataSources\SportsMeet.Models.PlayerEvent.datasource" />
     <None Include="Properties\DataSources\SportsMeet.Models.School.datasource" />
+    <None Include="Properties\DataSources\SportsMeet.Models.StringAttribute.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
