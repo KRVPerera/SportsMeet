@@ -121,6 +121,8 @@ namespace SportsMeet
             this.tbPlayerNumber = new System.Windows.Forms.TextBox();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.tbFilterByPlayer = new System.Windows.Forms.TabPage();
+            this.labelEducationZoneFBP = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -174,8 +176,6 @@ namespace SportsMeet
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTime = new System.Windows.Forms.Timer(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.labelEducationZoneFBP = new System.Windows.Forms.Label();
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -226,7 +226,7 @@ namespace SportsMeet
             this.tcMainForm.Name = "tcMainForm";
             this.tcMainForm.Padding = new System.Drawing.Point(0, 0);
             this.tcMainForm.SelectedIndex = 0;
-            this.tcMainForm.Size = new System.Drawing.Size(1271, 700);
+            this.tcMainForm.Size = new System.Drawing.Size(1204, 700);
             this.tcMainForm.TabIndex = 0;
             this.tcMainForm.SelectedIndexChanged += new System.EventHandler(this.tcMainForm_SelectedIndexChanged);
             // 
@@ -1088,6 +1088,25 @@ namespace SportsMeet
             this.tbFilterByPlayer.Text = "Filter By Player";
             this.tbFilterByPlayer.UseVisualStyleBackColor = true;
             // 
+            // labelEducationZoneFBP
+            // 
+            this.labelEducationZoneFBP.AutoSize = true;
+            this.labelEducationZoneFBP.Location = new System.Drawing.Point(144, 92);
+            this.labelEducationZoneFBP.Name = "labelEducationZoneFBP";
+            this.labelEducationZoneFBP.Size = new System.Drawing.Size(44, 20);
+            this.labelEducationZoneFBP.TabIndex = 15;
+            this.labelEducationZoneFBP.Text = "zone";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 92);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 20);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Education Zone";
+            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1413,7 +1432,7 @@ namespace SportsMeet
             // 
             this.reportTab.Location = new System.Drawing.Point(4, 29);
             this.reportTab.Name = "reportTab";
-            this.reportTab.Size = new System.Drawing.Size(1263, 667);
+            this.reportTab.Size = new System.Drawing.Size(1196, 667);
             this.reportTab.TabIndex = 5;
             this.reportTab.Text = "Reports";
             this.reportTab.UseVisualStyleBackColor = true;
@@ -1541,25 +1560,6 @@ namespace SportsMeet
             // 
             this.statusTime.Interval = 4000;
             this.statusTime.Tick += new System.EventHandler(this.statusTime_Tick);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 92);
-            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 20);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Education Zone";
-            // 
-            // labelEducationZoneFBP
-            // 
-            this.labelEducationZoneFBP.AutoSize = true;
-            this.labelEducationZoneFBP.Location = new System.Drawing.Point(144, 92);
-            this.labelEducationZoneFBP.Name = "labelEducationZoneFBP";
-            this.labelEducationZoneFBP.Size = new System.Drawing.Size(44, 20);
-            this.labelEducationZoneFBP.TabIndex = 15;
-            this.labelEducationZoneFBP.Text = "zone";
             // 
             // MainForm
             // 
