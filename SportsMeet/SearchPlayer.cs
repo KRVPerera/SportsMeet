@@ -25,6 +25,17 @@ namespace SportsMeet
         private void SearchPlayer_Load(object sender, EventArgs e)
         {
             resetUi();
+            updateGuiComponents();
+        }
+
+        private void updateGuiComponents()
+        {
+            var playerIds = Data.DataBase.LoadPlayerNumbers();
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(playerIds.ToArray());
+
+            tbxPlayerNumberSW.AutoCompleteCustomSource = autoComplete;
         }
 
         private void resetUi()

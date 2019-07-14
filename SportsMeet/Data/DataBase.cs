@@ -40,23 +40,18 @@ namespace SportsMeet.Data
             where   
                     firstName LIKE @FirstName AND
                     lastName LIKE @LastName AND
-                    age = @Age AND
-                    id = @Id
+                    age LIKE @Age AND
+                    number LIKE @Number
                 ;
             ";
-
-            bool agePattern = false;
-            if (sPlayer.Age == 0)
-            {
-                agePattern = true;
-            }
 
             var p = new
             {
                 FirstName = "%" + sPlayer.FirstName + "%",
                 LastName = "%" + sPlayer.LastName + "%",
-                Age = agePattern? "%" : sPlayer.Age.ToString(),
-                Id = sPlayer.Id.ToString() + "%"
+                Age = sPlayer.Age.ToString(),
+                Id = sPlayer.Id.ToString() + "%",
+                Number = sPlayer.Number.ToString() + "%"
             };
 
             Console.WriteLine(sPlayer.FullName());
