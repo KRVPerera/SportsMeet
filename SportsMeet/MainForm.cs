@@ -403,6 +403,7 @@ namespace SportsMeet
             lblFilterByPlayerNameOutput.Text = "";
             lblFilterByPlayerDistrictOutput.Text = "";
             lblFilterByPlayerSchoolOutput.Text = "";
+            labelEducationZoneFBP.Text = "";
         }
 
         private void CleanupPlayerTabTextBoxes()
