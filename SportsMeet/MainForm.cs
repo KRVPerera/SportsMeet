@@ -2,6 +2,7 @@
 using SportsMeet.Models;
 using SportsMeet.Properties;
 using SportsMeet.Utils;
+using SportsMeet.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,8 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using SportsMeet.View;
 
 namespace SportsMeet
 {
@@ -28,10 +27,6 @@ namespace SportsMeet
             LoadEducationZones();
             LoadEventList();
             RefreshGui();
-        }
-
-        private void tbPlayers_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnAddPlayer_Click(object sender, EventArgs e)
@@ -84,7 +79,7 @@ namespace SportsMeet
                     educationZoneId = zone.Id;
                 }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age,
                     (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
 
                 var result = PlayersTab.AddPlayer(newPlayer);
@@ -155,19 +150,6 @@ namespace SportsMeet
             LoadPlayerList();
         }
 
-        private void RefreshGui()
-        {
-            textBoxPlayerSearch.Clear();
-            tbPlayerNumber.Clear();
-            textBoxPlayerSearch.Text = Resources.DefaultSearchString;
-            textBoxPlayerSearch.ForeColor = Color.DimGray;
-            CleanupFilterByPlayerTabLabels();
-            comboBoxEventsSex.SelectedIndex = 1;
-            cbxGender.SelectedIndex = 1;
-            statusViewer = new StatusViewer(this.statusLabel, this.statusTime, this.toolStripStatusBar);
-            statusViewer.Update("Program Loaded", Status.SUCCESS);
-        }
-
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
         {
             var textbox = sender as TextBox;
@@ -195,71 +177,20 @@ namespace SportsMeet
             CleanupPlayerTabTextBoxes();
         }
 
-        #endregion MainForm uicontrols
-
-        #region DataRegion
-
-        private List<Player> _players = new List<Player>();
-        private List<School> _schools = new List<School>();
-        private List<District> _districts = new List<District>();
-        private List<Event> _events = new List<Event>();
-        private List<EducationZone> _zones = new List<EducationZone>();
-
-        #endregion DataRegion
-
-        #region DataProcessing
-
-        private void DataInit()
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
+            Settings.Default.playersTabDeleteSelectionSetting = checkBoxAddtoanEvent.Checked;
+            Settings.Default.Save();
         }
 
-        private void LoadPlayerList()
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            _players = DataBase.LoadPlayers().ToList();
-            bindingSourcePlayers.DataSource = _players;
-            bindingSourcePlayers.ResetBindings(false);
-            toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
-
-            var autoComplete = new AutoCompleteStringCollection();
-            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
-            tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
-            tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
+            checkBoxLoadSelection.Checked = Settings.Default.playersTabLoadSelectionSettings;
+            checkBoxDeleteSelection.Checked = Settings.Default.playersTabDeleteSelectionSetting;
+            checkBoxAddtoanEvent.Checked = Settings.Default.playersTabDeleteSelectionSetting;
         }
-
-        private void LoadSchoolList()
-        {
-            _schools = DataBase.LoadSchools();
-            bindingSourceSchools.DataSource = _schools;
-            bindingSourceSchools.ResetBindings(false);
-
-            bindingSourceAllSchools.DataSource = _schools;
-            bindingSourceAllSchools.ResetBindings(false);
-
-            toolStripLabelSchoolCount.Text = _schools.Count.ToString();
-
-            bindingSourceSchoolsFixed.DataSource = _schools;
-            bindingSourceSchoolsFixed.ResetBindings(false);
-
-            var autoComplete = new AutoCompleteStringCollection();
-            autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
-            tbSchoolName.AutoCompleteCustomSource = autoComplete;
-        }
-
-        private void LoadDistrictList()
-        {
-            _districts = DataBase.LoadDistricts();
-            bindingSourceDistricts.DataSource = _districts;
-            bindingSourceDistricts.ResetBindings(false);
-        }
-
-        private void LoadEducationZones()
-        {
-            _zones = DataBase.LoadEducationZones();
-            bindingSourceEducationZones.DataSource = _zones;
-            bindingSourceEducationZones.ResetBindings(false);
-        }
-
-        #endregion DataProcessing
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
@@ -290,38 +221,54 @@ namespace SportsMeet
                 tbNewEventsName.Text.Trim(),
                 comboBoxEventsSex.Text.Trim()))
             {
-
                 statusViewer.Update("Event added !", Status.SUCCESS);
                 LoadEventList();
                 ClearEventsTab();
             }
-
         }
 
-        private void ClearEventsTab()
+        private void tbNewSchoolName_TextChanged(object sender, EventArgs e)
         {
-            tbNewEventsNumber.Clear();
-            tbNewEventsName.Clear();
+            var searchString = tbSchoolName.Text.Trim();
+
+            School searchedSchool = DataBase.GetSchool(searchString);
+
+            if (searchedSchool != null)
+            {
+                if (tbNewSchoolName.Text.Trim() == tbSchoolName.Text.Trim())
+                {
+                    btnEditSchool.Enabled = false;
+                }
+                else if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
+                {
+                    btnEditSchool.Enabled = true;
+                }
+            }
+            else
+            {
+                btnEditSchool.Enabled = false;
+            }
         }
 
-        private void LoadEventList()
+        private void statusTime_Tick(object sender, EventArgs e)
         {
-            _events = DataBase.LoadEvents().ToList();
-            bindingSourceEvents.DataSource = _events;
-            bindingSourceEvents.ResetBindings(false);
-
-            bindingSourceAllEvents.DataSource = _events;
-            bindingSourceAllEvents.ResetBindings(false);
-
-            toolStripLabelTotalEvents.Text = _events.Count.ToString();
-
-            var autoComplete = new AutoCompleteStringCollection();
-            autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
-            tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
-            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
+            statusViewer.Reset();
         }
 
-        //TODO: refactor and remove duplicate code
+        private void tbFilterByEventEventNumber_TextChanged(object sender, EventArgs e)
+        {
+            LoadEventForFilterByEvent();
+        }
+
+        private void dataGridViewFBE_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewFBE.CurrentRow != null)
+            {
+                Event sEvent = (Event)dataGridViewFBE.CurrentRow.DataBoundItem;
+                LoadEventForFilterByEvent(sEvent.Number);
+            }
+        }
+
         private void tbFilterByPlayersNumber_TextChanged(object sender, EventArgs e)
         {
             CleanupFilterByPlayerTabLabels();
@@ -342,7 +289,6 @@ namespace SportsMeet
                     var myRegex = new Regex(@"^" + searchString + ".*$");
                     IEnumerable<Player> searchedPlayers = playerList.Where(player => myRegex.IsMatch(player.Number));
 
-                    
                     List<Player> players = searchedPlayers.ToList();
                     bindingSourcePlayers.DataSource = players;
                     bindingSourcePlayers.ResetBindings(false);
@@ -396,28 +342,6 @@ namespace SportsMeet
                     }
                 }
             }
-        }
-
-        private void CleanupFilterByPlayerTabLabels()
-        {
-            lblFilterByPlayerNameOutput.Text = "";
-            lblFilterByPlayerDistrictOutput.Text = "";
-            lblFilterByPlayerSchoolOutput.Text = "";
-        }
-
-        private void CleanupPlayerTabTextBoxes()
-        {
-            tbPlayerNumber.Clear();
-            tbFirstName.Clear();
-            tbLastName.Clear();
-        }
-
-        private void CleanupSchoolTabTextBoxes()
-        {
-            tbSchoolName.Clear();
-            tbNewSchoolName.Clear();
-            tbNewSchoolName.Enabled = false;
-            btnEditSchool.Enabled = false;
         }
 
         private void tcMainForm_SelectedIndexChanged(object sender, EventArgs e)
@@ -543,33 +467,6 @@ namespace SportsMeet
             }
         }
 
-        private void LoadPlayerToPLayerTab(Player player)
-        {
-            tbPlayerNumber.Text = player.Number;
-            tbFirstName.Text = player.FirstName;
-            tbLastName.Text = player.LastName;
-            /*School school = DataBase.getSchoolById(player.SchoolId);
-            if (school != null)
-            {
-                cbxSchool.SelectedText = school.Name;
-            }*/
-
-            numericUpDownAge.Text = player.Age.ToString();
-            cbxGender.SelectedIndex = player.Sex;
-
-            District district = DataBase.GetDistrict(player.DistrictId);
-            if (district != null)
-            {
-                cbxDistrict.SelectedText = district.Name;
-            }
-
-            EducationZone  zone = DataBase.GetEducationZone(player.EducationZoneId);
-            if (zone != null)
-            {
-                comboBoxEducationZones.SelectedText = zone.Name;
-            }
-        }
-
         private void checkBoxLoadSelection_CheckedChanged(object sender, EventArgs e)
         {
             var checkBox = sender as CheckBox;
@@ -649,7 +546,7 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
-            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, 
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0,
                 (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
 
             Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
@@ -660,7 +557,7 @@ namespace SportsMeet
             }
             else
             {
-                // TODO: update status bar to player not found
+                statusViewer.Update("Player not found", Status.ERROR);
             }
         }
 
@@ -718,7 +615,7 @@ namespace SportsMeet
                 Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
                 if (searchByNumber != null)
                 {
-                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age,
                         (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
 
                     if (PlayersTab.SavePlayer(newPlayer))
@@ -777,7 +674,126 @@ namespace SportsMeet
 
         private void btnFilterByEventFilter_Click(object sender, EventArgs e)
         {
-            Event sEventByNumber = DataBase.GetEventByNumber(tbFilterByEventEventNumber.Text);
+            LoadEventForFilterByEvent();
+        }
+
+        #endregion MainForm uicontrols
+
+        #region DataRegion
+
+        private List<Player> _players = new List<Player>();
+        private List<School> _schools = new List<School>();
+        private List<District> _districts = new List<District>();
+        private List<Event> _events = new List<Event>();
+        private List<EducationZone> _zones = new List<EducationZone>();
+
+        #endregion DataRegion
+
+        #region Data Loading
+
+        private void DataInit()
+        {
+        }
+
+        private void LoadPlayerList()
+        {
+            _players = DataBase.LoadPlayers().ToList();
+            bindingSourcePlayers.DataSource = _players;
+            bindingSourcePlayers.ResetBindings(false);
+            toolStripLabelTotalPlayerCount.Text = _players.Count.ToString();
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
+            tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
+            tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
+        }
+
+        private void LoadSchoolList()
+        {
+            _schools = DataBase.LoadSchools();
+            bindingSourceSchools.DataSource = _schools;
+            bindingSourceSchools.ResetBindings(false);
+
+            bindingSourceAllSchools.DataSource = _schools;
+            bindingSourceAllSchools.ResetBindings(false);
+
+            toolStripLabelSchoolCount.Text = _schools.Count.ToString();
+
+            bindingSourceSchoolsFixed.DataSource = _schools;
+            bindingSourceSchoolsFixed.ResetBindings(false);
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadSchoolNames().ToArray());
+            tbSchoolName.AutoCompleteCustomSource = autoComplete;
+        }
+
+        private void LoadDistrictList()
+        {
+            _districts = DataBase.LoadDistricts();
+            bindingSourceDistricts.DataSource = _districts;
+            bindingSourceDistricts.ResetBindings(false);
+        }
+
+        private void LoadEducationZones()
+        {
+            _zones = DataBase.LoadEducationZones();
+            bindingSourceEducationZones.DataSource = _zones;
+            bindingSourceEducationZones.ResetBindings(false);
+        }
+
+        private void LoadEventList()
+        {
+            _events = DataBase.LoadEvents().ToList();
+            bindingSourceEvents.DataSource = _events;
+            bindingSourceEvents.ResetBindings(false);
+
+            bindingSourceAllEvents.DataSource = _events;
+            bindingSourceAllEvents.ResetBindings(false);
+
+            toolStripLabelTotalEvents.Text = _events.Count.ToString();
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
+            tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
+            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
+        }
+
+        #endregion Data Loading
+
+        #region private methods
+
+        private void LoadPlayerToPLayerTab(Player player)
+        {
+            tbPlayerNumber.Text = player.Number;
+            tbFirstName.Text = player.FirstName;
+            tbLastName.Text = player.LastName;
+            /*School school = DataBase.getSchoolById(player.SchoolId);
+            if (school != null)
+            {
+                cbxSchool.SelectedText = school.Name;
+            }*/
+
+            numericUpDownAge.Text = player.Age.ToString();
+            cbxGender.SelectedIndex = player.Sex;
+
+            District district = DataBase.GetDistrict(player.DistrictId);
+            if (district != null)
+            {
+                cbxDistrict.SelectedText = district.Name;
+            }
+
+            EducationZone zone = DataBase.GetEducationZone(player.EducationZoneId);
+            if (zone != null)
+            {
+                comboBoxEducationZones.SelectedText = zone.Name;
+            }
+        }
+
+        private void LoadEventForFilterByEvent(String eventNumber)
+        {
+            String searchEventNumber = eventNumber;
+
+            Event sEventByNumber = DataBase.GetEventByNumber(searchEventNumber);
 
             if (sEventByNumber != null)
             {
@@ -790,50 +806,67 @@ namespace SportsMeet
                     bindingSourceFilteredPlayersOnEvent.DataSource = players;
                     bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
-            }
-        }
 
-        private void tbNewSchoolName_TextChanged(object sender, EventArgs e)
-        {
-            var searchString = tbSchoolName.Text.Trim();
-
-            School searchedSchool = DataBase.GetSchool(searchString);
-
-            if (searchedSchool != null)
-            {
-                if (tbNewSchoolName.Text.Trim() == tbSchoolName.Text.Trim())
-                {
-                    btnEditSchool.Enabled = false;
-                }
-                else if (!String.IsNullOrEmpty(tbNewSchoolName.Text.Trim()))
-                {
-                    btnEditSchool.Enabled = true;
-                }
+                labelCurrentEventFBE.Text = sEventByNumber.FullName;
             }
             else
             {
-                btnEditSchool.Enabled = false;
+                statusViewer.Update("Event  \"" + searchEventNumber + "\" not found", Status.INFO);
             }
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void LoadEventForFilterByEvent()
         {
-            Settings.Default.playersTabLoadSelectionSettings = checkBoxLoadSelection.Checked;
-            Settings.Default.playersTabDeleteSelectionSetting = checkBoxDeleteSelection.Checked;
-            Settings.Default.playersTabDeleteSelectionSetting = checkBoxAddtoanEvent.Checked;
-            Settings.Default.Save();
+            LoadEventForFilterByEvent(tbFilterByEventEventNumber.Text);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        #endregion private methods
+
+        #region cleanup
+
+        private void CleanupFilterByPlayerTabLabels()
         {
-            checkBoxLoadSelection.Checked = Settings.Default.playersTabLoadSelectionSettings;
-            checkBoxDeleteSelection.Checked = Settings.Default.playersTabDeleteSelectionSetting;
-            checkBoxAddtoanEvent.Checked = Settings.Default.playersTabDeleteSelectionSetting;
+            lblFilterByPlayerNameOutput.Text = "";
+            lblFilterByPlayerDistrictOutput.Text = "";
+            lblFilterByPlayerSchoolOutput.Text = "";
+            labelEducationZoneFBP.Text = "";
         }
 
-        private void statusTime_Tick(object sender, EventArgs e)
+        private void CleanupPlayerTabTextBoxes()
         {
-            statusViewer.Reset();
+            tbPlayerNumber.Clear();
+            tbFirstName.Clear();
+            tbLastName.Clear();
         }
+
+        private void CleanupSchoolTabTextBoxes()
+        {
+            tbSchoolName.Clear();
+            tbNewSchoolName.Clear();
+            tbNewSchoolName.Enabled = false;
+            btnEditSchool.Enabled = false;
+        }
+
+        private void ClearEventsTab()
+        {
+            tbNewEventsNumber.Clear();
+            tbNewEventsName.Clear();
+        }
+
+        private void RefreshGui()
+        {
+            textBoxPlayerSearch.Clear();
+            tbPlayerNumber.Clear();
+            textBoxPlayerSearch.Text = Resources.DefaultSearchString;
+            textBoxPlayerSearch.ForeColor = Color.DimGray;
+            CleanupFilterByPlayerTabLabels();
+            comboBoxEventsSex.SelectedIndex = 1;
+            cbxGender.SelectedIndex = 1;
+            statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
+            statusViewer.Update("Program Loaded", Status.SUCCESS);
+            labelCurrentEventFBE.Text = "";
+        }
+
+        #endregion cleanup
     }
 }
