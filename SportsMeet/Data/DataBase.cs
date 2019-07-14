@@ -70,6 +70,7 @@ namespace SportsMeet.Data
 
         }
 
+        /*
         public static List<Player> LoadPlayers(PlayerEventData playerEventData)
         {
 //            string query = "select * from PlayerEvents where eventId = @EventId and playerId = @PlayerId;";
@@ -127,6 +128,7 @@ namespace SportsMeet.Data
             return players;
 
         }
+        */
 
         public static long SavePlayer(Player player)
         {
