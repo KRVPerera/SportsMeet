@@ -25,6 +25,7 @@ namespace SportsMeet
             LoadPlayerList();
             LoadSchoolList();
             LoadDistrictList();
+            LoadEducationZones();
             LoadEventList();
             RefreshGui();
         }
@@ -52,6 +53,10 @@ namespace SportsMeet
             {
                 MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (String.IsNullOrEmpty(comboBoxEducationZones.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid education zone.", "Invalid Education Zone", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
             {
                 MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -72,9 +77,16 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }
 
-//                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), school, district);
+                long educationZoneId = 0;
+                EducationZone zone = DataBase.GetEducationZone(comboBoxEducationZones.Text);
+                if (zone != null)
+                {
+                    educationZoneId = zone.Id;
+                }
 
-                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
+                Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                    (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
+
                 var result = PlayersTab.AddPlayer(newPlayer);
                 if (result.Item1)
                 {
@@ -191,6 +203,7 @@ namespace SportsMeet
         private List<School> _schools = new List<School>();
         private List<District> _districts = new List<District>();
         private List<Event> _events = new List<Event>();
+        private List<EducationZone> _zones = new List<EducationZone>();
 
         #endregion DataRegion
 
@@ -218,6 +231,10 @@ namespace SportsMeet
             _schools = DataBase.LoadSchools();
             bindingSourceSchools.DataSource = _schools;
             bindingSourceSchools.ResetBindings(false);
+
+            bindingSourceAllSchools.DataSource = _schools;
+            bindingSourceAllSchools.ResetBindings(false);
+
             toolStripLabelSchoolCount.Text = _schools.Count.ToString();
 
             bindingSourceSchoolsFixed.DataSource = _schools;
@@ -233,6 +250,13 @@ namespace SportsMeet
             _districts = DataBase.LoadDistricts();
             bindingSourceDistricts.DataSource = _districts;
             bindingSourceDistricts.ResetBindings(false);
+        }
+
+        private void LoadEducationZones()
+        {
+            _zones = DataBase.LoadEducationZones();
+            bindingSourceEducationZones.DataSource = _zones;
+            bindingSourceEducationZones.ResetBindings(false);
         }
 
         #endregion DataProcessing
@@ -286,6 +310,9 @@ namespace SportsMeet
             bindingSourceEvents.DataSource = _events;
             bindingSourceEvents.ResetBindings(false);
 
+            bindingSourceAllEvents.DataSource = _events;
+            bindingSourceAllEvents.ResetBindings(false);
+
             toolStripLabelTotalEvents.Text = _events.Count.ToString();
 
             var autoComplete = new AutoCompleteStringCollection();
@@ -338,6 +365,16 @@ namespace SportsMeet
                             else
                             {
                                 lblFilterByPlayerDistrictOutput.Text = "UNKNOWN";
+                            }
+
+                            EducationZone zone = DataBase.GetEducationZone(searchedPlayer.EducationZoneId);
+                            if (zone != null)
+                            {
+                                labelEducationZoneFBP.Text = zone.Name;
+                            }
+                            else
+                            {
+                                labelEducationZoneFBP.Text = "UNKNOWN";
                             }
 
                             School school = DataBase.GetSchool(searchedPlayer.SchoolId);
@@ -525,6 +562,12 @@ namespace SportsMeet
             {
                 cbxDistrict.SelectedText = district.Name;
             }
+
+            EducationZone  zone = DataBase.GetEducationZone(player.EducationZoneId);
+            if (zone != null)
+            {
+                comboBoxEducationZones.SelectedText = zone.Name;
+            }
         }
 
         private void checkBoxLoadSelection_CheckedChanged(object sender, EventArgs e)
@@ -606,7 +649,9 @@ namespace SportsMeet
 
         private void btnAddEventsToPlayer_Click(object sender, EventArgs e)
         {
-            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0);
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0, 
+                (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
+
             Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
             if (existingPlayer != null)
             {
@@ -637,6 +682,10 @@ namespace SportsMeet
             {
                 MessageBox.Show("Please choose a valid district.", "Invalid District", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (String.IsNullOrEmpty(comboBoxEducationZones.Text.Trim()))
+            {
+                MessageBox.Show("Please choose a valid education zone.", "Invalid Education Zone", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else if (!Util.ValidHumanSexString(cbxGender.Text.Trim()))
             {
                 MessageBox.Show("Please choose a valid gender.", "Invalid Gender", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -657,12 +706,21 @@ namespace SportsMeet
                     schoolId = school.Id;
                 }
 
+                long educationZoneId = 0;
+                EducationZone zone = DataBase.GetEducationZone(comboBoxEducationZones.Text);
+                if (zone != null)
+                {
+                    educationZoneId = zone.Id;
+                }
+
                 string searchString = tbPlayerNumber.Text.Trim();
                 Player searchMe = new Player(searchString);
                 Player searchByNumber = DataBase.FindPlayerByNumber(searchMe);
                 if (searchByNumber != null)
                 {
-                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId);
+                    Player newPlayer = new Player(searchByNumber.Id, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, age, 
+                        (byte)Util.SexStringToEnum(cbxGender.Text), schoolId, districtId, educationZoneId);
+
                     if (PlayersTab.SavePlayer(newPlayer))
                     {
                         LoadPlayerList();

@@ -1,8 +1,12 @@
-﻿CREATE TABLE IF NOT EXISTS Districts (
-    [no]      INTEGER  PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE IF NOT EXISTS Districts (
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
+CREATE TABLE IF NOT EXISTS EducationZones (
+    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	name  TEXT      UNIQUE
+);
 
 INSERT INTO Districts (name) VALUES  ('Galle');
 INSERT INTO Districts (name) VALUES  ('Hambantota');
@@ -33,3 +37,9 @@ INSERT INTO Districts (name) VALUES  ('Puttalam');
 INSERT INTO Districts (name) VALUES  ('Ratnapura');
 INSERT INTO Districts (name) VALUES  ('Trincomalee');
 INSERT INTO Districts (name) VALUES  ('Vavuniya');
+
+
+INSERT INTO EducationZones (name) VALUES  ('Piliyandala');
+INSERT INTO EducationZones (name) VALUES  ('Hambantota');
+INSERT INTO EducationZones (name) VALUES  ('Matara');
+INSERT INTO EducationZones (name) VALUES  ('Vavuniya');

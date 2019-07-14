@@ -1,6 +1,6 @@
 ﻿namespace SportsMeet.Models
 {
-    class District : StringAttribute
+    class EducationZone : StringAttribute
     {
     }
 }
