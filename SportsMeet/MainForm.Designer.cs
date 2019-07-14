@@ -722,7 +722,6 @@ namespace SportsMeet
             this.tbPlayers.TabIndex = 1;
             this.tbPlayers.Text = "Players";
             this.tbPlayers.UseVisualStyleBackColor = true;
-            this.tbPlayers.Click += new System.EventHandler(this.tbPlayers_Click);
             // 
             // comboBoxEducationZones
             // 
