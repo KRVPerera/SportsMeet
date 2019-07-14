@@ -166,6 +166,7 @@ namespace SportsMeet
             cbxGender.SelectedIndex = 1;
             statusViewer = new StatusViewer(this.statusLabel, this.statusTime, this.toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
+            labelCurrentEventFBE.Text = "";
         }
 
         private void tbPlayerSearch_Leave(object sender, EventArgs e)
@@ -207,7 +208,8 @@ namespace SportsMeet
 
         #endregion DataRegion
 
-        #region DataProcessing
+
+        #region Data Loading
 
         private void DataInit()
         {
@@ -259,7 +261,25 @@ namespace SportsMeet
             bindingSourceEducationZones.ResetBindings(false);
         }
 
-        #endregion DataProcessing
+        private void LoadEventList()
+        {
+            _events = DataBase.LoadEvents().ToList();
+            bindingSourceEvents.DataSource = _events;
+            bindingSourceEvents.ResetBindings(false);
+
+            bindingSourceAllEvents.DataSource = _events;
+            bindingSourceAllEvents.ResetBindings(false);
+
+            toolStripLabelTotalEvents.Text = _events.Count.ToString();
+
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
+            tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
+            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
+        }
+
+        #endregion Data Loading
+
 
         private void btnAddSchool_Click(object sender, EventArgs e)
         {
@@ -304,22 +324,7 @@ namespace SportsMeet
             tbNewEventsName.Clear();
         }
 
-        private void LoadEventList()
-        {
-            _events = DataBase.LoadEvents().ToList();
-            bindingSourceEvents.DataSource = _events;
-            bindingSourceEvents.ResetBindings(false);
 
-            bindingSourceAllEvents.DataSource = _events;
-            bindingSourceAllEvents.ResetBindings(false);
-
-            toolStripLabelTotalEvents.Text = _events.Count.ToString();
-
-            var autoComplete = new AutoCompleteStringCollection();
-            autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
-            tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
-            tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
-        }
 
         //TODO: refactor and remove duplicate code
         private void tbFilterByPlayersNumber_TextChanged(object sender, EventArgs e)
@@ -778,7 +783,14 @@ namespace SportsMeet
 
         private void btnFilterByEventFilter_Click(object sender, EventArgs e)
         {
-            Event sEventByNumber = DataBase.GetEventByNumber(tbFilterByEventEventNumber.Text);
+            LoadEventForFilterByEvent();
+        }
+
+        private void LoadEventForFilterByEvent(String eventNumber)
+        {
+            String searchEventNumber = eventNumber;
+
+            Event sEventByNumber = DataBase.GetEventByNumber(searchEventNumber);
 
             if (sEventByNumber != null)
             {
@@ -791,7 +803,18 @@ namespace SportsMeet
                     bindingSourceFilteredPlayersOnEvent.DataSource = players;
                     bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
+
+                labelCurrentEventFBE.Text = sEventByNumber.FullName;
             }
+            else
+            {
+                statusViewer.Update("Event  \"" + searchEventNumber + "\" not found", Status.INFO);
+            }
+        }
+
+        private void LoadEventForFilterByEvent()
+        {
+            LoadEventForFilterByEvent(tbFilterByEventEventNumber.Text);
         }
 
         private void tbNewSchoolName_TextChanged(object sender, EventArgs e)
@@ -835,6 +858,20 @@ namespace SportsMeet
         private void statusTime_Tick(object sender, EventArgs e)
         {
             statusViewer.Reset();
+        }
+
+        private void tbFilterByEventEventNumber_TextChanged(object sender, EventArgs e)
+        {
+            LoadEventForFilterByEvent();
+        }
+
+        private void dataGridViewFBE_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewFBE.CurrentRow != null)
+            {
+                Event sEvent = (Event)dataGridViewFBE.CurrentRow.DataBoundItem;
+                LoadEventForFilterByEvent(sEvent.Number);
+            }
         }
     }
 }
