@@ -45,7 +45,8 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "..\SportsMeet\bin\Release\System.Data.SQLite.dll"; DestDir: "{app}"
-Source: "..\SportsMeet\bin\Release\Dapper.dll"; DestDir: "{app}"
+Source: "..\SportsMeet\bin\Release\Dapper.dll"; DestDir: "{app}"Source: "..\SportsMeet\bin\Release\NLog.dll"; DestDir: "{app}"
+Source: "..\SportsMeet\bin\Release\NLog.xml"; DestDir: "{app}"
 Source: "..\SportsMeet\bin\Release\x86\SQLite.Interop.dll"; DestDir: "{app}\x86"
 Source: "..\SportsMeet\bin\Release\x64\SQLite.Interop.dll"; DestDir: "{app}\x64"
 Source: "..\SportsMeet\bin\Release\x86\SQLite.Interop.dll"; DestDir: "{tmp}\MeetTracker\x86"
