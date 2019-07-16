@@ -2,41 +2,41 @@
 
 
 CREATE TABLE IF NOT EXISTS Districts (
-    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS EducationZones (
-    id  INTEGER  PRIMARY KEY AUTOINCREMENT,
+	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
 	name  TEXT      UNIQUE
 );
 
 
 CREATE TABLE Schools (
-    id INTEGER    PRIMARY KEY AUTOINCREMENT,
-    name     TEXT (100) UNIQUE
+	id INTEGER    PRIMARY KEY AUTOINCREMENT,
+	name     TEXT (100) UNIQUE
 );
 
 CREATE TABLE Events (
-    id     INTEGER     PRIMARY KEY AUTOINCREMENT,
+	id     INTEGER     PRIMARY KEY AUTOINCREMENT,
 	number    TEXT         UNIQUE,
-    name     TEXT    UNIQUE NOT NULL,
-    sex   TINYINT,
-    agelimit INTEGER NOT NULL
+	name     TEXT    UNIQUE NOT NULL,
+	sex   TINYINT,
+	agelimit INTEGER NOT NULL
 );
 
 
 CREATE TABLE Players (
-    id        INTEGER      PRIMARY KEY AUTOINCREMENT,
-    number    TEXT         UNIQUE,
-    firstName TEXT ,
-    lastName  TEXT ,
-    age       INTEGER  DEFAULT (0),
+	id        INTEGER      PRIMARY KEY AUTOINCREMENT,
+	number    TEXT         UNIQUE,
+	firstName TEXT ,
+	lastName  TEXT ,
+	age       INTEGER  DEFAULT (0),
 	sex		  TINYINT,
-    schoolId  INTEGER,
+	schoolId  INTEGER,
 	districtId INTEGER,
 	educationZoneId INTEGER,
-    
+	
 	CONSTRAINT student_to_school 
 	FOREIGN KEY ( schoolId )
 	REFERENCES Schools (id) ON UPDATE CASCADE,
@@ -52,22 +52,22 @@ CREATE TABLE Players (
 
 
 CREATE TABLE PlayerEvents (
-    eventId  INTEGER NOT NULL,
-    playerId INTEGER NOT NULL,
+	eventId  INTEGER NOT NULL,
+	playerId INTEGER NOT NULL,
 
 
 	CONSTRAINT playerevent_to_players
-    FOREIGN KEY (playerId)
+	FOREIGN KEY (playerId)
 	REFERENCES Players (id) ON DELETE CASCADE ON UPDATE CASCADE,
 
-    PRIMARY KEY (
-        eventId,
-        playerId
-    ),
+	PRIMARY KEY (
+		eventId,
+		playerId
+	),
 
 	CONSTRAINT playerevent_to_events
-    FOREIGN KEY (eventId)
-    REFERENCES Events (id) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (eventId)
+	REFERENCES Events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
