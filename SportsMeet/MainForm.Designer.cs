@@ -735,7 +735,7 @@ namespace SportsMeet
             this.comboBoxEducationZones.Margin = new System.Windows.Forms.Padding(6);
             this.comboBoxEducationZones.Name = "comboBoxEducationZones";
             this.comboBoxEducationZones.Size = new System.Drawing.Size(180, 24);
-            this.comboBoxEducationZones.TabIndex = 42;
+            this.comboBoxEducationZones.TabIndex = 7;
             // 
             // bindingSourceEducationZones
             // 
@@ -758,6 +758,7 @@ namespace SportsMeet
             this.textBoxPlayerSearch.Name = "textBoxPlayerSearch";
             this.textBoxPlayerSearch.Size = new System.Drawing.Size(545, 22);
             this.textBoxPlayerSearch.TabIndex = 40;
+            this.textBoxPlayerSearch.TabStop = false;
             this.textBoxPlayerSearch.Text = " ";
             this.textBoxPlayerSearch.TextChanged += new System.EventHandler(this.textBoxPlayerSearch_TextChanged);
             this.textBoxPlayerSearch.Enter += new System.EventHandler(this.textBoxPlayerSearch_Enter);
@@ -771,6 +772,7 @@ namespace SportsMeet
             this.checkBoxDeleteSelection.Name = "checkBoxDeleteSelection";
             this.checkBoxDeleteSelection.Size = new System.Drawing.Size(119, 27);
             this.checkBoxDeleteSelection.TabIndex = 39;
+            this.checkBoxDeleteSelection.TabStop = false;
             this.checkBoxDeleteSelection.Text = "Delete selection";
             this.checkBoxDeleteSelection.UseVisualStyleBackColor = true;
             this.checkBoxDeleteSelection.CheckedChanged += new System.EventHandler(this.checkBoxDeleteSelection_CheckedChanged);
@@ -796,7 +798,7 @@ namespace SportsMeet
             this.checkBoxAddtoanEvent.Location = new System.Drawing.Point(105, 353);
             this.checkBoxAddtoanEvent.Name = "checkBoxAddtoanEvent";
             this.checkBoxAddtoanEvent.Size = new System.Drawing.Size(131, 21);
-            this.checkBoxAddtoanEvent.TabIndex = 7;
+            this.checkBoxAddtoanEvent.TabIndex = 8;
             this.checkBoxAddtoanEvent.Text = "Add to an Event";
             this.checkBoxAddtoanEvent.UseVisualStyleBackColor = true;
             // 
@@ -806,7 +808,7 @@ namespace SportsMeet
             this.btnAddEventsToPlayer.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
             this.btnAddEventsToPlayer.Size = new System.Drawing.Size(180, 28);
-            this.btnAddEventsToPlayer.TabIndex = 32;
+            this.btnAddEventsToPlayer.TabIndex = 9;
             this.btnAddEventsToPlayer.TabStop = false;
             this.btnAddEventsToPlayer.Text = "Player Events Management ";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
@@ -817,7 +819,7 @@ namespace SportsMeet
             this.btnPlayerEdit.Location = new System.Drawing.Point(97, 471);
             this.btnPlayerEdit.Name = "btnPlayerEdit";
             this.btnPlayerEdit.Size = new System.Drawing.Size(66, 28);
-            this.btnPlayerEdit.TabIndex = 31;
+            this.btnPlayerEdit.TabIndex = 11;
             this.btnPlayerEdit.TabStop = false;
             this.btnPlayerEdit.Text = "Edit";
             this.btnPlayerEdit.UseVisualStyleBackColor = true;
@@ -828,7 +830,7 @@ namespace SportsMeet
             this.btnDeletePlayer.Location = new System.Drawing.Point(169, 471);
             this.btnDeletePlayer.Name = "btnDeletePlayer";
             this.btnDeletePlayer.Size = new System.Drawing.Size(66, 28);
-            this.btnDeletePlayer.TabIndex = 29;
+            this.btnDeletePlayer.TabIndex = 12;
             this.btnDeletePlayer.TabStop = false;
             this.btnDeletePlayer.Text = "Delete";
             this.btnDeletePlayer.UseVisualStyleBackColor = true;
@@ -914,9 +916,9 @@ namespace SportsMeet
             this.lblDistrict.Location = new System.Drawing.Point(8, 249);
             this.lblDistrict.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDistrict.Name = "lblDistrict";
-            this.lblDistrict.Size = new System.Drawing.Size(51, 17);
+            this.lblDistrict.Size = new System.Drawing.Size(63, 17);
             this.lblDistrict.TabIndex = 24;
-            this.lblDistrict.Text = "District";
+            this.lblDistrict.Text = "Province";
             // 
             // cbxDistrict
             // 
