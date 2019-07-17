@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS EducationZones (
 	name  TEXT      UNIQUE
 );
 
+DELETE FROM Districts;
+
 INSERT INTO Districts (name) VALUES  ('Central Province');
 INSERT INTO Districts (name) VALUES  ('Eastern Province');
 INSERT INTO Districts (name) VALUES  ('Northern Province');
@@ -48,7 +50,7 @@ INSERT INTO Districts (name) VALUES  ('Western Province');
 --INSERT INTO Districts (name) VALUES  ('Trincomalee');
 --INSERT INTO Districts (name) VALUES  ('Vavuniya');
 
-
+DELETE FROM EducationZones;
 INSERT INTO EducationZones (name) VALUES  ('Piliyandala');
 INSERT INTO EducationZones (name) VALUES  ('Minuwangoda');
 INSERT INTO EducationZones (name) VALUES  ('Colombo');
