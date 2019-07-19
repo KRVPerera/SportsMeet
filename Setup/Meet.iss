@@ -37,7 +37,7 @@ VersionInfoProductName=MeetTracker
 VersionInfoProductVersion=1.0.9
 AppContact=rukshan.viduranga@gmail.com
 AppSupportPhone=+94727673029
-VersionInfoProductTextVersion=v1.0-beta.2
+VersionInfoProductTextVersion=v1.0
 SetupMutex=MeetTracker,Global\MeetTracker
 
 [Languages]
