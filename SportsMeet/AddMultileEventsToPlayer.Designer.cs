@@ -52,6 +52,7 @@
             this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
             this.btnAddEventsToPlayer = new System.Windows.Forms.Button();
             this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.btnChangePlayerPlayerEventsMgt = new System.Windows.Forms.Button();
             this.groupBoxPlayerDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEventsBelongToPlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
@@ -142,9 +143,8 @@
             // 
             // groupBoxPlayerDetails
             // 
-            this.groupBoxPlayerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxPlayerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBoxPlayerDetails.Controls.Add(this.dataGridViewEventsBelongToPlayer);
             this.groupBoxPlayerDetails.Controls.Add(this.playerevents);
             this.groupBoxPlayerDetails.Controls.Add(this.lblPlayerNumber);
@@ -159,7 +159,7 @@
             this.groupBoxPlayerDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBoxPlayerDetails.Name = "groupBoxPlayerDetails";
             this.groupBoxPlayerDetails.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxPlayerDetails.Size = new System.Drawing.Size(466, 636);
+            this.groupBoxPlayerDetails.Size = new System.Drawing.Size(528, 666);
             this.groupBoxPlayerDetails.TabIndex = 13;
             this.groupBoxPlayerDetails.TabStop = false;
             this.groupBoxPlayerDetails.Text = "Player Details";
@@ -168,9 +168,6 @@
             // 
             this.dataGridViewEventsBelongToPlayer.AllowUserToAddRows = false;
             this.dataGridViewEventsBelongToPlayer.AllowUserToDeleteRows = false;
-            this.dataGridViewEventsBelongToPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewEventsBelongToPlayer.AutoGenerateColumns = false;
             this.dataGridViewEventsBelongToPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEventsBelongToPlayer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -181,7 +178,7 @@
             this.dataGridViewEventsBelongToPlayer.Location = new System.Drawing.Point(9, 151);
             this.dataGridViewEventsBelongToPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewEventsBelongToPlayer.Name = "dataGridViewEventsBelongToPlayer";
-            this.dataGridViewEventsBelongToPlayer.Size = new System.Drawing.Size(446, 475);
+            this.dataGridViewEventsBelongToPlayer.Size = new System.Drawing.Size(510, 505);
             this.dataGridViewEventsBelongToPlayer.TabIndex = 18;
             // 
             // numberDataGridViewTextBoxColumn
@@ -217,11 +214,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxNewEvents.Controls.Add(this.dataGridViewNonPlayerEvents);
             this.groupBoxNewEvents.Controls.Add(this.textBoxAddEventEventFilter);
-            this.groupBoxNewEvents.Location = new System.Drawing.Point(574, 18);
+            this.groupBoxNewEvents.Location = new System.Drawing.Point(634, 92);
             this.groupBoxNewEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBoxNewEvents.Name = "groupBoxNewEvents";
             this.groupBoxNewEvents.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBoxNewEvents.Size = new System.Drawing.Size(548, 636);
+            this.groupBoxNewEvents.Size = new System.Drawing.Size(548, 592);
             this.groupBoxNewEvents.TabIndex = 14;
             this.groupBoxNewEvents.TabStop = false;
             this.groupBoxNewEvents.Text = "New Events";
@@ -230,8 +227,6 @@
             // 
             this.dataGridViewNonPlayerEvents.AllowUserToAddRows = false;
             this.dataGridViewNonPlayerEvents.AllowUserToDeleteRows = false;
-            this.dataGridViewNonPlayerEvents.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewNonPlayerEvents.AutoGenerateColumns = false;
             this.dataGridViewNonPlayerEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewNonPlayerEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -242,7 +237,7 @@
             this.dataGridViewNonPlayerEvents.Location = new System.Drawing.Point(9, 65);
             this.dataGridViewNonPlayerEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewNonPlayerEvents.Name = "dataGridViewNonPlayerEvents";
-            this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(544, 561);
+            this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(530, 591);
             this.dataGridViewNonPlayerEvents.TabIndex = 17;
             // 
             // numberDataGridViewTextBoxColumn1
@@ -264,21 +259,18 @@
             // 
             // textBoxAddEventEventFilter
             // 
-            this.textBoxAddEventEventFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(9, 25);
             this.textBoxAddEventEventFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
-            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(539, 26);
+            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(528, 26);
             this.textBoxAddEventEventFilter.TabIndex = 16;
             // 
             // btnAddEventsToPlayer
             // 
-            this.btnAddEventsToPlayer.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(489, 347);
+            this.btnAddEventsToPlayer.Location = new System.Drawing.Point(556, 386);
             this.btnAddEventsToPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddEventsToPlayer.Name = "btnAddEventsToPlayer";
-            this.btnAddEventsToPlayer.Size = new System.Drawing.Size(75, 35);
+            this.btnAddEventsToPlayer.Size = new System.Drawing.Size(69, 35);
             this.btnAddEventsToPlayer.TabIndex = 15;
             this.btnAddEventsToPlayer.Text = "<<";
             this.btnAddEventsToPlayer.UseVisualStyleBackColor = true;
@@ -286,21 +278,32 @@
             // 
             // btnRemoveEventFromPlayer
             // 
-            this.btnRemoveEventFromPlayer.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(488, 424);
+            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(555, 463);
             this.btnRemoveEventFromPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
-            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(75, 35);
+            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(69, 35);
             this.btnRemoveEventFromPlayer.TabIndex = 16;
             this.btnRemoveEventFromPlayer.Text = ">>";
             this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
             this.btnRemoveEventFromPlayer.Click += new System.EventHandler(this.btnRemoveEventFromPlayer_Click);
             // 
+            // btnChangePlayerPlayerEventsMgt
+            // 
+            this.btnChangePlayerPlayerEventsMgt.Location = new System.Drawing.Point(634, 37);
+            this.btnChangePlayerPlayerEventsMgt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnChangePlayerPlayerEventsMgt.Name = "btnChangePlayerPlayerEventsMgt";
+            this.btnChangePlayerPlayerEventsMgt.Size = new System.Drawing.Size(158, 35);
+            this.btnChangePlayerPlayerEventsMgt.TabIndex = 17;
+            this.btnChangePlayerPlayerEventsMgt.Text = "Select Player";
+            this.btnChangePlayerPlayerEventsMgt.UseVisualStyleBackColor = true;
+            this.btnChangePlayerPlayerEventsMgt.Click += new System.EventHandler(this.btnChangePlayerPlayerEventsMgt_Click);
+            // 
             // AddMultipleEventsToPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 662);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
+            this.Controls.Add(this.btnChangePlayerPlayerEventsMgt);
             this.Controls.Add(this.btnRemoveEventFromPlayer);
             this.Controls.Add(this.btnAddEventsToPlayer);
             this.Controls.Add(this.groupBoxNewEvents);
@@ -308,7 +311,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddMultipleEventsToPlayer";
-            this.Text = "Add Player to Events";
+            this.Text = "Player Events Management";
             this.Load += new System.EventHandler(this.AddMultipleEventsToPlayer_Load);
             this.groupBoxPlayerDetails.ResumeLayout(false);
             this.groupBoxPlayerDetails.PerformLayout();
@@ -346,5 +349,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button btnChangePlayerPlayerEventsMgt;
     }
 }

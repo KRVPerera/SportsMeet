@@ -3,23 +3,31 @@ using SportsMeet.Models;
 using SportsMeet.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SportsMeet
 {
     public partial class AddMultipleEventsToPlayer : Form
     {
-        public Player CurrentPlayer { get; }
+        public Player CurrentPlayer { get; set; }
 
         public AddMultipleEventsToPlayer(Player existingPlayer)
         {
             InitializeComponent();
-            CurrentPlayer = existingPlayer;
+            LoadPlayer(existingPlayer);
+        }
 
-            labelAddEventsPlayerNumber.Text = existingPlayer.Number;
-            labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
-            labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
-            labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum)existingPlayer.Sex);
+        private void LoadPlayer(Player existingPlayer)
+        {
+            if (existingPlayer != null)
+            {
+                CurrentPlayer = existingPlayer;
+                labelAddEventsPlayerNumber.Text = existingPlayer.Number;
+                labelAddEventsPlayerAge.Text = existingPlayer.Age.ToString();
+                labelAddEventsPlayerFullName.Text = existingPlayer.FullName();
+                labelAddEventsPlayerGender.Text = Util.SexEnumToSex((Util.SexEnum) existingPlayer.Sex);
+            }
         }
 
         private void LoadPlayerEvents()
@@ -117,6 +125,16 @@ namespace SportsMeet
         private void AddMultipleEventsToPlayer_Load(object sender, EventArgs e)
         {
             RefreshView();
+        }
+
+        private void btnChangePlayerPlayerEventsMgt_Click(object sender, EventArgs e)
+        {
+                SearchPlayer searchPlayer = new SearchPlayer();
+                searchPlayer.ShowDialog();
+                Player pl = searchPlayer.Player;
+                LoadPlayer(pl);
+                LoadPlayerEvents();
+                LoadNonPlayerEvents();
         }
     }
 }

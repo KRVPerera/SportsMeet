@@ -2,7 +2,7 @@
 
 namespace SportsMeet.Models
 {
-    internal class School
+    public class School
     {
         #region private data
 
