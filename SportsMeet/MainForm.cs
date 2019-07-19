@@ -558,6 +558,8 @@ namespace SportsMeet
             else
             {
                 statusViewer.Update("Player not found", Status.ERROR);
+                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
+                eventForm.ShowDialog();
             }
         }
 
@@ -804,6 +806,10 @@ namespace SportsMeet
                 if (players.Count > 0)
                 {
                     bindingSourceFilteredPlayersOnEvent.DataSource = players;
+                    bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
+                } else
+                {
+                    bindingSourceFilteredPlayersOnEvent.DataSource = null;
                     bindingSourceFilteredPlayersOnEvent.ResetBindings(false);
                 }
 

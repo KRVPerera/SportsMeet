@@ -38,10 +38,7 @@ namespace SportsMeet.Data
             SELECT *
             FROM players
             where   
-                    firstName LIKE @FirstName AND
-                    lastName LIKE @LastName AND
-                    age LIKE @Age AND
-                    number LIKE @Number
+                   number = @Number
                 ;
             ";
 
