@@ -8,7 +8,6 @@
 #define MyAppExeName "SportsMeet.exe"
 #include <idp.iss>
 
-
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
@@ -31,11 +30,15 @@ OutputBaseFilename=MeetSetup
 Compression=lzma
 SolidCompression=yes
 MinVersion=0,6.0
-VersionInfoVersion=0.9
+VersionInfoVersion=1.0
 VersionInfoCompany=ISURU RATHNAYAKA and RUKSHAN PERERA
 VersionInfoCopyright=2019
 VersionInfoProductName=MeetTracker
-VersionInfoProductVersion=0.9
+VersionInfoProductVersion=1.0.9
+AppContact=rukshan.viduranga@gmail.com
+AppSupportPhone=+94727673029
+VersionInfoProductTextVersion=v1.0-beta.2
+SetupMutex=MeetTracker,Global\MeetTracker
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -78,6 +81,7 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 UseRelativePaths=True
 
 ;Install https://code.google.com/archive/p/inno-download-plugin/
+
 [Code]
 procedure CreateMeetDatabase;
 var

@@ -9,6 +9,11 @@ CREATE TABLE IF NOT EXISTS EducationZones (
 );
 
 DELETE FROM Districts;
+DELETE FROM EducationZones;
+DELETE FROM Schools;
+DELETE FROM PlayerEvents;
+DELETE FROM Players;
+
 
 INSERT INTO Districts (name) VALUES  ('Central Province');
 INSERT INTO Districts (name) VALUES  ('Eastern Province');
@@ -50,7 +55,7 @@ INSERT INTO Districts (name) VALUES  ('Western Province');
 --INSERT INTO Districts (name) VALUES  ('Trincomalee');
 --INSERT INTO Districts (name) VALUES  ('Vavuniya');
 
-DELETE FROM EducationZones;
+
 INSERT INTO EducationZones (name) VALUES  ('Piliyandala');
 INSERT INTO EducationZones (name) VALUES  ('Minuwangoda');
 INSERT INTO EducationZones (name) VALUES  ('Colombo');
