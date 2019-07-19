@@ -470,6 +470,7 @@ namespace SportsMeet
             this.dataGridViewAllEvents.RowTemplate.Height = 28;
             this.dataGridViewAllEvents.Size = new System.Drawing.Size(333, 655);
             this.dataGridViewAllEvents.TabIndex = 14;
+            this.dataGridViewAllEvents.TabStop = false;
             // 
             // numberDataGridViewTextBoxColumn5
             // 
@@ -1393,6 +1394,7 @@ namespace SportsMeet
             this.dataGridViewFBE.RowTemplate.Height = 24;
             this.dataGridViewFBE.Size = new System.Drawing.Size(307, 541);
             this.dataGridViewFBE.TabIndex = 4;
+            this.dataGridViewFBE.TabStop = false;
             this.dataGridViewFBE.SelectionChanged += new System.EventHandler(this.dataGridViewFBE_SelectionChanged);
             // 
             // numberDataGridViewTextBoxColumn4
