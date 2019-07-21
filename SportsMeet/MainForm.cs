@@ -1,6 +1,7 @@
 ﻿using SportsMeet.Data;
 using SportsMeet.Models;
 using SportsMeet.Properties;
+using SportsMeet.Reports;
 using SportsMeet.Utils;
 using SportsMeet.View;
 using System;
@@ -699,6 +700,8 @@ namespace SportsMeet
             autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
             tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
+
+            tbFilterByPlayersNumber.Text = "";
         }
 
         private void LoadSchoolList()
@@ -749,6 +752,13 @@ namespace SportsMeet
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
             tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
+
+            bindingSourceEventsDoesNotBelongToPlayer.DataSource = null;
+            bindingSourceEventsBelongToPlayer.DataSource = null;
+            bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+            bindingSourceEventsBelongToPlayer.ResetBindings(false);
+
+            tbFilterByEventEventNumber.Text = "";
         }
 
         #endregion Data Loading
@@ -1005,6 +1015,12 @@ namespace SportsMeet
         {
             tbFilterByEventEventNumber.Text = "";
             tbFilterByPlayersNumber.Text = "";
+        }
+
+        private void buttonReportPlayers_Click(object sender, EventArgs e)
+        {
+            ReportManager reportManager = new ReportManager();
+            reportManager.Report();
         }
     }
 }

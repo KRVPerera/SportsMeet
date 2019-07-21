@@ -209,6 +209,7 @@ namespace SportsMeet
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTime = new System.Windows.Forms.Timer(this.components);
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.buttonReportPlayers = new System.Windows.Forms.Button();
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -245,6 +246,7 @@ namespace SportsMeet
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerNewEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
+            this.tabPageReports.SuspendLayout();
             this.toolStripStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
@@ -1815,6 +1817,7 @@ namespace SportsMeet
             // 
             // tabPageReports
             // 
+            this.tabPageReports.Controls.Add(this.buttonReportPlayers);
             this.tabPageReports.Location = new System.Drawing.Point(4, 29);
             this.tabPageReports.Name = "tabPageReports";
             this.tabPageReports.Size = new System.Drawing.Size(1025, 650);
@@ -1950,6 +1953,16 @@ namespace SportsMeet
             // 
             this.eventBindingSource1.DataSource = typeof(SportsMeet.Models.Event);
             // 
+            // buttonReportPlayers
+            // 
+            this.buttonReportPlayers.Location = new System.Drawing.Point(382, 174);
+            this.buttonReportPlayers.Name = "buttonReportPlayers";
+            this.buttonReportPlayers.Size = new System.Drawing.Size(128, 56);
+            this.buttonReportPlayers.TabIndex = 0;
+            this.buttonReportPlayers.Text = "Report Players";
+            this.buttonReportPlayers.UseVisualStyleBackColor = true;
+            this.buttonReportPlayers.Click += new System.EventHandler(this.buttonReportPlayers_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -2006,6 +2019,7 @@ namespace SportsMeet
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerNewEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
+            this.tabPageReports.ResumeLayout(false);
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
@@ -2185,6 +2199,7 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn ageLimitDataGridViewTextBoxColumn3;
+        private Button buttonReportPlayers;
     }
     
 }
