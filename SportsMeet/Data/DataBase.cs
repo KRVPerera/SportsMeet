@@ -44,11 +44,7 @@ namespace SportsMeet.Data
 
             var p = new
             {
-                FirstName = "%" + sPlayer.FirstName + "%",
-                LastName = "%" + sPlayer.LastName + "%",
-                Age = sPlayer.Age.ToString(),
-                Id = sPlayer.Id.ToString() + "%",
-                Number = sPlayer.Number.ToString()
+                Number = sPlayer.Number.ToString().Trim()
             };
 
             var players = DBConnection.Instance.Connection.Query<Player>(query, p)

@@ -39,86 +39,90 @@
             this.btnSearchSW = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonOkaySW = new System.Windows.Forms.Button();
+            this.llbFirstName = new System.Windows.Forms.Label();
+            this.llbLastName = new System.Windows.Forms.Label();
+            this.labelSchool = new System.Windows.Forms.Label();
+            this.labelAge = new System.Windows.Forms.Label();
+            this.labelProvince = new System.Windows.Forms.Label();
+            this.labelEducationZone = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbxPlayerNumberSW
             // 
-            this.tbxPlayerNumberSW.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.tbxPlayerNumberSW.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.tbxPlayerNumberSW.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbxPlayerNumberSW.Location = new System.Drawing.Point(86, 6);
-            this.tbxPlayerNumberSW.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxPlayerNumberSW.Location = new System.Drawing.Point(144, 8);
             this.tbxPlayerNumberSW.Name = "tbxPlayerNumberSW";
-            this.tbxPlayerNumberSW.Size = new System.Drawing.Size(127, 20);
+            this.tbxPlayerNumberSW.Size = new System.Drawing.Size(273, 26);
             this.tbxPlayerNumberSW.TabIndex = 0;
+            this.tbxPlayerNumberSW.MouseEnter += new System.EventHandler(this.tbxPlayerNumberSW_MouseEnter);
             // 
             // lblPlayerNumber
             // 
             this.lblPlayerNumber.AutoSize = true;
-            this.lblPlayerNumber.Location = new System.Drawing.Point(5, 9);
+            this.lblPlayerNumber.Location = new System.Drawing.Point(8, 14);
+            this.lblPlayerNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerNumber.Name = "lblPlayerNumber";
-            this.lblPlayerNumber.Size = new System.Drawing.Size(76, 13);
+            this.lblPlayerNumber.Size = new System.Drawing.Size(112, 20);
             this.lblPlayerNumber.TabIndex = 3;
             this.lblPlayerNumber.Text = "Player Number";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 58);
+            this.label1.Location = new System.Drawing.Point(8, 89);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Last Name";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 35);
+            this.label2.Location = new System.Drawing.Point(8, 54);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "First Name";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 80);
+            this.label3.Location = new System.Drawing.Point(8, 123);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.Size = new System.Drawing.Size(58, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "School";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // lblDistrict
             // 
             this.lblDistrict.AutoSize = true;
-            this.lblDistrict.Location = new System.Drawing.Point(5, 130);
-            this.lblDistrict.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDistrict.Location = new System.Drawing.Point(8, 200);
+            this.lblDistrict.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDistrict.Name = "lblDistrict";
-            this.lblDistrict.Size = new System.Drawing.Size(49, 13);
+            this.lblDistrict.Size = new System.Drawing.Size(69, 20);
             this.lblDistrict.TabIndex = 27;
             this.lblDistrict.Text = "Province";
-            this.lblDistrict.Visible = false;
-            this.lblDistrict.Click += new System.EventHandler(this.lblDistrict_Click);
             // 
             // lblAge
             // 
             this.lblAge.AutoSize = true;
-            this.lblAge.Location = new System.Drawing.Point(5, 103);
+            this.lblAge.Location = new System.Drawing.Point(8, 158);
+            this.lblAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(26, 13);
+            this.lblAge.Size = new System.Drawing.Size(38, 20);
             this.lblAge.TabIndex = 25;
             this.lblAge.Text = "Age";
-            this.lblAge.Click += new System.EventHandler(this.lblAge_Click);
             // 
             // btnSearchSW
             // 
-            this.btnSearchSW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchSW.Location = new System.Drawing.Point(180, 182);
-            this.btnSearchSW.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearchSW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchSW.Location = new System.Drawing.Point(144, 277);
             this.btnSearchSW.Name = "btnSearchSW";
-            this.btnSearchSW.Size = new System.Drawing.Size(93, 24);
+            this.btnSearchSW.Size = new System.Drawing.Size(140, 37);
             this.btnSearchSW.TabIndex = 28;
             this.btnSearchSW.Text = "Search";
             this.btnSearchSW.UseVisualStyleBackColor = true;
@@ -127,31 +131,95 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 152);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(8, 234);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
+            this.label4.Size = new System.Drawing.Size(122, 20);
             this.label4.TabIndex = 29;
             this.label4.Text = "Education Zone";
-            this.label4.Visible = false;
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // buttonOkaySW
             // 
-            this.buttonOkaySW.Location = new System.Drawing.Point(83, 182);
-            this.buttonOkaySW.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOkaySW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOkaySW.Location = new System.Drawing.Point(290, 278);
             this.buttonOkaySW.Name = "buttonOkaySW";
-            this.buttonOkaySW.Size = new System.Drawing.Size(93, 24);
+            this.buttonOkaySW.Size = new System.Drawing.Size(132, 37);
             this.buttonOkaySW.TabIndex = 47;
             this.buttonOkaySW.Text = "OK";
             this.buttonOkaySW.UseVisualStyleBackColor = true;
             this.buttonOkaySW.Click += new System.EventHandler(this.buttonOkaySW_Click);
             // 
+            // llbFirstName
+            // 
+            this.llbFirstName.AutoSize = true;
+            this.llbFirstName.Location = new System.Drawing.Point(140, 54);
+            this.llbFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.llbFirstName.Name = "llbFirstName";
+            this.llbFirstName.Size = new System.Drawing.Size(86, 20);
+            this.llbFirstName.TabIndex = 48;
+            this.llbFirstName.Text = "First Name";
+            // 
+            // llbLastName
+            // 
+            this.llbLastName.AutoSize = true;
+            this.llbLastName.Location = new System.Drawing.Point(140, 89);
+            this.llbLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.llbLastName.Name = "llbLastName";
+            this.llbLastName.Size = new System.Drawing.Size(86, 20);
+            this.llbLastName.TabIndex = 49;
+            this.llbLastName.Text = "First Name";
+            // 
+            // labelSchool
+            // 
+            this.labelSchool.AutoSize = true;
+            this.labelSchool.Location = new System.Drawing.Point(140, 123);
+            this.labelSchool.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSchool.Name = "labelSchool";
+            this.labelSchool.Size = new System.Drawing.Size(86, 20);
+            this.labelSchool.TabIndex = 50;
+            this.labelSchool.Text = "First Name";
+            // 
+            // labelAge
+            // 
+            this.labelAge.AutoSize = true;
+            this.labelAge.Location = new System.Drawing.Point(140, 158);
+            this.labelAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAge.Name = "labelAge";
+            this.labelAge.Size = new System.Drawing.Size(86, 20);
+            this.labelAge.TabIndex = 51;
+            this.labelAge.Text = "First Name";
+            // 
+            // labelProvince
+            // 
+            this.labelProvince.AutoSize = true;
+            this.labelProvince.Location = new System.Drawing.Point(140, 200);
+            this.labelProvince.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelProvince.Name = "labelProvince";
+            this.labelProvince.Size = new System.Drawing.Size(86, 20);
+            this.labelProvince.TabIndex = 52;
+            this.labelProvince.Text = "First Name";
+            // 
+            // labelEducationZone
+            // 
+            this.labelEducationZone.AutoSize = true;
+            this.labelEducationZone.Location = new System.Drawing.Point(140, 234);
+            this.labelEducationZone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEducationZone.Name = "labelEducationZone";
+            this.labelEducationZone.Size = new System.Drawing.Size(86, 20);
+            this.labelEducationZone.TabIndex = 53;
+            this.labelEducationZone.Text = "First Name";
+            // 
             // SearchPlayer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 237);
+            this.ClientSize = new System.Drawing.Size(429, 326);
+            this.Controls.Add(this.labelEducationZone);
+            this.Controls.Add(this.labelProvince);
+            this.Controls.Add(this.labelAge);
+            this.Controls.Add(this.labelSchool);
+            this.Controls.Add(this.llbLastName);
+            this.Controls.Add(this.llbFirstName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxPlayerNumberSW);
             this.Controls.Add(this.label2);
@@ -163,7 +231,9 @@
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.btnSearchSW);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(451, 382);
             this.Name = "SearchPlayer";
             this.Text = "Search Player";
             this.Load += new System.EventHandler(this.SearchPlayer_Load);
@@ -184,5 +254,11 @@
         private System.Windows.Forms.Button btnSearchSW;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button buttonOkaySW;
+        private System.Windows.Forms.Label llbFirstName;
+        private System.Windows.Forms.Label llbLastName;
+        private System.Windows.Forms.Label labelSchool;
+        private System.Windows.Forms.Label labelAge;
+        private System.Windows.Forms.Label labelProvince;
+        private System.Windows.Forms.Label labelEducationZone;
     }
 }

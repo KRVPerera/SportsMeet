@@ -879,6 +879,14 @@ namespace SportsMeet
             tbNewEventsName.Clear();
         }
 
+        private void EventsManagementTab()
+        {
+            labelAddEventsPlayerNumber.Text = "";
+            labelAddEventsPlayerFullName.Text = "";
+            labelAddEventsPlayerAge.Text = "";
+            labelAddEventsPlayerGender.Text = "";
+        }
+
         private void RefreshGui()
         {
             textBoxPlayerSearch.Clear();
@@ -888,9 +896,11 @@ namespace SportsMeet
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
+            EventsManagementTab();
+            labelCurrentEventFBE.Text = "";
+
             statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
-            labelCurrentEventFBE.Text = "";
         }
 
         #endregion cleanup
