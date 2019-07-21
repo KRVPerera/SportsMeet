@@ -113,12 +113,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddMultileEventsToPlayer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddMultileEventsToPlayer.Designer.cs">
-      <DependentUpon>AddMultileEventsToPlayer.cs</DependentUpon>
-    </Compile>
     <Compile Include="Data\DataBase.cs" />
     <Compile Include="Data\DBConnection.cs" />
     <Compile Include="MainForm.cs">
@@ -150,9 +144,6 @@
     <Compile Include="View\StatusViewer.cs" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddMultileEventsToPlayer.resx">
-      <DependentUpon>AddMultileEventsToPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

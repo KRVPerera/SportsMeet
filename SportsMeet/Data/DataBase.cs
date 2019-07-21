@@ -222,7 +222,7 @@ namespace SportsMeet.Data
 
         #region Events
 
-        internal static List<Event> GetEventsForEventIds(List<int> eventIds)
+        internal static List<Event> GetEventsForEventIds(List<long> eventIds)
         {
             List<Event> eventList = new List<Event>();
             foreach (var eventId in eventIds)
@@ -618,10 +618,10 @@ namespace SportsMeet.Data
             return playerList;
         }
 
-        public static List<int> GetPlayerEventsNotByPlayer(PlayerEvent searchPlayerEvents)
+        public static List<long> GetPlayerEventsNotByPlayer(PlayerEvent searchPlayerEvents)
         {
             string query = "select id from Events where id not IN (select eventId from PlayerEvents where playerId = @PlayerId);";
-            IEnumerable<int> result = DBConnection.Instance.Connection.Query<int>(query, searchPlayerEvents);
+            IEnumerable<long> result = DBConnection.Instance.Connection.Query<long>(query, searchPlayerEvents);
             return result.ToList();
         }
 

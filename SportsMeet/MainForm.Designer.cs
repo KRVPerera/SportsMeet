@@ -163,9 +163,25 @@ namespace SportsMeet
             this.tbFilterByEventEventNumber = new System.Windows.Forms.TextBox();
             this.lblFilterByEventEventNumber = new System.Windows.Forms.Label();
             this.tabPageEventsManagement = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewCurrentPlayerEvents = new System.Windows.Forms.DataGridView();
+            this.numberDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageLimitDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.btnChangePlayerPlayerEventsMgt = new System.Windows.Forms.Button();
+            this.dataGridViewCurrentPlayerNewEvents = new System.Windows.Forms.DataGridView();
+            this.numberDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageLimitDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
             this.playerevents = new System.Windows.Forms.Label();
+            this.btnChangePlayerPlayerEventsMgt = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
@@ -174,10 +190,6 @@ namespace SportsMeet
             this.label11 = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerNumber = new System.Windows.Forms.Label();
-            this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridViewCurrentPlayerEvents = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCurrentPlayerNewEvents = new System.Windows.Forms.DataGridView();
             this.tabPageReports = new System.Windows.Forms.TabPage();
             this.imageListForTabs = new System.Windows.Forms.ImageList(this.components);
             this.toolStripStatusBar = new System.Windows.Forms.ToolStrip();
@@ -196,10 +208,7 @@ namespace SportsMeet
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTime = new System.Windows.Forms.Timer(this.components);
-            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -230,15 +239,16 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilteredPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredPlayersOnEvent)).BeginInit();
             this.tabPageEventsManagement.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerNewEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
             this.toolStripStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -1532,6 +1542,115 @@ namespace SportsMeet
             this.tabPageEventsManagement.Text = "Events Management";
             this.tabPageEventsManagement.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            this.tableLayoutPanel3.Controls.Add(this.dataGridViewCurrentPlayerEvents, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label12, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.dataGridViewCurrentPlayerNewEvents, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.playerevents, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(8, 154);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 442F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1011, 493);
+            this.tableLayoutPanel3.TabIndex = 30;
+            // 
+            // dataGridViewCurrentPlayerEvents
+            // 
+            this.dataGridViewCurrentPlayerEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCurrentPlayerEvents.AutoGenerateColumns = false;
+            this.dataGridViewCurrentPlayerEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCurrentPlayerEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.numberDataGridViewTextBoxColumn7,
+            this.nameDataGridViewTextBoxColumn5,
+            this.genderDataGridViewTextBoxColumn4,
+            this.ageLimitDataGridViewTextBoxColumn3});
+            this.dataGridViewCurrentPlayerEvents.DataSource = this.bindingSourceEventsBelongToPlayer;
+            this.dataGridViewCurrentPlayerEvents.Location = new System.Drawing.Point(3, 54);
+            this.dataGridViewCurrentPlayerEvents.Name = "dataGridViewCurrentPlayerEvents";
+            this.dataGridViewCurrentPlayerEvents.RowTemplate.Height = 28;
+            this.dataGridViewCurrentPlayerEvents.Size = new System.Drawing.Size(448, 436);
+            this.dataGridViewCurrentPlayerEvents.TabIndex = 1;
+            // 
+            // numberDataGridViewTextBoxColumn7
+            // 
+            this.numberDataGridViewTextBoxColumn7.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn7.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn7.Name = "numberDataGridViewTextBoxColumn7";
+            // 
+            // nameDataGridViewTextBoxColumn5
+            // 
+            this.nameDataGridViewTextBoxColumn5.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn5.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn5.Name = "nameDataGridViewTextBoxColumn5";
+            // 
+            // genderDataGridViewTextBoxColumn4
+            // 
+            this.genderDataGridViewTextBoxColumn4.DataPropertyName = "Gender";
+            this.genderDataGridViewTextBoxColumn4.HeaderText = "Gender";
+            this.genderDataGridViewTextBoxColumn4.Name = "genderDataGridViewTextBoxColumn4";
+            this.genderDataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // ageLimitDataGridViewTextBoxColumn3
+            // 
+            this.ageLimitDataGridViewTextBoxColumn3.DataPropertyName = "AgeLimit";
+            this.ageLimitDataGridViewTextBoxColumn3.HeaderText = "AgeLimit";
+            this.ageLimitDataGridViewTextBoxColumn3.Name = "ageLimitDataGridViewTextBoxColumn3";
+            // 
+            // bindingSourceEventsBelongToPlayer
+            // 
+            this.bindingSourceEventsBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.btnRemoveEventFromPlayer, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.button1, 0, 1);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(457, 54);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(95, 436);
+            this.tableLayoutPanel4.TabIndex = 31;
+            // 
+            // btnRemoveEventFromPlayer
+            // 
+            this.btnRemoveEventFromPlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(13, 91);
+            this.btnRemoveEventFromPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
+            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(69, 35);
+            this.btnRemoveEventFromPlayer.TabIndex = 17;
+            this.btnRemoveEventFromPlayer.Text = ">>";
+            this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
+            this.btnRemoveEventFromPlayer.Click += new System.EventHandler(this.btnRemoveEventFromPlayer_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Location = new System.Drawing.Point(13, 309);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 35);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "<<";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1543,16 +1662,54 @@ namespace SportsMeet
             this.label12.TabIndex = 29;
             this.label12.Text = "New events";
             // 
-            // btnChangePlayerPlayerEventsMgt
+            // dataGridViewCurrentPlayerNewEvents
             // 
-            this.btnChangePlayerPlayerEventsMgt.Location = new System.Drawing.Point(15, 111);
-            this.btnChangePlayerPlayerEventsMgt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnChangePlayerPlayerEventsMgt.Name = "btnChangePlayerPlayerEventsMgt";
-            this.btnChangePlayerPlayerEventsMgt.Size = new System.Drawing.Size(158, 35);
-            this.btnChangePlayerPlayerEventsMgt.TabIndex = 28;
-            this.btnChangePlayerPlayerEventsMgt.Text = "Change Player";
-            this.btnChangePlayerPlayerEventsMgt.UseVisualStyleBackColor = true;
-            this.btnChangePlayerPlayerEventsMgt.Click += new System.EventHandler(this.btnChangePlayerPlayerEventsMgt_Click);
+            this.dataGridViewCurrentPlayerNewEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewCurrentPlayerNewEvents.AutoGenerateColumns = false;
+            this.dataGridViewCurrentPlayerNewEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCurrentPlayerNewEvents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.numberDataGridViewTextBoxColumn6,
+            this.nameDataGridViewTextBoxColumn4,
+            this.genderDataGridViewTextBoxColumn3,
+            this.ageLimitDataGridViewTextBoxColumn2});
+            this.dataGridViewCurrentPlayerNewEvents.DataSource = this.bindingSourceEventsDoesNotBelongToPlayer;
+            this.dataGridViewCurrentPlayerNewEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridViewCurrentPlayerNewEvents.Location = new System.Drawing.Point(558, 54);
+            this.dataGridViewCurrentPlayerNewEvents.Name = "dataGridViewCurrentPlayerNewEvents";
+            this.dataGridViewCurrentPlayerNewEvents.RowTemplate.Height = 28;
+            this.dataGridViewCurrentPlayerNewEvents.Size = new System.Drawing.Size(450, 436);
+            this.dataGridViewCurrentPlayerNewEvents.TabIndex = 0;
+            // 
+            // numberDataGridViewTextBoxColumn6
+            // 
+            this.numberDataGridViewTextBoxColumn6.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn6.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn6.Name = "numberDataGridViewTextBoxColumn6";
+            // 
+            // nameDataGridViewTextBoxColumn4
+            // 
+            this.nameDataGridViewTextBoxColumn4.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn4.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn4.Name = "nameDataGridViewTextBoxColumn4";
+            // 
+            // genderDataGridViewTextBoxColumn3
+            // 
+            this.genderDataGridViewTextBoxColumn3.DataPropertyName = "Gender";
+            this.genderDataGridViewTextBoxColumn3.HeaderText = "Gender";
+            this.genderDataGridViewTextBoxColumn3.Name = "genderDataGridViewTextBoxColumn3";
+            this.genderDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // ageLimitDataGridViewTextBoxColumn2
+            // 
+            this.ageLimitDataGridViewTextBoxColumn2.DataPropertyName = "AgeLimit";
+            this.ageLimitDataGridViewTextBoxColumn2.HeaderText = "AgeLimit";
+            this.ageLimitDataGridViewTextBoxColumn2.Name = "ageLimitDataGridViewTextBoxColumn2";
+            // 
+            // bindingSourceEventsDoesNotBelongToPlayer
+            // 
+            this.bindingSourceEventsDoesNotBelongToPlayer.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // playerevents
             // 
@@ -1564,6 +1721,17 @@ namespace SportsMeet
             this.playerevents.Size = new System.Drawing.Size(159, 20);
             this.playerevents.TabIndex = 26;
             this.playerevents.Text = "Current player events";
+            // 
+            // btnChangePlayerPlayerEventsMgt
+            // 
+            this.btnChangePlayerPlayerEventsMgt.Location = new System.Drawing.Point(15, 111);
+            this.btnChangePlayerPlayerEventsMgt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnChangePlayerPlayerEventsMgt.Name = "btnChangePlayerPlayerEventsMgt";
+            this.btnChangePlayerPlayerEventsMgt.Size = new System.Drawing.Size(158, 35);
+            this.btnChangePlayerPlayerEventsMgt.TabIndex = 28;
+            this.btnChangePlayerPlayerEventsMgt.Text = "Change Player";
+            this.btnChangePlayerPlayerEventsMgt.UseVisualStyleBackColor = true;
+            this.btnChangePlayerPlayerEventsMgt.Click += new System.EventHandler(this.btnChangePlayerPlayerEventsMgt_Click);
             // 
             // label7
             // 
@@ -1645,52 +1813,6 @@ namespace SportsMeet
             this.labelAddEventsPlayerNumber.TabIndex = 22;
             this.labelAddEventsPlayerNumber.Text = "label4";
             // 
-            // btnRemoveEventFromPlayer
-            // 
-            this.btnRemoveEventFromPlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(13, 91);
-            this.btnRemoveEventFromPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
-            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(69, 35);
-            this.btnRemoveEventFromPlayer.TabIndex = 17;
-            this.btnRemoveEventFromPlayer.Text = ">>";
-            this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(13, 309);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 35);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "<<";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewCurrentPlayerEvents
-            // 
-            this.dataGridViewCurrentPlayerEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewCurrentPlayerEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCurrentPlayerEvents.Location = new System.Drawing.Point(3, 54);
-            this.dataGridViewCurrentPlayerEvents.Name = "dataGridViewCurrentPlayerEvents";
-            this.dataGridViewCurrentPlayerEvents.RowTemplate.Height = 28;
-            this.dataGridViewCurrentPlayerEvents.Size = new System.Drawing.Size(448, 436);
-            this.dataGridViewCurrentPlayerEvents.TabIndex = 1;
-            // 
-            // dataGridViewCurrentPlayerNewEvents
-            // 
-            this.dataGridViewCurrentPlayerNewEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewCurrentPlayerNewEvents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCurrentPlayerNewEvents.Location = new System.Drawing.Point(558, 54);
-            this.dataGridViewCurrentPlayerNewEvents.Name = "dataGridViewCurrentPlayerNewEvents";
-            this.dataGridViewCurrentPlayerNewEvents.RowTemplate.Height = 28;
-            this.dataGridViewCurrentPlayerNewEvents.Size = new System.Drawing.Size(450, 436);
-            this.dataGridViewCurrentPlayerNewEvents.TabIndex = 0;
-            // 
             // tabPageReports
             // 
             this.tabPageReports.Location = new System.Drawing.Point(4, 29);
@@ -1729,11 +1851,11 @@ namespace SportsMeet
             this.toolStripSeparator4,
             this.toolStripButtonAbout});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripStatusBar.Location = new System.Drawing.Point(0, 718);
+            this.toolStripStatusBar.Location = new System.Drawing.Point(0, 692);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
             this.toolStripStatusBar.Padding = new System.Windows.Forms.Padding(0);
             this.toolStripStatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStripStatusBar.Size = new System.Drawing.Size(1035, 45);
+            this.toolStripStatusBar.Size = new System.Drawing.Size(1035, 71);
             this.toolStripStatusBar.Stretch = true;
             this.toolStripStatusBar.TabIndex = 1;
             this.toolStripStatusBar.Text = "toolStrip";
@@ -1742,53 +1864,53 @@ namespace SportsMeet
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.toolStripLabel1.Size = new System.Drawing.Size(118, 42);
+            this.toolStripLabel1.Size = new System.Drawing.Size(118, 68);
             this.toolStripLabel1.Text = "Total Players :";
             // 
             // toolStripLabelTotalPlayerCount
             // 
             this.toolStripLabelTotalPlayerCount.Name = "toolStripLabelTotalPlayerCount";
-            this.toolStripLabelTotalPlayerCount.Size = new System.Drawing.Size(22, 42);
+            this.toolStripLabelTotalPlayerCount.Size = new System.Drawing.Size(22, 68);
             this.toolStripLabelTotalPlayerCount.Text = "0";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 71);
             // 
             // toolStripLabelSchools
             // 
             this.toolStripLabelSchools.Name = "toolStripLabelSchools";
-            this.toolStripLabelSchools.Size = new System.Drawing.Size(125, 42);
+            this.toolStripLabelSchools.Size = new System.Drawing.Size(125, 68);
             this.toolStripLabelSchools.Text = "Total Schools :";
             // 
             // toolStripLabelSchoolCount
             // 
             this.toolStripLabelSchoolCount.Name = "toolStripLabelSchoolCount";
-            this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(22, 42);
+            this.toolStripLabelSchoolCount.Size = new System.Drawing.Size(22, 68);
             this.toolStripLabelSchoolCount.Text = "0";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 71);
             // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(114, 42);
+            this.toolStripLabel2.Size = new System.Drawing.Size(114, 68);
             this.toolStripLabel2.Text = "Total Events :";
             // 
             // toolStripLabelTotalEvents
             // 
             this.toolStripLabelTotalEvents.Name = "toolStripLabelTotalEvents";
-            this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(22, 42);
+            this.toolStripLabelTotalEvents.Size = new System.Drawing.Size(22, 68);
             this.toolStripLabelTotalEvents.Text = "0";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 71);
             // 
             // statusLabel
             // 
@@ -1803,14 +1925,14 @@ namespace SportsMeet
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 45);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 71);
             // 
             // toolStripButtonAbout
             // 
             this.toolStripButtonAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAbout.Name = "toolStripButtonAbout";
-            this.toolStripButtonAbout.Size = new System.Drawing.Size(66, 42);
+            this.toolStripButtonAbout.Size = new System.Drawing.Size(66, 68);
             this.toolStripButtonAbout.Text = "About";
             this.toolStripButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.toolStripButtonAbout.Click += new System.EventHandler(this.toolStripButtonAbout_Click);
@@ -1824,42 +1946,9 @@ namespace SportsMeet
             this.statusTime.Interval = 4000;
             this.statusTime.Tick += new System.EventHandler(this.statusTime_Tick);
             // 
-            // tableLayoutPanel3
+            // eventBindingSource1
             // 
-            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel3.Controls.Add(this.dataGridViewCurrentPlayerEvents, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.label12, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.dataGridViewCurrentPlayerNewEvents, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.playerevents, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(8, 154);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 442F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1011, 493);
-            this.tableLayoutPanel3.TabIndex = 30;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btnRemoveEventFromPlayer, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.button1, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(457, 54);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(95, 436);
-            this.tableLayoutPanel4.TabIndex = 31;
+            this.eventBindingSource1.DataSource = typeof(SportsMeet.Models.Event);
             // 
             // MainForm
             // 
@@ -1910,17 +1999,18 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredPlayersOnEvent)).EndInit();
             this.tabPageEventsManagement.ResumeLayout(false);
             this.tabPageEventsManagement.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerNewEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2086,6 +2176,15 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn AgeLimit;
         private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutPanel4;
+        private BindingSource eventBindingSource1;
+        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn6;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn3;
+        private DataGridViewTextBoxColumn ageLimitDataGridViewTextBoxColumn2;
+        private DataGridViewTextBoxColumn numberDataGridViewTextBoxColumn7;
+        private DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn4;
+        private DataGridViewTextBoxColumn ageLimitDataGridViewTextBoxColumn3;
     }
     
 }
