@@ -8,7 +8,9 @@ namespace SportsMeet.Models
     {
         #region public constrctors
 
-        public Player(Int64 id, String number, String firstName, String lastName, Int64 age, Byte sex, Int64 schoolId, Int64 districtId, Int64 educationZoneId)
+        public Player(Int64 id, String number, String firstName, 
+            String lastName, Int32 age, Byte sex,
+            Int64 schoolId, Int64 districtId, Int64 educationZoneId)
         {
             Id = id;
             Number = number;
@@ -29,7 +31,7 @@ namespace SportsMeet.Models
             Number = number;
             FirstName = firstName;
             LastName = lastName;
-            if (!long.TryParse(age, out _age))
+            if (!int.TryParse(age, out _age))
             {
                 _age = -1;
             }
@@ -59,6 +61,7 @@ namespace SportsMeet.Models
 
         #endregion public constrctors
 
+
         #region private methods
 
         private void Init()
@@ -74,6 +77,7 @@ namespace SportsMeet.Models
 
         #endregion private methods
 
+
         #region public properties
 
         public String Number { get; set; }
@@ -82,7 +86,7 @@ namespace SportsMeet.Models
 
         public String LastName { get; set; }
 
-        public Int64 Age
+        public Int32 Age
         {
             get { return _age; }
             set
@@ -128,6 +132,7 @@ namespace SportsMeet.Models
 
         #endregion public derived members
 
+
         #region public overrides
 
         public override string ToString() => FullName();
@@ -150,9 +155,10 @@ namespace SportsMeet.Models
 
         #endregion public overrides
 
+
         #region private members
 
-        private Int64 _age;
+        private Int32 _age;
 
         #endregion private members
     }

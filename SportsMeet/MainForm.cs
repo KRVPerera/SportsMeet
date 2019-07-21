@@ -91,17 +91,7 @@ namespace SportsMeet
                     if (checkBoxAddtoanEvent.Checked)
                     {
                         Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
-                        if (existingPlayer != null)
-                        {
-                            Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
-                            eventForm.ShowDialog();
-                            // TODO get event Form status
-                        }
-                        else
-                        {
-                            // TODO: update status bar to player not found
-                            statusViewer.Update("Player not found...!", Status.ERROR);
-                        }
+                        LoadEventManagementTabPlayer(existingPlayer);
                         CleanupPlayerTabTextBoxes();
                     }
                 }
@@ -550,17 +540,16 @@ namespace SportsMeet
                 (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
 
             Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
-            if (existingPlayer != null)
-            {
-                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
-                eventForm.ShowDialog();
-            }
-            else
-            {
-                statusViewer.Update("Player not found", Status.ERROR);
-                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
-                eventForm.ShowDialog();
-            }
+            LoadEventManagementTabPlayer(existingPlayer);
+        }
+
+        private void btnEeventsTabAddPlayers_Click(object sender, EventArgs e)
+        {
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0,
+                (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
+
+            Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
+            LoadEventManagementTabPlayer(existingPlayer);
         }
 
         private void btnPlayerEdit_Click(object sender, EventArgs e)
@@ -623,6 +612,7 @@ namespace SportsMeet
                     if (PlayersTab.SavePlayer(newPlayer))
                     {
                         LoadPlayerList();
+                        statusViewer.Update("Player update successful!", Status.SUCCESS);
                     }
                 }
             }
@@ -688,6 +678,7 @@ namespace SportsMeet
         private List<District> _districts = new List<District>();
         private List<Event> _events = new List<Event>();
         private List<EducationZone> _zones = new List<EducationZone>();
+        Player currentChangedPlayer = null;
 
         #endregion DataRegion
 
@@ -859,6 +850,14 @@ namespace SportsMeet
             tbNewEventsName.Clear();
         }
 
+        private void EventsManagementTab()
+        {
+            labelAddEventsPlayerNumber.Text = "";
+            labelAddEventsPlayerFullName.Text = "";
+            labelAddEventsPlayerAge.Text = "";
+            labelAddEventsPlayerGender.Text = "";
+        }
+
         private void RefreshGui()
         {
             textBoxPlayerSearch.Clear();
@@ -868,11 +867,144 @@ namespace SportsMeet
             CleanupFilterByPlayerTabLabels();
             comboBoxEventsSex.SelectedIndex = 1;
             cbxGender.SelectedIndex = 1;
+            EventsManagementTab();
+            labelCurrentEventFBE.Text = "";
+
             statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
-            labelCurrentEventFBE.Text = "";
         }
 
         #endregion cleanup
+
+        private void btnChangePlayerPlayerEventsMgt_Click(object sender, EventArgs e)
+        {
+
+            SearchPlayer searchPlayer = new SearchPlayer();
+            searchPlayer.ShowDialog();
+            LoadEventManagementTabPlayer(searchPlayer.Player);
+        }
+
+        private void LoadEventManagementTabPlayer(Player player)
+        {
+            tcMainForm.SelectTab(5);
+            if (player != null)
+            {
+                LoadPlayer(player);
+                LoadPlayerEvents(player);
+                LoadNonPlayserEvents(player);
+            } else
+            {
+                SearchPlayer searchPlayer = new SearchPlayer();
+                searchPlayer.ShowDialog();
+                LoadEventManagementTabPlayer(searchPlayer.Player);
+            }
+        }
+
+        private void LoadNonPlayserEvents(Player currentChangedPlayer)
+        {
+            PlayerEvent searchPlayerEvents = new PlayerEvent(0, currentChangedPlayer.Id);
+            List<long> eventIds = DataBase.GetPlayerEventsNotByPlayer(searchPlayerEvents);
+            Console.WriteLine(eventIds.Count);
+            if (eventIds.Count > 0)
+            {
+                List<Event> eventList = DataBase.GetEventsForEventIds(eventIds);
+                bindingSourceEventsDoesNotBelongToPlayer.DataSource = eventList;
+                bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+                dataGridViewCurrentPlayerNewEvents.DataSource = bindingSourceEventsDoesNotBelongToPlayer;
+            }
+            else
+            {
+                bindingSourceEventsDoesNotBelongToPlayer.DataSource = null;
+                dataGridViewCurrentPlayerNewEvents.DataSource = bindingSourceEventsDoesNotBelongToPlayer;
+                bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+            }
+        }
+
+        private void LoadPlayerEvents(Player currentChangedPlayer)
+        {
+            PlayerEvent searchPlayerEvents = new PlayerEvent(0, currentChangedPlayer.Id);
+            List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
+            if (playerEventList.Count > 0)
+            {
+                List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
+                bindingSourceEventsBelongToPlayer.DataSource = eventList;
+                bindingSourceEventsBelongToPlayer.ResetBindings(false);
+                dataGridViewCurrentPlayerEvents.DataSource = bindingSourceEventsBelongToPlayer;
+            }
+            else
+            {
+                bindingSourceEventsBelongToPlayer.DataSource = null;
+                bindingSourceEventsBelongToPlayer.ResetBindings(false);
+                dataGridViewCurrentPlayerEvents.DataSource = bindingSourceEventsBelongToPlayer;
+            }
+        }
+
+        private void LoadPlayer(Player player)
+        {
+            currentChangedPlayer = player;
+            labelAddEventsPlayerNumber.Text = player.Number;
+            labelAddEventsPlayerFullName.Text = player.FullName();
+            labelAddEventsPlayerGender.Text = player.Gender;
+            labelAddEventsPlayerAge.Text = player.Age.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Event> addEvents = new List<Event>();
+            for (int index = 0; index < dataGridViewCurrentPlayerNewEvents.SelectedRows.Count; ++index)
+            {
+                var selectedRow = dataGridViewCurrentPlayerNewEvents.SelectedRows[index];
+                var rowEvent = (Event)selectedRow.DataBoundItem;
+                addEvents.Add(rowEvent);
+            }
+
+            bool changedOne = false;
+            foreach (var removeEvent in addEvents)
+            {
+                if (PlayersTab.AddPlayerToEvent(currentChangedPlayer.Id, removeEvent))
+                {
+                    changedOne = true;
+                }
+            }
+
+            if (changedOne)
+            {
+                LoadEventManagementTabPlayer(currentChangedPlayer);
+                clearFilterFormTextBoxes();
+            }
+        }
+
+        private void btnRemoveEventFromPlayer_Click(object sender, EventArgs e)
+        {
+            List<Event> removeEvents = new List<Event>();
+            for (int index = 0; index < dataGridViewCurrentPlayerEvents.SelectedRows.Count; ++index)
+            {
+                var selectedRow = dataGridViewCurrentPlayerEvents.SelectedRows[index];
+                var rowEvent = (Event)selectedRow.DataBoundItem;
+                removeEvents.Add(rowEvent);
+            }
+
+            bool removedOne = false;
+            foreach (var removeEvent in removeEvents)
+            {
+                Console.WriteLine(removeEvent.Id);
+                if (PlayersTab.RemovelayerFromEvent(currentChangedPlayer.Id, removeEvent))
+                {
+                    removedOne = true;
+                }
+            }
+
+            if (removedOne)
+            {
+                LoadEventManagementTabPlayer(currentChangedPlayer);
+                clearFilterFormTextBoxes();
+            }
+        }
+
+        private void clearFilterFormTextBoxes()
+        {
+            tbFilterByEventEventNumber.Text = "";
+            tbFilterByPlayersNumber.Text = "";
+        }
     }
 }

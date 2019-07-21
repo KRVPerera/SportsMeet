@@ -9,14 +9,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using SportsMeet.Utils;
+using SportsMeet.Data;
 
 namespace SportsMeet
 {
     public partial class SearchPlayer : Form
     {
-        public Player Player { get; set; }
-
+        public Player Player { get { return playerSearched; } set { playerSearched = value; } }
         Player playerSearched;
+
         public SearchPlayer()
         {
             InitializeComponent();
@@ -40,79 +41,82 @@ namespace SportsMeet
 
         private void resetUi()
         {
-            labelPlayerAgeSW.Text = "";
-            labelPlayerFullNameSW.Text = "";
-            labelPlayerGenderSW.Text = "";
-            labelPlayerNumberSW.Text = "";
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
+            tbxPlayerNumberSW.AutoCompleteCustomSource = autoComplete;
+
+            cleanUi();
+        }
+
+        private void cleanUi()
+        {
+            labelAge.Text = "";
+            llbFirstName.Text = "";
+            llbLastName.Text = "";
+            labelProvince.Text = "";
+            labelEducationZone.Text = "";
+            labelSchool.Text = "";
         }
 
         private void btnSearchSW_Click(object sender, EventArgs e)
         {
             String playerNumber = tbxPlayerNumberSW.Text.Trim();
-            String playerFirstName = tbxFirstNameSW.Text.Trim();
-            String playerLastName = tbxLastNameSW.Text.Trim();
-            String playerSchool = cbxSchoolSW.Text.Trim();
-            String playerAge = numericUpDownAgeSW.Text.Trim();
-            String playerDistrcit = cbxDistrictSW.Text.Trim();
-            String playerRegion = cbxRegionsSW.Text.Trim();
-
-  
-            Player searchPlayer = new Player(playerNumber, playerFirstName, playerLastName, playerAge, playerSchool, playerDistrcit);
+            Player searchPlayer = new Player(playerNumber);
        
             var players = Data.DataBase.LoadPlayers(searchPlayer);
             Player foundPlayer = players.FirstOrDefault();
             if (foundPlayer != null)
             {
                 playerSearched = foundPlayer;
-                labelPlayerFullNameSW.Text = foundPlayer.FullName();
-                labelPlayerNumberSW.Text = foundPlayer.Number;
-                labelPlayerGenderSW.Text = foundPlayer.Gender;
-                labelPlayerAgeSW.Text = foundPlayer.Age.ToString();
+                LoadPlayer(foundPlayer);
             }
             else
             {
-                labelPlayerFullNameSW.Text = "";
-                labelPlayerNumberSW.Text = "";
-                labelPlayerGenderSW.Text = "";
-                labelPlayerAgeSW.Text = "";
                 playerSearched = null;
             }
-        }
-
-        private void lblDistrict_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblAge_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonOkaySW_Click(object sender, EventArgs e)
         {
             Player = playerSearched;
             Close();
+        }
+
+        private void LoadPlayer(Player player)
+        {
+
+
+            labelAge.Text = player.Age.ToString();
+            llbFirstName.Text = player.FirstName;
+            llbLastName.Text = player.LastName;
+
+            labelSchool.Text = player.SchoolId.ToString();
+            School school = DataBase.GetSchool(player.SchoolId);
+            if (school != null)
+            {
+                labelSchool.Text = school.Name;
+            }
+
+
+            labelProvince.Text = player.DistrictId.ToString();
+            District district = DataBase.GetDistrict(player.DistrictId);
+            if (district != null)
+            {
+                labelProvince.Text = district.Name;
+            }
+
+
+            labelEducationZone.Text = player.EducationZoneId.ToString();
+            EducationZone educationZone = DataBase.GetEducationZone(player.EducationZoneId);
+            if (educationZone != null)
+            {
+                labelEducationZone.Text = educationZone.Name;
+            }
+        }
+
+        private void tbxPlayerNumberSW_MouseEnter(object sender, EventArgs e)
+        {
+            cleanUi();
         }
     }
 }
