@@ -191,6 +191,14 @@ namespace SportsMeet
             this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerNumber = new System.Windows.Forms.Label();
             this.tabPageReports = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.buttonChangeReportFolder = new System.Windows.Forms.Button();
+            this.treeViewSaveReportPath = new System.Windows.Forms.TreeView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxSaveReportPath = new System.Windows.Forms.TextBox();
+            this.buttonReportPlayers = new System.Windows.Forms.Button();
             this.imageListForTabs = new System.Windows.Forms.ImageList(this.components);
             this.toolStripStatusBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -209,7 +217,8 @@ namespace SportsMeet
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTime = new System.Windows.Forms.Timer(this.components);
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonReportPlayers = new System.Windows.Forms.Button();
+            this.saveFileDialogSaveReports = new System.Windows.Forms.SaveFileDialog();
+            this.progressBarReports = new System.Windows.Forms.ProgressBar();
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -1817,6 +1826,14 @@ namespace SportsMeet
             // 
             // tabPageReports
             // 
+            this.tabPageReports.Controls.Add(this.progressBarReports);
+            this.tabPageReports.Controls.Add(this.button4);
+            this.tabPageReports.Controls.Add(this.button3);
+            this.tabPageReports.Controls.Add(this.button2);
+            this.tabPageReports.Controls.Add(this.buttonChangeReportFolder);
+            this.tabPageReports.Controls.Add(this.treeViewSaveReportPath);
+            this.tabPageReports.Controls.Add(this.label13);
+            this.tabPageReports.Controls.Add(this.textBoxSaveReportPath);
             this.tabPageReports.Controls.Add(this.buttonReportPlayers);
             this.tabPageReports.Location = new System.Drawing.Point(4, 29);
             this.tabPageReports.Name = "tabPageReports";
@@ -1824,6 +1841,76 @@ namespace SportsMeet
             this.tabPageReports.TabIndex = 6;
             this.tabPageReports.Text = "Reports";
             this.tabPageReports.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(732, 572);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(182, 56);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Report Players";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(510, 572);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(182, 56);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Report Events";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(288, 572);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(182, 56);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Report Zones";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // buttonChangeReportFolder
+            // 
+            this.buttonChangeReportFolder.Location = new System.Drawing.Point(930, 41);
+            this.buttonChangeReportFolder.Name = "buttonChangeReportFolder";
+            this.buttonChangeReportFolder.Size = new System.Drawing.Size(75, 30);
+            this.buttonChangeReportFolder.TabIndex = 4;
+            this.buttonChangeReportFolder.Text = "Browse";
+            this.buttonChangeReportFolder.UseVisualStyleBackColor = true;
+            this.buttonChangeReportFolder.Click += new System.EventHandler(this.buttonChangeReportFolder_Click);
+            // 
+            // treeViewSaveReportPath
+            // 
+            this.treeViewSaveReportPath.Location = new System.Drawing.Point(66, 75);
+            this.treeViewSaveReportPath.Name = "treeViewSaveReportPath";
+            this.treeViewSaveReportPath.Size = new System.Drawing.Size(849, 438);
+            this.treeViewSaveReportPath.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 43);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 20);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Path";
+            // 
+            // textBoxSaveReportPath
+            // 
+            this.textBoxSaveReportPath.Location = new System.Drawing.Point(66, 43);
+            this.textBoxSaveReportPath.Name = "textBoxSaveReportPath";
+            this.textBoxSaveReportPath.Size = new System.Drawing.Size(849, 26);
+            this.textBoxSaveReportPath.TabIndex = 1;
+            // 
+            // buttonReportPlayers
+            // 
+            this.buttonReportPlayers.Location = new System.Drawing.Point(66, 572);
+            this.buttonReportPlayers.Name = "buttonReportPlayers";
+            this.buttonReportPlayers.Size = new System.Drawing.Size(182, 56);
+            this.buttonReportPlayers.TabIndex = 0;
+            this.buttonReportPlayers.Text = "Report Provinces";
+            this.buttonReportPlayers.UseVisualStyleBackColor = true;
+            this.buttonReportPlayers.Click += new System.EventHandler(this.buttonReportPlayers_Click);
             // 
             // imageListForTabs
             // 
@@ -1953,15 +2040,17 @@ namespace SportsMeet
             // 
             this.eventBindingSource1.DataSource = typeof(SportsMeet.Models.Event);
             // 
-            // buttonReportPlayers
+            // saveFileDialogSaveReports
             // 
-            this.buttonReportPlayers.Location = new System.Drawing.Point(382, 174);
-            this.buttonReportPlayers.Name = "buttonReportPlayers";
-            this.buttonReportPlayers.Size = new System.Drawing.Size(128, 56);
-            this.buttonReportPlayers.TabIndex = 0;
-            this.buttonReportPlayers.Text = "Report Players";
-            this.buttonReportPlayers.UseVisualStyleBackColor = true;
-            this.buttonReportPlayers.Click += new System.EventHandler(this.buttonReportPlayers_Click);
+            this.saveFileDialogSaveReports.FileName = "SportsMeet";
+            this.saveFileDialogSaveReports.RestoreDirectory = true;
+            // 
+            // progressBarReports
+            // 
+            this.progressBarReports.Location = new System.Drawing.Point(66, 529);
+            this.progressBarReports.Name = "progressBarReports";
+            this.progressBarReports.Size = new System.Drawing.Size(849, 23);
+            this.progressBarReports.TabIndex = 8;
             // 
             // MainForm
             // 
@@ -2020,6 +2109,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCurrentPlayerNewEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
             this.tabPageReports.ResumeLayout(false);
+            this.tabPageReports.PerformLayout();
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
@@ -2200,6 +2290,15 @@ namespace SportsMeet
         private DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn ageLimitDataGridViewTextBoxColumn3;
         private Button buttonReportPlayers;
+        private Button buttonChangeReportFolder;
+        private TreeView treeViewSaveReportPath;
+        private Label label13;
+        private TextBox textBoxSaveReportPath;
+        private Button button3;
+        private Button button2;
+        private Button button4;
+        private SaveFileDialog saveFileDialogSaveReports;
+        private ProgressBar progressBarReports;
     }
     
 }

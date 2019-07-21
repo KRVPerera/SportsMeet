@@ -42,11 +42,11 @@ namespace SportsMeet.test
         public void SampleReport()
         {
 
-            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MeetTest";
-            //var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.) + "\\MeetTest";
-            ReportManager reportManager = new ReportManager();
-
-            reportManager.ReportPath = folderPath;
+            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\MeetTest";
+            ReportManager reportManager = new ReportManager
+            {
+                ReportPath = folderPath
+            };
 
             reportManager.Report(folderPath);
         }

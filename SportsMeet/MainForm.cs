@@ -7,6 +7,7 @@ using SportsMeet.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -879,6 +880,8 @@ namespace SportsMeet
             cbxGender.SelectedIndex = 1;
             EventsManagementTab();
             labelCurrentEventFBE.Text = "";
+            var filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SportsMeet\\";
+            textBoxSaveReportPath.Text = filePath;
 
             statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
@@ -1020,7 +1023,64 @@ namespace SportsMeet
         private void buttonReportPlayers_Click(object sender, EventArgs e)
         {
             ReportManager reportManager = new ReportManager();
+            reportManager.ReportPath = textBoxSaveReportPath.Text;
             reportManager.Report();
+        }
+
+        private void buttonChangeReportFolder_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dialogBoxResult = saveFileDialogSaveReports.ShowDialog();
+
+            if (dialogBoxResult == DialogResult.OK)
+            {
+                textBoxSaveReportPath.Text = Path.GetDirectoryName(saveFileDialogSaveReports.FileName);
+                LoadDirectory(textBoxSaveReportPath.Text);
+            }
+            
+        }
+
+        // from : https://www.c-sharpcorner.com/article/display-sub-directories-and-files-in-treeview/
+        public void LoadDirectory(string Dir)
+        {
+            DirectoryInfo di = new DirectoryInfo(Dir);
+            //Setting ProgressBar Maximum Value  
+            TreeNode tds = treeViewSaveReportPath.Nodes.Add(di.Name);
+            tds.Tag = di.FullName;
+            tds.StateImageIndex = 0;
+            LoadFiles(Dir, tds);
+            LoadSubDirectories(Dir, tds);
+        }
+
+        private void LoadSubDirectories(string dir, TreeNode td)
+        {
+            // Get all subdirectories  
+            string[] subdirectoryEntries = Directory.GetDirectories(dir);
+            // Loop through them to see if they have any other subdirectories  
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+
+                DirectoryInfo di = new DirectoryInfo(subdirectory);
+                TreeNode tds = td.Nodes.Add(di.Name);
+                tds.StateImageIndex = 0;
+                tds.Tag = di.FullName;
+                LoadFiles(subdirectory, tds);
+                LoadSubDirectories(subdirectory, tds);
+            }
+        }
+
+        private void LoadFiles(string dir, TreeNode td)
+        {
+            string[] Files = Directory.GetFiles(dir, "*.*");
+
+            // Loop through them to see files  
+            foreach (string file in Files)
+            {
+                FileInfo fi = new FileInfo(file);
+                TreeNode tds = td.Nodes.Add(fi.Name);
+                tds.Tag = fi.FullName;
+                tds.StateImageIndex = 1;
+            }
         }
     }
 }
