@@ -14,9 +14,9 @@ namespace SportsMeet
 {
     public partial class SearchPlayer : Form
     {
-        public Player Player { get; set; }
-
+        public Player Player { get { return playerSearched; } set { playerSearched = value; } }
         Player playerSearched;
+
         public SearchPlayer()
         {
             InitializeComponent();
@@ -40,41 +40,21 @@ namespace SportsMeet
 
         private void resetUi()
         {
-            labelPlayerAgeSW.Text = "";
-            labelPlayerFullNameSW.Text = "";
-            labelPlayerGenderSW.Text = "";
-            labelPlayerNumberSW.Text = "";
         }
 
         private void btnSearchSW_Click(object sender, EventArgs e)
         {
             String playerNumber = tbxPlayerNumberSW.Text.Trim();
-            String playerFirstName = tbxFirstNameSW.Text.Trim();
-            String playerLastName = tbxLastNameSW.Text.Trim();
-            String playerSchool = cbxSchoolSW.Text.Trim();
-            String playerAge = numericUpDownAgeSW.Text.Trim();
-            String playerDistrcit = cbxDistrictSW.Text.Trim();
-            String playerRegion = cbxRegionsSW.Text.Trim();
-
-  
-            Player searchPlayer = new Player(playerNumber, playerFirstName, playerLastName, playerAge, playerSchool, playerDistrcit);
+            Player searchPlayer = new Player(playerNumber);
        
             var players = Data.DataBase.LoadPlayers(searchPlayer);
             Player foundPlayer = players.FirstOrDefault();
             if (foundPlayer != null)
             {
                 playerSearched = foundPlayer;
-                labelPlayerFullNameSW.Text = foundPlayer.FullName();
-                labelPlayerNumberSW.Text = foundPlayer.Number;
-                labelPlayerGenderSW.Text = foundPlayer.Gender;
-                labelPlayerAgeSW.Text = foundPlayer.Age.ToString();
             }
             else
             {
-                labelPlayerFullNameSW.Text = "";
-                labelPlayerNumberSW.Text = "";
-                labelPlayerGenderSW.Text = "";
-                labelPlayerAgeSW.Text = "";
                 playerSearched = null;
             }
         }

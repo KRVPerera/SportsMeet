@@ -1,45 +1,45 @@
-﻿PRAGMA foreign_keys=ON;
-
-DROP TABLE IF EXISTS Events;
+﻿
+DROP TABLE IF EXISTS PlayerEvents;
 DROP TABLE IF EXISTS Players;
+DROP TABLE IF EXISTS Events;
 DROP TABLE IF EXISTS Schools;
 DROP TABLE IF EXISTS Districts;
 DROP TABLE IF EXISTS EducationZones;
-DROP TABLE IF EXISTS PlayerEvents;
+
 
 
 CREATE TABLE Districts (
-	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE
+	id  INTEGER PRIMARY KEY,
+	name VARCHAR(30) UNIQUE
 );
 
 CREATE TABLE EducationZones (
-	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE
+	id  INTEGER PRIMARY KEY,
+	name  VARCHAR(30) UNIQUE
 );
 
 CREATE TABLE Schools (
-	id INTEGER    PRIMARY KEY AUTOINCREMENT,
-	name     TEXT (100) UNIQUE
+	id  INTEGER PRIMARY KEY,
+	name CHAR  UNIQUE
 );
 
 
 CREATE TABLE Events (
-	id     INTEGER     PRIMARY KEY AUTOINCREMENT,
-	number    TEXT         UNIQUE,
-	name     TEXT    UNIQUE NOT NULL,
+	id  INTEGER PRIMARY KEY,
+	number    CHAR         UNIQUE,
+	name     CHAR    UNIQUE NOT NULL,
 	sex   TINYINT,
-	agelimit INTEGER NOT NULL
+	agelimit int NOT NULL
 );
 
 
 
 CREATE TABLE Players (
-	id        INTEGER      PRIMARY KEY AUTOINCREMENT,
-	number    TEXT         UNIQUE,
-	firstName TEXT ,
-	lastName  TEXT ,
-	age       INTEGER  DEFAULT (0),
+	id  INTEGER PRIMARY KEY,
+	number    CHAR         UNIQUE,
+	firstName CHAR ,
+	lastName  CHAR ,
+	age       int  DEFAULT (0),
 	sex		  TINYINT,
 	schoolId  INTEGER,
 	districtId INTEGER,
@@ -51,17 +51,18 @@ CREATE TABLE Players (
 
 	CONSTRAINT student_to_district 
 	FOREIGN KEY ( districtId )
-	REFERENCES Districts (id) ON UPDATE CASCADE
-
+	REFERENCES Districts (id) ON UPDATE CASCADE,
+	
 	CONSTRAINT student_to_educationzone 
-	FOREIGN KEY ( educationZoneId )
+	FOREIGN KEY (educationZoneId)
 	REFERENCES EducationZones (id) ON UPDATE CASCADE
+
 );
 
 
 CREATE TABLE PlayerEvents (
-	eventId  INTEGER NOT NULL,
-	playerId INTEGER NOT NULL,
+	eventId  INTEGER,
+	playerId INTEGER,
 
 
 	CONSTRAINT playerevent_to_players

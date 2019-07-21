@@ -563,6 +563,25 @@ namespace SportsMeet
             }
         }
 
+        private void btnEeventsTabAddPlayers_Click(object sender, EventArgs e)
+        {
+            Player newPlayer = new Player(0, tbPlayerNumber.Text, tbFirstName.Text, tbLastName.Text, 0,
+                (byte)Util.SexStringToEnum(cbxGender.Text), 0, 0, 0);
+
+            Player existingPlayer = DataBase.FindPlayerByNumber(newPlayer);
+            if (existingPlayer != null)
+            {
+                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
+                eventForm.ShowDialog();
+            }
+            else
+            {
+                statusViewer.Update("Player not found", Status.ERROR);
+                Form eventForm = new AddMultipleEventsToPlayer(existingPlayer);
+                eventForm.ShowDialog();
+            }
+        }
+
         private void btnPlayerEdit_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(tbPlayerNumber.Text.Trim()))
@@ -688,6 +707,7 @@ namespace SportsMeet
         private List<District> _districts = new List<District>();
         private List<Event> _events = new List<Event>();
         private List<EducationZone> _zones = new List<EducationZone>();
+        Player currentChangedPlayer = null;
 
         #endregion DataRegion
 
@@ -874,5 +894,61 @@ namespace SportsMeet
         }
 
         #endregion cleanup
+
+        private void btnChangePlayerPlayerEventsMgt_Click(object sender, EventArgs e)
+        {
+
+            SearchPlayer searchPlayer = new SearchPlayer();
+            searchPlayer.ShowDialog();
+            currentChangedPlayer = searchPlayer.Player;
+            if (currentChangedPlayer != null)
+            {
+                LoadPlayer(currentChangedPlayer);
+                LoadPlayerEvents(currentChangedPlayer);
+                LoadNonPlayserEvents(currentChangedPlayer);
+            }
+        }
+
+        private void LoadNonPlayserEvents(Player currentChangedPlayer)
+        {
+            PlayerEvent searchPlayerEvents = new PlayerEvent(0, currentChangedPlayer.Id);
+            List<int> eventIds = DataBase.GetPlayerEventsNotByPlayer(searchPlayerEvents);
+            if (eventIds.Count > 0)
+            {
+                List<Event> eventList = DataBase.GetEventsForEventIds(eventIds);
+                bindingSourceEventsDoesNotBelongToPlayer.DataSource = eventList;
+                bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+            }
+            else
+            {
+                bindingSourceEventsDoesNotBelongToPlayer.DataSource = null;
+                bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+            }
+        }
+
+        private void LoadPlayerEvents(Player currentChangedPlayer)
+        {
+            PlayerEvent searchPlayerEvents = new PlayerEvent(0, currentChangedPlayer.Id);
+            List<PlayerEvent> playerEventList = DataBase.GetPlayerEventsByPlayer(searchPlayerEvents);
+            if (playerEventList.Count > 0)
+            {
+                List<Event> eventList = DataBase.GetEventsForPlayerEvents(playerEventList);
+                bindingSourceEventsBelongToPlayer.DataSource = eventList;
+                bindingSourceEventsBelongToPlayer.ResetBindings(false);
+            }
+            else
+            {
+                bindingSourceEventsBelongToPlayer.DataSource = null;
+                bindingSourceEventsBelongToPlayer.ResetBindings(false);
+            }
+        }
+
+        private void LoadPlayer(Player currentChangedPlayer)
+        {
+            labelAddEventsPlayerNumber.Text = currentChangedPlayer.Number;
+            labelAddEventsPlayerFullName.Text = currentChangedPlayer.FullName();
+            labelAddEventsPlayerGender.Text = currentChangedPlayer.Gender;
+            labelAddEventsPlayerAge.Text = currentChangedPlayer.Age.ToString();
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace SportsMeet.Models
     {
         #region public constructors
 
-        public Event(Int64 id, String number, String name, Byte sex, Int64 agelimit)
+        public Event(Int64 id, String number, String name, Byte sex, Int32 agelimit)
         {
             Id = id;
             Number = number;
@@ -24,8 +24,8 @@ namespace SportsMeet.Models
 
             Number = number;
             Name = name;
-            long ageLimit = 0;
-            long.TryParse(agelimit, out ageLimit);
+            int ageLimit = 0;
+            int.TryParse(agelimit, out ageLimit);
             AgeLimit = ageLimit;
         }
 
@@ -47,9 +47,7 @@ namespace SportsMeet.Models
             get { return Util.SexEnumToSex((Util.SexEnum)Sex); }
         }
 
-        public Int64 AgeLimit { get; set; }
-
-        #endregion public members
+        public Int32 AgeLimit { get; set; }
 
         public override String ToString()
         {
@@ -71,5 +69,7 @@ namespace SportsMeet.Models
                 return sb.ToString();
             }
         }
+
+        #endregion public members
     }
 }

@@ -1,19 +1,7 @@
-CREATE TABLE IF NOT EXISTS Districts (
-	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE
-);
+BEGIN TRANSACTION; 
 
-CREATE TABLE IF NOT EXISTS EducationZones (
-	id  INTEGER  PRIMARY KEY AUTOINCREMENT,
-	name  TEXT      UNIQUE
-);
-
-DELETE FROM Districts;
-DELETE FROM EducationZones;
-DELETE FROM Schools;
-DELETE FROM PlayerEvents;
-DELETE FROM Players;
-
+TRUNCATE TABLE Districts;
+TRUNCATE TABLE EducationZones;
 
 INSERT INTO Districts (name) VALUES  ('Central Province');
 INSERT INTO Districts (name) VALUES  ('Eastern Province');
@@ -154,4 +142,4 @@ INSERT INTO EducationZones (name) VALUES  ('Mutur');
 INSERT INTO EducationZones (name) VALUES  ('Kantalai');
 INSERT INTO EducationZones (name) VALUES  ('Kinniya');
 INSERT INTO EducationZones (name) VALUES  ('Trincomalee North');
-
+COMMIT TRANSACTION;

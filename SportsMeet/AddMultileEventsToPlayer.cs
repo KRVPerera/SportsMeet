@@ -50,7 +50,7 @@ namespace SportsMeet
         private void LoadNonPlayerEvents()
         {
             PlayerEvent searchPlayerEvents = new PlayerEvent(0, CurrentPlayer.Id);
-            List<long> eventIds = DataBase.GetPlayerEventsNotByPlayer(searchPlayerEvents);
+            List<int> eventIds = DataBase.GetPlayerEventsNotByPlayer(searchPlayerEvents);
             Console.WriteLine(eventIds);
             if (eventIds.Count > 0)
             {

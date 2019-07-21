@@ -163,6 +163,23 @@ namespace SportsMeet
             this.lblFIlterByEventPlayers = new System.Windows.Forms.Label();
             this.tbFilterByEventEventNumber = new System.Windows.Forms.TextBox();
             this.lblFilterByEventEventNumber = new System.Windows.Forms.Label();
+            this.tabPageEventsManagement = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxAddEventEventFilter = new System.Windows.Forms.TextBox();
+            this.btnChangePlayerPlayerEventsMgt = new System.Windows.Forms.Button();
+            this.playerevents = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.labelAddEventsPlayerAge = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelAddEventsPlayerGender = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
+            this.labelAddEventsPlayerNumber = new System.Windows.Forms.Label();
+            this.btnRemoveEventFromPlayer = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.imageListForTabs = new System.Windows.Forms.ImageList(this.components);
             this.toolStripStatusBar = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -180,7 +197,9 @@ namespace SportsMeet
             this.bindingSourceFilterByPlayerEvents = new System.Windows.Forms.BindingSource(this.components);
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusTime = new System.Windows.Forms.Timer(this.components);
-            this.tabPageEventsManagement = new System.Windows.Forms.TabPage();
+            this.bindingSourceEventsBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceEventsDoesNotBelongToPlayer = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPageReports = new System.Windows.Forms.TabPage();
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -210,9 +229,14 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFBE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilteredPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredPlayersOnEvent)).BeginInit();
+            this.tabPageEventsManagement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.toolStripStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -226,6 +250,7 @@ namespace SportsMeet
             this.tcMainForm.Controls.Add(this.tbFilterByPlayer);
             this.tcMainForm.Controls.Add(this.tbFilterByEvent);
             this.tcMainForm.Controls.Add(this.tabPageEventsManagement);
+            this.tcMainForm.Controls.Add(this.tabPageReports);
             this.tcMainForm.ImageList = this.imageListForTabs;
             this.tcMainForm.Location = new System.Drawing.Point(0, 9);
             this.tcMainForm.Margin = new System.Windows.Forms.Padding(0);
@@ -552,14 +577,14 @@ namespace SportsMeet
             // 
             // btnEeventsTabAddPlayers
             // 
-            this.btnEeventsTabAddPlayers.Location = new System.Drawing.Point(96, 281);
+            this.btnEeventsTabAddPlayers.Location = new System.Drawing.Point(96, 252);
             this.btnEeventsTabAddPlayers.Margin = new System.Windows.Forms.Padding(6);
             this.btnEeventsTabAddPlayers.Name = "btnEeventsTabAddPlayers";
             this.btnEeventsTabAddPlayers.Size = new System.Drawing.Size(170, 28);
             this.btnEeventsTabAddPlayers.TabIndex = 13;
-            this.btnEeventsTabAddPlayers.Text = "Event Players Management ";
+            this.btnEeventsTabAddPlayers.Text = "Player Events Management ";
             this.btnEeventsTabAddPlayers.UseVisualStyleBackColor = true;
-            this.btnEeventsTabAddPlayers.Visible = false;
+            this.btnEeventsTabAddPlayers.Click += new System.EventHandler(this.btnEeventsTabAddPlayers_Click);
             // 
             // btnEventEdit
             // 
@@ -1493,6 +1518,188 @@ namespace SportsMeet
             this.lblFilterByEventEventNumber.TabIndex = 0;
             this.lblFilterByEventEventNumber.Text = "Event Number";
             // 
+            // tabPageEventsManagement
+            // 
+            this.tabPageEventsManagement.Controls.Add(this.label12);
+            this.tabPageEventsManagement.Controls.Add(this.textBoxAddEventEventFilter);
+            this.tabPageEventsManagement.Controls.Add(this.btnChangePlayerPlayerEventsMgt);
+            this.tabPageEventsManagement.Controls.Add(this.playerevents);
+            this.tabPageEventsManagement.Controls.Add(this.label7);
+            this.tabPageEventsManagement.Controls.Add(this.label9);
+            this.tabPageEventsManagement.Controls.Add(this.labelAddEventsPlayerAge);
+            this.tabPageEventsManagement.Controls.Add(this.label10);
+            this.tabPageEventsManagement.Controls.Add(this.labelAddEventsPlayerGender);
+            this.tabPageEventsManagement.Controls.Add(this.label11);
+            this.tabPageEventsManagement.Controls.Add(this.labelAddEventsPlayerFullName);
+            this.tabPageEventsManagement.Controls.Add(this.labelAddEventsPlayerNumber);
+            this.tabPageEventsManagement.Controls.Add(this.btnRemoveEventFromPlayer);
+            this.tabPageEventsManagement.Controls.Add(this.button1);
+            this.tabPageEventsManagement.Controls.Add(this.dataGridView3);
+            this.tabPageEventsManagement.Controls.Add(this.dataGridView2);
+            this.tabPageEventsManagement.Location = new System.Drawing.Point(4, 29);
+            this.tabPageEventsManagement.Name = "tabPageEventsManagement";
+            this.tabPageEventsManagement.Size = new System.Drawing.Size(1031, 667);
+            this.tabPageEventsManagement.TabIndex = 5;
+            this.tabPageEventsManagement.Text = "Events Management";
+            this.tabPageEventsManagement.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(716, 138);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(91, 20);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "New events";
+            // 
+            // textBoxAddEventEventFilter
+            // 
+            this.textBoxAddEventEventFilter.Location = new System.Drawing.Point(557, 93);
+            this.textBoxAddEventEventFilter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxAddEventEventFilter.Name = "textBoxAddEventEventFilter";
+            this.textBoxAddEventEventFilter.Size = new System.Drawing.Size(467, 26);
+            this.textBoxAddEventEventFilter.TabIndex = 27;
+            // 
+            // btnChangePlayerPlayerEventsMgt
+            // 
+            this.btnChangePlayerPlayerEventsMgt.Location = new System.Drawing.Point(557, 25);
+            this.btnChangePlayerPlayerEventsMgt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnChangePlayerPlayerEventsMgt.Name = "btnChangePlayerPlayerEventsMgt";
+            this.btnChangePlayerPlayerEventsMgt.Size = new System.Drawing.Size(158, 35);
+            this.btnChangePlayerPlayerEventsMgt.TabIndex = 28;
+            this.btnChangePlayerPlayerEventsMgt.Text = "Change Player";
+            this.btnChangePlayerPlayerEventsMgt.UseVisualStyleBackColor = true;
+            this.btnChangePlayerPlayerEventsMgt.Click += new System.EventHandler(this.btnChangePlayerPlayerEventsMgt_Click);
+            // 
+            // playerevents
+            // 
+            this.playerevents.AutoSize = true;
+            this.playerevents.Location = new System.Drawing.Point(135, 138);
+            this.playerevents.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.playerevents.Name = "playerevents";
+            this.playerevents.Size = new System.Drawing.Size(159, 20);
+            this.playerevents.TabIndex = 26;
+            this.playerevents.Text = "Current player events";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 32);
+            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 20);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Player Number";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(11, 52);
+            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 20);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Full Name";
+            // 
+            // labelAddEventsPlayerAge
+            // 
+            this.labelAddEventsPlayerAge.AutoSize = true;
+            this.labelAddEventsPlayerAge.Location = new System.Drawing.Point(135, 93);
+            this.labelAddEventsPlayerAge.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddEventsPlayerAge.Name = "labelAddEventsPlayerAge";
+            this.labelAddEventsPlayerAge.Size = new System.Drawing.Size(51, 20);
+            this.labelAddEventsPlayerAge.TabIndex = 25;
+            this.labelAddEventsPlayerAge.Text = "label7";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(11, 92);
+            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(38, 20);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Age";
+            // 
+            // labelAddEventsPlayerGender
+            // 
+            this.labelAddEventsPlayerGender.AutoSize = true;
+            this.labelAddEventsPlayerGender.Location = new System.Drawing.Point(135, 73);
+            this.labelAddEventsPlayerGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddEventsPlayerGender.Name = "labelAddEventsPlayerGender";
+            this.labelAddEventsPlayerGender.Size = new System.Drawing.Size(51, 20);
+            this.labelAddEventsPlayerGender.TabIndex = 24;
+            this.labelAddEventsPlayerGender.Text = "label6";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(11, 72);
+            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 20);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Gender";
+            // 
+            // labelAddEventsPlayerFullName
+            // 
+            this.labelAddEventsPlayerFullName.AutoSize = true;
+            this.labelAddEventsPlayerFullName.Location = new System.Drawing.Point(135, 52);
+            this.labelAddEventsPlayerFullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddEventsPlayerFullName.Name = "labelAddEventsPlayerFullName";
+            this.labelAddEventsPlayerFullName.Size = new System.Drawing.Size(51, 20);
+            this.labelAddEventsPlayerFullName.TabIndex = 23;
+            this.labelAddEventsPlayerFullName.Text = "label5";
+            // 
+            // labelAddEventsPlayerNumber
+            // 
+            this.labelAddEventsPlayerNumber.AutoSize = true;
+            this.labelAddEventsPlayerNumber.Location = new System.Drawing.Point(135, 32);
+            this.labelAddEventsPlayerNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAddEventsPlayerNumber.Name = "labelAddEventsPlayerNumber";
+            this.labelAddEventsPlayerNumber.Size = new System.Drawing.Size(51, 20);
+            this.labelAddEventsPlayerNumber.TabIndex = 22;
+            this.labelAddEventsPlayerNumber.Text = "label4";
+            // 
+            // btnRemoveEventFromPlayer
+            // 
+            this.btnRemoveEventFromPlayer.Location = new System.Drawing.Point(481, 385);
+            this.btnRemoveEventFromPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRemoveEventFromPlayer.Name = "btnRemoveEventFromPlayer";
+            this.btnRemoveEventFromPlayer.Size = new System.Drawing.Size(69, 35);
+            this.btnRemoveEventFromPlayer.TabIndex = 17;
+            this.btnRemoveEventFromPlayer.Text = ">>";
+            this.btnRemoveEventFromPlayer.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(481, 316);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 35);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "<<";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(8, 161);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 28;
+            this.dataGridView3.Size = new System.Drawing.Size(468, 493);
+            this.dataGridView3.TabIndex = 1;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(557, 161);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 28;
+            this.dataGridView2.Size = new System.Drawing.Size(468, 493);
+            this.dataGridView2.TabIndex = 0;
+            // 
             // imageListForTabs
             // 
             this.imageListForTabs.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListForTabs.ImageStream")));
@@ -1522,11 +1729,11 @@ namespace SportsMeet
             this.toolStripSeparator4,
             this.toolStripButtonAbout});
             this.toolStripStatusBar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.toolStripStatusBar.Location = new System.Drawing.Point(0, 727);
+            this.toolStripStatusBar.Location = new System.Drawing.Point(0, 735);
             this.toolStripStatusBar.Name = "toolStripStatusBar";
             this.toolStripStatusBar.Padding = new System.Windows.Forms.Padding(0);
             this.toolStripStatusBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStripStatusBar.Size = new System.Drawing.Size(1039, 45);
+            this.toolStripStatusBar.Size = new System.Drawing.Size(1041, 45);
             this.toolStripStatusBar.Stretch = true;
             this.toolStripStatusBar.TabIndex = 1;
             this.toolStripStatusBar.Text = "toolStrip";
@@ -1617,19 +1824,19 @@ namespace SportsMeet
             this.statusTime.Interval = 4000;
             this.statusTime.Tick += new System.EventHandler(this.statusTime_Tick);
             // 
-            // tabPageEventsManagement
+            // tabPageReports
             // 
-            this.tabPageEventsManagement.Location = new System.Drawing.Point(4, 29);
-            this.tabPageEventsManagement.Name = "tabPageEventsManagement";
-            this.tabPageEventsManagement.Size = new System.Drawing.Size(1031, 667);
-            this.tabPageEventsManagement.TabIndex = 5;
-            this.tabPageEventsManagement.Text = "Events Management";
-            this.tabPageEventsManagement.UseVisualStyleBackColor = true;
+            this.tabPageReports.Location = new System.Drawing.Point(4, 29);
+            this.tabPageReports.Name = "tabPageReports";
+            this.tabPageReports.Size = new System.Drawing.Size(1031, 667);
+            this.tabPageReports.TabIndex = 6;
+            this.tabPageReports.Text = "Reports";
+            this.tabPageReports.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(1039, 772);
+            this.ClientSize = new System.Drawing.Size(1041, 780);
             this.Controls.Add(this.toolStripStatusBar);
             this.Controls.Add(this.tcMainForm);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1673,10 +1880,16 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFBE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewFilteredPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilteredPlayersOnEvent)).EndInit();
+            this.tabPageEventsManagement.ResumeLayout(false);
+            this.tabPageEventsManagement.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.toolStripStatusBar.ResumeLayout(false);
             this.toolStripStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsBelongToPlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEventsDoesNotBelongToPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1823,6 +2036,25 @@ namespace SportsMeet
         private Label label8;
         private Label labelCurrentEventFBE;
         private TabPage tabPageEventsManagement;
+        private DataGridView dataGridView3;
+        private DataGridView dataGridView2;
+        private Button button1;
+        private Button btnRemoveEventFromPlayer;
+        private Label playerevents;
+        private Label label7;
+        internal Label label9;
+        private Label labelAddEventsPlayerAge;
+        private Label label10;
+        private Label labelAddEventsPlayerGender;
+        private Label label11;
+        private Label labelAddEventsPlayerFullName;
+        private Label labelAddEventsPlayerNumber;
+        private TextBox textBoxAddEventEventFilter;
+        private Button btnChangePlayerPlayerEventsMgt;
+        private Label label12;
+        private BindingSource bindingSourceEventsBelongToPlayer;
+        private BindingSource bindingSourceEventsDoesNotBelongToPlayer;
+        private TabPage tabPageReports;
     }
     
 }

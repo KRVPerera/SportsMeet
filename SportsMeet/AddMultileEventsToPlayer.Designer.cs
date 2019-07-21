@@ -237,7 +237,7 @@
             this.dataGridViewNonPlayerEvents.Location = new System.Drawing.Point(9, 65);
             this.dataGridViewNonPlayerEvents.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewNonPlayerEvents.Name = "dataGridViewNonPlayerEvents";
-            this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(530, 591);
+            this.dataGridViewNonPlayerEvents.Size = new System.Drawing.Size(530, 517);
             this.dataGridViewNonPlayerEvents.TabIndex = 17;
             // 
             // numberDataGridViewTextBoxColumn1
