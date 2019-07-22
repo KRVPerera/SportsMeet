@@ -1,11 +1,6 @@
 language: csharp
 solution: SportsMeet.sln
 
-cache:
-  directories:
-    - ${TRAVIS_BUILD_DIR}/packages/
-
-
 install:
   - nuget restore SportsMeet.sln
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
