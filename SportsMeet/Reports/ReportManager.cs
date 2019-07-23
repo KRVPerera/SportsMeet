@@ -14,23 +14,20 @@ namespace SportsMeet.Reports
 {
     public class ReportManager
     {
-        public void Report()
-        {
-            IEnumerable<Player> players = DataBase.LoadPlayers();
 
-            foreach (var player in players)
-            {
-                ReportPlayer(player);
-                break;
-            }
+        #region data
 
-            TestMigraDoc();
-        }
+        //Dictionary<Int64, EducationZone> educationZonesDictionary = cache[cache_key] as Dictionary<Int64, EducationZone>;
 
+        #endregion data
 
-        public void Report(String folderPath)
+        public ReportManager(String folderPath)
         {
             ReportPath = folderPath;
+        }
+
+        public void Report()
+        {
             IEnumerable<Player> players = DataBase.LoadPlayers();
 
             foreach (var player in players)
@@ -90,8 +87,10 @@ namespace SportsMeet.Reports
             //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(document);
             MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
 
-            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-            renderer.Document = document;
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true)
+            {
+                Document = document
+            };
 
             renderer.RenderDocument();
 

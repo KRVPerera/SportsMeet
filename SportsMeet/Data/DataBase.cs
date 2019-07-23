@@ -12,7 +12,11 @@ namespace SportsMeet.Data
 {
     internal class DataBase
     {
+        #region private members
+
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        #endregion
 
 
         #region public constructors
@@ -116,7 +120,6 @@ namespace SportsMeet.Data
 
         public static long SavePlayer(Player player)
         {
-//            DapperPlusManager.Entity<Supplier>().Table("Suppliers").Identity(x => x.SupplierID);
             return DBConnection.Instance.Connection.Insert(player);
         }
 

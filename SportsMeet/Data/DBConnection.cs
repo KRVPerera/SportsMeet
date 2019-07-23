@@ -9,32 +9,16 @@ namespace SportsMeet.Data
 {
     public sealed class DBConnection
     {
-        private static IDbConnection connection = null;
+        #region private members
 
+        private static IDbConnection connection = null;
         private static DBConnection instance = null;
         private static readonly object padlock = new object();
 
-        private DBConnection()
-        {
-            connection = new SQLiteConnection(LoadConnectionString());
-            connection.Open();
-            //            SanitizeDb();
-        }
+        #endregion
 
-        public static DBConnection Instance
-        {
-            get
-            {
-                lock (padlock)
-                {
-                    if (instance == null)
-                    {
-                        instance = new DBConnection();
-                    }
-                    return instance;
-                }
-            }
-        }
+
+        #region  private methods
 
         private void SanitizeDb()
         {
@@ -78,14 +62,6 @@ namespace SportsMeet.Data
             }
         }
 
-        public IDbConnection Connection
-        {
-            get
-            {
-                return connection;
-            }
-        }
-
         private static string LoadConnectionString()
         {
             var filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\MeetTracker\\meet.db";
@@ -105,5 +81,52 @@ namespace SportsMeet.Data
             var connectionString = "Data Source=" + filePath + "; Version=3";
             return connectionString;
         }
+
+        #endregion
+
+
+        #region private ctors
+
+        private DBConnection()
+        {
+            connection = new SQLiteConnection(LoadConnectionString());
+            connection.Open();
+            //            SanitizeDb();
+        }
+
+        #endregion
+
+
+        #region public properties
+
+        public IDbConnection Connection
+        {
+            get
+            {
+                return connection;
+            }
+        }
+
+        #endregion
+
+
+        #region public properties
+
+        public static DBConnection Instance
+        {
+            get
+            {
+                lock (padlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new DBConnection();
+                    }
+                    return instance;
+                }
+            }
+        }
+
+        #endregion
     }
 }

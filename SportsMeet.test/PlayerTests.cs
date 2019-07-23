@@ -2,6 +2,7 @@
 using SportsMeet.Reports;
 using System;
 using NUnit.Framework;
+using System.IO;
 
 namespace SportsMeet.test
 {
@@ -42,13 +43,17 @@ namespace SportsMeet.test
         public void SampleReport()
         {
 
-            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\MeetTest";
-            ReportManager reportManager = new ReportManager
-            {
-                ReportPath = folderPath
-            };
+            var folderPath = Path.GetTempPath() + "\\MeetTest";
 
-            reportManager.Report(folderPath);
+            Directory.CreateDirectory(folderPath);
+
+            ReportManager reportManager = new ReportManager(folderPath);
+            reportManager.Report();
+
+            if (Directory.Exists(folderPath))
+            {
+                Directory.Delete(folderPath);
+            }
         }
     }
 }

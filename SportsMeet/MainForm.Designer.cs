@@ -1572,8 +1572,8 @@ namespace SportsMeet
             this.tableLayoutPanel3.Location = new System.Drawing.Point(8, 154);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 442F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(1011, 493);
             this.tableLayoutPanel3.TabIndex = 30;
             // 
@@ -1590,10 +1590,10 @@ namespace SportsMeet
             this.genderDataGridViewTextBoxColumn4,
             this.ageLimitDataGridViewTextBoxColumn3});
             this.dataGridViewCurrentPlayerEvents.DataSource = this.bindingSourceEventsBelongToPlayer;
-            this.dataGridViewCurrentPlayerEvents.Location = new System.Drawing.Point(3, 54);
+            this.dataGridViewCurrentPlayerEvents.Location = new System.Drawing.Point(3, 43);
             this.dataGridViewCurrentPlayerEvents.Name = "dataGridViewCurrentPlayerEvents";
             this.dataGridViewCurrentPlayerEvents.RowTemplate.Height = 28;
-            this.dataGridViewCurrentPlayerEvents.Size = new System.Drawing.Size(448, 436);
+            this.dataGridViewCurrentPlayerEvents.Size = new System.Drawing.Size(448, 447);
             this.dataGridViewCurrentPlayerEvents.TabIndex = 1;
             // 
             // numberDataGridViewTextBoxColumn7
@@ -1632,7 +1632,7 @@ namespace SportsMeet
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.btnRemoveEventFromPlayer, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.button1, 0, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(457, 54);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(457, 48);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -1668,7 +1668,7 @@ namespace SportsMeet
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(737, 15);
+            this.label12.Location = new System.Drawing.Point(737, 10);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(91, 20);
@@ -1689,10 +1689,10 @@ namespace SportsMeet
             this.ageLimitDataGridViewTextBoxColumn2});
             this.dataGridViewCurrentPlayerNewEvents.DataSource = this.bindingSourceEventsDoesNotBelongToPlayer;
             this.dataGridViewCurrentPlayerNewEvents.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewCurrentPlayerNewEvents.Location = new System.Drawing.Point(558, 54);
+            this.dataGridViewCurrentPlayerNewEvents.Location = new System.Drawing.Point(558, 43);
             this.dataGridViewCurrentPlayerNewEvents.Name = "dataGridViewCurrentPlayerNewEvents";
             this.dataGridViewCurrentPlayerNewEvents.RowTemplate.Height = 28;
-            this.dataGridViewCurrentPlayerNewEvents.Size = new System.Drawing.Size(450, 436);
+            this.dataGridViewCurrentPlayerNewEvents.Size = new System.Drawing.Size(450, 447);
             this.dataGridViewCurrentPlayerNewEvents.TabIndex = 0;
             // 
             // numberDataGridViewTextBoxColumn6
@@ -1728,7 +1728,7 @@ namespace SportsMeet
             // 
             this.playerevents.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.playerevents.AutoSize = true;
-            this.playerevents.Location = new System.Drawing.Point(147, 15);
+            this.playerevents.Location = new System.Drawing.Point(147, 10);
             this.playerevents.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.playerevents.Name = "playerevents";
             this.playerevents.Size = new System.Drawing.Size(159, 20);
