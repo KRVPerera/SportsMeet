@@ -191,6 +191,7 @@ namespace SportsMeet
             this.labelAddEventsPlayerFullName = new System.Windows.Forms.Label();
             this.labelAddEventsPlayerNumber = new System.Windows.Forms.Label();
             this.tabPageReports = new System.Windows.Forms.TabPage();
+            this.progressBarReports = new System.Windows.Forms.ProgressBar();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -218,7 +219,7 @@ namespace SportsMeet
             this.statusTime = new System.Windows.Forms.Timer(this.components);
             this.eventBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialogSaveReports = new System.Windows.Forms.SaveFileDialog();
-            this.progressBarReports = new System.Windows.Forms.ProgressBar();
+            this.fileSystemWatcherReportPath = new System.IO.FileSystemWatcher();
             this.tcMainForm.SuspendLayout();
             this.tbSchool.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -260,6 +261,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherReportPath)).BeginInit();
             this.SuspendLayout();
             // 
             // tcMainForm
@@ -1842,6 +1844,13 @@ namespace SportsMeet
             this.tabPageReports.Text = "Reports";
             this.tabPageReports.UseVisualStyleBackColor = true;
             // 
+            // progressBarReports
+            // 
+            this.progressBarReports.Location = new System.Drawing.Point(66, 529);
+            this.progressBarReports.Name = "progressBarReports";
+            this.progressBarReports.Size = new System.Drawing.Size(849, 23);
+            this.progressBarReports.TabIndex = 8;
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(732, 572);
@@ -2045,12 +2054,15 @@ namespace SportsMeet
             this.saveFileDialogSaveReports.FileName = "SportsMeet";
             this.saveFileDialogSaveReports.RestoreDirectory = true;
             // 
-            // progressBarReports
+            // fileSystemWatcherReportPath
             // 
-            this.progressBarReports.Location = new System.Drawing.Point(66, 529);
-            this.progressBarReports.Name = "progressBarReports";
-            this.progressBarReports.Size = new System.Drawing.Size(849, 23);
-            this.progressBarReports.TabIndex = 8;
+            this.fileSystemWatcherReportPath.EnableRaisingEvents = true;
+            this.fileSystemWatcherReportPath.IncludeSubdirectories = true;
+            this.fileSystemWatcherReportPath.SynchronizingObject = this;
+            this.fileSystemWatcherReportPath.Changed += new System.IO.FileSystemEventHandler(this.fileSystemWatcherReportPath_Changed);
+            this.fileSystemWatcherReportPath.Created += new System.IO.FileSystemEventHandler(this.fileSystemWatcherReportPath_Changed);
+            this.fileSystemWatcherReportPath.Deleted += new System.IO.FileSystemEventHandler(this.fileSystemWatcherReportPath_Changed);
+            this.fileSystemWatcherReportPath.Renamed += new System.IO.RenamedEventHandler(this.fileSystemWatcherReportPath_Renamed);
             // 
             // MainForm
             // 
@@ -2115,6 +2127,7 @@ namespace SportsMeet
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceFilterByPlayerEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcherReportPath)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2299,6 +2312,7 @@ namespace SportsMeet
         private Button button4;
         private SaveFileDialog saveFileDialogSaveReports;
         private ProgressBar progressBarReports;
+        private System.IO.FileSystemWatcher fileSystemWatcherReportPath;
     }
     
 }

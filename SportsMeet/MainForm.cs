@@ -883,6 +883,10 @@ namespace SportsMeet
             var filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SportsMeet\\";
             textBoxSaveReportPath.Text = filePath;
 
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
+            fileSystemWatcherReportPath.Path = textBoxSaveReportPath.Text;
+
+
             statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
         }
@@ -1034,10 +1038,18 @@ namespace SportsMeet
 
             if (dialogBoxResult == DialogResult.OK)
             {
-                textBoxSaveReportPath.Text = Path.GetDirectoryName(saveFileDialogSaveReports.FileName);
-                LoadDirectory(textBoxSaveReportPath.Text);
+                
+                String currentPath = Path.GetDirectoryName(saveFileDialogSaveReports.FileName);
+                textBoxSaveReportPath.Text = currentPath;
+                fileSystemWatcherReportPath.Path = currentPath;
+                RefreshTreeViewer(currentPath);
             }
-            
+        }
+
+        private void RefreshTreeViewer(String folderPath)
+        {
+            treeViewSaveReportPath.Nodes.Clear();
+            LoadDirectory(folderPath);
         }
 
         // from : https://www.c-sharpcorner.com/article/display-sub-directories-and-files-in-treeview/
@@ -1050,6 +1062,7 @@ namespace SportsMeet
             tds.StateImageIndex = 0;
             LoadFiles(Dir, tds);
             LoadSubDirectories(Dir, tds);
+            tds.Expand();
         }
 
         private void LoadSubDirectories(string dir, TreeNode td)
@@ -1081,6 +1094,17 @@ namespace SportsMeet
                 tds.Tag = fi.FullName;
                 tds.StateImageIndex = 1;
             }
+        }
+
+        private void fileSystemWatcherReportPath_Changed(object sender, FileSystemEventArgs e)
+        {
+            //RefreshTreeViewer(e.FullPath);
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
+        }
+
+        private void fileSystemWatcherReportPath_Renamed(object sender, RenamedEventArgs e)
+        {
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
         }
     }
 }
