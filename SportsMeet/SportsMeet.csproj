@@ -136,8 +136,11 @@
     <Compile Include="Models\StringAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Cover.cs" />
     <Compile Include="Reports\FillerText.cs" />
+    <Compile Include="Reports\ProvincesReport.cs" />
     <Compile Include="Reports\ReportManager.cs" />
+    <Compile Include="Reports\Styles.cs" />
     <Compile Include="SearchPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,7 +161,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -201,6 +204,10 @@
   <ItemGroup>
     <Content Include="Icons-Land-Vista-People-Sport-Football-Player-Male-Light.ico" />
     <Content Include="Icons8-Windows-8-Sports-Football-2.ico" />
+    <None Include="Resources\Cover.png" />
+    <EmbeddedResource Include="Resources\runner-304409_1280.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

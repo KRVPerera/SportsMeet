@@ -1,5 +1,4 @@
 ﻿using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
@@ -9,6 +8,7 @@ using SportsMeet.Data;
 using SportsMeet.Models;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace SportsMeet.Reports
 {
@@ -37,6 +37,31 @@ namespace SportsMeet.Reports
             }
 
             TestMigraDoc();
+        }
+
+
+        public void ReportProvinces()
+        {
+            ProvincesReport provincesReport = new ProvincesReport();
+
+            Document document = provincesReport.CreateProvincesDocument();
+
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true)
+            {
+                Document = document
+            };
+
+            renderer.RenderDocument();
+            string filename = ReportPath + "\\SportsMeet_Provinces_Report.pdf";
+
+            try
+            {
+                renderer.PdfDocument.Save(filename);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File is already opened.\nCannot write to file : \n" + filename, "File save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private String folderPath;
@@ -85,7 +110,7 @@ namespace SportsMeet.Reports
             Document document = CreateDocument();
 
             //string ddl = MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToString(document);
-            MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
+            //MigraDoc.DocumentObjectModel.IO.DdlWriter.WriteToFile(document, "MigraDoc.mdddl");
 
             PdfDocumentRenderer renderer = new PdfDocumentRenderer(true)
             {
@@ -99,6 +124,32 @@ namespace SportsMeet.Reports
             renderer.PdfDocument.Save(filename);
         }
 
+
+        public Document CreateProvincesDocument()
+        {
+            // Create a new MigraDoc document
+            Document document = new Document();
+            document.Info.Title = "Provinces Report";
+            document.Info.Subject = "Sports Meet Province Data";
+            document.Info.Author = "MeetTracker";
+
+            Styles.DefineStyles(document);
+            Cover cover = new Cover();
+            cover.ParaGraphText = "Sports Meet Provinces Report";
+            cover.DefineCover(document);
+
+            DefineTableOfContentsProvinces(document);
+
+            DefineContentSection(document);
+
+            DefineParagraphs(document);
+            DefineTables(document);
+            DefineCharts(document);
+
+            return document;
+        }
+
+
         public Document CreateDocument()
         {
             // Create a new MigraDoc document
@@ -107,9 +158,9 @@ namespace SportsMeet.Reports
             document.Info.Subject = "Demonstrates an excerpt of the capabilities of MigraDoc.";
             document.Info.Author = "Stefan Lange";
 
-            DefineStyles(document);
-
-            DefineCover(document);
+            Styles.DefineStyles(document);
+            Cover cover = new Cover();
+            cover.DefineCover(document);
             DefineTableOfContents(document);
 
             DefineContentSection(document);
@@ -121,86 +172,35 @@ namespace SportsMeet.Reports
             return document;
         }
 
-        /// <summary>
-        /// Defines the styles used in the document.
-        /// </summary>
-        public void DefineStyles(Document document)
+        public void DefineTableOfContentsProvinces(Document document)
         {
-            // Get the predefined style Normal.
-            Style style = document.Styles["Normal"];
-            // Because all styles are derived from Normal, the next line changes the 
-            // font of the whole document. Or, more exactly, it changes the font of
-            // all styles and paragraphs that do not redefine the font.
-            style.Font.Name = "Times New Roman";
+            Section section = document.LastSection;
 
-            // Heading1 to Heading9 are predefined styles with an outline level. An outline level
-            // other than OutlineLevel.BodyText automatically creates the outline (or bookmarks) 
-            // in PDF.
+            section.AddPageBreak();
+            Paragraph paragraph = section.AddParagraph("Table of Contents");
+            paragraph.Format.Font.Size = 14;
+            paragraph.Format.Font.Bold = true;
+            paragraph.Format.SpaceAfter = 24;
+            paragraph.Format.OutlineLevel = OutlineLevel.Level1;
 
-            style = document.Styles["Heading1"];
-            style.Font.Name = "Tahoma";
-            style.Font.Size = 14;
-            style.Font.Bold = true;
-            style.Font.Color = Colors.DarkBlue;
-            style.ParagraphFormat.PageBreakBefore = true;
-            style.ParagraphFormat.SpaceAfter = 6;
+            paragraph = section.AddParagraph();
+            paragraph.Style = "TOC";
+            Hyperlink hyperlink = paragraph.AddHyperlink("All Provinces");
+            hyperlink.AddText("All Provinces\t");
+            hyperlink.AddPageRefField("All Provinces");
 
-            style = document.Styles["Heading2"];
-            style.Font.Size = 12;
-            style.Font.Bold = true;
-            style.ParagraphFormat.PageBreakBefore = false;
-            style.ParagraphFormat.SpaceBefore = 6;
-            style.ParagraphFormat.SpaceAfter = 6;
+            paragraph = section.AddParagraph();
+            paragraph.Style = "TOC";
+            hyperlink = paragraph.AddHyperlink("Provinces");
+            hyperlink.AddText("Provinces\t");
+            hyperlink.AddPageRefField("Provinces");
 
-            style = document.Styles["Heading3"];
-            style.Font.Size = 10;
-            style.Font.Bold = true;
-            style.Font.Italic = true;
-            style.ParagraphFormat.SpaceBefore = 6;
-            style.ParagraphFormat.SpaceAfter = 3;
-
-            style = document.Styles[StyleNames.Header];
-            style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
-
-            style = document.Styles[StyleNames.Footer];
-            style.ParagraphFormat.AddTabStop("8cm", TabAlignment.Center);
-
-            // Create a new style called TextBox based on style Normal
-            style = document.Styles.AddStyle("TextBox", "Normal");
-            style.ParagraphFormat.Alignment = ParagraphAlignment.Justify;
-            style.ParagraphFormat.Borders.Width = 2.5;
-            style.ParagraphFormat.Borders.Distance = "3pt";
-            style.ParagraphFormat.Shading.Color = Colors.SkyBlue;
-
-            // Create a new style called TOC based on style Normal
-            style = document.Styles.AddStyle("TOC", "Normal");
-            style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right, TabLeader.Dots);
-            style.ParagraphFormat.Font.Color = Colors.Blue;
+            paragraph = section.AddParagraph();
+            paragraph.Style = "TOC";
+            hyperlink = paragraph.AddHyperlink("Charts");
+            hyperlink.AddText("Charts\t");
+            hyperlink.AddPageRefField("Charts");
         }
-
-        /// <summary>
-        /// Defines the cover page.
-        /// </summary>
-        public void DefineCover(Document document)
-        {
-            Section section = document.AddSection();
-
-            Paragraph paragraph = section.AddParagraph();
-            paragraph.Format.SpaceAfter = "3cm";
-
-            Image image = section.AddImage("../../images/Logo landscape.png");
-            image.Width = "10cm";
-
-            paragraph = section.AddParagraph("A sample document that demonstrates the\ncapabilities of MigraDoc");
-            paragraph.Format.Font.Size = 16;
-            paragraph.Format.Font.Color = Colors.DarkRed;
-            paragraph.Format.SpaceBefore = "8cm";
-            paragraph.Format.SpaceAfter = "3cm";
-
-            paragraph = section.AddParagraph("Rendering date: ");
-            paragraph.AddDateField();
-        }
-
 
 
         /// <summary>
@@ -219,15 +219,15 @@ namespace SportsMeet.Reports
 
             paragraph = section.AddParagraph();
             paragraph.Style = "TOC";
-            Hyperlink hyperlink = paragraph.AddHyperlink("Paragraphs");
-            hyperlink.AddText("Paragraphs\t");
-            hyperlink.AddPageRefField("Paragraphs");
+            Hyperlink hyperlink = paragraph.AddHyperlink("All Provinces");
+            hyperlink.AddText("All Provinces\t");
+            hyperlink.AddPageRefField("All Provinces");
 
             paragraph = section.AddParagraph();
             paragraph.Style = "TOC";
-            hyperlink = paragraph.AddHyperlink("Tables");
-            hyperlink.AddText("Tables\t");
-            hyperlink.AddPageRefField("Tables");
+            hyperlink = paragraph.AddHyperlink("Provinces");
+            hyperlink.AddText("Provinces\t");
+            hyperlink.AddPageRefField("Provinces");
 
             paragraph = section.AddParagraph();
             paragraph.Style = "TOC";
@@ -435,7 +435,7 @@ namespace SportsMeet.Reports
             cell = row.Cells[1];
             cell.AddParagraph(FillerText.Text);
 
-            table.SetEdge(0, 0, 2, 3, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
+            table.SetEdge(0, 0, 2, 3, Edge.Box, MigraDoc.DocumentObjectModel.BorderStyle.Single, 1.5, Colors.Black);
 
             document.LastSection.Add(table);
         }

@@ -1027,7 +1027,7 @@ namespace SportsMeet
         private void buttonReportPlayers_Click(object sender, EventArgs e)
         {
             ReportManager reportManager = new ReportManager(textBoxSaveReportPath.Text);
-            reportManager.Report();
+            reportManager.ReportProvinces();
         }
 
         private void buttonChangeReportFolder_Click(object sender, EventArgs e)
