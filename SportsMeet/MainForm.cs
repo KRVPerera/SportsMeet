@@ -1,11 +1,13 @@
 ﻿using SportsMeet.Data;
 using SportsMeet.Models;
 using SportsMeet.Properties;
+using SportsMeet.Reports;
 using SportsMeet.Utils;
 using SportsMeet.View;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -699,6 +701,8 @@ namespace SportsMeet
             autoComplete.AddRange(DataBase.LoadPlayerNumbers().ToArray());
             tbPlayerNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByPlayersNumber.AutoCompleteCustomSource = autoComplete;
+
+            tbFilterByPlayersNumber.Text = "";
         }
 
         private void LoadSchoolList()
@@ -749,6 +753,13 @@ namespace SportsMeet
             autoComplete.AddRange(DataBase.LoadEventNumbers().ToArray());
             tbNewEventsNumber.AutoCompleteCustomSource = autoComplete;
             tbFilterByEventEventNumber.AutoCompleteCustomSource = autoComplete;
+
+            bindingSourceEventsDoesNotBelongToPlayer.DataSource = null;
+            bindingSourceEventsBelongToPlayer.DataSource = null;
+            bindingSourceEventsDoesNotBelongToPlayer.ResetBindings(false);
+            bindingSourceEventsBelongToPlayer.ResetBindings(false);
+
+            tbFilterByEventEventNumber.Text = "";
         }
 
         #endregion Data Loading
@@ -869,6 +880,12 @@ namespace SportsMeet
             cbxGender.SelectedIndex = 1;
             EventsManagementTab();
             labelCurrentEventFBE.Text = "";
+            var filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\SportsMeet\\";
+            textBoxSaveReportPath.Text = filePath;
+
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
+            fileSystemWatcherReportPath.Path = textBoxSaveReportPath.Text;
+
 
             statusViewer = new StatusViewer(statusLabel, statusTime, toolStripStatusBar);
             statusViewer.Update("Program Loaded", Status.SUCCESS);
@@ -1005,6 +1022,93 @@ namespace SportsMeet
         {
             tbFilterByEventEventNumber.Text = "";
             tbFilterByPlayersNumber.Text = "";
+        }
+
+        private void buttonReportPlayers_Click(object sender, EventArgs e)
+        {
+            ReportManager reportManager = new ReportManager(textBoxSaveReportPath.Text);
+            reportManager.ReportProvinces();
+        }
+
+        private void buttonChangeReportFolder_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dialogBoxResult = saveFileDialogSaveReports.ShowDialog();
+
+            if (dialogBoxResult == DialogResult.OK)
+            {
+                
+                String currentPath = Path.GetDirectoryName(saveFileDialogSaveReports.FileName);
+                textBoxSaveReportPath.Text = currentPath;
+                fileSystemWatcherReportPath.Path = currentPath;
+                RefreshTreeViewer(currentPath);
+            }
+        }
+
+        private void RefreshTreeViewer(String folderPath)
+        {
+            treeViewSaveReportPath.Nodes.Clear();
+            LoadDirectory(folderPath);
+        }
+
+        // from : https://www.c-sharpcorner.com/article/display-sub-directories-and-files-in-treeview/
+        public void LoadDirectory(string Dir)
+        {
+            DirectoryInfo di = new DirectoryInfo(Dir);
+            //Setting ProgressBar Maximum Value  
+            TreeNode tds = treeViewSaveReportPath.Nodes.Add(di.Name);
+            tds.Tag = di.FullName;
+            tds.StateImageIndex = 0;
+            LoadFiles(Dir, tds);
+            LoadSubDirectories(Dir, tds);
+            tds.Expand();
+        }
+
+        private void LoadSubDirectories(string dir, TreeNode td)
+        {
+            // Get all subdirectories  
+            string[] subdirectoryEntries = Directory.GetDirectories(dir);
+            // Loop through them to see if they have any other subdirectories  
+            foreach (string subdirectory in subdirectoryEntries)
+            {
+
+                DirectoryInfo di = new DirectoryInfo(subdirectory);
+                TreeNode tds = td.Nodes.Add(di.Name);
+                tds.StateImageIndex = 0;
+                tds.Tag = di.FullName;
+                LoadFiles(subdirectory, tds);
+                LoadSubDirectories(subdirectory, tds);
+            }
+        }
+
+        private void LoadFiles(string dir, TreeNode td)
+        {
+            string[] Files = Directory.GetFiles(dir, "*.*");
+
+            // Loop through them to see files  
+            foreach (string file in Files)
+            {
+                FileInfo fi = new FileInfo(file);
+                TreeNode tds = td.Nodes.Add(fi.Name);
+                tds.Tag = fi.FullName;
+                tds.StateImageIndex = 1;
+            }
+        }
+
+        private void fileSystemWatcherReportPath_Changed(object sender, FileSystemEventArgs e)
+        {
+            //RefreshTreeViewer(e.FullPath);
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
+        }
+
+        private void fileSystemWatcherReportPath_Renamed(object sender, RenamedEventArgs e)
+        {
+            RefreshTreeViewer(textBoxSaveReportPath.Text);
+        }
+
+        private void toolStripMenuItemExport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

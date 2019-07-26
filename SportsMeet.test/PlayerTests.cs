@@ -1,6 +1,8 @@
 ﻿using SportsMeet.Models;
+using SportsMeet.Reports;
 using System;
 using NUnit.Framework;
+using System.IO;
 
 namespace SportsMeet.test
 {
@@ -31,6 +33,27 @@ namespace SportsMeet.test
             newPlayer.Age = 14;
 
             Assert.IsTrue(14 == newPlayer.Age);
+        }
+    }
+
+
+    public class ReportTest
+    {
+        
+        public void SampleReport()
+        {
+
+            var folderPath = Path.GetTempPath() + "\\MeetTest";
+
+            Directory.CreateDirectory(folderPath);
+
+            ReportManager reportManager = new ReportManager(folderPath);
+            reportManager.Report();
+
+            if (Directory.Exists(folderPath))
+            {
+                Directory.Delete(folderPath);
+            }
         }
     }
 }
