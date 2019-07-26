@@ -39,7 +39,7 @@ namespace SportsMeet.test
 
     public class ReportTest
     {
-        [Test]
+        
         public void SampleReport()
         {
 
