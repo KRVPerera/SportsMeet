@@ -97,14 +97,7 @@ namespace SportsMeet.Reports
             Paragraph paragraph2 = document.LastSection.AddParagraph("Province", "Heading2");
             paragraph.AddBookmark("Province");
 
-            Paragraph paragraph3 = document.LastSection.AddParagraph("Male Players", "Heading3");
-            paragraph.AddBookmark("Male Players");
-
-            Paragraph paragraph4 = document.LastSection.AddParagraph("Female Players", "Heading3");
-            paragraph.AddBookmark("Female Players");
-
-            Paragraph paragraph5 = document.LastSection.AddParagraph("Events", "Heading3");
-            paragraph.AddBookmark("Events");
+            Section section = document.LastSection;
 
             Table table = new Table();
             table.Borders.Width = 0.75;
@@ -114,28 +107,44 @@ namespace SportsMeet.Reports
 
             table.AddColumn(Unit.FromCentimeter(5));
 
-            Row row = table.AddRow();
-            row.Shading.Color = Colors.PaleGoldenrod;
-            Cell cell = row.Cells[0];
-            cell.AddParagraph("Itemus");
-            cell = row.Cells[1];
-            cell.AddParagraph("Descriptum");
+            //section.AddPageBreak();
+            List<District> districts = DataBase.LoadDistricts();
+            int i = 1;
+            foreach (var district in districts)
+            {
+                section.AddParagraph("Province : " + district.Name, "Heading3");
+                section.AddParagraph("Male Players", "Heading3").AddBookmark("Male Players");
 
-            row = table.AddRow();
-            cell = row.Cells[0];
-            cell.AddParagraph("1");
-            cell = row.Cells[1];
-            cell.AddParagraph(FillerText.ShortText);
+                Row row = table.AddRow();
+                row.Shading.Color = Colors.PaleGoldenrod;
+                Cell cell = row.Cells[0];
+                cell.AddParagraph(" ");
+                cell = row.Cells[1];
+                cell.AddParagraph("Province");
 
-            row = table.AddRow();
-            cell = row.Cells[0];
-            cell.AddParagraph("2");
-            cell = row.Cells[1];
-            cell.AddParagraph(FillerText.Text);
+            
+                row = table.AddRow();
+                cell = row.Cells[0];
+                cell.AddParagraph(i.ToString());
+                cell = row.Cells[1];
+                cell.AddParagraph(district.Name);
+                i++;
+            }
 
             table.SetEdge(0, 0, 2, 3, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
 
-            document.LastSection.Add(table);
+            section.Add(table);
+
+
+
+            
+
+            Paragraph paragraph4 = document.LastSection.AddParagraph("Female Players", "Heading3");
+            paragraph.AddBookmark("Female Players");
+
+            Paragraph paragraph5 = document.LastSection.AddParagraph("Events", "Heading3");
+            paragraph.AddBookmark("Events");
+
         }
 
         private void DemonstrateProvinceTables(Document document)
@@ -257,10 +266,10 @@ namespace SportsMeet.Reports
             section.PageSetup.StartingNumber = 1;
 
             HeaderFooter header = section.Headers.Primary;
-            header.AddParagraph("\tOdd Page Header");
+            header.AddParagraph("\tProvinces Report");
 
             header = section.Headers.EvenPage;
-            header.AddParagraph("Even Page Header");
+            header.AddParagraph("Provinces Report");
 
             // Create a paragraph with centered page number. See definition of style "Footer".
             Paragraph paragraph = new Paragraph();

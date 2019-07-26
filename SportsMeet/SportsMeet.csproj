@@ -141,6 +141,7 @@
     <Compile Include="Reports\ProvincesReport.cs" />
     <Compile Include="Reports\ReportManager.cs" />
     <Compile Include="Reports\Styles.cs" />
+    <Compile Include="Reports\Utils.cs" />
     <Compile Include="SearchPlayer.cs">
       <SubType>Form</SubType>
     </Compile>

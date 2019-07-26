@@ -14,7 +14,6 @@ namespace SportsMeet.Reports
 {
     public class ReportManager
     {
-
         #region data
 
         //Dictionary<Int64, EducationZone> educationZonesDictionary = cache[cache_key] as Dictionary<Int64, EducationZone>;
@@ -39,7 +38,6 @@ namespace SportsMeet.Reports
             TestMigraDoc();
         }
 
-
         public void ReportProvinces()
         {
             ProvincesReport provincesReport = new ProvincesReport();
@@ -54,14 +52,20 @@ namespace SportsMeet.Reports
             renderer.RenderDocument();
             string filename = ReportPath + "\\SportsMeet_Provinces_Report.pdf";
 
-            try
+            while (Utils.IsFileLocked(filename))
             {
-                renderer.PdfDocument.Save(filename);
+                DialogResult result = MessageBox.Show("File is already opened.\nCannot write to file : \n" + filename, "File save error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == DialogResult.Retry)
+                {
+                    continue;
+                }
+                else
+                {
+                    return;
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("File is already opened.\nCannot write to file : \n" + filename, "File save error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            renderer.PdfDocument.Save(filename);
         }
 
         private String folderPath;
@@ -76,7 +80,6 @@ namespace SportsMeet.Reports
         {
             PdfDocument document = new PdfDocument();
             document.Info.Title = "Created with PDFsharp";
-
 
             // Create an empty page
             PdfPage page = document.AddPage();
@@ -98,10 +101,8 @@ namespace SportsMeet.Reports
             // ...and start a viewer.
         }
 
-
         private void ReportPlayer(Player player, PdfDocument doc)
         {
-
         }
 
         private void TestMigraDoc()
@@ -123,7 +124,6 @@ namespace SportsMeet.Reports
             string filename = ReportPath + "\\HelloMigraDoc.pdf";
             renderer.PdfDocument.Save(filename);
         }
-
 
         public Document CreateProvincesDocument()
         {
@@ -148,7 +148,6 @@ namespace SportsMeet.Reports
 
             return document;
         }
-
 
         public Document CreateDocument()
         {
@@ -201,7 +200,6 @@ namespace SportsMeet.Reports
             hyperlink.AddText("Charts\t");
             hyperlink.AddPageRefField("Charts");
         }
-
 
         /// <summary>
         /// Defines the cover page.
@@ -262,7 +260,6 @@ namespace SportsMeet.Reports
             // not belong to more than one other object. If you forget cloning an exception is thrown.
             section.Footers.EvenPage.Add(paragraph.Clone());
         }
-
 
         public void DefineParagraphs(Document document)
         {
@@ -510,5 +507,3 @@ namespace SportsMeet.Reports
         }
     }
 }
-
-    
