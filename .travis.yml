@@ -1,10 +1,1 @@
-language: csharp
-solution: SportsMeet.sln
 
-install:
-  - nuget restore SportsMeet.sln
-  - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
-
-script:
-  - msbuild /p:Configuration=Release SportsMeet.sln
-  - mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./SportsMeet.test/bin/Release/SportsMeet.test.dll
